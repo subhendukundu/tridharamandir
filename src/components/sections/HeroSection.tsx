@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { layoutRules, textRules, iconSizes } from "@/foundation/design-system";
 import { heroContent } from "@/data/content";
+import { cfImage, imagePresets } from "@/utils/image";
 
 export function HeroSection() {
   return (
@@ -14,7 +15,7 @@ export function HeroSection() {
     >
       <div className="absolute inset-0">
         <Image
-          src={heroContent.backgroundImage}
+          src={cfImage(heroContent.backgroundImage, imagePresets.hero())}
           alt="Tridhara Milan Mandir illuminated during Durga Puja"
           fill
           sizes="100vw"

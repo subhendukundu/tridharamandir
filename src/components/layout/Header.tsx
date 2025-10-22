@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/Button";
 import { layoutRules, linkRules, iconSizes } from "@/foundation/design-system";
 import { navLinks, type NavLinkItem } from "@/data/content";
 import { siteConfig } from "@/config/site";
+import { cfImage, imagePresets } from "@/utils/image";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -112,7 +113,7 @@ export function Header() {
         <Link href="/#home" className="flex items-center gap-3 group/logo rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent transition-colors motion-reduce:transition-none">
           <div className="relative h-10 w-10 overflow-hidden rounded-xl">
             <Image
-              src="/images/logo.png"
+              src={cfImage("/images/logo.png", imagePresets.thumbnail(40))}
               alt="Tridhara Milan Mandir logo"
               width={40}
               height={40}
