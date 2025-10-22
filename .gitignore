@@ -88,6 +88,10 @@ jspm_packages/
 # next.js build output
 .next
 
+# OpenNext Cloudflare build output
+.open-next/
+cloudflare-env.d.ts
+
 # nuxt.js build output
 .nuxt
 
