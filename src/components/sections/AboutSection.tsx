@@ -136,8 +136,8 @@ function PanoramaLayout({ variantLabel }: LayoutProps) {
           aria-hidden="true"
         >
           <Image
-            src="/patterns/thai-temple-outline.png"
-            alt="Intricate temple dome outline pattern"
+            src="/patterns/tridhara-mandir-outline.png"
+            alt="Tridhara Milan Mandir outline pattern"
             width={620}
             height={360}
             loading="lazy"
@@ -181,7 +181,7 @@ function GalleryLayout({ variantLabel }: LayoutProps) {
             <GalleryTile
               title="Architectural Narratives"
               description="Annual pandal themes reimagine classical iconography through sculptural facades, murals, and immersive lighting."
-              image={{ src: "/patterns/thai-temple-outline.png", width: 620, height: 360 }}
+              image={{ src: "/patterns/tridhara-mandir-outline.png", width: 620, height: 360 }}
             />
           </div>
         </div>
@@ -209,8 +209,8 @@ function StoryboardLayout({ variantLabel }: LayoutProps) {
         </div>
         <div className="pointer-events-none absolute right-2 top-[60%] block sm:right-[-100px] md:right-0 lg:right-[-220px] lg:top-auto lg:bottom-[-16%]">
           <Image
-            src="/patterns/thai-temple-outline.png"
-            alt="Temple outline illustration"
+            src="/patterns/tridhara-mandir-outline.png"
+            alt="Tridhara Milan Mandir outline illustration"
             width={520}
             height={300}
             loading="lazy"

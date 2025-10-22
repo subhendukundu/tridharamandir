@@ -105,9 +105,8 @@ export function Header() {
     >
       <div
         className={clsx(
-          layoutRules.container,
           layoutRules.pagePadding,
-          "flex h-[var(--header-height)] items-center justify-between gap-6 py-3"
+          "flex h-[var(--header-height)] w-full items-center justify-between gap-6 py-3"
         )}
       >
         <Link href="/#home" className="flex items-center gap-3 group/logo rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent transition-colors motion-reduce:transition-none">

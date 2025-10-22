@@ -10,7 +10,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden bg-brand-dark text-white"
+      className="relative flex min-h-[85vh] items-center overflow-hidden bg-brand-dark text-white md:min-h-[90vh]"
     >
       <div className="absolute inset-0">
         <Image
@@ -23,7 +23,7 @@ export function HeroSection() {
         />
         {/* Main overlay for readability */}
         <div className="absolute inset-0 bg-hero-overlay" />
-        
+
         {/* Horizontal gradient from left to right */}
         <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/80 via-brand-dark/55 to-brand-dark/15" />
 
@@ -33,9 +33,8 @@ export function HeroSection() {
 
       <div
         className={clsx(
-          layoutRules.container,
-          layoutRules.pagePadding,
-          "relative z-10 flex w-full flex-col gap-10 pb-20 pt-[calc(var(--header-height)+3rem)]"
+          "relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-center gap-8 py-12 md:gap-10 md:py-16",
+          layoutRules.pagePadding
         )}
       >
         <div className="flex flex-col gap-6 lg:max-w-3xl">
@@ -69,9 +68,9 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="mt-8 w-full sm:mt-16">
+        <div className="mt-4 w-full sm:mt-8">
           <div className="flex flex-1 flex-col gap-6 rounded-3xl border border-white/20 bg-white/55 p-6 shadow-[0_40px_90px_-60px_rgba(27,10,44,0.5)] backdrop-blur-md sm:flex-row sm:flex-wrap sm:items-center sm:gap-8 sm:p-8">
-            <div className="flex flex-col gap-2 sm:max-w-xs">
+            <div className="flex flex-col gap-2 flex-1 sm:min-w-[280px]">
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-secondary">
                 Consecrated July 2022
               </p>
@@ -79,8 +78,8 @@ export function HeroSection() {
                 Our sampradayas unite at Panchmura's Tridhara Milan Mandir for year-round seva.
               </p>
             </div>
-            <div className="hidden h-10 w-px bg-brand-primary/15 md:block" />
-            <div className="flex flex-col gap-2 sm:max-w-xs">
+            <div className="hidden h-10 w-px bg-brand-primary/15 sm:block" />
+            <div className="flex flex-col gap-2 flex-1 sm:min-w-[280px]">
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-secondary">
                 Daily Annadan Seva
               </p>
