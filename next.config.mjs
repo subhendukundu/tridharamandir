@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    // Configure loader to bypass Next.js optimization for Cloudflare Image URLs
+    loader: 'custom',
+    loaderFile: './src/utils/image-loader.ts',
     remotePatterns: [
       {
         protocol: "https",
