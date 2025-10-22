@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light only;
+  --header-height: 80px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-feature-settings: "liga" 1, "kern" 1;
+  background: #fffdf8;
+  color: theme("colors.neutral.900");
+}
+
+main {
+  min-height: 100vh;
+}
+
+.glass-panel {
+  background: theme("backgroundImage.frosted-panel");
+  backdrop-filter: blur(12px);
+}
