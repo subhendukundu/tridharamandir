@@ -4,7 +4,30 @@
  * Generates optimized image URLs using Cloudflare's Transform via URL feature.
  * Format: /cdn-cgi/image/<OPTIONS>/<SOURCE-IMAGE>
  *
+ * Features:
+ * - Automatic format conversion (WebP/AVIF with fallback)
+ * - Responsive image sizing
+ * - Quality optimization
+ * - AI-powered background removal (segment: 'foreground')
+ * - Face detection for smart cropping
+ * - Image filters (blur, sharpen, brightness, contrast, etc.)
+ *
  * @see https://developers.cloudflare.com/images/transform-images/transform-via-url/
+ *
+ * @example Background Removal
+ * ```tsx
+ * // Remove background and make transparent
+ * <Image
+ *   src={cfImage('/photo.jpg', { segment: 'foreground', format: 'webp' })}
+ *   alt="Cutout"
+ * />
+ *
+ * // Or use the preset
+ * <Image
+ *   src={cfImage('/photo.jpg', imagePresets.transparent(800))}
+ *   alt="Transparent cutout"
+ * />
+ * ```
  */
 
 export type ImageFit = 'scale-down' | 'contain' | 'cover' | 'crop' | 'pad' | 'squeeze';
@@ -46,6 +69,8 @@ export interface ImageTransformOptions {
   rotate?: 90 | 180 | 270;
   /** Metadata to preserve */
   metadata?: 'copyright' | 'keep' | 'none';
+  /** Remove background and make transparent (requires format that supports transparency like PNG/WebP) */
+  segment?: 'foreground';
 }
 
 /**
@@ -165,6 +190,11 @@ export function cfImage(src: string, options: ImageTransformOptions = {}): strin
     params.push(`metadata=${options.metadata}`);
   }
 
+  // Add background removal/segmentation
+  if (options.segment) {
+    params.push(`segment=${options.segment}`);
+  }
+
   // Construct the URL
   const optionsString = params.join(',');
   return `/cdn-cgi/image/${optionsString}${src}`;
@@ -229,6 +259,16 @@ export const imagePresets = {
     format: 'auto',
     quality: 80,
     blur,
+    metadata: 'none',
+  }),
+
+  /** Transparent/cutout images - removes background using AI */
+  transparent: (width?: number): ImageTransformOptions => ({
+    width: width || 800,
+    fit: 'scale-down',
+    format: 'webp', // WebP supports transparency
+    quality: 85,
+    segment: 'foreground',
     metadata: 'none',
   }),
 } as const;
