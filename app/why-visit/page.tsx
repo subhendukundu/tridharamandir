@@ -106,10 +106,12 @@ export default function WhyVisitPage() {
       <section className="relative bg-gradient-to-br from-brand-dark via-brand-primary to-brand-dark py-24 sm:py-32">
         <div className="absolute inset-0 bg-[url('/patterns/about-temple.svg')] opacity-5" />
         <div className="relative mx-auto max-w-[1160px] px-6 sm:px-8 lg:px-12">
-          <Badge variant="onDark" className="mb-6">
-            <Sparkles className="h-4 w-4" />
-            <span>West Bengal&apos;s Most Unique Temple Experience</span>
-          </Badge>
+          <Badge
+            variant="onDark"
+            className="mb-6"
+            label="West Bengal's Most Unique Temple Experience"
+            icon={<Sparkles className="h-4 w-4" />}
+          />
           <h1 className="font-display text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
             Why Visit Tridhara Milan Mandir?
           </h1>
