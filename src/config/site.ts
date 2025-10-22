@@ -48,9 +48,8 @@ export const siteConfig = {
   ],
   socials: {
     facebook: "https://www.facebook.com/TridharaMilanMandir",
-    instagram: "https://www.instagram.com/tridharamandirofficial",
-    youtube: "https://www.youtube.com/@TridharaMilanMandir",
-    twitter: "https://twitter.com/tridharamandir"
+    instagram: "https://www.instagram.com/tridharamilanmandir",
+    youtube: "https://www.youtube.com/@tridharamandir"
   },
   services: [
     {

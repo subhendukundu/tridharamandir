@@ -88,6 +88,8 @@ export function Footer() {
                     href={social.href}
                     aria-label={social.label}
                     className={linkRules.social}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     {Icon ? <Icon className={iconSizes.sm} /> : null}
                   </Link>

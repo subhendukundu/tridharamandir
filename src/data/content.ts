@@ -266,8 +266,7 @@ export const footerContent = {
   legal: "Tridhara Milan Mandir © 2025. All rights reserved.",
   socials: [
     { label: "Facebook", href: "https://www.facebook.com/TridharaMilanMandir" },
-    { label: "Twitter", href: "https://twitter.com/tridharamandir" },
-    { label: "Instagram", href: "https://www.instagram.com/tridharamandirofficial" },
-    { label: "YouTube", href: "https://www.youtube.com/@TridharaMilanMandir" }
+    { label: "Instagram", href: "https://www.instagram.com/tridharamilanmandir" },
+    { label: "YouTube", href: "https://www.youtube.com/@tridharamandir" }
   ]
 } as const;
