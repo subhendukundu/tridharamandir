@@ -15,7 +15,7 @@ export type ArticleContent = {
 };
 
 export const guestHouseArticle: ArticleContent = {
-  slug: "guest-house-spiritual-itinerary",
+  slug: "guest-house-experiences",
   title: "Tridhara Guest House: 6 Terracotta & Temple Experiences",
   description:
     "Plan an unforgettable stay at Tridhara Milan Mandir’s guest house with sunrise arati, anna-daan seva, terracotta workshops, and festival-ready packages in Panchmura.",

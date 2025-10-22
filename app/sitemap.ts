@@ -61,7 +61,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const guideRoutes: MetadataRoute.Sitemap = [
     {
-      url: `${baseUrl}/guides/guest-house-spiritual-itinerary`,
+      url: `${baseUrl}/guides/guest-house-experiences`,
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",
       priority: 0.75

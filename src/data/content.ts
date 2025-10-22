@@ -42,7 +42,7 @@ export const navLinks: NavLinkItem[] = [
     }))
   },
   { label: "Guest", href: "/guest-house" },
-  { label: "Guides", href: "/guides/guest-house-spiritual-itinerary" },
+  { label: "Guides", href: "/guides/guest-house-experiences" },
   { label: "Events", href: "/events" },
   { label: "Stories", href: "/#testimonial" },
   { label: "Contact", href: "/#visit" }
