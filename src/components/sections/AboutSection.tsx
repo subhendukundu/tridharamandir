@@ -122,7 +122,7 @@ function PanoramaLayout({ variantLabel }: LayoutProps) {
           aria-hidden="true"
         >
           <Image
-            src={cfImage("/patterns/radha-krishna-outlined.png", imagePresets.pattern(480))}
+            src={cfImage("/patterns/radha-krishna-outlined.png", { ...imagePresets.pattern(480), segment: 'foreground' })}
             alt="Radha and Krishna line art motif"
             width={360}
             height={520}
@@ -137,7 +137,7 @@ function PanoramaLayout({ variantLabel }: LayoutProps) {
           aria-hidden="true"
         >
           <Image
-            src={cfImage("/patterns/tridhara-mandir-outline.png", imagePresets.pattern(640))}
+            src={cfImage("/patterns/tridhara-mandir-outline.png", { ...imagePresets.pattern(640), segment: 'foreground' })}
             alt="Tridhara Milan Mandir outline pattern"
             width={620}
             height={360}
@@ -177,12 +177,12 @@ function GalleryLayout({ variantLabel }: LayoutProps) {
             <GalleryTile
               title="Living Culture"
               description="Morning anjali, dhak rhythms, and craft ateliers keep the mandir courtyard alive with shared celebration."
-              image={{ src: cfImage("/patterns/radha-krishna-outlined.png", imagePresets.pattern(360)), width: 360, height: 500 }}
+              image={{ src: cfImage("/patterns/radha-krishna-outlined.png", { ...imagePresets.pattern(360), segment: 'foreground' }), width: 360, height: 500 }}
             />
             <GalleryTile
               title="Architectural Narratives"
               description="Annual pandal themes reimagine classical iconography through sculptural facades, murals, and immersive lighting."
-              image={{ src: cfImage("/patterns/tridhara-mandir-outline.png", imagePresets.pattern(620)), width: 620, height: 360 }}
+              image={{ src: cfImage("/patterns/tridhara-mandir-outline.png", { ...imagePresets.pattern(620), segment: 'foreground' }), width: 620, height: 360 }}
             />
           </div>
         </div>
@@ -198,7 +198,7 @@ function StoryboardLayout({ variantLabel }: LayoutProps) {
       <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:px-0">
         <div className="pointer-events-none absolute left-2 top-[10%] block sm:left-0 md:left-0 lg:left-0 lg:top-auto lg:bottom-[-10%]">
           <Image
-            src={cfImage("/patterns/radha-krishna-outlined.png", imagePresets.pattern(400))}
+            src={cfImage("/patterns/radha-krishna-outlined.png", { ...imagePresets.pattern(400), segment: 'foreground' })}
             alt="Radha-Krishna motif illustration"
             width={320}
             height={520}
@@ -210,7 +210,7 @@ function StoryboardLayout({ variantLabel }: LayoutProps) {
         </div>
         <div className="pointer-events-none absolute right-2 top-[60%] block sm:right-[-100px] md:right-0 lg:right-[-220px] lg:top-auto lg:bottom-[-16%]">
           <Image
-            src={cfImage("/patterns/tridhara-mandir-outline.png", imagePresets.pattern(580))}
+            src={cfImage("/patterns/tridhara-mandir-outline.png", { ...imagePresets.pattern(580), segment: 'foreground' })}
             alt="Tridhara Milan Mandir outline illustration"
             width={520}
             height={300}

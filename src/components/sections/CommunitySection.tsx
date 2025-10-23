@@ -27,23 +27,25 @@ export function CommunitySection() {
               key={programme.slug}
               className="flex flex-col gap-5 rounded-3xl border border-brand-primary/10 bg-white/95 p-6 shadow-[0_28px_70px_-60px_rgba(27,10,44,0.35)]"
             >
-              <div className="space-y-2">
-                <h3 className="font-display text-xl text-brand-primary">{programme.title}</h3>
-                <p className="text-xs uppercase tracking-[0.22em] text-brand-secondary">
-                  {programme.impact}
-                </p>
-                <p className="text-sm text-neutral-600">{programme.description}</p>
+              <div className="flex flex-col gap-5 flex-1">
+                <div className="space-y-2">
+                  <h3 className="font-display text-xl text-brand-primary">{programme.title}</h3>
+                  <p className="text-xs uppercase tracking-[0.22em] text-brand-secondary">
+                    {programme.impact}
+                  </p>
+                  <p className="text-sm text-neutral-600">{programme.description}</p>
+                </div>
+                <ul className="space-y-2 text-sm text-neutral-600">
+                  {programme.stats.map((stat) => (
+                    <li key={stat} className="flex gap-2">
+                      <span aria-hidden="true" className="text-brand-primary">
+                        •
+                      </span>
+                      <span>{stat}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-2 text-sm text-neutral-600">
-                {programme.stats.map((stat) => (
-                  <li key={stat} className="flex gap-2">
-                    <span aria-hidden="true" className="text-brand-primary">
-                      •
-                    </span>
-                    <span>{stat}</span>
-                  </li>
-                ))}
-              </ul>
               <Button href={programme.ctaHref} variant="secondary" size="md" icon={<ArrowRight className="h-4 w-4" />}>
                 {programme.ctaLabel}
               </Button>
