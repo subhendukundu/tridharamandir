@@ -11,7 +11,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[85vh] items-center overflow-hidden bg-brand-dark text-white md:min-h-[90vh]"
+      className="relative flex min-h-screen items-center overflow-hidden bg-brand-dark text-white"
     >
       <div className="absolute inset-0">
         <Image
@@ -34,7 +34,7 @@ export function HeroSection() {
 
       <div
         className={clsx(
-          "relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-center gap-8 py-12 md:gap-10 md:py-16",
+          "relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-end gap-8 pb-16 pt-24 md:justify-center md:gap-10 md:py-16",
           layoutRules.pagePadding
         )}
       >
