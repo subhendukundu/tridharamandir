@@ -15,9 +15,9 @@ export const navLinks: NavLinkItem[] = [
   { label: "Home", href: "/#home" },
   {
     label: "The Mandir",
-    href: "/#about",
+    href: "/about-us",
     children: [
-      { label: "About", href: "/#about" },
+      { label: "About", href: "/about-us" },
       { label: "History", href: "/history" }
     ]
   },
@@ -96,7 +96,7 @@ export const aboutContent = {
       }
     ]
   },
-  action: { label: "View Darshan Timings", href: "/#visit" }
+  action: { label: "Learn More About Our Story", href: "/about-us" }
 } as const;
 
 export const destinationContent = {

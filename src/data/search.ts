@@ -64,8 +64,8 @@ const generalItems: SearchIndexItem[] = [
   {
     title: "About Tridhara Milan Mandir",
     description:
-      "Discover the mandir’s mission to unite Vaishnavism, Shaivism, and Shaktism through Radha-Krishna devotion.",
-    href: "/#about",
+      "Discover the mandir's mission to unite Vaishnavism, Shaivism, and Shaktism through Radha-Krishna devotion.",
+    href: "/about-us",
     category: "About",
     keywords: ["history", "mission", "second vrindavan", siteConfig.address.addressLocality]
   },
