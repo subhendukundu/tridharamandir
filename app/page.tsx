@@ -213,7 +213,7 @@ export default function HomePage() {
       <BreadcrumbJsonLd
         items={[
           { name: "Home", item: "/" },
-          { name: "About", item: "/#about" },
+          { name: "About", item: "/about-us" },
           { name: "Services", item: "/services" },
           { name: "Contact", item: "/#visit" }
         ]}
