@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Users, Home, Sparkles, Calendar, Heart } from "lucide-react";
 
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -73,34 +74,17 @@ export default function WhyVisitPage() {
     ]
   };
 
-  const breadcrumbData = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://tridharamandir.com"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Why Visit",
-        "item": "https://tridharamandir.com/why-visit"
-      }
-    ]
-  };
-
   return (
     <main className="min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", item: "/" },
+          { name: "Why Visit", item: "/why-visit" }
+        ]}
       />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-brand-dark via-brand-primary to-brand-dark py-24 sm:py-32">
