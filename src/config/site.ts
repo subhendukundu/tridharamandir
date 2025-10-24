@@ -9,7 +9,7 @@ export const siteConfig = {
   name: "Tridhara Milan Mandir",
   homeTitle: "Tridhara Milan Mandir | Radha Krishna Temple Panchmura, Bankura",
   description:
-    "Experience India's only integrated Shaiva-Vaishnava-Shakta temple at Tridhara Milan Mandir, Panchmura. 2,000 devotees daily • Guest house • 30km from Bishnupur • West Bengal's unique spiritual destination.",
+    "Visit the only integrated Shaiva-Vaishnava-Shakta temple in Panchmura, West Bengal. 2,000 devotees daily, guest house available, 30km from Bishnupur.",
   branding: {
     nickname: "Second Vrindavan",
     tagline: "Panchmura's Second Vrindavan",
