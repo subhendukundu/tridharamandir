@@ -129,7 +129,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
-            className="xl:hidden flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 border border-white/20 transition-all duration-200 hover:bg-white/20 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent motion-reduce:transition-none"
+            className="xl:hidden flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 border border-white/20 text-white transition-all duration-200 hover:bg-white/20 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent motion-reduce:transition-none"
             aria-label="Open navigation"
           >
             <span className="sr-only">Open navigation</span>
@@ -166,7 +166,7 @@ export function Header() {
               <button
                 type="button"
                 onClick={closeMobileMenu}
-                className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 border border-white/20 transition-all duration-200 hover:bg-white/20 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent motion-reduce:transition-none"
+                className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 border border-white/20 text-white transition-all duration-200 hover:bg-white/20 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent motion-reduce:transition-none"
                 aria-label="Close navigation"
               >
                 <span className="sr-only">Close navigation</span>
@@ -182,35 +182,40 @@ export function Header() {
 
                   return (
                     <div key={item.label} className="flex flex-col gap-2">
-                      <div className={clsx(
-                        "flex items-center justify-between gap-4 rounded-2xl px-5 py-4 border transition-all duration-200",
-                        hasChildren
-                          ? "bg-white/8 border-white/15"
-                          : "bg-white/6 border-white/12 hover:bg-white/10 hover:border-white/20"
-                      )}>
+                      {hasChildren ? (
+                        <button
+                          type="button"
+                          onClick={() => toggleMobileItem(item.label)}
+                          aria-label={`Toggle ${item.label} sub navigation`}
+                          aria-expanded={isExpanded}
+                          className={clsx(
+                            "flex items-center justify-between gap-4 rounded-2xl px-5 py-4 border transition-all duration-200 w-full text-left",
+                            "bg-white/8 border-white/15 hover:bg-white/10 hover:border-white/20"
+                          )}
+                        >
+                          <span className="flex-1 text-base font-bold text-white">
+                            {item.label}
+                          </span>
+                          <ChevronDown className={clsx(
+                            iconSizes.sm,
+                            "transition-transform duration-200 motion-reduce:transition-none text-brand-accent",
+                            isExpanded && "rotate-180"
+                          )} />
+                        </button>
+                      ) : (
                         <Link
                           href={fallbackHref}
                           onClick={closeMobileMenu}
-                          className="flex-1 text-base font-bold text-white hover:text-brand-accent transition-colors motion-reduce:transition-none"
+                          className={clsx(
+                            "flex items-center justify-between gap-4 rounded-2xl px-5 py-4 border transition-all duration-200",
+                            "bg-white/6 border-white/12 hover:bg-white/10 hover:border-white/20"
+                          )}
                         >
-                          {item.label}
+                          <span className="flex-1 text-base font-bold text-white hover:text-brand-accent transition-colors motion-reduce:transition-none">
+                            {item.label}
+                          </span>
                         </Link>
-                        {hasChildren && (
-                          <button
-                            type="button"
-                            onClick={() => toggleMobileItem(item.label)}
-                            aria-label={`Toggle ${item.label} sub navigation`}
-                            aria-expanded={isExpanded}
-                            className="flex items-center justify-center rounded-full bg-white/15 p-2.5 text-white transition-all duration-200 hover:bg-brand-accent hover:text-brand-dark active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent motion-reduce:transition-none"
-                          >
-                            <ChevronDown className={clsx(
-                              iconSizes.sm,
-                              "transition-transform duration-200 motion-reduce:transition-none",
-                              isExpanded && "rotate-180"
-                            )} />
-                          </button>
-                        )}
-                      </div>
+                      )}
                       {hasChildren && isExpanded && (
                         <div className="flex flex-col gap-2 pl-3 animate-in slide-in-from-top-2 duration-200">
                           {item.children?.map((child) => (

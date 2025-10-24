@@ -38,7 +38,7 @@ export function AboutSection({
         <SectionShell
           id={withAnchor ? "about" : undefined}
           variant="transparent"
-          className="relative overflow-hidden bg-brand-light"
+          className="relative bg-brand-light"
         >
           <PanoramaLayout variantLabel={variantLabel} />
         </SectionShell>
@@ -48,7 +48,7 @@ export function AboutSection({
         <SectionShell
           id={withAnchor ? "about" : undefined}
           variant="transparent"
-          className="relative overflow-hidden bg-brand-light"
+          className="relative bg-brand-light"
         >
           <GalleryLayout variantLabel={variantLabel} />
         </SectionShell>
@@ -58,7 +58,7 @@ export function AboutSection({
         <SectionShell
           id={withAnchor ? "about" : undefined}
           variant="transparent"
-          className="relative overflow-hidden bg-brand-light"
+          className="relative bg-brand-light"
         >
           <StoryboardLayout variantLabel={variantLabel} />
         </SectionShell>
@@ -116,9 +116,9 @@ function PanoramaLayout({ variantLabel }: LayoutProps) {
   return (
     <div className="relative">
       <VariantLabel text={variantLabel} />
-      <div className="relative mx-auto flex max-w-7xl flex-col gap-12 px-4 sm:px-6 lg:flex-row lg:items-center lg:px-0">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-16">
         <div
-          className="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 block sm:left-0 md:left-0 lg:left-0"
+          className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 z-0 hidden lg:block"
           aria-hidden="true"
         >
           <Image
@@ -128,12 +128,11 @@ function PanoramaLayout({ variantLabel }: LayoutProps) {
             height={520}
             loading="lazy"
             decoding="async"
-            sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 28vw, (min-width: 640px) 38vw, 60vw"
-            className="w-[90vw] max-w-[400px] sm:w-[400px] md:w-[450px] lg:w-[480px] select-none opacity-35 drop-shadow-[0_30px_60px_rgba(69,41,55,0.18)]"
+            className="w-[280px] select-none opacity-40 drop-shadow-[0_30px_60px_rgba(69,41,55,0.18)]"
           />
         </div>
         <div
-          className="pointer-events-none absolute right-2 top-1/2 -translate-y-[58%] block sm:right-[-140px] md:right-0 lg:right-[-200px]"
+          className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 z-0 hidden lg:block"
           aria-hidden="true"
         >
           <Image
@@ -143,18 +142,19 @@ function PanoramaLayout({ variantLabel }: LayoutProps) {
             height={360}
             loading="lazy"
             decoding="async"
-            sizes="(min-width: 1280px) 30vw, (min-width: 1024px) 36vw, (min-width: 640px) 48vw, 70vw"
-            className="w-[90vw] max-w-[420px] sm:w-[480px] sm:max-w-none md:w-[540px] lg:w-[640px] select-none opacity-30 drop-shadow-[0_28px_60px_rgba(69,41,55,0.16)]"
+            className="w-[380px] select-none opacity-35 drop-shadow-[0_28px_60px_rgba(69,41,55,0.16)]"
           />
         </div>
-        <div className="relative z-10 flex-1">
-          <div className="rounded-[32px] bg-white/80 p-8 shadow-[0_32px_80px_-60px_rgba(27,10,44,0.45)] backdrop-blur">
-            <AboutCopy alignment="start" wrapperClassName="max-w-xl" />
+        <div className="relative z-10 flex flex-col gap-12 lg:flex-row lg:items-center lg:mx-32">
+          <div className="flex-1">
+            <div className="rounded-[32px] bg-white/80 p-8 shadow-[0_32px_80px_-60px_rgba(27,10,44,0.45)] backdrop-blur">
+              <AboutCopy alignment="start" wrapperClassName="max-w-xl" />
+            </div>
           </div>
-        </div>
-        <div className="relative z-10 flex-1">
-          <div className="rounded-[32px] bg-white/80 p-8 shadow-[0_32px_80px_-60px_rgba(27,10,44,0.45)] backdrop-blur">
-            <FeatureList />
+          <div className="flex-1">
+            <div className="rounded-[32px] bg-white/80 p-8 shadow-[0_32px_80px_-60px_rgba(27,10,44,0.45)] backdrop-blur">
+              <FeatureList />
+            </div>
           </div>
         </div>
       </div>
@@ -166,7 +166,7 @@ function GalleryLayout({ variantLabel }: LayoutProps) {
   return (
     <div className="relative">
       <VariantLabel text={variantLabel} />
-      <div className="relative mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:items-center lg:px-0">
+      <div className="relative mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:items-center lg:px-16">
         <div className="relative z-10">
           <AboutCopy alignment="start" />
         </div>
@@ -195,8 +195,8 @@ function StoryboardLayout({ variantLabel }: LayoutProps) {
   return (
     <div className="relative">
       <VariantLabel text={variantLabel} />
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:px-0">
-        <div className="pointer-events-none absolute left-2 top-[10%] block sm:left-0 md:left-0 lg:left-0 lg:top-auto lg:bottom-[-10%]">
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:px-16">
+        <div className="pointer-events-none absolute left-2 top-[10%] block sm:left-0 md:left-0 lg:left-0 lg:top-auto lg:bottom-[-10%] z-0">
           <Image
             src={cfImage("/patterns/radha-krishna-outlined.png", { ...imagePresets.pattern(400), segment: 'foreground' })}
             alt="Radha-Krishna motif illustration"
@@ -208,7 +208,7 @@ function StoryboardLayout({ variantLabel }: LayoutProps) {
             className="w-[90vw] max-w-[280px] sm:w-[300px] md:w-[350px] lg:w-[400px] select-none opacity-[0.2] drop-shadow-[0_18px_45px_rgba(69,41,55,0.18)]"
           />
         </div>
-        <div className="pointer-events-none absolute right-2 top-[60%] block sm:right-[-100px] md:right-0 lg:right-[-220px] lg:top-auto lg:bottom-[-16%]">
+        <div className="pointer-events-none absolute right-2 top-[60%] block sm:right-[-100px] md:right-0 lg:right-[-220px] lg:top-auto lg:bottom-[-16%] z-0">
           <Image
             src={cfImage("/patterns/tridhara-mandir-outline.png", { ...imagePresets.pattern(580), segment: 'foreground' })}
             alt="Tridhara Milan Mandir outline illustration"
