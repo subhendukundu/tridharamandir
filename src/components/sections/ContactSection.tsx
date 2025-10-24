@@ -130,7 +130,7 @@ export function ContactSection() {
                     <p><strong>From Bishnupur:</strong> 30 km by road (45 minutes)</p>
                     <p><strong>From Bankura:</strong> 45 km by road (1 hour)</p>
                     <p><strong>Public Transport:</strong> Local buses and shared trekkers available</p>
-                    <p><strong>Parking:</strong> Limited parking available near the main gate</p>
+                    <p><strong>Parking:</strong> Limited street parking available nearby (not managed by temple)</p>
                   </div>
                 </div>
 

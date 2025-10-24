@@ -5,6 +5,7 @@ import clsx from "clsx";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { siteConfig } from "@/config/site";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -66,6 +67,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <StructuredData />
+      </head>
       <body
         className={clsx(
           "text-neutral-900 antialiased",
