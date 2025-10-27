@@ -24,6 +24,7 @@ export default function EventsPage() {
     endDate: event.endDate,
     url: `${siteConfig.url}/events#${event.slug}`,
     description: event.description,
+    image: `${siteConfig.url}/images/tridhara-radha-krishna-mandir.png`,
     location: {
       "@type": "Place",
       name: siteConfig.name,
@@ -51,6 +52,20 @@ export default function EventsPage() {
         telephone: siteConfig.contact.phone,
         email: siteConfig.contact.email
       }
+    },
+    performer: {
+      "@type": "PerformingGroup",
+      name: "Temple Priests and Pujaris",
+      description: "Tridhara Milan Mandir's dedicated priests conducting traditional rituals and ceremonies"
+    },
+    offers: {
+      "@type": "Offer",
+      name: "Free Entry",
+      price: "0",
+      priceCurrency: "INR",
+      availability: "https://schema.org/InStock",
+      url: `${siteConfig.url}/events#${event.slug}`,
+      validFrom: event.startDate
     }
   }));
 
