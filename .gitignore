@@ -92,6 +92,10 @@ jspm_packages/
 .open-next/
 cloudflare-env.d.ts
 
+# Wrangler (Cloudflare Workers)
+.wrangler/
+wrangler.toml.local
+
 # nuxt.js build output
 .nuxt
 

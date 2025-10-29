@@ -104,27 +104,7 @@ export function StructuredData() {
           url: `${siteConfig.url}/services/${service.slug}`
         }
       }))
-    },
-
-    // Events
-    event: siteConfig.events.map(event => ({
-      "@type": "Event",
-      name: event.name,
-      description: event.description,
-      startDate: event.startDate,
-      endDate: event.endDate,
-      location: {
-        "@type": "Place",
-        name: siteConfig.name,
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: siteConfig.address.addressLocality,
-          addressRegion: siteConfig.address.addressRegion,
-          addressCountry: siteConfig.address.addressCountry
-        }
-      },
-      url: `${siteConfig.url}${event.url}`
-    }))
+    }
   };
 
   return (
