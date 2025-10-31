@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { layoutRules, textRules } from "@/foundation/design-system";
 import { servicesContent, servicesList } from "@/data/services";
 import { siteConfig } from "@/config/site";
+import { cfImage, imagePresets } from "@/utils/image";
 
 type ServicePageProps = {
   params: { slug: string };
@@ -39,7 +40,7 @@ export function generateMetadata({ params }: ServicePageProps): Metadata {
       url: `${siteConfig.url}/services/${service.slug}`,
       images: [
         {
-          url: service.hero.image,
+          url: cfImage(service.hero.image, { width: 1200, quality: 90, format: "auto" }),
           alt: service.hero.alt
         }
       ]
@@ -48,7 +49,7 @@ export function generateMetadata({ params }: ServicePageProps): Metadata {
       card: "summary_large_image",
       title,
       description: service.metaDescription,
-      images: [service.hero.image]
+      images: [cfImage(service.hero.image, { width: 1200, quality: 90, format: "auto" })]
     }
   };
 }
@@ -162,7 +163,7 @@ export default function ServicePage({ params }: ServicePageProps) {
       />
       <section className="relative flex min-h-[60vh] items-center overflow-hidden bg-brand-dark text-white">
         <Image
-          src={service.hero.image}
+          src={cfImage(service.hero.image, { width: 1920, quality: 85, format: "auto" })}
           alt={service.hero.alt}
           fill
           priority

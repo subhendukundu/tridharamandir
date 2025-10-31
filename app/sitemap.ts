@@ -3,6 +3,7 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
 import { servicesList } from "@/data/services";
 import { eventsContent } from "@/data/events";
+import { galleryCategories } from "@/data/gallery";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
@@ -61,6 +62,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",
       priority: 0.8
+    },
+    {
+      url: `${baseUrl}/search`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.7
     }
   ];
 
@@ -80,6 +87,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   ];
 
+  const galleryRoutes = galleryCategories
+    .filter(cat => cat.id !== "all")
+    .map((category) => ({
+      url: `${baseUrl}/gallery/${category.id}`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly" as const,
+      priority: 0.88
+    }));
+
+  const homepageAnchors: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/#home`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly",
+      priority: 0.95
+    },
+    {
+      url: `${baseUrl}/#services`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.85
+    },
+    {
+      url: `${baseUrl}/#community`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.8
+    },
+    {
+      url: `${baseUrl}/#faq`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.8
+    },
+    {
+      url: `${baseUrl}/#visit`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.9
+    }
+  ];
+
   const eventAnchors = eventsContent.map((event) => ({
     url: `${baseUrl}/events#${event.slug}`,
     lastModified: event.startDate,
@@ -87,5 +136,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6
   }));
 
-  return [...routes, ...serviceRoutes, ...guideRoutes, ...eventAnchors];
+  return [...routes, ...serviceRoutes, ...guideRoutes, ...galleryRoutes, ...homepageAnchors, ...eventAnchors];
 }

@@ -19,6 +19,7 @@ export function CommunitySection() {
           title="Scholarships, Health Camps & Anna-Daan"
           description="Tridhara Milan Mandir scales seva beyond the mandir campus through student bursaries, village health camps, and the daily anna-daan kitchen."
           alignment="center"
+          anchorId="community"
         />
 
         <div className="grid gap-8 lg:grid-cols-3">

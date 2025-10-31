@@ -17,6 +17,7 @@ export function DestinationsSection() {
             eyebrowVariant="badge"
             title={destinationContent.title}
             description={destinationContent.lead}
+            anchorId="destinations"
           />
           <div className="hidden items-center gap-3 lg:flex">
             <button

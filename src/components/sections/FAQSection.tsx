@@ -39,6 +39,7 @@ export function FAQSection() {
             eyebrowVariant="text"
             title={faqContent.title}
             description={faqContent.lead}
+            anchorId="faq"
           />
           <div className="rounded-[24px] border border-brand-primary/10 bg-white/90 p-8 shadow-soft">
             <div className="flex flex-col gap-4">

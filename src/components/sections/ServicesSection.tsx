@@ -24,6 +24,7 @@ export function ServicesSection() {
           title="Sacred Services & Community Seva"
           description="Experience daily darshan, book life ceremonies, or join our community seva programs that serve 2,000+ devotees daily."
           alignment="center"
+          anchorId="services"
         />
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">

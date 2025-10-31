@@ -12,26 +12,24 @@ export type NavLinkItem = {
 };
 
 export const navLinks: NavLinkItem[] = [
-  { label: "Home", href: "/#home" },
+  { label: "Home", href: "/" },
   {
-    label: "The Mandir",
+    label: "About",
     href: "/about-us",
     children: [
-      { label: "About", href: "/about-us" },
+      { label: "Our Story", href: "/about-us" },
       { label: "History", href: "/history" }
     ]
   },
+  { label: "Gallery", href: "/gallery" },
   {
-    label: "Visit",
+    label: "Plan Visit",
     href: "/plan-your-visit",
     children: [
+      { label: "Planning Guide", href: "/plan-your-visit" },
       { label: "Why Visit", href: "/why-visit" },
-      { label: "Gallery", href: "/gallery" },
-      { label: "Highlights", href: "/#destinations" },
-      { label: "Guest", href: "/guest-house" },
-      { label: "Community", href: "/#community" },
-      { label: "Guide", href: "/plan-your-visit" },
-      { label: "Info", href: "/#faq" }
+      { label: "Guest House", href: "/guest-house" },
+      { label: "Guest Experiences", href: "/guides/guest-house-experiences" }
     ]
   },
   {
@@ -42,11 +40,7 @@ export const navLinks: NavLinkItem[] = [
       href: `/services/${service.slug}`
     }))
   },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Guest", href: "/guest-house" },
-  { label: "Guides", href: "/guides/guest-house-experiences" },
   { label: "Events", href: "/events" },
-  { label: "Stories", href: "/#testimonial" },
   { label: "Contact", href: "/#visit" }
 ];
 
@@ -56,7 +50,7 @@ export const heroContent = {
   subtitle:
     "Experience Radha-Krishna darshan at Panchmura's Tridhara Milan Mandir—where 2,000 devotees gather daily for integrated Shaiva-Vaishnava-Shakta worship.",
   ctaDonation: { label: "Donate Now", href: "/services/donation-and-seva" },
-  ctaPrimary: { label: "Plan Your Visit", href: "/#faq" },
+  ctaPrimary: { label: "Plan Your Visit", href: "/plan-your-visit" },
   ctaSecondary: { label: "Why Visit Tridhara", href: "/why-visit" },
   backgroundImage: "/images/tridhara-radha-krishna-mandir.png"
 } as const;
@@ -167,7 +161,7 @@ export const donationContent = {
 
 export const faqContent = {
   eyebrow: "Visitor Info",
-  title: "Plan Your Visit to Tridhara",
+  title: "Frequently Asked Questions About Tridhara Milan Mandir",
   lead:
     "Essential information for visiting Tridhara Milan Mandir, from timings and location to dress code and facilities.",
   featured: {
@@ -256,7 +250,7 @@ export const faqContent = {
 
 export const visitContent = {
   eyebrow: "Visit Us",
-  title: "Plan Your Pilgrimage",
+  title: "Plan Your Visit to Tridhara Milan Mandir, Panchmura",
   description:
     "Find directions, darshan guidance, and accessibility support for experiencing Tridhara Milan Mandir in Panchmura.",
   summary: siteConfig.branding.summary,
@@ -268,7 +262,7 @@ export const visitContent = {
 
 export const testimonialContent = {
   eyebrow: "Visitor Stories",
-  title: "Voices from Panchmura",
+  title: "Visitor Testimonials from Tridhara Milan Mandir",
   lead:
     "Pilgrims, scholars, and local families share why devotees lovingly refer to Tridhara Milan Mandir as Panchmura's \"Second Vrindavan,\" an informal honorific born of inclusive worship.",
   quote:

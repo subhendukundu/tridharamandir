@@ -2,6 +2,7 @@ import clsx from "clsx";
 
 import { textRules } from "@/foundation/design-system";
 import { Badge } from "@/components/ui/Badge";
+import { AnchorHeading } from "@/components/ui/AnchorHeading";
 
 type SectionHeaderProps = {
   eyebrow?: string;
@@ -11,6 +12,8 @@ type SectionHeaderProps = {
   alignment?: "start" | "center";
   className?: string;
   tone?: "default" | "light";
+  /** Optional ID for anchor link functionality */
+  anchorId?: string;
 };
 
 export function SectionHeader({
@@ -20,7 +23,8 @@ export function SectionHeader({
   description,
   alignment = "start",
   className,
-  tone = "default"
+  tone = "default",
+  anchorId
 }: SectionHeaderProps) {
   const isLight = tone === "light";
   return (
@@ -45,15 +49,29 @@ export function SectionHeader({
           </span>
         )
       ) : null}
-      <h2
-        className={clsx(
-          textRules.sectionTitle,
-          "max-w-[30ch]",
-          isLight && "text-white"
-        )}
-      >
-        {title}
-      </h2>
+      {anchorId ? (
+        <AnchorHeading
+          id={anchorId}
+          level={2}
+          className={clsx(
+            textRules.sectionTitle,
+            "max-w-[30ch]",
+            isLight && "text-white"
+          )}
+        >
+          {title}
+        </AnchorHeading>
+      ) : (
+        <h2
+          className={clsx(
+            textRules.sectionTitle,
+            "max-w-[30ch]",
+            isLight && "text-white"
+          )}
+        >
+          {title}
+        </h2>
+      )}
       {description ? (
         <p
           className={clsx(

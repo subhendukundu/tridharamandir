@@ -315,13 +315,12 @@ export const servicesContent: ServiceMap = {
     slug: "donation-and-seva",
     title: "Donation & Seva",
     summary:
-      "Support scholarships, health camps, and temple maintenance by joining Tridhara’s seva circles or contributing securely online.",
+      "Support scholarships, health camps, and temple maintenance by joining Tridhara's seva circles or contributing securely online.",
     metaDescription:
-      "Donate to Tridhara Milan Mandir’s seva initiatives for education, healthcare, anna-daan, and heritage preservation in Panchmura.",
+      "Donate to Tridhara Milan Mandir's seva initiatives for education, healthcare, anna-daan, and heritage preservation in Panchmura.",
     hero: {
-      image:
-        "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80",
-      alt: "Volunteers organising seva supplies at Tridhara Milan Mandir"
+      image: "/images/tridhara-milan-mandir-prasad-food-offering-panchmura.jpg",
+      alt: "Traditional prasad food offerings with flowers and decorations at Tridhara Milan Mandir, Panchmura"
     },
     highlights: [
       {

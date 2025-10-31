@@ -25,6 +25,7 @@ export function ContactSection() {
           title={visitContent.title}
           description={visitContent.description}
           alignment="center"
+          anchorId="visit"
         />
 
         <div className="grid gap-8 lg:grid-cols-2">

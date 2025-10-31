@@ -15,6 +15,7 @@ export function TestimonialSection() {
           title={testimonialContent.title}
           description={testimonialContent.lead}
           alignment="center"
+          anchorId="testimonial"
         />
 
         <div className="grid w-full gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">

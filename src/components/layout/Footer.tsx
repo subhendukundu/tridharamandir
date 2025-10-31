@@ -7,6 +7,7 @@ import { TextField } from "@/components/forms/TextField";
 import { Button } from "@/components/ui/Button";
 import { layoutRules, linkRules, iconSizes } from "@/foundation/design-system";
 import { footerContent, napContent } from "@/data/content";
+import { siteConfig } from "@/config/site";
 
 const iconMap = {
   Facebook,
@@ -20,6 +21,69 @@ export function Footer() {
 
   return (
     <footer id="footer-contact" className="bg-brand-dark text-white">
+      {/* Site Navigation Links */}
+      <div className={`${layoutRules.container} ${layoutRules.pagePadding} py-12 border-b border-white/10`}>
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
+          {/* About Section */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-accent">About</h3>
+            <nav className="flex flex-col gap-2.5 text-[0.94rem]">
+              <Link href="/about-us" className={clsx(linkRules.base, linkRules.footerNav)}>Our Story</Link>
+              <Link href="/history" className={clsx(linkRules.base, linkRules.footerNav)}>History</Link>
+              <Link href="/why-visit" className={clsx(linkRules.base, linkRules.footerNav)}>Why Visit</Link>
+            </nav>
+          </div>
+
+          {/* Visit Section */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-accent">Plan Visit</h3>
+            <nav className="flex flex-col gap-2.5 text-[0.94rem]">
+              <Link href="/plan-your-visit" className={clsx(linkRules.base, linkRules.footerNav)}>Planning Guide</Link>
+              <Link href="/gallery" className={clsx(linkRules.base, linkRules.footerNav)}>Photo Gallery</Link>
+              <Link href="/guest-house" className={clsx(linkRules.base, linkRules.footerNav)}>Guest House</Link>
+              <Link href="/guides/guest-house-experiences" className={clsx(linkRules.base, linkRules.footerNav)}>Guest Experiences</Link>
+            </nav>
+          </div>
+
+          {/* Services Section */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-accent">Services</h3>
+            <nav className="flex flex-col gap-2.5 text-[0.94rem]">
+              <Link href="/services" className={clsx(linkRules.base, linkRules.footerNav)}>All Services</Link>
+              {siteConfig.services.slice(0, 4).map((service) => (
+                <Link key={service.slug} href={`/services/${service.slug}`} className={clsx(linkRules.base, linkRules.footerNav)}>
+                  {service.name}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Gallery Categories */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-accent">Gallery</h3>
+            <nav className="flex flex-col gap-2.5 text-[0.94rem]">
+              <Link href="/gallery" className={clsx(linkRules.base, linkRules.footerNav)}>All Photos</Link>
+              <Link href="/gallery/architecture" className={clsx(linkRules.base, linkRules.footerNav)}>Architecture</Link>
+              <Link href="/gallery/deities" className={clsx(linkRules.base, linkRules.footerNav)}>Deities & Shrines</Link>
+              <Link href="/gallery/rituals" className={clsx(linkRules.base, linkRules.footerNav)}>Daily Rituals</Link>
+              <Link href="/gallery/festivals" className={clsx(linkRules.base, linkRules.footerNav)}>Festivals</Link>
+            </nav>
+          </div>
+
+          {/* Explore Section */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-accent">Explore</h3>
+            <nav className="flex flex-col gap-2.5 text-[0.94rem]">
+              <Link href="/#community" className={clsx(linkRules.base, linkRules.footerNav)}>Community</Link>
+              <Link href="/#faq" className={clsx(linkRules.base, linkRules.footerNav)}>FAQs</Link>
+              <Link href="/events" className={clsx(linkRules.base, linkRules.footerNav)}>Events</Link>
+              <Link href="/#visit" className={clsx(linkRules.base, linkRules.footerNav)}>Contact Us</Link>
+              <Link href="/search" className={clsx(linkRules.base, linkRules.footerNav)}>Search</Link>
+            </nav>
+          </div>
+        </div>
+      </div>
+
       <div className={`${layoutRules.container} ${layoutRules.pagePadding} py-16`}>
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-start">
           <div className="flex flex-col gap-6">

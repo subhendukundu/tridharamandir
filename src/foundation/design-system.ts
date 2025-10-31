@@ -89,6 +89,7 @@ export const linkRules = {
   base: "transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none",
   underline: "underline hover:text-brand-accent focus-visible:outline-brand-accent",
   onDark: "underline hover:text-brand-accent focus-visible:outline-brand-accent",
+  footerNav: "text-white/75 hover:text-brand-accent hover:translate-x-1 transition-all duration-200 focus-visible:outline-brand-accent motion-reduce:transition-none",
   social: "flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition-all duration-200 hover:bg-white/20 hover:border-white/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-95 motion-reduce:transition-none"
 } as const;
 
