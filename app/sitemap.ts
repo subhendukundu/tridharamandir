@@ -21,6 +21,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95
     },
     {
+      url: `${baseUrl}/why-visit`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.95
+    },
+    {
+      url: `${baseUrl}/gallery`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly",
+      priority: 0.92
+    },
+    {
       url: `${baseUrl}/history`,
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",
@@ -49,12 +61,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",
       priority: 0.8
-    },
-    {
-      url: `${baseUrl}/why-visit`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly",
-      priority: 0.95
     }
   ];
 

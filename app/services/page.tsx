@@ -9,9 +9,9 @@ import { servicesList } from "@/data/services";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: `Temple Services | ${siteConfig.name}`,
+  title: `Panchmura Temple Services | Tridhara Milan Mandir Darshan, Prasad & Rituals`,
   description:
-    "Explore Tridhara Milan Mandir’s seva offerings, including darshan bookings, prasad, sacred rituals, and donation programmes."
+    "Tridhara Milan Mandir Panchmura services: Daily darshan timings, free prasad (2,000 meals), temple marriage rituals, bhog offerings, donation programs. 30km from Bishnupur, Bankura."
 };
 
 export default function ServicesOverviewPage() {

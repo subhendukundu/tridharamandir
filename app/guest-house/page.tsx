@@ -13,29 +13,33 @@ import { siteConfig } from "@/config/site";
 import { guesthouseContent, guesthouseSchemaData } from "@/data/guesthouse";
 
 export const metadata: Metadata = {
-  title: `Guest House in Panchmura | ${siteConfig.name}`,
+  title: `Panchmura Guest House Near Bishnupur | Tridhara Milan Mandir Stay`,
   description:
-    "Stay at Tridhara Guest House near Bishnupur with boutique suites, anna-daan brunch, terracotta workshops, and festival-ready pilgrim packages in Panchmura, Bankura.",
+    "Stay at Tridhara Guest House Panchmura - 30km from Bishnupur. On-site temple accommodation with anna-daan meals, terracotta workshops, festival packages. Book temple stay near Bankura terracotta temples.",
   keywords: [
     "guest house near Bishnupur",
     "Panchmura accommodation",
-    "Tridhara guest house",
-    "Second Vrindavan stay",
+    "Tridhara Milan Mandir guest house",
+    "temple stay Panchmura",
+    "Naba Vrindavan stay",
+    "guest house Bankura",
     "terracotta workshop stay",
-    "Bankura pilgrimage lodging"
+    "Panchmura Milan Mandir booking",
+    "Bankura pilgrimage lodging",
+    "accommodation near Bishnupur temples"
   ],
   alternates: {
     canonical: "/guest-house"
   },
   openGraph: {
-    title: `Tridhara Guest House – Panchmura Temple Stay`,
+    title: `Panchmura Guest House | Temple Stay Near Bishnupur, Bankura`,
     description:
-      "Book boutique temple lodging with anna-daan seva, terracotta craft workshops, and festival itineraries near Bishnupur and Panchmura.",
+      "Book Tridhara Guest House Panchmura - on-site temple accommodation with anna-daan seva, terracotta workshops, 30km from Bishnupur. Perfect for Bankura heritage tour.",
     url: `${siteConfig.url}/guest-house`,
     images: [
       {
         url: guesthouseContent.hero.image,
-        alt: "Tridhara Guest House suites near Panchmura temple"
+        alt: "Tridhara Guest House suites at Panchmura Milan Mandir near Bishnupur"
       }
     ]
   }

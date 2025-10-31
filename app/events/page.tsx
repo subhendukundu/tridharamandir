@@ -8,9 +8,9 @@ import { eventsContent } from "@/data/events";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: `Festivals & Events | ${siteConfig.name}`,
+  title: `Panchmura Temple Festivals | Rath Yatra & Janmashtami at Tridhara Milan Mandir`,
   description:
-    "Stay updated with upcoming festivals and cultural gatherings at Tridhara Milan Mandir in Panchmura, Bankura."
+    "Tridhara Milan Mandir Panchmura festival calendar: Rath Yatra, Janmashtami, Navaratri celebrations. Experience integrated Shaiva-Vaishnava-Shakta festivals 30km from Bishnupur, Bankura."
 };
 
 export default function EventsPage() {

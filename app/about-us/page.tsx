@@ -6,21 +6,23 @@ import { siteConfig } from "@/config/site";
 import { cfImage, imagePresets } from "@/utils/image";
 
 export const metadata: Metadata = {
-  title: "About Tridhara Milan Mandir | India's Only Integrated Shaiva-Vaishnava-Shakta Temple",
+  title: "About Panchmura Milan Mandir | Tridhara Temple Bankura, Naba-Vrindavan",
   description:
-    "Visit the only integrated Shaiva-Vaishnava-Shakta temple in Panchmura, West Bengal. 2,000 devotees daily, guest house available, 30km from Bishnupur.",
+    "Learn about Tridhara Milan Mandir in Panchmura - India's only integrated Shaiva-Vaishnava-Shakta temple, 30km from Bishnupur. Founded 2022, serving 2,000 devotees daily with free prasad and guest house.",
   keywords: [
     "about Tridhara Milan Mandir",
+    "Panchmura temple history",
     "integrated Hindu temple",
     "Shaiva Vaishnava Shakta worship",
-    "Panchmura temple",
+    "Panchmura Milan Mandir",
     "Bankura spiritual destination",
-    "West Bengal unique temple"
+    "Naba Vrindavan Panchmura",
+    "temples near Bishnupur"
   ],
   openGraph: {
-    title: "About Tridhara Milan Mandir - India's Only Integrated Temple",
+    title: "About Tridhara Milan Mandir - Panchmura's Integrated Temple Near Bishnupur",
     description:
-      "Learn about India's only temple with integrated Shaiva-Vaishnava-Shakta worship. Located in Panchmura, West Bengal, serving 2,000 devotees daily.",
+      "India's only temple with integrated Shaiva-Vaishnava-Shakta worship in Panchmura, Bankura. Consecrated 2022, serving 2,000 devotees daily. 30km from Bishnupur terracotta temples.",
     type: "website"
   }
 };

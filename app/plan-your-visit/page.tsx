@@ -8,9 +8,9 @@ import { siteConfig } from "@/config/site";
 import { napContent } from "@/data/content";
 
 export const metadata: Metadata = {
-  title: `Plan Your Visit | ${siteConfig.name}`,
+  title: `How to Reach Panchmura Temple | Tridhara Milan Mandir Travel Guide from Bishnupur`,
   description:
-    "Travel guide to reach Tridhara Milan Mandir in Panchmura, Bankura. Find transport routes, lodging tips, accessibility details, and visitor etiquette."
+    "Plan your visit to Tridhara Milan Mandir Panchmura: 30km from Bishnupur (45 min), 180km from Kolkata (4 hrs). Temple timings, transport routes, guest house booking, accessibility. Combine with Bankura terracotta temple tour."
 };
 
 const travelTips = [

@@ -17,9 +17,9 @@ import {
 import { eventsContent } from "@/data/events";
 
 export const metadata: Metadata = {
-  title: `History & Heritage | ${siteConfig.name}`,
+  title: `Panchmura Tridhara Mandir History | Naba-Vrindavan Temple Bankura`,
   description:
-    'Explore the history of Tridhara Milan Mandir, from community land offerings to the 2022 consecration, integrated rituals, and the affectionate "Second Vrindavan" nickname.'
+    'History of Panchmura Milan Mandir (Naba-Vrindavan) from 2012 community vision to 2022 Rath Yatra consecration. Discover Bengal\'s integrated Shaiva-Vaishnava-Shakta temple heritage 30km from Bishnupur.'
 };
 
 export default function HistoryPage() {

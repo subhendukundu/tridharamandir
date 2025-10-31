@@ -26,6 +26,7 @@ export const navLinks: NavLinkItem[] = [
     href: "/plan-your-visit",
     children: [
       { label: "Why Visit", href: "/why-visit" },
+      { label: "Gallery", href: "/gallery" },
       { label: "Highlights", href: "/#destinations" },
       { label: "Guest", href: "/guest-house" },
       { label: "Community", href: "/#community" },
@@ -41,6 +42,7 @@ export const navLinks: NavLinkItem[] = [
       href: `/services/${service.slug}`
     }))
   },
+  { label: "Gallery", href: "/gallery" },
   { label: "Guest", href: "/guest-house" },
   { label: "Guides", href: "/guides/guest-house-experiences" },
   { label: "Events", href: "/events" },
@@ -177,7 +179,42 @@ export const faqContent = {
     {
       question: "Where is Tridhara Milan Mandir located?",
       answer:
-        "Panchmura, Bankura district, West Bengal—30 km from Bishnupur. Accessible by local buses, hired cars, or shared trekkers from Bishnupur and Bankura town."
+        "Tridhara Milan Mandir is located in Panchmura village, Bankura district, West Bengal - exactly 30 km from Bishnupur (45 minutes by car). The temple is also known as Panchmura Milan Mandir or Naba-Vrindavan. It's 180 km from Kolkata (4 hours drive). Accessible by local buses, hired cars, or shared trekkers from Bishnupur and Bankura town."
+    },
+    {
+      question: "How do I reach Panchmura temple from Bishnupur?",
+      answer:
+        "From Bishnupur, Panchmura is 30 km away (45 minutes). Take a shared trekker from Bishnupur bus stand (₹30-40 per person, departs every 30 minutes). Private taxis cost ₹600-800. You can also take local buses heading towards Panchmura. The temple is well-signposted once you reach Panchmura village."
+    },
+    {
+      question: "What is Tridhara Milan Mandir famous for?",
+      answer:
+        "Tridhara Milan Mandir is India's only temple with integrated Shaiva-Vaishnava-Shakta worship in a single arati ceremony. It serves 2,000 free prasad meals daily, has an on-site guest house, and is affectionately known as 'Naba-Vrindavan' (Second Vrindavan). The temple was consecrated on July 1, 2022, during Rath Yatra."
+    },
+    {
+      question: "Is prasad free at Tridhara Milan Mandir?",
+      answer:
+        "Yes, prasad is completely free at Tridhara Milan Mandir. Our anna-daan (community kitchen) serves approximately 2,000 meals daily to all visitors. Prasad is served at 12:30 PM after the midday bhog. Everyone is welcome regardless of background. The temple operates on voluntary donations."
+    },
+    {
+      question: "Can I stay overnight at the temple?",
+      answer:
+        "Yes, Tridhara Milan Mandir has an on-site guest house with 8 suites located just 100 meters from the temple courtyard. Rooms range from ₹3,600-15,600 per night and include anna-daan meals, temple access, and optional terracotta workshops. Email info@tridharamandir.com to book. Alternatively, guest houses are available in Bishnupur (30 km away) or Bankura town (45 km away)."
+    },
+    {
+      question: "What are the Panchmura Radha Krishna temple photos?",
+      answer:
+        "Tridhara Milan Mandir features stunning Nagara-style architecture with a 45-foot shikhara, Radha-Krishna idols in the main sanctum, terracotta relief panels depicting Krishna lila and Dasavataras, tulsi courtyard, and integrated shrines for Shiva, Kali, and Rama-Sita. Photography is permitted in the courtyard; please seek permission for interior sanctum photos. Visit our website's gallery section for photos."
+    },
+    {
+      question: "Why is it called Naba-Vrindavan (Second Vrindavan)?",
+      answer:
+        "Devotees affectionately call Tridhara Milan Mandir 'Naba-Vrindavan' (New Vrindavan) or 'Second Vrindavan' because the temple's Vrindavan-inspired architecture, tulsi courtyard, and Krishna-centric worship create an atmosphere similar to the original Vrindavan. The nickname is an informal devotee honorific, not an official title."
+    },
+    {
+      question: "What is the best time to visit Panchmura temple?",
+      answer:
+        "Best time: October to March (festival season, pleasant weather). Avoid July-August monsoons. Major festivals: Janmashtami (August), Rath Yatra (June-July), and Navaratri (October). For the unique integrated tridhara arati, visit during evening arati (6:30-8:00 PM). Weekdays are less crowded than weekends."
     },
     {
       question: "Is there a dress code?",
@@ -187,27 +224,27 @@ export const faqContent = {
     {
       question: "Do I need to book in advance?",
       answer:
-        "Regular darshan is open to all. For group visits, seva participation, or special ceremonies, contact us in advance for assistance."
+        "Regular darshan is open to all without booking. For group visits (10+ people), guest house stays, special pujas, or temple marriage ceremonies, contact us in advance at +91 96091 75202 or info@tridharamandir.com."
     },
     {
       question: "Is parking available?",
       answer:
-        "Limited parking beside the main gate. For overnight stays, guest houses are available in Bishnupur (30 km) or Bankura town."
+        "Limited street parking is available near the temple. The temple does not manage parking directly. For longer stays, consider booking the on-site guest house which has designated parking areas."
     },
     {
       question: "Is the temple accessible for differently abled visitors?",
       answer:
-        "Yes, wheelchair access is available from the eastern gate with volunteer assistance during peak hours. Please inform us in advance."
+        "Yes, wheelchair access is available from the eastern gate with volunteer assistance during peak hours. Wheelchair ramps and railings support entry. Please email ahead for special assistance during festivals. Restrooms and drinking water are accessible."
     },
     {
       question: "What facilities are available on-site?",
       answer:
-        "You will find drinking water stations, shaded seating, and restrooms near the anna-daan hall. Lockers for small bags are available beside the eastern entrance."
+        "You will find drinking water stations, shaded seating, and restrooms near the anna-daan hall. Lockers for small bags are available beside the eastern entrance. First-aid is available during major festivals."
     },
     {
-      question: "Where can I stay overnight?",
+      question: "Can I visit both Bishnupur and Panchmura temples in one day?",
       answer:
-        "Recommended stays include heritage lodges in Bishnupur, guest houses in Bankura town, and vetted homestays in Panchmura arranged during festivals—email us for current availability."
+        "Yes! Tridhara Milan Mandir (Panchmura) is only 30 km from Bishnupur's famous terracotta temples. Plan a combined itinerary: Morning at Bishnupur's Rasmancha, Jor-Bangla, and Madan Mohan temples (2-3 hours), then drive to Panchmura for midday prasad (12:30 PM) and evening tridhara arati (6:30 PM). This makes an ideal day trip covering both Bankura heritage sites."
     },
     {
       question: "How can I volunteer or join seva rotations?",
