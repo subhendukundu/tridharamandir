@@ -226,9 +226,9 @@ export const servicesContent: ServiceMap = {
     slug: "marriage-and-rituals",
     title: "Marriage & Rituals",
     summary:
-      "Sanctify life events with Vedic rites—from Radha-Krishna kalyanam to vehicle puja and sacred thread ceremonies in the mandir complex.",
+      "Sanctify life events with Vedic rites—from Radha-Krishna kalyanam to Bhoomi Pujan, vehicle puja and sacred thread ceremonies in the mandir complex.",
     metaDescription:
-      "Arrange temple weddings, vehicle puja, and sacred thread ceremonies at Tridhara Milan Mandir with guidance from our resident priests.",
+      "Arrange temple weddings, Bhoomi Pujan, vehicle puja, and sacred thread ceremonies at Tridhara Milan Mandir with guidance from our resident priests.",
     hero: {
       image:
         "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80",
@@ -285,6 +285,11 @@ export const servicesContent: ServiceMap = {
         description: "Covers priest, havan samagri, and prasadam for Annaprashan, Namkaran, or Upanayan."
       },
       {
+        title: "Bhoomi Pujan (Land Blessing)",
+        amount: "₹5,001",
+        description: "Complete ground-breaking ceremony with Vastu Shaanti, Navagraha homa, and prasadam for construction projects."
+      },
+      {
         title: "Vehicle / Business Puja",
         amount: "₹3,001",
         description: "One-hour ritual with Navagraha sankalpa and protective blessings for new ventures."
@@ -298,6 +303,10 @@ export const servicesContent: ServiceMap = {
       {
         question: "What documents are needed for marriages?",
         answer: "Provide Aadhaar IDs, passport photos, and local registrar forms; our volunteers assist with notarisation."
+      },
+      {
+        question: "Do you perform Bhoomi Pujan for construction projects?",
+        answer: "Yes, we conduct complete Bhoomi Pujan ceremonies with Vastu Shaanti and Navagraha homa for home construction, commercial buildings, or land purchases. Our priests can travel to your site or perform the ritual at the temple with symbolic earth from your land."
       },
       {
         question: "Can rituals be conducted in Bengali or Hindi?",
@@ -352,7 +361,7 @@ export const servicesContent: ServiceMap = {
       {
         title: "Confirm Contribution",
         description:
-          "Donate via bank transfer, UPI, or cheque. Receipts with 80G compliance are issued within 48 hours."
+          "Donate via bank transfer, UPI, or cheque. Donation receipts are issued within 48 hours."
       },
       {
         title: "Stay Connected",
@@ -380,7 +389,7 @@ export const servicesContent: ServiceMap = {
     faqs: [
       {
         question: "Is my donation tax exempt?",
-        answer: "Yes. Tridhara Milan Mandir issues 80G compliant receipts within 48 hours of contribution confirmation."
+        answer: "We are actively working on obtaining 80G certification for tax exemption. Currently, we issue donation receipts within 48 hours of contribution confirmation. Please check with us for the latest status on 80G compliance."
       },
       {
         question: "Can I volunteer remotely?",

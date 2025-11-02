@@ -26,3 +26,22 @@ main {
   background: theme("backgroundImage.frosted-panel");
   backdrop-filter: blur(12px);
 }
+
+/* FAQ Deep Linking - Highlight Animation */
+@keyframes highlight-flash {
+  0%, 100% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(178, 106, 91, 0.1); /* brand-primary with opacity */
+  }
+}
+
+.highlight-flash {
+  animation: highlight-flash 2s ease-in-out;
+}
+
+/* Smooth scrolling for the whole page */
+html {
+  scroll-behavior: smooth;
+}

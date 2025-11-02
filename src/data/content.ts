@@ -41,6 +41,7 @@ export const navLinks: NavLinkItem[] = [
     }))
   },
   { label: "Events", href: "/events" },
+  { label: "FAQs", href: "/faqs" },
   { label: "Contact", href: "/#visit" }
 ];
 
