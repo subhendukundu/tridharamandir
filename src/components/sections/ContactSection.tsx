@@ -3,6 +3,7 @@ import { MapPin, Phone, Mail, Clock, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SectionShell } from "@/components/ui/SectionShell";
+import { ContactForm } from "@/components/forms/ContactForm";
 import { siteConfig } from "@/config/site";
 import { napContent, visitContent } from "@/data/content";
 
@@ -28,7 +29,20 @@ export function ContactSection() {
           anchorId="visit"
         />
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-3">
+          {/* Contact Form */}
+          <div className="lg:col-span-2">
+            <div className="rounded-3xl border border-brand-primary/10 bg-white/80 p-8">
+              <h3 className="font-display text-xl font-semibold text-brand-primary mb-2">
+                Send Us a Message
+              </h3>
+              <p className="text-sm text-neutral-600 mb-6">
+                Fill out the form below and we&apos;ll get back to you as soon as possible.
+              </p>
+              <ContactForm tone="light" />
+            </div>
+          </div>
+
           {/* Contact Information */}
           <div className="space-y-8">
             <div className="rounded-3xl border border-brand-primary/10 bg-white/80 p-8">
@@ -103,95 +117,96 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Map and Directions */}
-          <div className="space-y-8">
-            <div className="rounded-3xl border border-brand-primary/10 bg-white/80 p-8">
-              <h3 className="font-display text-xl font-semibold text-brand-primary mb-6">
-                Location & Directions
-              </h3>
-              
-              <div className="space-y-6">
-                <div className="aspect-video overflow-hidden rounded-2xl bg-brand-light/30">
-                  <iframe
-                    src={siteConfig.map.embedUrl}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Tridhara Milan Mandir Location"
-                    className="h-full w-full"
-                  />
-                </div>
+        </div>
 
-                <div className="space-y-4">
-                  <h4 className="font-semibold text-brand-primary">How to Reach</h4>
-                  <div className="space-y-3 text-sm text-neutral-600">
-                    <p><strong>From Bishnupur:</strong> 30 km by road (45 minutes)</p>
-                    <p><strong>From Bankura:</strong> 45 km by road (1 hour)</p>
-                    <p><strong>Public Transport:</strong> Local buses and shared trekkers available</p>
-                    <p><strong>Parking:</strong> Limited street parking available nearby (not managed by temple)</p>
-                  </div>
-                </div>
+        {/* Map and Directions */}
+        <div className="grid gap-8 lg:grid-cols-2 mt-8">
+          <div className="rounded-3xl border border-brand-primary/10 bg-white/80 p-8">
+            <h3 className="font-display text-xl font-semibold text-brand-primary mb-6">
+              Location & Directions
+            </h3>
 
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <Button
-                    href={napContent.directionsLink}
-                    variant="primary"
-                    size="lg"
-                    icon={<Navigation className="h-4 w-4" />}
-                    className="w-full"
-                  >
-                    Get Directions
-                  </Button>
-                  <Button href={napContent.mapLink} variant="secondary" size="lg" className="w-full">
-                    Open in Google Maps
-                  </Button>
+            <div className="space-y-6">
+              <div className="aspect-video overflow-hidden rounded-2xl bg-brand-light/30">
+                <iframe
+                  src={siteConfig.map.embedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Tridhara Milan Mandir Location"
+                  className="h-full w-full"
+                />
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="font-semibold text-brand-primary">How to Reach</h4>
+                <div className="space-y-3 text-sm text-neutral-600">
+                  <p><strong>From Bishnupur:</strong> 30 km by road (45 minutes)</p>
+                  <p><strong>From Bankura:</strong> 45 km by road (1 hour)</p>
+                  <p><strong>Public Transport:</strong> Local buses and shared trekkers available</p>
+                  <p><strong>Parking:</strong> Limited street parking available nearby (not managed by temple)</p>
                 </div>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                <Button
+                  href={napContent.directionsLink}
+                  variant="primary"
+                  size="lg"
+                  icon={<Navigation className="h-4 w-4" />}
+                  className="w-full"
+                >
+                  Get Directions
+                </Button>
+                <Button href={napContent.mapLink} variant="secondary" size="lg" className="w-full">
+                  Open in Google Maps
+                </Button>
               </div>
             </div>
+          </div>
 
-            {/* Quick Actions */}
-            <div className="rounded-3xl border border-brand-primary/10 bg-gradient-to-br from-brand-light/30 to-white p-8">
-              <h3 className="font-display text-xl font-semibold text-brand-primary mb-6">
-                Quick Actions
-              </h3>
-              
-              <div className="grid gap-4 sm:grid-cols-2">
-                <Button
-                  href="/plan-your-visit"
-                  variant="secondary"
-                  size="md"
-                  className="w-full"
-                >
-                  Visitor Guide
-                </Button>
-                <Button
-                  href="/services"
-                  variant="secondary"
-                  size="md"
-                  className="w-full"
-                >
-                  Book Services
-                </Button>
-                <Button
-                  href="/events"
-                  variant="secondary"
-                  size="md"
-                  className="w-full"
-                >
-                  View Events
-                </Button>
-                <Button
-                  href="/#faq"
-                  variant="secondary"
-                  size="md"
-                  className="w-full"
-                >
-                  FAQ
-                </Button>
-              </div>
+          {/* Quick Actions */}
+          <div className="rounded-3xl border border-brand-primary/10 bg-gradient-to-br from-brand-light/30 to-white p-8">
+            <h3 className="font-display text-xl font-semibold text-brand-primary mb-6">
+              Quick Actions
+            </h3>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Button
+                href="/plan-your-visit"
+                variant="secondary"
+                size="md"
+                className="w-full"
+              >
+                Visitor Guide
+              </Button>
+              <Button
+                href="/services"
+                variant="secondary"
+                size="md"
+                className="w-full"
+              >
+                Book Services
+              </Button>
+              <Button
+                href="/events"
+                variant="secondary"
+                size="md"
+                className="w-full"
+              >
+                View Events
+              </Button>
+              <Button
+                href="/#faq"
+                variant="secondary"
+                size="md"
+                className="w-full"
+              >
+                FAQ
+              </Button>
             </div>
           </div>
         </div>

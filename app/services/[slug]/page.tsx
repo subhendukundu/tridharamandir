@@ -11,6 +11,7 @@ import { layoutRules, textRules } from "@/foundation/design-system";
 import { servicesContent, servicesList } from "@/data/services";
 import { siteConfig } from "@/config/site";
 import { cfImage, imagePresets } from "@/utils/image";
+import { DarshanBookingModalNew } from "@/components/forms/DarshanBookingModalNew";
 
 type ServicePageProps = {
   params: { slug: string };
@@ -288,7 +289,9 @@ export default function ServicePage({ params }: ServicePageProps) {
                 ))}
               </ul>
             </div>
-            {service.cta ? (
+            {service.slug === "darshan-and-timings" ? (
+              <DarshanBookingModalNew />
+            ) : service.cta ? (
               <Button href={service.cta.href} className="justify-center" variant="primary">
                 {service.cta.label}
               </Button>
