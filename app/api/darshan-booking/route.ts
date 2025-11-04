@@ -4,7 +4,7 @@ import { darshanBookingSchema } from '@/lib/validations/darshan-booking-new';
 import { render } from '@react-email/render';
 import DarshanBookingEmail from '@/emails/DarshanBookingEmail';
 
-export const runtime = 'edge';
+// Note: Runtime is automatically edge on Cloudflare Workers
 
 // Generate unique booking ID
 function generateBookingId(): string {

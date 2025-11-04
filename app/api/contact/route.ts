@@ -3,7 +3,7 @@ import { ZeptoMailService } from '@/lib/zeptomail';
 import { contactFormSchema } from '@/lib/validations/contact-form';
 import { z } from 'zod';
 
-export const runtime = 'edge';
+// Note: Runtime is automatically edge on Cloudflare Workers
 
 export async function POST(request: NextRequest) {
   try {

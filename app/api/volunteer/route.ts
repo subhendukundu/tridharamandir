@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createEmailService } from '@/lib/email-service';
 import { z } from 'zod';
 
-export const runtime = 'edge';
+// Note: Runtime is automatically edge on Cloudflare Workers
 
 // Validation schema for volunteer form
 const volunteerSchema = z.object({
