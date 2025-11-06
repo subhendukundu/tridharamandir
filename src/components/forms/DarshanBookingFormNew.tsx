@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { darshanBookingSchema, type DarshanBookingFormData } from '@/lib/validations/darshan-booking-new';
-import { trackDarshanBooking, trackFormError } from '@/lib/analytics';
+import { trackDarshanBooking, trackFormError, trackBookingError, trackApiError } from '@/lib/analytics';
 
 type DarshanBookingFormProps = {
   onSuccess?: (bookingId: string) => void;
@@ -87,7 +87,24 @@ export function DarshanBookingFormNew({ onSuccess }: DarshanBookingFormProps) {
       }
     } catch (error) {
       console.error('❌ Submission error:', error);
-      setSubmitError(error instanceof Error ? error.message : 'Failed to submit booking');
+      const errorMessage = error instanceof Error ? error.message : 'Failed to submit booking';
+      setSubmitError(errorMessage);
+
+      // Track booking submission error in Google Analytics
+      trackBookingError({
+        errorType: 'api',
+        errorMessage: errorMessage,
+        bookingData: data,
+      });
+
+      // Also track as API error if it's a fetch/network error
+      if (error instanceof Error) {
+        trackApiError({
+          apiName: 'darshan_booking',
+          errorMessage: error.message,
+          statusCode: 500,
+        });
+      }
     } finally {
       setIsSubmitting(false);
     }

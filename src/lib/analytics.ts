@@ -156,3 +156,59 @@ export const trackEmailLinkClick = (params: {
     booking_id: params.bookingId,
   });
 };
+
+/**
+ * Track API errors (email failures, server errors, etc.)
+ */
+export const trackApiError = (params: {
+  apiName: string;
+  errorCode?: string;
+  errorMessage: string;
+  statusCode?: number;
+}) => {
+  trackEvent('api_error', {
+    event_category: 'Error',
+    event_label: params.apiName,
+    api_name: params.apiName,
+    error_code: params.errorCode || 'unknown',
+    error_message: params.errorMessage,
+    status_code: params.statusCode,
+  });
+};
+
+/**
+ * Track email send failures
+ */
+export const trackEmailFailure = (params: {
+  emailType: 'user_confirmation' | 'admin_notification';
+  recipient: string;
+  errorMessage: string;
+  bookingId?: string;
+}) => {
+  trackEvent('email_send_failed', {
+    event_category: 'Error',
+    event_label: params.emailType,
+    email_type: params.emailType,
+    recipient: params.recipient,
+    error_message: params.errorMessage,
+    booking_id: params.bookingId,
+  });
+};
+
+/**
+ * Track booking submission errors
+ */
+export const trackBookingError = (params: {
+  errorType: 'validation' | 'api' | 'email' | 'unknown';
+  errorMessage: string;
+  bookingData?: Record<string, any>;
+}) => {
+  trackEvent('booking_error', {
+    event_category: 'Error',
+    event_label: params.errorType,
+    error_type: params.errorType,
+    error_message: params.errorMessage,
+    // Don't send sensitive booking data, just metadata
+    has_booking_data: !!params.bookingData,
+  });
+};
