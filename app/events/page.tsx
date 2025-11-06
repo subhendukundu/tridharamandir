@@ -7,6 +7,7 @@ import { layoutRules, textRules } from "@/foundation/design-system";
 import { eventsContent } from "@/data/events";
 import { siteConfig } from "@/config/site";
 import { getOgImageUrl } from "@/utils/image";
+import { EventRegistrationForm } from "@/components/forms/EventRegistrationForm";
 
 export const metadata: Metadata = {
   title: `Panchmura Temple Festivals | Rath Yatra & Janmashtami at Tridhara Milan Mandir`,
@@ -142,6 +143,40 @@ export default function EventsPage() {
           ))}
         </div>
       </SectionShell>
+
+      {/* Event Registration Section */}
+      <section className="py-20 bg-gradient-to-b from-white via-brand-light/20 to-white">
+        <div className={`${layoutRules.container} ${layoutRules.pagePadding}`}>
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="font-display text-3xl sm:text-4xl text-brand-dark mb-4">
+                Register for an Event
+              </h2>
+              <p className="text-lg text-neutral-700">
+                Join us for our upcoming festivals and celebrations. Register now to receive
+                event details and updates.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-brand-primary/20">
+              <EventRegistrationForm tone="light" />
+            </div>
+
+            <div className="mt-8 text-center">
+              <p className="text-sm text-neutral-600">
+                For large group registrations or special arrangements, please{" "}
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="text-brand-primary hover:text-brand-secondary font-semibold"
+                >
+                  contact us directly
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

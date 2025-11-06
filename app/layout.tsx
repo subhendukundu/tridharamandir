@@ -8,6 +8,7 @@ import { Footer } from "@/components/layout/Footer";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { siteConfig } from "@/config/site";
+import { getOgImageUrl } from "@/utils/image";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -42,9 +43,9 @@ export const metadata: Metadata = {
     locale: siteConfig.locale,
     images: [
       {
-        url: new URL("/images/tridhara-radha-krishna-mandir.png", siteConfig.url).toString(),
-        width: 1400,
-        height: 980,
+        url: getOgImageUrl('/images/tridhara-radha-krishna-mandir.png', siteConfig.url),
+        width: 1200,
+        height: 630,
         alt: "Tridhara Milan Mandir courtyard and shikhara"
       }
     ]
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.homeTitle,
     description: siteConfig.description,
-    images: [new URL("/images/tridhara-radha-krishna-mandir.png", siteConfig.url).toString()]
+    images: [getOgImageUrl('/images/tridhara-radha-krishna-mandir.png', siteConfig.url)]
   },
   robots: {
     index: true,
