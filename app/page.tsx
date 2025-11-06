@@ -11,6 +11,7 @@ import { QuickFactsSection } from "@/components/sections/QuickFactsSection";
 import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { siteConfig } from "@/config/site";
 import { testimonialContent } from "@/data/content";
+import { getOgImageUrl } from "@/utils/image";
 
 export const metadata: Metadata = {
   title: siteConfig.homeTitle,
@@ -21,7 +22,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: siteConfig.homeTitle,
     description: siteConfig.description,
-    url: siteConfig.url
+    url: siteConfig.url,
+    images: [{
+      url: getOgImageUrl('/images/tridhara-radha-krishna-mandir.png', siteConfig.url),
+      width: 1200,
+      height: 630,
+      alt: 'Tridhara Milan Mandir - Panchmura\'s sacred temple bringing together Shaiva, Vaishnava, and Shakta traditions'
+    }]
   },
   twitter: {
     title: siteConfig.homeTitle,

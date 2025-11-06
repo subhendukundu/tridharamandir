@@ -7,6 +7,8 @@ import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { siteConfig } from "@/config/site";
+import { getOgImageUrl } from "@/utils/image";
 
 export const metadata: Metadata = {
   title: "Why Visit Panchmura Milan Mandir | Best Temple Near Bishnupur Bankura",
@@ -27,7 +29,16 @@ export const metadata: Metadata = {
     title: "Why Visit Panchmura's Tridhara Milan Mandir - Near Bishnupur, Bankura",
     description:
       "Experience Panchmura's unique temple: India's only integrated Shaiva-Vaishnava-Shakta arati, guest house stays, 2,000 daily meals. Add to your Bishnupur heritage tour (30km).",
-    type: "website"
+    type: "website",
+    url: `${siteConfig.url}/why-visit`,
+    images: [
+      {
+        url: getOgImageUrl('/images/tridhara-radha-krishna-mandir.png', siteConfig.url),
+        width: 1200,
+        height: 630,
+        alt: 'Tridhara Milan Mandir - Experience unique integrated worship and community seva in Panchmura'
+      }
+    ]
   }
 };
 

@@ -6,11 +6,26 @@ import { SectionShell } from "@/components/ui/SectionShell";
 import { layoutRules, textRules } from "@/foundation/design-system";
 import { eventsContent } from "@/data/events";
 import { siteConfig } from "@/config/site";
+import { getOgImageUrl } from "@/utils/image";
 
 export const metadata: Metadata = {
   title: `Panchmura Temple Festivals | Rath Yatra & Janmashtami at Tridhara Milan Mandir`,
   description:
-    "Tridhara Milan Mandir Panchmura festival calendar: Rath Yatra, Janmashtami, Navaratri celebrations. Experience integrated Shaiva-Vaishnava-Shakta festivals 30km from Bishnupur, Bankura."
+    "Tridhara Milan Mandir Panchmura festival calendar: Rath Yatra, Janmashtami, Navaratri celebrations. Experience integrated Shaiva-Vaishnava-Shakta festivals 30km from Bishnupur, Bankura.",
+  openGraph: {
+    title: `Panchmura Temple Festivals | Rath Yatra & Janmashtami at Tridhara Milan Mandir`,
+    description:
+      "Tridhara Milan Mandir Panchmura festival calendar: Rath Yatra, Janmashtami, Navaratri celebrations. Experience integrated Shaiva-Vaishnava-Shakta festivals 30km from Bishnupur, Bankura.",
+    url: `${siteConfig.url}/events`,
+    images: [
+      {
+        url: getOgImageUrl('/images/tridhara-radha-krishna-mandir.png', siteConfig.url),
+        width: 1200,
+        height: 630,
+        alt: 'Tridhara Milan Mandir - Annual festivals celebrating Rath Yatra, Janmashtami and more in Panchmura'
+      }
+    ]
+  }
 };
 
 export default function EventsPage() {

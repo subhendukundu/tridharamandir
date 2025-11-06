@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { galleryImages } from "@/data/gallery";
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
+import { siteConfig } from "@/config/site";
+import { getOgImageUrl } from "@/utils/image";
 
 export const metadata: Metadata = {
   title: "Panchmura Radha Krishna Temple Photos | Tridhara Milan Mandir Gallery",
@@ -22,10 +24,13 @@ export const metadata: Metadata = {
     description:
       "70+ high-quality photos of Panchmura's Tridhara Milan Mandir: temple architecture, Radha-Krishna shrines, festivals, daily rituals. Naba-Vrindavan near Bishnupur.",
     type: "website",
+    url: `${siteConfig.url}/gallery`,
     images: [
       {
-        url: "/images/gallery/temple-interior-shikhara-ceiling-illuminated-panchmura-01.jpg",
-        alt: "Tridhara Milan Mandir main temple Panchmura Bankura"
+        url: getOgImageUrl('/images/tridhara-radha-krishna-mandir.png', siteConfig.url),
+        width: 1200,
+        height: 630,
+        alt: "Tridhara Milan Mandir Photo Gallery - Temple architecture, deities, and festivals in Panchmura"
       }
     ]
   }

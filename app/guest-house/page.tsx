@@ -11,6 +11,7 @@ import { Accordion } from "@/components/ui/Accordion";
 import { layoutRules, textRules } from "@/foundation/design-system";
 import { siteConfig } from "@/config/site";
 import { guesthouseContent, guesthouseSchemaData } from "@/data/guesthouse";
+import { getOgImageUrl } from "@/utils/image";
 
 export const metadata: Metadata = {
   title: `Panchmura Guest House Near Bishnupur | Tridhara Milan Mandir Stay`,
@@ -38,8 +39,10 @@ export const metadata: Metadata = {
     url: `${siteConfig.url}/guest-house`,
     images: [
       {
-        url: guesthouseContent.hero.image,
-        alt: "Tridhara Guest House suites at Panchmura Milan Mandir near Bishnupur"
+        url: getOgImageUrl('/images/tridhara-radha-krishna-mandir.png', siteConfig.url),
+        width: 1200,
+        height: 630,
+        alt: "Tridhara Guest House - On-site temple accommodation with authentic spiritual experience in Panchmura"
       }
     ]
   }

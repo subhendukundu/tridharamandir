@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Compass, Sparkles, Map } from "lucide-react";
 import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { siteConfig } from "@/config/site";
-import { cfImage, imagePresets } from "@/utils/image";
+import { cfImage, imagePresets, getOgImageUrl } from "@/utils/image";
 
 export const metadata: Metadata = {
   title: "About Panchmura Milan Mandir | Tridhara Temple Bankura, Naba-Vrindavan",
@@ -23,7 +23,16 @@ export const metadata: Metadata = {
     title: "About Tridhara Milan Mandir - Panchmura's Integrated Temple Near Bishnupur",
     description:
       "India's only temple with integrated Shaiva-Vaishnava-Shakta worship in Panchmura, Bankura. Consecrated 2022, serving 2,000 devotees daily. 30km from Bishnupur terracotta temples.",
-    type: "website"
+    type: "website",
+    url: `${siteConfig.url}/about-us`,
+    images: [
+      {
+        url: getOgImageUrl('/images/tridhara-radha-krishna-mandir.png', siteConfig.url),
+        width: 1200,
+        height: 630,
+        alt: "Tridhara Milan Mandir - India's unique integrated Shaiva-Vaishnava-Shakta temple in Panchmura"
+      }
+    ]
   }
 };
 

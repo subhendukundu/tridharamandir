@@ -6,6 +6,7 @@ import { SectionShell } from "@/components/ui/SectionShell";
 import { Button } from "@/components/ui/Button";
 import { layoutRules, textRules } from "@/foundation/design-system";
 import { siteConfig } from "@/config/site";
+import { getOgImageUrl } from "@/utils/image";
 import {
   directionsCta,
   heritageHighlights,
@@ -19,7 +20,21 @@ import { eventsContent } from "@/data/events";
 export const metadata: Metadata = {
   title: `Panchmura Tridhara Mandir History | Naba-Vrindavan Temple Bankura`,
   description:
-    'History of Panchmura Milan Mandir (Naba-Vrindavan) from 2012 community vision to 2022 Rath Yatra consecration. Discover Bengal\'s integrated Shaiva-Vaishnava-Shakta temple heritage 30km from Bishnupur.'
+    'History of Panchmura Milan Mandir (Naba-Vrindavan) from 2012 community vision to 2022 Rath Yatra consecration. Discover Bengal\'s integrated Shaiva-Vaishnava-Shakta temple heritage 30km from Bishnupur.',
+  openGraph: {
+    title: `Panchmura Tridhara Mandir History | Naba-Vrindavan Temple Bankura`,
+    description:
+      'History of Panchmura Milan Mandir (Naba-Vrindavan) from 2012 community vision to 2022 Rath Yatra consecration. Discover Bengal\'s integrated Shaiva-Vaishnava-Shakta temple heritage 30km from Bishnupur.',
+    url: `${siteConfig.url}/history`,
+    images: [
+      {
+        url: getOgImageUrl('/images/tridhara-radha-krishna-mandir.png', siteConfig.url),
+        width: 1200,
+        height: 630,
+        alt: 'Tridhara Milan Mandir History - From 2012 vision to 2022 consecration in Panchmura'
+      }
+    ]
+  }
 };
 
 export default function HistoryPage() {

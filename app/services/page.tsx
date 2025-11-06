@@ -7,11 +7,26 @@ import { SectionShell } from "@/components/ui/SectionShell";
 import { layoutRules, textRules } from "@/foundation/design-system";
 import { servicesList } from "@/data/services";
 import { siteConfig } from "@/config/site";
+import { getOgImageUrl } from "@/utils/image";
 
 export const metadata: Metadata = {
   title: `Panchmura Temple Services | Tridhara Milan Mandir Darshan, Prasad & Rituals`,
   description:
-    "Tridhara Milan Mandir Panchmura services: Daily darshan timings, free prasad (2,000 meals), temple marriage rituals, bhog offerings, donation programs. 30km from Bishnupur, Bankura."
+    "Tridhara Milan Mandir Panchmura services: Daily darshan timings, free prasad (2,000 meals), temple marriage rituals, bhog offerings, donation programs. 30km from Bishnupur, Bankura.",
+  openGraph: {
+    title: `Panchmura Temple Services | Tridhara Milan Mandir Darshan, Prasad & Rituals`,
+    description:
+      "Tridhara Milan Mandir Panchmura services: Daily darshan timings, free prasad (2,000 meals), temple marriage rituals, bhog offerings, donation programs. 30km from Bishnupur, Bankura.",
+    url: `${siteConfig.url}/services`,
+    images: [
+      {
+        url: getOgImageUrl('/images/tridhara-radha-krishna-mandir.png', siteConfig.url),
+        width: 1200,
+        height: 630,
+        alt: 'Tridhara Milan Mandir - Temple services including darshan, prasad, and community seva in Panchmura'
+      }
+    ]
+  }
 };
 
 export default function ServicesOverviewPage() {

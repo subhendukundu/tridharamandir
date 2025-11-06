@@ -271,6 +271,17 @@ export const imagePresets = {
     segment: 'foreground',
     metadata: 'none',
   }),
+
+  /** OpenGraph/Social media images - optimized for sharing (1200x630) */
+  og: (): ImageTransformOptions => ({
+    width: 1200,
+    height: 630,
+    fit: 'cover',
+    format: 'jpeg', // JPEG for better compatibility across all platforms
+    quality: 85,
+    gravity: 'auto', // Smart cropping
+    metadata: 'copyright', // Keep copyright info
+  }),
 } as const;
 
 /**
@@ -293,4 +304,29 @@ export function generateSrcSet(
   return widths
     .map((width) => `${cfImage(src, { ...options, width })} ${width}w`)
     .join(', ');
+}
+
+/**
+ * Generate optimized OpenGraph image URL for social media sharing
+ * Returns full absolute URL with Cloudflare transformations
+ *
+ * @param src - Source image path (relative or absolute)
+ * @param baseUrl - Base site URL (e.g., https://tridharamandir.com)
+ * @returns Optimized OG image URL (1200x630, JPEG, 85 quality)
+ *
+ * @example
+ * ```tsx
+ * openGraph: {
+ *   images: [{
+ *     url: getOgImageUrl('/images/temple.png', siteConfig.url),
+ *     width: 1200,
+ *     height: 630,
+ *     alt: 'Temple description'
+ *   }]
+ * }
+ * ```
+ */
+export function getOgImageUrl(src: string, baseUrl: string): string {
+  const optimizedPath = cfImage(src, imagePresets.og());
+  return `${baseUrl}${optimizedPath}`;
 }
