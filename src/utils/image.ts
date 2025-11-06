@@ -277,7 +277,7 @@ export const imagePresets = {
     width: 1200,
     height: 630,
     fit: 'cover',
-    format: 'jpeg', // JPEG for better compatibility across all platforms
+    format: 'webp', // WebP for better compression and smaller file sizes
     quality: 85,
     gravity: 'auto', // Smart cropping
     metadata: 'copyright', // Keep copyright info
@@ -312,7 +312,7 @@ export function generateSrcSet(
  *
  * @param src - Source image path (relative or absolute)
  * @param baseUrl - Base site URL (e.g., https://tridharamandir.com)
- * @returns Optimized OG image URL (1200x630, JPEG, 85 quality)
+ * @returns Optimized OG image URL (1200x630, WebP, 85 quality)
  *
  * @example
  * ```tsx
