@@ -78,7 +78,7 @@ export function VolunteerForm({ tone = "light", className }: VolunteerFormProps)
       // Track form error in GA
       trackFormError({
         formName: "volunteer_application",
-        errorType: "submission_failed",
+        errorField: "submission",
         errorMessage: error instanceof Error ? error.message : "Unknown error",
       });
     }
@@ -127,11 +127,16 @@ export function VolunteerForm({ tone = "light", className }: VolunteerFormProps)
           {...register("interests")}
           id="interests"
           label="Area of Interest"
-          options={interestOptions}
           error={errors.interests}
           tone={tone}
           required
-        />
+        >
+          {interestOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </SelectField>
 
         {/* Availability */}
         <TextareaField

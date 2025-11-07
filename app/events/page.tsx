@@ -166,7 +166,7 @@ export default function EventsPage() {
               <p className="text-sm text-neutral-600">
                 For large group registrations or special arrangements, please{" "}
                 <a
-                  href={`mailto:${siteConfig.email}`}
+                  href={`mailto:${siteConfig.contact.email}`}
                   className="text-brand-primary hover:text-brand-secondary font-semibold"
                 >
                   contact us directly

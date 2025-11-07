@@ -114,7 +114,7 @@ export function EventRegistrationForm({
       // Track form error in GA
       trackFormError({
         formName: "event_registration",
-        errorType: "submission_failed",
+        errorField: "submission",
         errorMessage: error instanceof Error ? error.message : "Unknown error",
       });
     }
@@ -129,12 +129,18 @@ export function EventRegistrationForm({
             {...register("eventSlug")}
             id="eventSlug"
             label="Select Event"
-            options={eventOptions}
             error={errors.eventSlug}
             tone={tone}
             required
             onChange={handleEventChange}
-          />
+          >
+            <option value="">Select an event</option>
+            {eventOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </SelectField>
 
           {/* Show event details when selected */}
           {selectedEvent && (

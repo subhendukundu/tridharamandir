@@ -9,6 +9,7 @@ type BaseFieldProps = {
   id: string;
   error?: FieldError;
   tone?: "light" | "dark";
+  helpText?: string;
 };
 
 // Input Field
@@ -20,6 +21,7 @@ export function InputField({
   id,
   error,
   tone = "light",
+  helpText,
   ...props
 }: InputFieldProps) {
   return (
@@ -50,6 +52,14 @@ export function InputField({
         aria-describedby={error ? `${id}-error` : undefined}
         {...props}
       />
+      {helpText && !error && (
+        <p className={clsx(
+          "text-xs",
+          tone === "light" ? "text-neutral-600" : "text-neutral-400"
+        )}>
+          {helpText}
+        </p>
+      )}
       {error && (
         <p id={`${id}-error`} className="text-xs text-red-600 font-medium">
           {error.message}
@@ -68,6 +78,7 @@ export function TextareaField({
   id,
   error,
   tone = "light",
+  helpText,
   ...props
 }: TextareaFieldProps) {
   return (
@@ -98,6 +109,14 @@ export function TextareaField({
         aria-describedby={error ? `${id}-error` : undefined}
         {...props}
       />
+      {helpText && !error && (
+        <p className={clsx(
+          "text-xs",
+          tone === "light" ? "text-neutral-600" : "text-neutral-400"
+        )}>
+          {helpText}
+        </p>
+      )}
       {error && (
         <p id={`${id}-error`} className="text-xs text-red-600 font-medium">
           {error.message}

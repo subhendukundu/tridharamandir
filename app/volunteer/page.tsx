@@ -223,19 +223,19 @@ export default function VolunteerPage() {
               <div>
                 <p className="text-neutral-600">Email</p>
                 <a
-                  href={`mailto:${siteConfig.email}`}
+                  href={`mailto:${siteConfig.contact.email}`}
                   className="text-brand-primary hover:text-brand-secondary font-semibold text-lg"
                 >
-                  {siteConfig.email}
+                  {siteConfig.contact.email}
                 </a>
               </div>
               <div>
                 <p className="text-neutral-600">Phone</p>
                 <a
-                  href={`tel:${siteConfig.phone}`}
+                  href={`tel:${siteConfig.contact.phone}`}
                   className="text-brand-primary hover:text-brand-secondary font-semibold text-lg"
                 >
-                  {siteConfig.phone}
+                  {siteConfig.contact.phone}
                 </a>
               </div>
             </div>
