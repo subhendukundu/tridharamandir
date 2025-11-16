@@ -57,13 +57,18 @@ export async function POST(request: NextRequest) {
     const userEmailHtml = await render(DarshanBookingEmail(emailData));
     const userEmailText = generatePlainText(emailData);
 
+    // Log API key for debugging (first 30 chars only for security)
+    const apiKey = process.env.ZEPTOMAIL_API_KEY || '';
+    console.log('ZEPTOMAIL_API_KEY (first 30 chars):', apiKey.substring(0, 30));
+    console.log('ZEPTOMAIL_FROM_EMAIL:', process.env.ZEPTOMAIL_FROM_EMAIL);
     console.log('Sending user confirmation email to:', validatedData.email);
+
     const userEmailResult = await sendEmail({
       to: validatedData.email,
       subject: `Darshan Booking Confirmed - ${formattedDate}`,
       html: userEmailHtml,
       text: userEmailText,
-      apiKey: process.env.ZEPTOMAIL_API_KEY || '',
+      apiKey: apiKey,
       fromEmail: process.env.ZEPTOMAIL_FROM_EMAIL || '',
       fromName: process.env.ZEPTOMAIL_FROM_NAME || 'Tridhara Mandir',
     });
