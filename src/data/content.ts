@@ -209,7 +209,7 @@ export const faqContent = {
     {
       question: "What is the best time to visit Panchmura temple?",
       answer:
-        "Best time: October to March (festival season, pleasant weather). Avoid July-August monsoons. Major festivals: Janmashtami (August), Rath Yatra (June-July), and Navaratri (October). For the unique integrated tridhara arati, visit during evening arati (6:30-8:00 PM). Weekdays are less crowded than weekends."
+        "Best time: October to March (festival season, pleasant weather). If you love monsoon charm, July-August brings lush greenery — just carry rain gear for muddy rural paths. Major festivals: Janmashtami (August), Rath Yatra (June-July), and Navaratri (October). For the unique integrated tridhara arati, visit during evening arati (6:30-8:00 PM). Weekdays are less crowded than weekends."
     },
     {
       question: "Is there a dress code?",

@@ -298,7 +298,7 @@ export default function WhyVisitPage() {
               <Calendar className="mx-auto h-12 w-12 text-brand-accent" />
               <h3 className="mt-4 font-display text-xl font-semibold">Best Time to Visit</h3>
               <p className="mt-2 text-white/80">
-                October-March (festival season). Avoid July-August monsoons. Major festivals: Janmashtami (August), Rath Yatra (June-July), Navaratri (October).
+                October-March (festival season). Love rain? July-August brings lush monsoon beauty — just pack rain gear. Major festivals: Janmashtami (August), Rath Yatra (June-July), Navaratri (October).
               </p>
             </div>
 

@@ -192,11 +192,11 @@ export const bankuraTempleGuide: ArticleContent = {
     {
       heading: "Best Time to Visit",
       body:
-        "October to March offers the best weather for a Bankura temple tour. Major festivals add a special dimension: Rath Yatra (June-July) and Janmashtami (August) at Tridhara, and Mela season in Bishnupur. Avoid July-August monsoons when rural roads can be muddy. Weekdays are less crowded at both Bishnupur temples and Tridhara Milan Mandir.",
+        "October to March offers the best weather for a Bankura temple tour. Major festivals add a special dimension: Rath Yatra (June-July) and Janmashtami (August) at Tridhara, and Mela season in Bishnupur. If you love the drama of monsoon skies, July-August brings lush green landscapes — just pack waterproof shoes as rural roads get muddy. Weekdays are less crowded at both Bishnupur temples and Tridhara Milan Mandir.",
       bullets: [
         "Peak season: October-March (cool, dry weather, festival season)",
         "Key festivals: Janmashtami (Aug), Navaratri (Oct), Rath Yatra (Jun-Jul)",
-        "Avoid: Heavy monsoon months (July-August)",
+        "Monsoon lovers: July-August rewards you with lush greenery — just carry rain gear and waterproof footwear",
         "Pro tip: Weekday visits mean fewer crowds and more personal attention from guides"
       ]
     },
