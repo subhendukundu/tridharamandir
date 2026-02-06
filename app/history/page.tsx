@@ -205,6 +205,9 @@ export default function HistoryPage() {
               <Button href="/services/donation-and-seva" size="lg" variant="secondary">
                 Support Seva Programmes
               </Button>
+              <Button href="/guides/bankura-temple-tour-itinerary" size="lg" variant="secondary">
+                Bankura Temple Tour Guide
+              </Button>
             </div>
           </div>
         </div>

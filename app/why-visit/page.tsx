@@ -24,7 +24,9 @@ export const metadata: Metadata = {
     "integrated Hindu worship Panchmura",
     "Panchmura Radha Krishna temple",
     "spiritual tourism Bankura",
-    "mini vrindavan bankura"
+    "mini vrindavan bankura",
+    "পাঁচমুড়া মন্দির",
+    "বাঁকুড়া বৃন্দাবন"
   ],
   alternates: {
     canonical: "/why-visit"

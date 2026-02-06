@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { layoutRules, textRules } from "@/foundation/design-system";
 import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
@@ -208,6 +209,25 @@ export default function PlanYourVisitPage() {
               </a>
             </div>
           </article>
+
+          {/* Internal links */}
+          <div className="rounded-3xl border border-brand-accent/20 bg-brand-light/30 p-8">
+            <h2 className="font-display text-2xl text-brand-primary">Plan a Longer Trip</h2>
+            <p className="mt-3 text-sm text-neutral-600">
+              Combine your Tridhara visit with Bishnupur&apos;s terracotta temples, Panchmura craft village, and Susunia Hill for a complete Bankura heritage experience.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Link href="/guides/bankura-temple-tour-itinerary" className="rounded-2xl border border-brand-primary/15 bg-white px-6 py-4 text-sm font-semibold text-brand-primary hover:border-brand-accent/40 transition-colors">
+                2-Day Bankura Temple Tour Itinerary →
+              </Link>
+              <Link href="/why-visit" className="rounded-2xl border border-brand-primary/15 bg-white px-6 py-4 text-sm font-semibold text-brand-primary hover:border-brand-accent/40 transition-colors">
+                Why Visit Tridhara Milan Mandir →
+              </Link>
+              <Link href="/events" className="rounded-2xl border border-brand-primary/15 bg-white px-6 py-4 text-sm font-semibold text-brand-primary hover:border-brand-accent/40 transition-colors">
+                Upcoming Festivals & Events →
+              </Link>
+            </div>
+          </div>
         </div>
       </SectionShell>
     </>

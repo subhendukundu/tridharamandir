@@ -46,8 +46,8 @@ export const navLinks: NavLinkItem[] = [
 ];
 
 export const heroContent = {
-  eyebrow: "Tridhara Milan Mandir",
-  title: "Panchmura’s Living Confluence of Bhakti",
+  eyebrow: "ত্রিধারা মিলন মন্দির · Tridhara Milan Mandir",
+  title: "Panchmura's Living Confluence of Bhakti",
   subtitle:
     "Experience Radha-Krishna darshan at Tridhara Milan Mandir, Panchmura—Naba Brindaban of Bankura—where 2,000 devotees gather daily for integrated Shaiva-Vaishnava-Shakta worship.",
   ctaDonation: { label: "Donate Now", href: "/services/donation-and-seva" },

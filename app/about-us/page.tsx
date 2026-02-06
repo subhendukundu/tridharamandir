@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Compass, Sparkles, Map } from "lucide-react";
 import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { siteConfig } from "@/config/site";
@@ -19,7 +20,10 @@ export const metadata: Metadata = {
     "Shaiva Vaishnava Shakta worship",
     "Panchmura Milan Mandir",
     "temples near Bishnupur",
-    "mini vrindavan bankura"
+    "mini vrindavan bankura",
+    "পাঁচমুড়া ত্রিধারা মিলন মন্দির",
+    "ত্রিধারা মিলন মন্দির",
+    "নব বৃন্দাবন বাঁকুড়া"
   ],
   alternates: {
     canonical: "/about-us"
@@ -173,6 +177,7 @@ export default function AboutUsPage() {
           <div className="inline-flex items-center gap-2 rounded-full border border-brand-primary/20 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-brand-primary backdrop-blur mb-6">
             About the Mandir
           </div>
+          <p className="text-sm text-brand-secondary/70 mb-2" lang="bn">পাঁচমুড়া ত্রিধারা মিলন মন্দির · নব বৃন্দাবন · বাঁকুড়া</p>
 
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-brand-primary mb-6">
             Where Three Streams of Faith Flow Together
@@ -321,6 +326,29 @@ export default function AboutUsPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Explore More Section */}
+      <section className="py-16 sm:py-24">
+        <div className="mx-auto max-w-4xl px-6 sm:px-8 text-center">
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-brand-primary mb-8">
+            Continue Exploring
+          </h2>
+          <div className="grid sm:grid-cols-3 gap-6">
+            <Link href="/history" className="group rounded-2xl border border-brand-primary/10 p-6 hover:border-brand-accent/40 transition-colors">
+              <h3 className="font-display text-lg font-semibold text-brand-primary group-hover:text-brand-accent transition-colors">Temple History</h3>
+              <p className="mt-2 text-sm text-neutral-600">From 2012 vision to 2022 consecration</p>
+            </Link>
+            <Link href="/why-visit" className="group rounded-2xl border border-brand-primary/10 p-6 hover:border-brand-accent/40 transition-colors">
+              <h3 className="font-display text-lg font-semibold text-brand-primary group-hover:text-brand-accent transition-colors">Why Visit</h3>
+              <p className="mt-2 text-sm text-neutral-600">What makes Tridhara unique in India</p>
+            </Link>
+            <Link href="/guides/bankura-temple-tour-itinerary" className="group rounded-2xl border border-brand-primary/10 p-6 hover:border-brand-accent/40 transition-colors">
+              <h3 className="font-display text-lg font-semibold text-brand-primary group-hover:text-brand-accent transition-colors">Bankura Temple Tour</h3>
+              <p className="mt-2 text-sm text-neutral-600">2-day Bishnupur + Panchmura itinerary</p>
+            </Link>
           </div>
         </div>
       </section>

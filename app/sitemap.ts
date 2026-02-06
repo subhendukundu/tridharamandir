@@ -90,6 +90,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",
       priority: 0.75
+    },
+    {
+      url: `${baseUrl}/guides/bankura-temple-tour-itinerary`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.8
     }
   ];
 
