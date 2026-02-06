@@ -7,9 +7,9 @@ const mapDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${l
 
 export const siteConfig = {
   name: "Tridhara Milan Mandir",
-  homeTitle: "Panchmura Radha Krishna Temple | Tridhara Milan Mandir Bankura",
+  homeTitle: "Tridhara Milan Mandir Panchmura | Naba Brindaban Temple, Bankura",
   description:
-    "Visit Panchmura's Tridhara Milan Mandir - Bengal's only integrated Shaiva-Vaishnava-Shakta temple. 2,000 devotees daily, free prasad, guest house near Bishnupur (30km). Known as Naba-Vrindavan.",
+    "Tridhara Milan Mandir Panchmura – Bengal's only integrated Shaiva-Vaishnava-Shakta temple. Known as Naba Brindaban, Bankura's Vrindavan. 2,000 devotees daily, free prasad, guest house near Bishnupur (30km).",
   branding: {
     nickname: "Second Vrindavan",
     tagline: "Panchmura's Second Vrindavan",

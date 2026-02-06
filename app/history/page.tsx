@@ -18,13 +18,16 @@ import {
 import { eventsContent } from "@/data/events";
 
 export const metadata: Metadata = {
-  title: `Panchmura Tridhara Mandir History | Naba-Vrindavan Temple Bankura`,
+  title: { absolute: "Tridhara Milan Mandir History | Naba Brindaban Temple Panchmura, Bankura" },
   description:
-    'History of Panchmura Milan Mandir (Naba-Vrindavan) from 2012 community vision to 2022 Rath Yatra consecration. Discover Bengal\'s integrated Shaiva-Vaishnava-Shakta temple heritage 30km from Bishnupur.',
+    "History of Tridhara Milan Mandir – from 2012 community vision to 2022 Rath Yatra consecration at Panchmura. Bengal's Naba Brindaban (Bankura Vrindavan) temple, 30km from Bishnupur.",
+  alternates: {
+    canonical: "/history"
+  },
   openGraph: {
-    title: `Panchmura Tridhara Mandir History | Naba-Vrindavan Temple Bankura`,
+    title: "Tridhara Milan Mandir History – Naba Brindaban Temple, Panchmura Bankura",
     description:
-      'History of Panchmura Milan Mandir (Naba-Vrindavan) from 2012 community vision to 2022 Rath Yatra consecration. Discover Bengal\'s integrated Shaiva-Vaishnava-Shakta temple heritage 30km from Bishnupur.',
+      "From 2012 vision to 2022 consecration: the story of Tridhara Milan Mandir, Panchmura's Naba Brindaban. Integrated Shaiva-Vaishnava-Shakta heritage 30km from Bishnupur.",
     url: `${siteConfig.url}/history`,
     images: [
       {

@@ -14,7 +14,7 @@ import { testimonialContent } from "@/data/content";
 import { getOgImageUrl } from "@/utils/image";
 
 export const metadata: Metadata = {
-  title: siteConfig.homeTitle,
+  title: { absolute: siteConfig.homeTitle },
   description: siteConfig.description,
   alternates: {
     canonical: "/"

@@ -10,13 +10,16 @@ import { getOgImageUrl } from "@/utils/image";
 import { EventRegistrationForm } from "@/components/forms/EventRegistrationForm";
 
 export const metadata: Metadata = {
-  title: `Panchmura Temple Festivals | Rath Yatra & Janmashtami at Tridhara Milan Mandir`,
+  title: { absolute: "Festivals at Tridhara Milan Mandir Panchmura | Rath Yatra & Janmashtami" },
   description:
-    "Tridhara Milan Mandir Panchmura festival calendar: Rath Yatra, Janmashtami, Navaratri celebrations. Experience integrated Shaiva-Vaishnava-Shakta festivals 30km from Bishnupur, Bankura.",
+    "Tridhara Milan Mandir festival calendar – Rath Yatra, Janmashtami, Navaratri at Panchmura, Bankura. Free entry, integrated Shaiva-Vaishnava-Shakta worship ceremonies near Bishnupur.",
+  alternates: {
+    canonical: "/events"
+  },
   openGraph: {
-    title: `Panchmura Temple Festivals | Rath Yatra & Janmashtami at Tridhara Milan Mandir`,
+    title: "Festivals at Tridhara Milan Mandir – Rath Yatra, Janmashtami & More",
     description:
-      "Tridhara Milan Mandir Panchmura festival calendar: Rath Yatra, Janmashtami, Navaratri celebrations. Experience integrated Shaiva-Vaishnava-Shakta festivals 30km from Bishnupur, Bankura.",
+      "Tridhara Milan Mandir Panchmura festival calendar: Rath Yatra, Janmashtami, Navaratri. Integrated Shaiva-Vaishnava-Shakta celebrations, free entry, 30km from Bishnupur, Bankura.",
     url: `${siteConfig.url}/events`,
     images: [
       {

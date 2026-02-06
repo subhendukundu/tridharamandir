@@ -49,7 +49,7 @@ export const heroContent = {
   eyebrow: "Tridhara Milan Mandir",
   title: "Panchmura’s Living Confluence of Bhakti",
   subtitle:
-    "Experience Radha-Krishna darshan at Panchmura's Tridhara Milan Mandir—where 2,000 devotees gather daily for integrated Shaiva-Vaishnava-Shakta worship.",
+    "Experience Radha-Krishna darshan at Tridhara Milan Mandir, Panchmura—Naba Brindaban of Bankura—where 2,000 devotees gather daily for integrated Shaiva-Vaishnava-Shakta worship.",
   ctaDonation: { label: "Donate Now", href: "/services/donation-and-seva" },
   ctaPrimary: { label: "Plan Your Visit", href: "/plan-your-visit" },
   ctaSecondary: { label: "Why Visit Tridhara", href: "/why-visit" },
@@ -74,7 +74,7 @@ export const aboutContent = {
   eyebrow: "About the Mandir",
   title: "Where Three Streams of Faith Flow Together",
   copy:
-    "Consecrated on 1 July 2022 at Panchmura, Bankura, Tridhara Milan Mandir unites Vaishnavism, Shaivism, and Shaktism in devotion to Radha–Krishna. The complex houses sanctums for Radha-Krishna, Kali, Mahadev, Rama–Sita, Hanuman, and Chaitanya Mahaprabhu, with murals narrating Krishna lila and the Dasavataras. Its Nagara-style shikhara, shegun-beamed ceilings, and tulsi mancha evoke Vrindavan even as seva programmes extend learning, health, and nutrition to neighbouring villages.",
+    "Consecrated on 1 July 2022 at Panchmura, Bankura, Tridhara Milan Mandir unites Vaishnavism, Shaivism, and Shaktism in devotion to Radha–Krishna. The complex houses sanctums for Radha-Krishna, Kali, Mahadev, Rama–Sita, Hanuman, and Chaitanya Mahaprabhu, with murals narrating Krishna lila and the Dasavataras. Its Nagara-style shikhara, shegun-beamed ceilings, and tulsi mancha evoke Vrindavan—earning the devotee-given name Naba Brindaban, Bankura's own Vrindavan—while seva programmes extend learning, health, and nutrition to neighbouring villages.",
   mission: {
     statement:
       "Our mission is to harmonise diverse Hindu traditions through inclusive worship, prasada seva, and transparent support for education and healthcare.",
@@ -100,7 +100,7 @@ export const destinationContent = {
   eyebrow: "Experience",
   title: "Highlights of Tridhara Milan Mandir",
   lead:
-    "Discover the shrines, rituals, and seva practices that make Tridhara Milan Mandir a revered Radha–Krishna pilgrimage for devotees across Bengal.",
+    "Discover the shrines, rituals, and seva practices that make Tridhara Milan Mandir—known as Naba Brindaban—a revered Radha–Krishna pilgrimage destination in Bankura for devotees across Bengal.",
   cards: [
     {
       title: "Radha-Krishna Darshan",

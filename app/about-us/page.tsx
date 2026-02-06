@@ -6,23 +6,28 @@ import { siteConfig } from "@/config/site";
 import { cfImage, imagePresets, getOgImageUrl } from "@/utils/image";
 
 export const metadata: Metadata = {
-  title: "About Panchmura Milan Mandir | Tridhara Temple Bankura, Naba-Vrindavan",
+  title: { absolute: "About Tridhara Milan Mandir Panchmura | Naba Brindaban Temple Bankura" },
   description:
-    "Learn about Tridhara Milan Mandir in Panchmura - India's only integrated Shaiva-Vaishnava-Shakta temple, 30km from Bishnupur. Founded 2022, serving 2,000 devotees daily with free prasad and guest house.",
+    "About Tridhara Milan Mandir in Panchmura – India's only integrated Shaiva-Vaishnava-Shakta temple. Known as Naba Brindaban, 30km from Bishnupur, Bankura. Founded 2022, 2,000 devotees daily, free prasad & guest house.",
   keywords: [
-    "about Tridhara Milan Mandir",
-    "Panchmura temple history",
+    "tridhara milan mandir",
+    "panchmura mandir",
+    "naba brindaban",
+    "bankura brindaban",
+    "bankura vrindavan",
     "integrated Hindu temple",
     "Shaiva Vaishnava Shakta worship",
     "Panchmura Milan Mandir",
-    "Bankura spiritual destination",
-    "Naba Vrindavan Panchmura",
-    "temples near Bishnupur"
+    "temples near Bishnupur",
+    "mini vrindavan bankura"
   ],
+  alternates: {
+    canonical: "/about-us"
+  },
   openGraph: {
-    title: "About Tridhara Milan Mandir - Panchmura's Integrated Temple Near Bishnupur",
+    title: "About Tridhara Milan Mandir – Naba Brindaban Temple, Panchmura Bankura",
     description:
-      "India's only temple with integrated Shaiva-Vaishnava-Shakta worship in Panchmura, Bankura. Consecrated 2022, serving 2,000 devotees daily. 30km from Bishnupur terracotta temples.",
+      "India's only integrated Shaiva-Vaishnava-Shakta temple in Panchmura, Bankura. Known as Naba Brindaban (Bankura's Vrindavan). Consecrated 2022, 2,000 devotees daily.",
     type: "website",
     url: `${siteConfig.url}/about-us`,
     images: [

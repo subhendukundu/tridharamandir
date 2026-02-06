@@ -9,13 +9,16 @@ import { napContent } from "@/data/content";
 import { getOgImageUrl } from "@/utils/image";
 
 export const metadata: Metadata = {
-  title: `How to Reach Panchmura Temple | Tridhara Milan Mandir Travel Guide from Bishnupur`,
+  title: { absolute: "How to Reach Tridhara Milan Mandir Panchmura | Distance from Bishnupur & Bankura" },
   description:
-    "Plan your visit to Tridhara Milan Mandir Panchmura: 30km from Bishnupur (45 min), 180km from Kolkata (4 hrs). Temple timings, transport routes, guest house booking, accessibility. Combine with Bankura terracotta temple tour.",
+    "Visit Tridhara Milan Mandir Panchmura: 30km from Bishnupur (45 min), 180km from Kolkata (4 hrs), 45km from Bankura. Temple timings, transport, guest house booking & visitor guide.",
+  alternates: {
+    canonical: "/plan-your-visit"
+  },
   openGraph: {
-    title: `How to Reach Panchmura Temple | Tridhara Milan Mandir Travel Guide from Bishnupur`,
+    title: "How to Reach Tridhara Milan Mandir – Panchmura Distance & Travel Guide",
     description:
-      "Plan your visit to Tridhara Milan Mandir Panchmura: 30km from Bishnupur (45 min), 180km from Kolkata (4 hrs). Temple timings, transport routes, guest house booking, accessibility. Combine with Bankura terracotta temple tour.",
+      "Plan your visit to Tridhara Milan Mandir Panchmura: 30km from Bishnupur (45 min), 180km from Kolkata. Temple timings, transport, guest house booking & Bankura temple tour.",
     url: `${siteConfig.url}/plan-your-visit`,
     images: [
       {

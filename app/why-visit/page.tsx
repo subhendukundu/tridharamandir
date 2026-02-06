@@ -11,24 +11,28 @@ import { siteConfig } from "@/config/site";
 import { getOgImageUrl } from "@/utils/image";
 
 export const metadata: Metadata = {
-  title: "Why Visit Panchmura Milan Mandir | Best Temple Near Bishnupur Bankura",
+  title: { absolute: "Why Visit Tridhara Milan Mandir | Bankura's Naba Vrindavan Temple Panchmura" },
   description:
-    "Why visit Tridhara Milan Mandir Panchmura: India's only integrated tridhara arati, 2,000 daily meals, on-site guest house. 30km from Bishnupur terracotta temples. Known as Naba-Vrindavan (Second Vrindavan).",
+    "Why visit Tridhara Milan Mandir Panchmura: India's only integrated tridhara arati, 2,000 daily meals, guest house. Bankura's Naba Vrindavan (Brindaban), 30km from Bishnupur terracotta temples.",
   keywords: [
+    "tridhara milan mandir",
     "why visit Panchmura temple",
+    "bankura vrindavan",
+    "naba brindaban Bankura",
     "best temples near Bishnupur",
-    "Panchmura Milan Mandir features",
-    "Naba Brindaban Bankura",
     "temple stay West Bengal",
     "integrated Hindu worship Panchmura",
     "Panchmura Radha Krishna temple",
     "spiritual tourism Bankura",
-    "temples in Panchmura"
+    "mini vrindavan bankura"
   ],
+  alternates: {
+    canonical: "/why-visit"
+  },
   openGraph: {
-    title: "Why Visit Panchmura's Tridhara Milan Mandir - Near Bishnupur, Bankura",
+    title: "Why Visit Tridhara Milan Mandir – Bankura's Naba Vrindavan Temple",
     description:
-      "Experience Panchmura's unique temple: India's only integrated Shaiva-Vaishnava-Shakta arati, guest house stays, 2,000 daily meals. Add to your Bishnupur heritage tour (30km).",
+      "India's only integrated Shaiva-Vaishnava-Shakta arati, guest house stays, 2,000 daily meals. Panchmura's Naba Brindaban, 30km from Bishnupur.",
     type: "website",
     url: `${siteConfig.url}/why-visit`,
     images: [
