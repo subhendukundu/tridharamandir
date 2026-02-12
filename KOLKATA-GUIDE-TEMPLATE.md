@@ -617,7 +617,7 @@ West Bengal's second-largest earthen dam on Kangsabati River.
 
 #### Check Before You Go
 **H4**: "Check Before You Go"
-☐ **Weather forecast** (avoid July-Aug monsoons for road conditions)
+☐ **Weather forecast** (monsoon tip: July-Aug brings lush greenery — pack rain gear for rural roads)
   - Best season: Oct-March (pleasant 15-25°C)
   - Summer (April-June): Hot (35-40°C), visit mornings/evenings
   - Monsoon (July-Sept): Heavy rain, roads slippery

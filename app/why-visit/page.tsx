@@ -11,9 +11,9 @@ import { siteConfig } from "@/config/site";
 import { getOgImageUrl } from "@/utils/image";
 
 export const metadata: Metadata = {
-  title: { absolute: "Why Visit Tridhara Milan Mandir | Bankura's Naba Vrindavan Temple Panchmura" },
+  title: { absolute: "Why Visit Tridhara Milan Mandir — Naba Brindaban, Panchmura" },
   description:
-    "Why visit Tridhara Milan Mandir Panchmura: India's only integrated tridhara arati, 2,000 daily meals, guest house. Bankura's Naba Vrindavan (Brindaban), 30km from Bishnupur terracotta temples.",
+    "5 reasons to visit Tridhara Milan Mandir, Panchmura: India's only tridhara arati, 2,000 free meals daily, guest house, and Bankura's Naba Brindaban — 30 km from Bishnupur terracotta temples.",
   keywords: [
     "tridhara milan mandir",
     "why visit Panchmura temple",
@@ -26,15 +26,17 @@ export const metadata: Metadata = {
     "spiritual tourism Bankura",
     "mini vrindavan bankura",
     "পাঁচমুড়া মন্দির",
-    "বাঁকুড়া বৃন্দাবন"
+    "বাঁকুড়া বৃন্দাবন",
+    "bankura temple tour",
+    "naba vrindavan panchmura"
   ],
   alternates: {
     canonical: "/why-visit"
   },
   openGraph: {
-    title: "Why Visit Tridhara Milan Mandir – Bankura's Naba Vrindavan Temple",
+    title: "Why Visit Tridhara Milan Mandir — Naba Brindaban, Panchmura",
     description:
-      "India's only integrated Shaiva-Vaishnava-Shakta arati, guest house stays, 2,000 daily meals. Panchmura's Naba Brindaban, 30km from Bishnupur.",
+      "5 unique reasons: tridhara arati, 2,000 free meals, guest house stays. Bankura's Naba Brindaban, 30 km from Bishnupur.",
     type: "website",
     url: `${siteConfig.url}/why-visit`,
     images: [
@@ -45,6 +47,12 @@ export const metadata: Metadata = {
         alt: 'Tridhara Milan Mandir - Experience unique integrated worship and community seva in Panchmura'
       }
     ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Why Visit Tridhara Milan Mandir — Naba Brindaban, Panchmura",
+    description: "5 unique reasons: tridhara arati, 2,000 free meals, guest house stays. Bankura's Naba Brindaban, 30 km from Bishnupur.",
+    images: [getOgImageUrl('/images/tridhara-radha-krishna-mandir.png', siteConfig.url)]
   }
 };
 
@@ -315,12 +323,15 @@ export default function WhyVisitPage() {
             </div>
           </div>
 
-          <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
+          <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
             <Button variant="inverted" size="lg" href="/guest-house">
               Book Guest House Stay
             </Button>
-            <Button variant="outlineOnDark" size="lg" href="/#faq">
-              View Full Visitor Guide
+            <Button variant="outlineOnDark" size="lg" href="/guides/bankura-temple-tour-itinerary">
+              Bankura Temple Tour Itinerary
+            </Button>
+            <Button variant="outlineOnDark" size="lg" href="/services/bhog-and-prasad">
+              Bhog & Prasad Seva
             </Button>
           </div>
         </div>

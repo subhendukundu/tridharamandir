@@ -135,11 +135,11 @@ export const servicesContent: ServiceMap = {
   },
   "bhog-and-prasad": {
     slug: "bhog-and-prasad",
-    title: "Bhog & Prasad",
+    title: "Bhog & Prasad Seva — Naba Brindaban",
     summary:
-      "Participate in Tridhara’s annadan programme serving over 2,000 devotees daily with freshly prepared bhog and prasadam.",
+      "Join Tridhara Milan Mandir's anna-daan programme at Naba Brindaban, Panchmura — serving 2,000+ devotees daily with freshly prepared sattvic bhog and prasadam.",
     metaDescription:
-      "Learn how to book bhog and prasad at Tridhara Milan Mandir, Panchmura. Support the daily anna-daan programme serving 2,000 devotees.",
+      "Book bhog & prasad at Tridhara Milan Mandir (Naba Brindaban), Panchmura, Bankura. Free sattvic meals for 2,000 devotees daily — khichuri seva from ₹1,001. Volunteer kitchen shifts available.",
     hero: {
       image:
         "https://images.unsplash.com/photo-1582719471384-894f5a05be0d?auto=format&fit=crop&w=1600&q=80",
@@ -205,18 +205,27 @@ export const servicesContent: ServiceMap = {
     faqs: [
       {
         question: "Do you accommodate dietary preferences?",
-        answer: "Prasad is sattvic and onion-free; special requests for allergies can be noted in your booking email."
+        answer: "All prasad at Tridhara Milan Mandir is sattvic and onion-free, prepared in the traditional Naba Brindaban kitchen. Special requests for allergies can be noted in your booking email."
       },
       {
         question: "Can corporate teams volunteer?",
-        answer: "Yes, CSR and college NSS groups can register for kitchen or distribution shifts at least two weeks in advance."
+        answer: "Yes, CSR and college NSS groups can register for kitchen or distribution shifts at Tridhara Milan Mandir at least two weeks in advance. Many Bankura-based organisations participate regularly."
       },
       {
         question: "Is takeaway prasad available?",
-        answer: "Packaged prasadam can be arranged for elders or shut-in devotees with a nominal ₹300 packaging contribution."
+        answer: "Packaged prasadam from Naba Brindaban can be arranged for elders or shut-in devotees with a nominal ₹300 packaging contribution."
+      },
+      {
+        question: "Where can I stay near Tridhara Milan Mandir?",
+        answer: "Tridhara Milan Mandir offers a guest house with clean rooms, vegetarian meals, and morning arati access. Book at /guest-house or call +91 96091 75202."
       }
     ],
-    resources: [],
+    resources: [
+      { label: "Plan Your Visit to Panchmura", href: "/plan-your-visit" },
+      { label: "Why Visit Tridhara Milan Mandir?", href: "/why-visit" },
+      { label: "Book Guest House Stay", href: "/guest-house" },
+      { label: "Bankura Temple Tour Itinerary", href: "/guides/bankura-temple-tour-itinerary" }
+    ],
     cta: {
       label: "Book Bhog or Prasad",
       href: "mailto:info@tridharamandir.com?subject=Bhog%20%26%20Prasad%20Booking"

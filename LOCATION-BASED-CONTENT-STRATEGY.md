@@ -127,7 +127,7 @@ DAY 1 ITINERARY
   - **What to Wear**: Shoulders/knees covered, no leather in sanctum
   - **Temple Etiquette**: Remove footwear, silent phones, photography rules
   - **Best Season**: October-March (festival season, pleasant weather)
-  - **Avoid**: July-August monsoons (road conditions)
+  - **Monsoon tip**: July-August brings lush greenery — carry rain gear and waterproof footwear for rural roads
   - **Weather Considerations**: Summer heat (35°C), winter mornings (12°C)
   - **Language**: Bengali/Hindi/English (volunteers available)
   - **Mobile Network**: BSNL, Airtel, Jio coverage available
@@ -571,7 +571,7 @@ ONWARD FROM BISHNUPUR STATION:
    - Answer: Yes, completely free. Anna-daan kitchen serves 2,000 devotees daily at 12:30 PM. Khichuri, sabji, chutney, and sweets. Everyone welcome regardless of background.
 
 6. **"What's the best time of year to visit from Kolkata?"**
-   - Answer: October-March (festival season, 15-25°C). Best festivals: Janmashtami (Aug), Rath Yatra (June-July), Navaratri (Oct). Avoid July-August monsoons (road conditions).
+   - Answer: October-March (festival season, 15-25°C). Best festivals: Janmashtami (Aug), Rath Yatra (June-July), Navaratri (Oct). Monsoon lovers: July-August brings lush green landscapes — just pack rain gear for rural roads.
 
 7. **"Do I need to book guest house in advance?"**
    - Answer: Weekdays: Usually available. Weekends: Recommended 3-4 days advance. Festivals: Essential 2-3 weeks advance. Email info@tridharamandir.com or call +91 96091 75202.
@@ -1681,7 +1681,7 @@ West Bengal's second-largest earthen dam on Kangsabati River.
 ---
 
 #### **🌦️ Check Before You Go**
-- ☐ **Weather forecast** (avoid July-Aug monsoons for road conditions)
+- ☐ **Weather forecast** (monsoon tip: July-Aug brings lush greenery — pack rain gear for rural roads)
   - Best season: Oct-March (pleasant 15-25°C)
   - Summer (April-June): Hot (35-40°C), visit mornings/evenings
   - Monsoon (July-Sept): Heavy rain, roads slippery

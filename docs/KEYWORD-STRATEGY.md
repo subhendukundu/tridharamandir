@@ -187,7 +187,7 @@ This document consolidates ALL keywords, questions, and search queries we want t
 - "When is the Tridhara integrated arati?"
 - "When is Janmashtami at Tridhara?"
 - "When was Tridhara Milan Mandir built?"
-- "When to avoid visiting Tridhara (monsoon)?"
+- "What is Tridhara like during monsoon season?"
 
 **Current Status**: ⚠️ Timings covered, but no "Best Time" guide
 **Action**: Add "Plan Your Visit > Best Time" seasonal guide
