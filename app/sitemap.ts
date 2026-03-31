@@ -96,6 +96,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",
       priority: 0.8
+    },
+    {
+      url: `${baseUrl}/guides/visit-from-kolkata`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly",
+      priority: 0.85
+    }
+  ];
+
+  const festivalRoutes: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/festivals/janmashtami`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "yearly",
+      priority: 0.85
+    },
+    {
+      url: `${baseUrl}/festivals/rath-yatra`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "yearly",
+      priority: 0.85
     }
   ];
 
@@ -108,5 +129,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.88
     }));
 
-  return [...routes, ...serviceRoutes, ...guideRoutes, ...galleryRoutes];
+  return [...routes, ...serviceRoutes, ...guideRoutes, ...festivalRoutes, ...galleryRoutes];
 }

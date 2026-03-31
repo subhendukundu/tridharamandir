@@ -11,32 +11,31 @@ import { siteConfig } from "@/config/site";
 import { getOgImageUrl } from "@/utils/image";
 
 export const metadata: Metadata = {
-  title: { absolute: "Why Visit Tridhara Milan Mandir — Naba Brindaban, Panchmura" },
+  title: { absolute: "Best Temples Near Bishnupur — Why Visit Naba Brindaban, Panchmura" },
   description:
-    "5 reasons to visit Tridhara Milan Mandir, Panchmura: India's only tridhara arati, 2,000 free meals daily, guest house, and Bankura's Naba Brindaban — 30 km from Bishnupur terracotta temples.",
+    "Looking for temples near Bishnupur? Tridhara Milan Mandir (Naba Brindaban) in Panchmura offers India's only tridhara arati, free meals for 2,000 daily, guest house stays, and Bankura's best spiritual experience — just 30 km away.",
   keywords: [
-    "tridhara milan mandir",
-    "why visit Panchmura temple",
-    "bankura vrindavan",
-    "naba brindaban Bankura",
     "best temples near Bishnupur",
-    "temple stay West Bengal",
-    "integrated Hindu worship Panchmura",
-    "Panchmura Radha Krishna temple",
+    "temples near Bishnupur Bankura",
     "spiritual tourism Bankura",
+    "temple stay West Bengal",
     "mini vrindavan bankura",
+    "naba brindaban Bankura",
+    "Panchmura Radha Krishna temple",
+    "weekend temple trip West Bengal",
+    "integrated Hindu worship Panchmura",
+    "bankura vrindavan",
     "পাঁচমুড়া মন্দির",
     "বাঁকুড়া বৃন্দাবন",
-    "bankura temple tour",
-    "naba vrindavan panchmura"
+    "বিষ্ণুপুরের কাছে মন্দির"
   ],
   alternates: {
     canonical: "/why-visit"
   },
   openGraph: {
-    title: "Why Visit Tridhara Milan Mandir — Naba Brindaban, Panchmura",
+    title: "Best Temples Near Bishnupur — Why Visit Naba Brindaban, Panchmura",
     description:
-      "5 unique reasons: tridhara arati, 2,000 free meals, guest house stays. Bankura's Naba Brindaban, 30 km from Bishnupur.",
+      "India's only tridhara arati, 2,000 free meals daily, guest house stays. Bankura's Naba Brindaban — 30 km from Bishnupur terracotta temples.",
     type: "website",
     url: `${siteConfig.url}/why-visit`,
     images: [
@@ -44,14 +43,14 @@ export const metadata: Metadata = {
         url: getOgImageUrl('/images/tridhara-radha-krishna-mandir.png', siteConfig.url),
         width: 1200,
         height: 630,
-        alt: 'Tridhara Milan Mandir - Experience unique integrated worship and community seva in Panchmura'
+        alt: 'Tridhara Milan Mandir - The best temple to visit near Bishnupur, Bankura'
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Why Visit Tridhara Milan Mandir — Naba Brindaban, Panchmura",
-    description: "5 unique reasons: tridhara arati, 2,000 free meals, guest house stays. Bankura's Naba Brindaban, 30 km from Bishnupur.",
+    title: "Best Temples Near Bishnupur — Why Visit Naba Brindaban, Panchmura",
+    description: "India's only tridhara arati, 2,000 free meals, guest house stays. 30 km from Bishnupur.",
     images: [getOgImageUrl('/images/tridhara-radha-krishna-mandir.png', siteConfig.url)]
   }
 };
