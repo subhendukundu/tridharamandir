@@ -42,6 +42,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${categoryTitles[params.category as keyof typeof categoryTitles]} | Tridhara Milan Mandir Gallery`,
     description: categoryDescriptions[params.category as keyof typeof categoryDescriptions],
+    alternates: {
+      canonical: `/gallery/${params.category}`
+    },
     openGraph: {
       title: `${categoryTitles[params.category as keyof typeof categoryTitles]} | Panchmura Temple`,
       description: categoryDescriptions[params.category as keyof typeof categoryDescriptions],

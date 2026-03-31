@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Panchmura Radha Krishna Temple Photos | Tridhara Milan Mandir Gallery",
   description:
     "View 70+ photos of Tridhara Milan Mandir Panchmura: Radha-Krishna deities, 45-foot shikhara, terracotta panels, daily rituals, Rath Yatra, Janmashtami festivals. 30km from Bishnupur, Bankura.",
+  alternates: {
+    canonical: "/gallery"
+  },
   keywords: [
     "Panchmura Radha Krishna temple photos",
     "Tridhara Milan Mandir images",

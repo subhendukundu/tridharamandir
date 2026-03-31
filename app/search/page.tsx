@@ -11,7 +11,14 @@ import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: `Search | ${siteConfig.name}`,
-  description: "Search Tridhara Milan Mandir content including rituals, services, events, and visitor guidance."
+  description: "Search Tridhara Milan Mandir content including rituals, services, events, and visitor guidance.",
+  alternates: {
+    canonical: "/search"
+  },
+  robots: {
+    index: false,
+    follow: true
+  }
 };
 
 type SearchPageProps = {

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { siteConfig } from "@/config/site";
 import { servicesList } from "@/data/services";
-import { eventsContent } from "@/data/events";
+
 import { galleryCategories } from "@/data/gallery";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -108,45 +108,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.88
     }));
 
-  const homepageAnchors: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/#home`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "weekly",
-      priority: 0.95
-    },
-    {
-      url: `${baseUrl}/#services`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly",
-      priority: 0.85
-    },
-    {
-      url: `${baseUrl}/#community`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly",
-      priority: 0.8
-    },
-    {
-      url: `${baseUrl}/#faq`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly",
-      priority: 0.8
-    },
-    {
-      url: `${baseUrl}/#visit`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly",
-      priority: 0.9
-    }
-  ];
-
-  const eventAnchors = eventsContent.map((event) => ({
-    url: `${baseUrl}/events#${event.slug}`,
-    lastModified: event.startDate,
-    changeFrequency: "yearly" as const,
-    priority: 0.6
-  }));
-
-  return [...routes, ...serviceRoutes, ...guideRoutes, ...galleryRoutes, ...homepageAnchors, ...eventAnchors];
+  return [...routes, ...serviceRoutes, ...guideRoutes, ...galleryRoutes];
 }

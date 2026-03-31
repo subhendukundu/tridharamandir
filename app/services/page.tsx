@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: `Panchmura Temple Services | Tridhara Milan Mandir Darshan, Prasad & Rituals`,
   description:
     "Tridhara Milan Mandir Panchmura services: Daily darshan timings, free prasad (2,000 meals), temple marriage rituals, bhog offerings, donation programs. 30km from Bishnupur, Bankura.",
+  alternates: {
+    canonical: "/services"
+  },
   openGraph: {
     title: `Panchmura Temple Services | Tridhara Milan Mandir Darshan, Prasad & Rituals`,
     description:

@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Volunteer at Tridhara Milan Mandir | Serve the Community in Panchmura",
   description:
     "Join our volunteer community at Tridhara Milan Mandir. Serve in temple operations, community outreach, guest services, or educational programs. Make a difference in Panchmura.",
+  alternates: {
+    canonical: "/volunteer"
+  },
   keywords: [
     "volunteer Panchmura",
     "temple volunteer Bankura",
