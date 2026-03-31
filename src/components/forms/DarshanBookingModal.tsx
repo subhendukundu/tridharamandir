@@ -76,7 +76,7 @@ export function DarshanBookingModal() {
             <p className="mb-4 text-neutral-600">
               Your booking ID is: <span className="font-semibold text-brand-primary">{bookingId}</span>
             </p>
-            <p className="text-sm text-neutral-500">
+            <p className="text-sm text-neutral-600">
               We have sent a confirmation email. Our team will contact you within 24 hours.
             </p>
           </div>

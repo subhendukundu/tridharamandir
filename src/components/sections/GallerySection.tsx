@@ -73,7 +73,7 @@ export function GallerySection() {
         {/* Gallery Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {galleryImages.map((image, index) => (
-            <div
+            <article
               key={index}
               className="group relative overflow-hidden rounded-3xl border border-brand-primary/10 bg-white/80 transition-all duration-300 hover:border-brand-primary/20 hover:shadow-[0_32px_80px_-60px_rgba(27,10,44,0.35)]"
             >
@@ -88,20 +88,20 @@ export function GallerySection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </div>
-              
+
               <div className="absolute inset-0 flex items-end p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 <div className="flex w-full items-center justify-between text-white">
                   <div>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-white/80">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-white/90">
                       {image.category}
                     </span>
                     <h3 className="font-display text-lg font-semibold text-white">
                       {image.title}
                     </h3>
                   </div>
-                  <button className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/20 text-white transition hover:bg-white/30">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-white/20 text-white transition group-hover:bg-white/30" aria-hidden="true">
                     <Eye className="h-5 w-5" />
-                  </button>
+                  </span>
                 </div>
               </div>
 
@@ -114,7 +114,7 @@ export function GallerySection() {
                   {image.title}
                 </h3>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 

@@ -134,7 +134,7 @@ export function GalleryClient({ images, categories }: GalleryClientProps) {
                   {image.title && (
                     <p className="text-sm font-semibold mb-1">{image.title}</p>
                   )}
-                  <p className="text-xs text-white/80 line-clamp-2">{image.alt}</p>
+                  <p className="text-xs text-white/90 line-clamp-2">{image.alt}</p>
                 </div>
               </div>
             </div>

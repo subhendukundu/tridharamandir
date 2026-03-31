@@ -46,7 +46,7 @@ export default function ServicesOverviewPage() {
         <div className={`${layoutRules.container} ${layoutRules.pagePadding} space-y-6`}>
           <p className="uppercase tracking-[0.3em] text-brand-accent">Services & Seva</p>
           <h1 className={textRules.heroTitle}>Serve with Tridhara Milan Mandir</h1>
-          <p className="max-w-3xl text-lg text-white/80">
+          <p className="max-w-3xl text-lg text-white/90">
             From daily darshan to heritage ceremonies and community kitchens, every service at
             Tridhara strengthens the confluence of Vaishnava, Shaiva, and Shakta devotion. Choose a
             pathway and discover how to participate.

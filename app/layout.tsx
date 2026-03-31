@@ -12,12 +12,16 @@ import { getOgImageUrl } from "@/utils/image";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-plus-jakarta-sans"
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-plus-jakarta-sans",
+  display: "swap"
 });
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-playfair"
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-playfair",
+  display: "swap"
 });
 
 export const metadata: Metadata = {
@@ -80,9 +84,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           "min-h-screen"
         )}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-lg focus:bg-brand-primary focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
         <GoogleAnalytics />
         <Header />
-        {children}
+        <main id="main-content">{children}</main>
         <Footer />
       </body>
     </html>

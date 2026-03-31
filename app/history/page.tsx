@@ -54,7 +54,7 @@ export default function HistoryPage() {
         <div className={`${layoutRules.container} ${layoutRules.pagePadding} space-y-6`}>
           <p className="uppercase tracking-[0.3em] text-brand-accent">{historyIntro.eyebrow}</p>
           <h1 className={textRules.heroTitle}>{historyIntro.title}</h1>
-          <p className="max-w-3xl text-white/80">{historyIntro.description}</p>
+          <p className="max-w-3xl text-white/90">{historyIntro.description}</p>
         </div>
       </section>
 
@@ -126,7 +126,7 @@ export default function HistoryPage() {
                 <div key={entry.time} className="rounded-2xl border border-brand-primary/10 bg-white p-4">
                   <div className="flex items-center justify-between">
                     <span className="font-semibold text-brand-primary">{entry.time}</span>
-                    <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">
+                    <span className="text-xs uppercase tracking-[0.2em] text-neutral-600">
                       {entry.title}
                     </span>
                   </div>

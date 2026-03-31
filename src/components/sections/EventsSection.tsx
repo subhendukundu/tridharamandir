@@ -81,7 +81,7 @@ export function EventsSection() {
                       </div>
                     ))}
                     {event.timetable.length > 3 && (
-                      <p className="text-xs text-neutral-500">
+                      <p className="text-xs text-neutral-600">
                         +{event.timetable.length - 3} more activities
                       </p>
                     )}

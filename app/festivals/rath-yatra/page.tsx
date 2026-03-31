@@ -152,7 +152,7 @@ export default function RathYatraPage() {
           <h1 className={textRules.heroTitle}>
             Rath Yatra at Naba Brindaban
           </h1>
-          <p className="max-w-3xl text-white/80">
+          <p className="max-w-3xl text-white/90">
             Join 3,000+ devotees for a grand 9-day chariot procession, community pulling, special bhog, and cultural performances at Tridhara Milan Mandir, Panchmura.
           </p>
           <div className="flex flex-wrap gap-3 text-sm uppercase tracking-[0.2em] text-white/70">

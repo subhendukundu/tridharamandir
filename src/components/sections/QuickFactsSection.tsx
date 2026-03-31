@@ -88,7 +88,7 @@ export function QuickFactsSection() {
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-accent/10 transition-colors duration-300 group-hover:bg-brand-accent/20 motion-reduce:transition-none">
                 <Icon className={iconSizes.md + " text-brand-accent"} />
               </div>
-              <p className="text-sm font-medium uppercase tracking-[0.3em] text-neutral-500">
+              <p className="text-sm font-medium uppercase tracking-[0.3em] text-neutral-600">
                 {fact.label}
               </p>
               <p className="mt-2 font-display text-xl font-semibold text-brand-primary">

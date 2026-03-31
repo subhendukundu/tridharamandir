@@ -199,7 +199,7 @@ export default function WhyVisitPage() {
               <p className="mt-4 leading-relaxed text-neutral-600">
                 Unlike other temples where Shaiva (Shiva), Vaishnava (Vishnu), and Shakta (Devi) worship occur separately, Tridhara&apos;s evening arati integrates all three traditions in a single 90-minute ceremony. Priests simultaneously offer trishul (Shaiva), chakra (Vaishnava), and shankha (Shakta) before united altars—a practice pioneered by our temple in 2022.
               </p>
-              <p className="mt-4 text-sm italic text-neutral-500">
+              <p className="mt-4 text-sm italic text-neutral-600">
                 This unique ritual represents the philosophical unity of Hindu traditions, making Tridhara a living symbol of spiritual integration.
               </p>
             </div>
@@ -215,7 +215,7 @@ export default function WhyVisitPage() {
               <p className="mt-4 leading-relaxed text-neutral-600">
                 Since launching with 600 meals in 2022, our community kitchen has scaled to serve 2,000 plates of prasadam daily—one of Bengal&apos;s largest temple food programs. Volunteer alongside local families in preparing khichuri, sabji, and payesh in traditional terracotta handi vessels.
               </p>
-              <p className="mt-4 text-sm italic text-neutral-500">
+              <p className="mt-4 text-sm italic text-neutral-600">
                 The anna-daan program supports local families, scholarship students, and visiting pilgrims—embodying the temple&apos;s commitment to community service.
               </p>
             </div>
@@ -264,7 +264,7 @@ export default function WhyVisitPage() {
               <h3 className="font-display text-xl font-semibold text-brand-primary">
                 Bishnupur Terracotta Temples
               </h3>
-              <p className="mt-2 text-sm text-neutral-500">30 km • 45 min drive</p>
+              <p className="mt-2 text-sm text-neutral-600">30 km • 45 min drive</p>
               <p className="mt-3 text-neutral-600">
                 UNESCO-nominated 17th-century temples showcasing Bengal&apos;s finest terracotta architecture. Visit Rasmancha, Jor-Bangla, and Madan Mohan temples.
               </p>
@@ -274,7 +274,7 @@ export default function WhyVisitPage() {
               <h3 className="font-display text-xl font-semibold text-brand-primary">
                 Joyrambati
               </h3>
-              <p className="mt-2 text-sm text-neutral-500">40 km • 1 hour drive</p>
+              <p className="mt-2 text-sm text-neutral-600">40 km • 1 hour drive</p>
               <p className="mt-3 text-neutral-600">
                 Birthplace of Sri Sarada Devi, spiritual consort of Ramakrishna Paramahamsa. Visit the ancestral home and meditation shrine.
               </p>
@@ -284,7 +284,7 @@ export default function WhyVisitPage() {
               <h3 className="font-display text-xl font-semibold text-brand-primary">
                 Susunia Hill
               </h3>
-              <p className="mt-2 text-sm text-neutral-500">35 km • 50 min drive</p>
+              <p className="mt-2 text-sm text-neutral-600">35 km • 50 min drive</p>
               <p className="mt-3 text-neutral-600">
                 Ancient Buddhist rock carvings and trekking destination with panoramic views of Bankura countryside.
               </p>
@@ -304,7 +304,7 @@ export default function WhyVisitPage() {
             <div>
               <Calendar className="mx-auto h-12 w-12 text-brand-accent" />
               <h3 className="mt-4 font-display text-xl font-semibold">Best Time to Visit</h3>
-              <p className="mt-2 text-white/80">
+              <p className="mt-2 text-white/90">
                 October-March (festival season). Love rain? July-August brings lush monsoon beauty — just pack rain gear. Major festivals: Janmashtami (August), Rath Yatra (June-July), Navaratri (October).
               </p>
             </div>
@@ -312,7 +312,7 @@ export default function WhyVisitPage() {
             <div>
               <MapPin className="mx-auto h-12 w-12 text-brand-accent" />
               <h3 className="mt-4 font-display text-xl font-semibold">How to Reach</h3>
-              <p className="mt-2 text-white/80">
+              <p className="mt-2 text-white/90">
                 <strong>From Kolkata:</strong> 180 km, 4-hour drive via NH14
                 <br />
                 <strong>From Bishnupur:</strong> 30 km, shared taxi (₹30/person)

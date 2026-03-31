@@ -61,12 +61,14 @@ export function GalleryGrid({ images }: GalleryGridProps) {
   return (
     <>
       {/* Gallery Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" role="list">
         {images.map((image, index) => (
-          <div
+          <button
             key={`${image.src}-${index}`}
-            className="group relative aspect-square overflow-hidden rounded-2xl border border-brand-primary/10 bg-white shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
+            type="button"
+            className="group relative aspect-square overflow-hidden rounded-2xl border border-brand-primary/10 bg-white shadow-sm hover:shadow-xl focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 transition-all duration-300 cursor-pointer text-left"
             onClick={() => openLightbox(index)}
+            aria-label={`View ${image.title || image.alt} in lightbox`}
           >
             <Image
               src={cfImage(image.src, imagePresets.gallery(600))}
@@ -81,10 +83,10 @@ export function GalleryGrid({ images }: GalleryGridProps) {
                 {image.title && (
                   <p className="text-sm font-semibold mb-1">{image.title}</p>
                 )}
-                <p className="text-xs text-white/80 line-clamp-2">{image.alt}</p>
+                <p className="text-xs text-white/90 line-clamp-2">{image.alt}</p>
               </div>
             </div>
-          </div>
+          </button>
         ))}
       </div>
 

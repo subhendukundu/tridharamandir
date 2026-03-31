@@ -77,7 +77,7 @@ export function SectionHeader({
           className={clsx(
             textRules.sectionLead,
             "max-w-[60ch]",
-            isLight && "text-white/80"
+            isLight && "text-white/90"
           )}
         >
           {description}

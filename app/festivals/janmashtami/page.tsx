@@ -156,7 +156,7 @@ export default function JanmashtamiPage() {
           <h1 className={textRules.heroTitle}>
             Janmashtami at Naba Brindaban
           </h1>
-          <p className="max-w-3xl text-white/80">
+          <p className="max-w-3xl text-white/90">
             Celebrate Lord Krishna's birth with midnight abhishek, 5,000+ devotees, special bhog, and cultural performances at Tridhara Milan Mandir, Panchmura.
           </p>
           <div className="flex flex-wrap gap-3 text-sm uppercase tracking-[0.2em] text-white/70">

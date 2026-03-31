@@ -24,7 +24,7 @@ export function TestimonialSection() {
             <p className="text-xl font-medium text-brand-primary">{testimonialContent.quote}</p>
             <div>
               <p className="font-display text-lg text-brand-primary">{testimonialContent.author}</p>
-              <p className="text-sm text-neutral-500">{testimonialContent.location}</p>
+              <p className="text-sm text-neutral-600">{testimonialContent.location}</p>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">

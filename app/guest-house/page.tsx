@@ -96,7 +96,7 @@ export default function GuestHousePage() {
         <div className={`${layoutRules.container} ${layoutRules.pagePadding} relative z-10 py-24 space-y-6`}>
           <p className="uppercase tracking-[0.3em] text-brand-accent">{guesthouseContent.hero.eyebrow}</p>
           <h1 className={textRules.heroTitle}>{guesthouseContent.hero.title}</h1>
-          <p className="max-w-3xl text-white/80">{guesthouseContent.hero.subtitle}</p>
+          <p className="max-w-3xl text-white/90">{guesthouseContent.hero.subtitle}</p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button href={guesthouseContent.hero.ctaPrimary.href} variant="primary" size="lg">
               {guesthouseContent.hero.ctaPrimary.label}
@@ -105,7 +105,7 @@ export default function GuestHousePage() {
               {guesthouseContent.hero.ctaSecondary.label}
             </Button>
           </div>
-          <div className="mt-8 flex flex-wrap gap-6 text-sm text-white/80">
+          <div className="mt-8 flex flex-wrap gap-6 text-sm text-white/90">
             <span>Check-In: {guesthouseContent.overview.checkIn}</span>
             <span>Check-Out: {guesthouseContent.overview.checkOut}</span>
             <span>Newly Accepting Bookings</span>
@@ -153,7 +153,7 @@ export default function GuestHousePage() {
               <p className="text-sm text-neutral-600">{room.description}</p>
               <div className="flex items-center justify-between text-sm">
                 <span className="font-semibold text-brand-primary">{room.price}</span>
-                <span className="text-neutral-500">{room.capacity}</span>
+                <span className="text-neutral-600">{room.capacity}</span>
               </div>
               <ul className="text-sm text-neutral-600 list-disc pl-4 space-y-1">
                 {room.amenities.map((amenity) => (
@@ -249,7 +249,7 @@ export default function GuestHousePage() {
             />
           </label>
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
-            <p className="text-xs text-neutral-500">
+            <p className="text-xs text-neutral-600">
               Booking confirmation requires a 30% advance via bank transfer. We will follow up with payment instructions.
             </p>
             <Button type="submit" variant="primary" size="lg">

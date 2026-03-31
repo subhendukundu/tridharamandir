@@ -21,7 +21,7 @@ export default function GalleryLayout({
         <div className={`${layoutRules.container} ${layoutRules.pagePadding} space-y-6`}>
           <p className="uppercase tracking-[0.3em] text-brand-accent">Photo Gallery</p>
           <h1 className={textRules.heroTitle}>Panchmura Radha Krishna Temple Photos</h1>
-          <p className="max-w-3xl text-lg text-white/80">
+          <p className="max-w-3xl text-lg text-white/90">
             Explore 70+ photos of Tridhara Milan Mandir's stunning architecture, sacred deities, daily rituals, and vibrant festivals. Known as Naba-Vrindavan (Second Vrindavan), our temple showcases India's only integrated Shaiva-Vaishnava-Shakta worship.
           </p>
           <div className="flex flex-wrap gap-2 text-sm text-white/60">

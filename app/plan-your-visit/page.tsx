@@ -113,7 +113,7 @@ export default function PlanYourVisitPage() {
         <div className={`${layoutRules.container} ${layoutRules.pagePadding} space-y-6`}>
           <p className="uppercase tracking-[0.3em] text-brand-accent">Visitor Guide</p>
           <h1 className={textRules.heroTitle}>Plan Your Visit to Panchmura</h1>
-          <p className="max-w-3xl text-lg text-white/80">
+          <p className="max-w-3xl text-lg text-white/90">
             Everything you need to know about reaching Tridhara Milan Mandir, navigating temple
             etiquette, and making the most of your stay in the terracotta heartland of Bankura.
           </p>

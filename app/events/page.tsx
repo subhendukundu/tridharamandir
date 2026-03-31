@@ -108,7 +108,7 @@ export default function EventsPage() {
         <div className={`${layoutRules.container} ${layoutRules.pagePadding} space-y-6`}>
           <p className="uppercase tracking-[0.3em] text-brand-accent">Festivals</p>
           <h1 className={textRules.heroTitle}>Upcoming Events at Tridhara</h1>
-          <p className="max-w-3xl text-lg text-white/80">
+          <p className="max-w-3xl text-lg text-white/90">
             Celebrate the devotional calendar with us—from Rath Yatra processions to Janmashtami
             midnight vigils. Each utsav blends Vaishnav, Shaiva, and Shakta traditions in a single
             confluence.

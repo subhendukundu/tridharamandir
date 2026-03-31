@@ -77,7 +77,7 @@ export default function KolkataGuidePage() {
         <div className={`${layoutRules.container} ${layoutRules.pagePadding} space-y-5`}>
           <p className="uppercase tracking-[0.3em] text-brand-accent">Guide</p>
           <h1 className={textRules.heroTitle}>{kolkataGuide.title}</h1>
-          <p className="max-w-3xl text-white/80">{kolkataGuide.description}</p>
+          <p className="max-w-3xl text-white/90">{kolkataGuide.description}</p>
           <div className="flex flex-wrap gap-3 text-sm uppercase tracking-[0.2em] text-white/70">
             <span>{kolkataGuide.updated}</span>
             <span>Kolkata to Panchmura, Bankura</span>
