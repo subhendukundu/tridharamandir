@@ -240,8 +240,8 @@ export default function HomePage() {
           { name: "Contact", item: "/#visit" }
         ]}
       />
-      <AboutSection variant="storyboard" />
       <QuickFactsSection />
+      <AboutSection variant="storyboard" />
       <ServicesSection />
       <CommunitySection />
       <DonationSection />

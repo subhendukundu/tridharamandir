@@ -167,10 +167,10 @@ export function Header() {
             <Button
               variant="inverted"
               size="md"
-              href="/#visit"
+              href="/plan-your-visit"
               className="shadow-[0_10px_30px_-20px_rgba(245,215,110,0.8)]"
             >
-              Support
+              Plan Visit
             </Button>
           </div>
 
@@ -241,7 +241,7 @@ export function Header() {
                             "flex items-center justify-between gap-4 rounded-2xl px-5 py-4 border transition-all duration-200 w-full text-left",
                             isActive
                               ? "bg-brand-primary/15 border-brand-accent/40"
-                              : "bg-white/8 border-white/15 hover:bg-white/10 hover:border-white/20"
+                              : "bg-white/10 border-white/15 hover:bg-white/15 hover:border-white/20"
                           )}
                         >
                           <span className={clsx(
@@ -264,7 +264,7 @@ export function Header() {
                             "flex items-center justify-between gap-4 rounded-2xl px-5 py-4 border transition-all duration-200",
                             isActive
                               ? "bg-brand-primary/15 border-brand-accent/40"
-                              : "bg-white/6 border-white/12 hover:bg-white/10 hover:border-white/20"
+                              : "bg-white/10 border-white/15 hover:bg-white/15 hover:border-white/20"
                           )}
                         >
                           <span className={clsx(
@@ -288,7 +288,7 @@ export function Header() {
                                   "group rounded-xl border px-5 py-3 text-[0.93rem] font-medium transition-all duration-200 hover:bg-brand-primary/15 hover:text-brand-accent hover:border-brand-accent/30 hover:pl-6 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent motion-reduce:transition-none",
                                   isChildActive
                                     ? "bg-brand-primary/15 border-brand-accent/30 text-brand-accent pl-6"
-                                    : "bg-white/5 border-white/12 text-white"
+                                    : "bg-white/5 border-white/15 text-white"
                                 )}
                               >
                                 <span className="flex items-center gap-2.5">
@@ -311,13 +311,16 @@ export function Header() {
                   <Link
                     href="/search"
                     onClick={closeMobileMenu}
-                    className="flex items-center justify-center gap-3 rounded-2xl border-2 border-white/25 bg-white/8 px-6 py-4 text-base font-semibold text-white transition-all duration-200 hover:bg-white/15 hover:border-white/40 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none"
+                    className="flex items-center justify-center gap-3 rounded-2xl border-2 border-white/25 bg-white/10 px-6 py-4 text-base font-semibold text-white transition-all duration-200 hover:bg-white/15 hover:border-white/40 active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none"
                   >
                     <Search className={iconSizes.md} />
                     <span>Search Temple</span>
                   </Link>
-                  <Button variant="inverted" size="lg" href="/#visit" className="w-full text-base font-bold py-4 shadow-lg hover:shadow-xl">
-                    Support Our Mission
+                  <Button variant="inverted" size="lg" href="/plan-your-visit" className="w-full text-base font-bold py-4 shadow-lg hover:shadow-xl">
+                    Plan Your Visit
+                  </Button>
+                  <Button variant="outlineOnDark" size="lg" href="/services/donation-and-seva" className="w-full text-base font-bold py-4">
+                    Support Seva
                   </Button>
                 </div>
               </nav>

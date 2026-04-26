@@ -7,17 +7,25 @@
  * For regular image paths, it returns them as-is for Next.js to handle.
  */
 
-export default function cloudflareImageLoader({ src }: { src: string }) {
+type CloudflareImageLoaderProps = {
+  src: string;
+  width: number;
+  quality?: number;
+};
+
+export default function cloudflareImageLoader({ src, width, quality }: CloudflareImageLoaderProps) {
   // If the URL is already a Cloudflare Image Transformation URL, return as-is
   if (src.startsWith('/cdn-cgi/image/')) {
     return src;
   }
 
-  // If it's an external URL (http/https), return as-is
+  const separator = src.includes('?') ? '&' : '?';
+
+  // If it's an external URL (http/https), keep it remote but include width for Next's loader contract
   if (src.startsWith('http://') || src.startsWith('https://')) {
-    return src;
+    return `${src}${separator}w=${width}&q=${quality ?? 75}`;
   }
 
-  // For regular paths, return as-is (Next.js will handle them)
-  return src;
+  // Public assets can be served directly with cache-key query params in local and production previews.
+  return `${src}${separator}w=${width}&q=${quality ?? 75}`;
 }
