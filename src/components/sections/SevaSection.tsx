@@ -12,9 +12,9 @@ const sevaInitiatives = [
     description: "Daily meal service feeding 2,000+ devotees through community kitchen operations and prasad distribution.",
     impact: "2,000+ meals daily",
     status: "Active",
-    color: "from-red-500/10 to-orange-500/10",
-    borderColor: "border-red-200",
-    iconColor: "text-red-600"
+    color: "from-brand-accent/15 to-brand-secondary/10",
+    borderColor: "border-brand-secondary/25",
+    iconColor: "text-brand-secondary"
   },
   {
     icon: BookOpen,
@@ -22,9 +22,9 @@ const sevaInitiatives = [
     description: "Supporting 120+ village students with school supplies, books, and Sanskrit/music training bursaries.",
     impact: "120+ students supported",
     status: "Ongoing",
-    color: "from-blue-500/10 to-indigo-500/10",
-    borderColor: "border-blue-200",
-    iconColor: "text-blue-600"
+    color: "from-brand-primary/10 to-brand-light/40",
+    borderColor: "border-brand-primary/20",
+    iconColor: "text-brand-primary"
   },
   {
     icon: Stethoscope,
@@ -32,9 +32,9 @@ const sevaInitiatives = [
     description: "Quarterly medical check-ups, eye care camps, and health awareness programs for surrounding villages.",
     impact: "500+ patients served",
     status: "Quarterly",
-    color: "from-green-500/10 to-emerald-500/10",
-    borderColor: "border-green-200",
-    iconColor: "text-green-600"
+    color: "from-semantic-success-bg to-brand-light/40",
+    borderColor: "border-semantic-success-light/30",
+    iconColor: "text-semantic-success"
   },
   {
     icon: Users,
@@ -42,9 +42,9 @@ const sevaInitiatives = [
     description: "Infrastructure support, skill development workshops, and women's empowerment programs in rural areas.",
     impact: "15+ villages reached",
     status: "Expanding",
-    color: "from-purple-500/10 to-pink-500/10",
-    borderColor: "border-purple-200",
-    iconColor: "text-purple-600"
+    color: "from-neutral-100 to-brand-light/60",
+    borderColor: "border-neutral-200",
+    iconColor: "text-neutral-700"
   }
 ];
 
@@ -153,21 +153,21 @@ export function SevaSection() {
             </h3>
             
             <div className="space-y-6">
-              <div className="border-l-4 border-brand-primary/30 pl-4">
+              <div className="rounded-2xl border border-brand-primary/10 bg-white/70 p-4">
                 <p className="text-sm italic text-neutral-600 mb-2">
                   "Through Tridhara's education program, my daughter received books and supplies that helped her excel in school. She's now studying Sanskrit and dreams of becoming a teacher."
                 </p>
                 <p className="text-xs font-semibold text-brand-primary">- Priya M., Panchmura</p>
               </div>
               
-              <div className="border-l-4 border-brand-primary/30 pl-4">
+              <div className="rounded-2xl border border-brand-primary/10 bg-white/70 p-4">
                 <p className="text-sm italic text-neutral-600 mb-2">
                   "The health camp detected my cataract early. Thanks to Tridhara's medical seva, I received treatment and can see clearly again."
                 </p>
                 <p className="text-xs font-semibold text-brand-primary">- Ram S., Village Elder</p>
               </div>
               
-              <div className="border-l-4 border-brand-primary/30 pl-4">
+              <div className="rounded-2xl border border-brand-primary/10 bg-white/70 p-4">
                 <p className="text-sm italic text-neutral-600 mb-2">
                   "Volunteering in the kitchen seva has taught me the joy of serving others. It's become a spiritual practice for my family."
                 </p>

@@ -7,7 +7,14 @@ import { layoutRules } from "@/foundation/design-system";
 
 export const metadata: Metadata = {
   title: "About Section Preview",
-  description: "Storyboard variant preview for the Tridhara Milan Mandir about section."
+  description: "Storyboard variant preview for the Tridhara Milan Mandir about section.",
+  alternates: {
+    canonical: "/preview/about"
+  },
+  robots: {
+    index: false,
+    follow: false
+  }
 };
 
 export default function AboutPreviewPage() {

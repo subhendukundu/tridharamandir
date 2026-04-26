@@ -13,7 +13,7 @@ const config: Config = {
       colors: {
         brand: {
           primary: "#452937",
-          secondary: "#A96842",
+          secondary: "#9A5937",
           accent: "#E5B76A",
           dark: "#1B0A2C",
           light: "#F5EEE7"

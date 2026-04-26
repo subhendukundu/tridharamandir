@@ -134,7 +134,6 @@ export function EventRegistrationForm({
             required
             onChange={handleEventChange}
           >
-            <option value="">Select an event</option>
             {eventOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}

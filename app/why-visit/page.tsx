@@ -118,7 +118,7 @@ export default function WhyVisitPage() {
         <div className="relative mx-auto max-w-[1160px] px-6 sm:px-8 lg:px-12">
           <Badge
             variant="onDark"
-            className="mb-6"
+            className="mb-6 w-full max-w-[calc(100vw-3rem)] sm:w-auto sm:max-w-full"
             label="West Bengal's Most Unique Temple Experience"
             icon={<Sparkles className="h-4 w-4" />}
           />
@@ -179,7 +179,7 @@ export default function WhyVisitPage() {
 
       {/* Unique Features Section */}
       <SectionShell className="bg-gradient-to-br from-neutral-50 to-white">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto w-full max-w-6xl min-w-0">
           <h2 className="font-display text-3xl font-semibold text-brand-primary sm:text-4xl">
             What Makes Tridhara Different?
           </h2>
@@ -338,13 +338,13 @@ export default function WhyVisitPage() {
 
       {/* Comparison Section */}
       <SectionShell className="bg-white">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto w-full max-w-6xl min-w-0">
           <h2 className="font-display text-3xl font-semibold text-brand-primary sm:text-4xl">
             How Tridhara Compares to Other Bengal Temples
           </h2>
 
-          <div className="mt-12 overflow-x-auto">
-            <table className="w-full border-collapse text-left">
+          <div className="mt-12 w-full min-w-0 max-w-full overflow-x-auto rounded-2xl border border-brand-primary/10">
+            <table className="min-w-[720px] w-full border-collapse bg-white text-left">
               <thead>
                 <tr className="border-b-2 border-brand-primary/20">
                   <th className="pb-4 pr-4 font-display text-lg font-semibold text-brand-primary">

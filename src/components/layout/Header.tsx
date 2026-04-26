@@ -190,7 +190,7 @@ export function Header() {
       {mobileMenuOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/50 z-[60] xl:hidden"
+            className="fixed inset-0 bg-brand-dark/60 z-[60] xl:hidden"
             onClick={closeMobileMenu}
             aria-hidden="true"
           />

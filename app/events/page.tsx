@@ -10,14 +10,14 @@ import { getOgImageUrl } from "@/utils/image";
 import { EventRegistrationForm } from "@/components/forms/EventRegistrationForm";
 
 export const metadata: Metadata = {
-  title: { absolute: "Festivals at Tridhara Milan Mandir Panchmura | Rath Yatra & Janmashtami" },
+  title: { absolute: "2026 Festivals at Tridhara Milan Mandir Panchmura | Rath Yatra & Janmashtami" },
   description:
-    "Tridhara Milan Mandir festival calendar – Rath Yatra, Janmashtami, Navaratri at Panchmura, Bankura. Free entry, integrated Shaiva-Vaishnava-Shakta worship ceremonies near Bishnupur.",
+    "Tridhara Milan Mandir 2026 festival calendar – Rath Yatra, Janmashtami, Navaratri at Panchmura, Bankura. Free entry, integrated Shaiva-Vaishnava-Shakta worship ceremonies near Bishnupur.",
   alternates: {
     canonical: "/events"
   },
   openGraph: {
-    title: "Festivals at Tridhara Milan Mandir – Rath Yatra, Janmashtami & More",
+    title: "2026 Festivals at Tridhara Milan Mandir – Rath Yatra, Janmashtami & More",
     description:
       "Tridhara Milan Mandir Panchmura festival calendar: Rath Yatra, Janmashtami, Navaratri. Integrated Shaiva-Vaishnava-Shakta celebrations, free entry, 30km from Bishnupur, Bankura.",
     url: `${siteConfig.url}/events`,
@@ -107,9 +107,9 @@ export default function EventsPage() {
       <section className="relative overflow-hidden bg-brand-dark py-24 text-white">
         <div className={`${layoutRules.container} ${layoutRules.pagePadding} space-y-6`}>
           <p className="uppercase tracking-[0.3em] text-brand-accent">Festivals</p>
-          <h1 className={textRules.heroTitle}>Upcoming Events at Tridhara</h1>
+          <h1 className={textRules.heroTitle}>2026 Events at Tridhara</h1>
           <p className="max-w-3xl text-lg text-white/90">
-            Celebrate the devotional calendar with us—from Rath Yatra processions to Janmashtami
+            Celebrate the 2026 devotional calendar with us—from Rath Yatra processions to Janmashtami
             midnight vigils. Each utsav blends Vaishnav, Shaiva, and Shakta traditions in a single
             confluence.
           </p>

@@ -295,7 +295,7 @@ export const footerContent = {
   visitLink: { label: "Plan Your Visit", href: "/plan-your-visit" },
   newsletterPlaceholder: "Your email address",
   newsletterCta: "Subscribe",
-  legal: "Tridhara Milan Mandir © 2025. All rights reserved.",
+  legal: "Tridhara Milan Mandir © 2026. All rights reserved.",
   socials: [
     { label: "Facebook", href: "https://www.facebook.com/TridharaMilanMandir" },
     { label: "Instagram", href: "https://www.instagram.com/tridharamilanmandir" },

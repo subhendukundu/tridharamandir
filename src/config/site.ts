@@ -81,17 +81,17 @@ export const siteConfig = {
     {
       slug: "rath-yatra",
       name: "Rath Yatra Festival",
-      startDate: "2025-06-27",
-      endDate: "2025-06-29",
+      startDate: "2026-06-28",
+      endDate: "2026-07-06",
       description:
-        "Annual chariot festival featuring Jagannath, Balabhadra, and Subhadra with evening sankirtan and community feast.",
+        "Annual nine-day chariot festival featuring Jagannath, Balabhadra, and Subhadra with evening sankirtan and community feast.",
       url: "/events#rath-yatra"
     },
     {
       slug: "janmashtami",
       name: "Sri Krishna Janmashtami",
-      startDate: "2025-08-26",
-      endDate: "2025-08-27",
+      startDate: "2026-08-14",
+      endDate: "2026-08-15",
       description:
         "Midnight abhishek, jhulan darshan, and bhajan sandhya celebrating Lord Krishna's advent.",
       url: "/events#janmashtami"

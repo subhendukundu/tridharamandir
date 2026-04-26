@@ -193,7 +193,7 @@ function GalleryLayout({ variantLabel }: LayoutProps) {
 
 function StoryboardLayout({ variantLabel }: LayoutProps) {
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
       <VariantLabel text={variantLabel} />
       <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:px-16">
         <div className="pointer-events-none absolute left-2 top-[10%] block sm:left-0 md:left-0 lg:left-0 lg:top-auto lg:bottom-[-10%] z-0">

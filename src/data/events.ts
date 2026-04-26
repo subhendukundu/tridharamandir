@@ -20,9 +20,9 @@ export const eventsContent: EventDetail[] = [
     summary:
       "Chariot procession of Jagannath, Balabhadra, and Subhadra with sankirtan, bhog, and evening cultural showcases.",
     description:
-      "Join the three-day Rath Yatra where the deities are drawn through Panchmura's streets before returning to the mandir with Sudarshan chakra rituals and anna-daan.",
-    startDate: "2025-06-27",
-    endDate: "2025-06-29",
+      "Join the nine-day Rath Yatra where the deities are drawn through Panchmura's streets before returning to the mandir with Sudarshan chakra rituals and anna-daan.",
+    startDate: "2026-06-28",
+    endDate: "2026-07-06",
     timetable: [
       { time: "05:30 AM", activity: "Mangal arati & Netra darshan" },
       { time: "09:00 AM", activity: "Rath preparation and puja" },
@@ -37,8 +37,8 @@ export const eventsContent: EventDetail[] = [
       "Midnight abhishek, Jhulan darshan, and bhajan sandhya celebrating the divine appearance of Lord Krishna.",
     description:
       "Experience fasting, akhanda nama sankirtan, and Krishna janmotsav. Devotees swing the Jhulan dol and receive midnight chandana prasad.",
-    startDate: "2025-08-26",
-    endDate: "2025-08-27",
+    startDate: "2026-08-14",
+    endDate: "2026-08-15",
     timetable: [
       { time: "10:00 AM", activity: "Shodashopachar puja & Bhagavat katha" },
       { time: "06:00 PM", activity: "Bhajan sandhya and Jhulan darshan" },

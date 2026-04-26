@@ -305,21 +305,21 @@ export default function AboutUsPage() {
                 The Nagara-style shikhara, shegun-beamed ceilings, and tulsi mancha evoke Vrindavan even as seva programmes extend learning, health, and nutrition to neighbouring villages.
               </p>
 
-              <div className="border-l-4 border-brand-accent pl-6 my-8">
+              <div className="rounded-2xl border border-brand-accent/30 bg-brand-light/25 p-5 my-8">
                 <h3 className="font-semibold text-brand-primary mb-2">Inclusive Devotion</h3>
                 <p className="text-neutral-600">
                   Integrated aratis and shared sanctums honour Shaiva, Vaishnava, and Shakta lineages side by side.
                 </p>
               </div>
 
-              <div className="border-l-4 border-brand-accent pl-6 my-8">
+              <div className="rounded-2xl border border-brand-accent/30 bg-brand-light/25 p-5 my-8">
                 <h3 className="font-semibold text-brand-primary mb-2">Community Service</h3>
                 <p className="text-neutral-600">
                   Scholarships, anna-daan, and health camps ensure seva reaches marginalised families.
                 </p>
               </div>
 
-              <div className="border-l-4 border-brand-accent pl-6 my-8">
+              <div className="rounded-2xl border border-brand-accent/30 bg-brand-light/25 p-5 my-8">
                 <h3 className="font-semibold text-brand-primary mb-2">Cultural Stewardship</h3>
                 <p className="text-neutral-600">
                   Artisans, musicians, and temple guides preserve Vrindavan-inspired heritage for new generations.

@@ -232,7 +232,7 @@ export default function GuestHousePage() {
             <TextField id="guest-name" name="name" label="Full Name" placeholder="Your Name" required />
             <TextField id="guest-email" name="email" label="Email" placeholder="you@example.com" type="email" required />
             <TextField id="guest-phone" name="phone" label="Phone" placeholder="+91 90000 00000" required />
-            <TextField id="guest-dates" name="dates" label="Preferred Dates" placeholder="12-15 Aug 2025" required />
+            <TextField id="guest-dates" name="dates" label="Preferred Dates" placeholder="14-16 Aug 2026" required />
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <TextField id="guest-room" name="room" label="Room Preference" placeholder="Courtyard Suite" />

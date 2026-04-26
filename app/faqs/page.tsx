@@ -20,6 +20,59 @@ function generateFAQId(question: string): string {
     .substring(0, 50);       // Max 50 chars
 }
 
+// Extract keywords from question for better search
+function extractKeywords(text: string): string[] {
+  return text.toLowerCase()
+    .replace(/[?.,]/g, '')
+    .split(' ')
+    .filter(word => word.length > 3);
+}
+
+const quickAnswers = [
+  {
+    id: "temple-timings",
+    icon: Clock,
+    title: "What are the temple timings?",
+    answer: "Daily darshan: 5:00 AM - 9:00 PM (weekdays), 5:00 AM - 9:30 PM (weekends). Special aarti at 5:00 AM, 6:30 PM, and integrated Tridhara aarti in the evening.",
+    link: "/services/darshan-and-timings",
+    linkText: "Full schedule"
+  },
+  {
+    id: "location",
+    icon: MapPin,
+    title: "Where is Tridhara Milan Mandir located?",
+    answer: "Panchmura village, Bankura district, West Bengal - 30 km from Bishnupur (45 min by car), 180 km from Kolkata (4 hours drive).",
+    link: "/plan-your-visit",
+    linkText: "Get directions"
+  },
+  {
+    id: "free-prasad",
+    icon: UtensilsCrossed,
+    title: "Is prasad free at Tridhara Milan Mandir?",
+    answer: "Yes! Completely free prasad served to 2,000 devotees daily at 12:30 PM after midday bhog. Everyone is welcome regardless of background.",
+    link: "/services/bhog-and-prasad",
+    linkText: "Learn more"
+  },
+  {
+    id: "guest-house-booking",
+    icon: Home,
+    title: "Can I stay overnight at the temple?",
+    answer: "8 suites available on-site, just 100m from temple courtyard. Rooms range from ₹3,600-15,600/night including anna-daan meals, temple access, and optional terracotta workshops.",
+    link: "/guest-house",
+    linkText: "Book now"
+  },
+  {
+    id: "reach-bishnupur",
+    icon: MapPin,
+    title: "How do I reach from Bishnupur?",
+    answer: "30 km (45 min). Take shared trekker from Bishnupur bus stand (₹30-40/person, every 30 min) or private taxi (₹600-800). The temple is well-signposted once you reach Panchmura village.",
+    link: "/plan-your-visit",
+    linkText: "Full travel guide"
+  }
+];
+
+const faqSchemaModified = "2026-04-25";
+
 // Copy Link Button Component
 function CopyLinkButton({ faqId, question }: { faqId: string; question: string }) {
   const [copied, setCopied] = useState(false);
@@ -133,35 +186,27 @@ export default function FAQsPage() {
     window.history.replaceState({}, '', url.toString());
   };
 
-  const faqEntries = [faqContent.featured, ...faqContent.items];
-
-  // Collect FAQs from services pages with enhanced metadata
-  const serviceFAQs = Object.values(servicesContent).flatMap((service) =>
-    (service.faqs || []).map((faq) => ({
-      ...faq,
-      category: service.title,
-      slug: service.slug,
-      keywords: extractKeywords(faq.question)
-    }))
-  );
-
   // All FAQs combined for search
-  const allFAQs = [
-    ...faqEntries.map(item => ({
-      ...item,
-      category: "General",
-      keywords: extractKeywords(item.question)
-    })),
-    ...serviceFAQs
-  ];
+  const allFAQs = useMemo(() => {
+    const faqEntries = [faqContent.featured, ...faqContent.items];
+    const serviceFAQs = Object.values(servicesContent).flatMap((service) =>
+      (service.faqs || []).map((faq) => ({
+        ...faq,
+        category: service.title,
+        slug: service.slug,
+        keywords: extractKeywords(faq.question)
+      }))
+    );
 
-  // Extract keywords from question for better search
-  function extractKeywords(text: string): string[] {
-    return text.toLowerCase()
-      .replace(/[?.,]/g, '')
-      .split(' ')
-      .filter(word => word.length > 3);
-  }
+    return [
+      ...faqEntries.map(item => ({
+        ...item,
+        category: "General",
+        keywords: extractKeywords(item.question)
+      })),
+      ...serviceFAQs
+    ];
+  }, []);
 
   // Filter FAQs based on search and category
   const filteredFAQs = useMemo(() => {
@@ -198,7 +243,7 @@ export default function FAQsPage() {
     "url": `${siteConfig.url}/faqs`,
     "inLanguage": "en-US",
     "datePublished": "2025-11-02",
-    "dateModified": new Date().toISOString(),
+    "dateModified": faqSchemaModified,
     "publisher": {
       "@type": "Organization",
       "name": siteConfig.name,
@@ -228,54 +273,11 @@ export default function FAQsPage() {
   };
 
   // Quick answers for instant visibility with unique IDs
-  const quickAnswers = [
-    {
-      id: "temple-timings",
-      icon: Clock,
-      title: "What are the temple timings?",
-      answer: "Daily darshan: 5:00 AM - 9:00 PM (weekdays), 5:00 AM - 9:30 PM (weekends). Special aarti at 5:00 AM, 6:30 PM, and integrated Tridhara aarti in the evening.",
-      link: "/services/darshan-and-timings",
-      linkText: "Full schedule"
-    },
-    {
-      id: "location",
-      icon: MapPin,
-      title: "Where is Tridhara Milan Mandir located?",
-      answer: "Panchmura village, Bankura district, West Bengal - 30 km from Bishnupur (45 min by car), 180 km from Kolkata (4 hours drive).",
-      link: "/plan-your-visit",
-      linkText: "Get directions"
-    },
-    {
-      id: "free-prasad",
-      icon: UtensilsCrossed,
-      title: "Is prasad free at Tridhara Milan Mandir?",
-      answer: "Yes! Completely free prasad served to 2,000 devotees daily at 12:30 PM after midday bhog. Everyone is welcome regardless of background.",
-      link: "/services/bhog-and-prasad",
-      linkText: "Learn more"
-    },
-    {
-      id: "guest-house-booking",
-      icon: Home,
-      title: "Can I stay overnight at the temple?",
-      answer: "8 suites available on-site, just 100m from temple courtyard. Rooms range from ₹3,600-15,600/night including anna-daan meals, temple access, and optional terracotta workshops.",
-      link: "/guest-house",
-      linkText: "Book now"
-    },
-    {
-      id: "reach-bishnupur",
-      icon: MapPin,
-      title: "How do I reach from Bishnupur?",
-      answer: "30 km (45 min). Take shared trekker from Bishnupur bus stand (₹30-40/person, every 30 min) or private taxi (₹600-800). The temple is well-signposted once you reach Panchmura village.",
-      link: "/plan-your-visit",
-      linkText: "Full travel guide"
-    }
-  ];
-
   // Table of Contents - organized by category
   const tableOfContents = {
     "Essential Information": [
       ...quickAnswers.map(qa => ({ id: qa.id, question: qa.title })),
-      ...faqEntries.slice(0, 4).map(faq => ({ id: generateFAQId(faq.question), question: faq.question }))
+      ...faqContent.items.slice(0, 4).map(faq => ({ id: generateFAQId(faq.question), question: faq.question }))
     ],
     "Services & Rituals": Object.values(servicesContent)
       .flatMap(service => (service.faqs || []).map(faq => ({
@@ -576,6 +578,7 @@ export default function FAQsPage() {
                           {service.title}
                           <Link
                             href={`/services/${service.slug}`}
+                            aria-label={`View ${service.title} service details`}
                             className="text-sm font-normal text-brand-primary hover:text-brand-secondary"
                           >
                             <ArrowUpRight className="h-4 w-4" />

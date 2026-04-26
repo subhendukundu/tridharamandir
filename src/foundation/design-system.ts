@@ -94,7 +94,7 @@ export const linkRules = {
 } as const;
 
 export const badgeRules = {
-  base: "inline-flex items-center gap-2 rounded-full px-4 py-1",
+  base: "inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full px-4 py-1 text-center",
   variants: {
     default: "border border-brand-secondary/40 bg-brand-secondary/10",
     onDark: "border border-white/30 bg-white/10",
@@ -102,7 +102,7 @@ export const badgeRules = {
     hero:
       "border border-white/20 bg-gradient-to-r from-white/20 via-white/10 to-transparent px-3 py-1 shadow-[0_18px_42px_-28px_rgba(12,5,20,0.65)]"
   },
-  text: "text-xs font-semibold uppercase tracking-[0.3em]",
+  text: "min-w-0 break-words text-xs font-semibold uppercase leading-relaxed tracking-[0.3em]",
   textColors: {
     default: "text-brand-secondary",
     onDark: "text-white",

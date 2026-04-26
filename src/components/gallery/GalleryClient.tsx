@@ -151,7 +151,7 @@ export function GalleryClient({ images, categories }: GalleryClientProps) {
       {/* Enhanced Lightbox Modal with Navigation */}
       {currentImage && lightboxIndex !== null && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-brand-dark/95"
           onClick={closeLightbox}
         >
           {/* Close Button */}
@@ -209,7 +209,7 @@ export function GalleryClient({ images, categories }: GalleryClientProps) {
             </div>
 
             {/* Image Info Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 md:p-8">
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/60 to-transparent p-6 md:p-8">
               <div className="max-w-4xl mx-auto">
                 {currentImage.title && (
                   <p className="text-white text-lg font-semibold mb-2">{currentImage.title}</p>

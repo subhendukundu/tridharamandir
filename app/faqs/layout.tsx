@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Tridhara Milan Mandir FAQs | Panchmura Temple Questions Answered",
   description:
     "Get answers to all your questions about Tridhara Milan Mandir Panchmura: temple timings, location, free prasad, accommodation, rituals, and how to visit from Bishnupur or Kolkata.",
+  alternates: {
+    canonical: "/faqs"
+  },
   keywords: [
     "Panchmura temple FAQs",
     "Tridhara Milan Mandir questions",

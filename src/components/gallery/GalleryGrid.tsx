@@ -61,7 +61,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
   return (
     <>
       {/* Gallery Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" role="list">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {images.map((image, index) => (
           <button
             key={`${image.src}-${index}`}
@@ -99,7 +99,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
       {/* Enhanced Lightbox Modal with Navigation */}
       {currentImage && lightboxIndex !== null && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-brand-dark/95"
           onClick={closeLightbox}
         >
           {/* Close Button */}
@@ -157,7 +157,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
             </div>
 
             {/* Image Info Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 md:p-8">
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/60 to-transparent p-6 md:p-8">
               <div className="max-w-4xl mx-auto">
                 {currentImage.title && (
                   <p className="text-white text-lg font-semibold mb-2">{currentImage.title}</p>
