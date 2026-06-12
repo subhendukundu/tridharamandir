@@ -12,24 +12,24 @@ const config: Config = {
       },
       colors: {
         brand: {
-          primary: "#452937",
-          secondary: "#9A5937",
-          accent: "#E5B76A",
-          dark: "#1B0A2C",
-          light: "#F5EEE7"
+          primary: "#4B1F32",
+          secondary: "#9B5538",
+          accent: "#D8A94C",
+          dark: "#241019",
+          light: "#FFF7EA"
         },
         neutral: {
-          950: "#180E14",
-          900: "#22151F",
-          800: "#351F2C",
-          700: "#4B2F3E",
-          600: "#644350",
-          500: "#7E5A65",
-          400: "#A47E86",
-          300: "#CBA7AB",
-          200: "#E3CBC9",
-          100: "#F1E4DE",
-          50: "#F8F1EA"
+          950: "#1B0B12",
+          900: "#241019",
+          800: "#3B2730",
+          700: "#59454A",
+          600: "#6D5E5D",
+          500: "#8A7B74",
+          400: "#B09E90",
+          300: "#D6C3AA",
+          200: "#EAD8BD",
+          100: "#F6E9D5",
+          50: "#FFFDF8"
         },
         // Semantic colors for forms, status, alerts
         semantic: {
@@ -56,12 +56,14 @@ const config: Config = {
         }
       },
       boxShadow: {
-        soft: "0px 28px 80px -45px rgba(27, 10, 44, 0.35)"
+        soft: "0 24px 70px rgba(75, 31, 50, 0.12)",
+        card: "0 18px 45px rgba(75, 31, 50, 0.10)"
       },
       backgroundImage: {
         "hero-overlay":
-          "linear-gradient(180deg, rgba(27, 10, 44, 0.75) 0%, rgba(69, 41, 55, 0.4) 60%, rgba(69, 41, 55, 0.25) 100%)",
-        "frosted-panel": "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.65) 100%)"
+          "linear-gradient(90deg, rgba(36, 16, 25, 0.88) 0%, rgba(36, 16, 25, 0.58) 46%, rgba(36, 16, 25, 0.16) 100%)",
+        "frosted-panel": "linear-gradient(135deg, rgba(255,253,248,0.96) 0%, rgba(255,247,234,0.88) 100%)",
+        "temple-paper": "linear-gradient(180deg, #fffdf8 0%, #fff7ea 100%)"
       }
     }
   },

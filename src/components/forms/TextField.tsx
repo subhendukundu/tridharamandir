@@ -14,9 +14,9 @@ export function TextField({ className, label, id, tone = "light", ...props }: Te
     <input
       id={id}
       className={clsx(
-        "h-12 w-full rounded-full border px-5 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-brand-primary",
+        "h-12 w-full rounded-md border px-5 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-brand-accent",
         tone === "light"
-          ? "border-brand-primary/20 bg-white/95 text-brand-primary placeholder:text-neutral-500"
+          ? "border-brand-accent/35 bg-neutral-50 text-brand-dark placeholder:text-neutral-500"
           : "border-brand-accent/50 bg-white/10 text-white placeholder:text-brand-accent/80",
         className
       )}

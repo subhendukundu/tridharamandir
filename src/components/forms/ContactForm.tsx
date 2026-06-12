@@ -161,24 +161,24 @@ export function ContactForm({ tone = "light", className, defaultInquiryType }: C
           {submitStatus === "success" && (
             <div
               className={clsx(
-                "rounded-xl p-4 text-sm font-medium",
-                "bg-green-50 text-green-800 border border-green-200"
+                "border p-4 text-sm font-medium",
+                "border-green-200 bg-green-50 text-green-800"
               )}
               role="alert"
             >
-              🙏 Thank you for contacting us! We&apos;ll get back to you soon.
+              Thank you for contacting us. We&apos;ll get back to you soon.
             </div>
           )}
 
           {submitStatus === "error" && (
             <div
               className={clsx(
-                "rounded-xl p-4 text-sm font-medium",
-                "bg-red-50 text-red-800 border border-red-200"
+                "border p-4 text-sm font-medium",
+                "border-red-200 bg-red-50 text-red-800"
               )}
               role="alert"
             >
-              ⚠️ {errorMessage || "Something went wrong. Please try again or contact us directly."}
+              {errorMessage || "Something went wrong. Please try again or contact us directly."}
             </div>
           )}
         </div>

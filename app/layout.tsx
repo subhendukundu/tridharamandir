@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import clsx from "clsx";
 
 import "./globals.css";
@@ -10,16 +10,16 @@ import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { siteConfig } from "@/config/site";
 import { getOgImageUrl } from "@/utils/image";
 
-const jakarta = Plus_Jakarta_Sans({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-plus-jakarta-sans",
   display: "swap"
 });
 
-const playfair = Playfair_Display({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600", "700"],
   variable: "--font-playfair",
   display: "swap"
 });
@@ -79,8 +79,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={clsx(
           "text-neutral-900 antialiased",
-          jakarta.variable,
-          playfair.variable,
+          inter.variable,
+          spaceGrotesk.variable,
           "min-h-screen"
         )}
       >

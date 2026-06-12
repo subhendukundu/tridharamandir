@@ -216,7 +216,10 @@ export default function PlanYourVisitPage() {
             <p className="mt-3 text-sm text-neutral-600">
               Combine your Tridhara visit with Bishnupur&apos;s terracotta temples, Panchmura craft village, and Susunia Hill for a complete Bankura heritage experience.
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link href="/guides/visit-from-kolkata" className="rounded-2xl border border-brand-primary/15 bg-white px-6 py-4 text-sm font-semibold text-brand-primary hover:border-brand-accent/40 transition-colors">
+                Kolkata to Tridhara Travel Guide →
+              </Link>
               <Link href="/guides/bankura-temple-tour-itinerary" className="rounded-2xl border border-brand-primary/15 bg-white px-6 py-4 text-sm font-semibold text-brand-primary hover:border-brand-accent/40 transition-colors">
                 2-Day Bankura Temple Tour Itinerary →
               </Link>

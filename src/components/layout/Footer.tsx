@@ -5,7 +5,7 @@ import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 import { TextField } from "@/components/forms/TextField";
 import { Button } from "@/components/ui/Button";
-import { layoutRules, linkRules, iconSizes } from "@/foundation/design-system";
+import { iconSizes, layoutRules, linkRules } from "@/foundation/design-system";
 import { footerContent, napContent } from "@/data/content";
 import { siteConfig } from "@/config/site";
 
@@ -16,134 +16,109 @@ const iconMap = {
   YouTube: Youtube
 } as const;
 
+const footerColumns = [
+  {
+    title: "About",
+    links: [
+      { label: "Our Story", href: "/about-us" },
+      { label: "History", href: "/history" },
+      { label: "Why Visit", href: "/why-visit" }
+    ]
+  },
+  {
+    title: "Plan Visit",
+    links: [
+      { label: "Planning Guide", href: "/plan-your-visit" },
+      { label: "Visiting from Kolkata", href: "/guides/visit-from-kolkata" },
+      { label: "Bankura Temple Tour", href: "/guides/bankura-temple-tour-itinerary" },
+      { label: "Photo Gallery", href: "/gallery" },
+      { label: "Guest House", href: "/guest-house" },
+      { label: "Guest Experiences", href: "/guides/guest-house-experiences" }
+    ]
+  },
+  {
+    title: "Services",
+    links: [
+      { label: "All Services", href: "/services" },
+      ...siteConfig.services.slice(0, 4).map((service) => ({
+        label: service.name,
+        href: `/services/${service.slug}`
+      }))
+    ]
+  },
+  {
+    title: "Explore",
+    links: [
+      { label: "Community", href: "/#community" },
+      { label: "FAQs", href: "/faqs" },
+      { label: "Events", href: "/events" },
+      { label: "Janmashtami", href: "/festivals/janmashtami" },
+      { label: "Rath Yatra", href: "/festivals/rath-yatra" },
+      { label: "Contact Us", href: "/#visit" },
+      { label: "Search", href: "/search" }
+    ]
+  }
+] as const;
+
 export function Footer() {
   const [weekdayHours, weekendHours] = napContent.hours;
 
   return (
-    <footer id="footer-contact" className="bg-brand-dark text-white">
-      {/* Site Navigation Links */}
-      <div className={`${layoutRules.container} ${layoutRules.pagePadding} py-12 border-b border-white/10`}>
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
-          {/* About Section */}
-          <div className="flex flex-col gap-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-accent">About</h3>
-            <nav className="flex flex-col gap-2.5 text-[0.94rem]">
-              <Link href="/about-us" className={clsx(linkRules.base, linkRules.footerNav)}>Our Story</Link>
-              <Link href="/history" className={clsx(linkRules.base, linkRules.footerNav)}>History</Link>
-              <Link href="/why-visit" className={clsx(linkRules.base, linkRules.footerNav)}>Why Visit</Link>
-            </nav>
-          </div>
-
-          {/* Visit Section */}
-          <div className="flex flex-col gap-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-accent">Plan Visit</h3>
-            <nav className="flex flex-col gap-2.5 text-[0.94rem]">
-              <Link href="/plan-your-visit" className={clsx(linkRules.base, linkRules.footerNav)}>Planning Guide</Link>
-              <Link href="/gallery" className={clsx(linkRules.base, linkRules.footerNav)}>Photo Gallery</Link>
-              <Link href="/guest-house" className={clsx(linkRules.base, linkRules.footerNav)}>Guest House</Link>
-              <Link href="/guides/guest-house-experiences" className={clsx(linkRules.base, linkRules.footerNav)}>Guest Experiences</Link>
-            </nav>
-          </div>
-
-          {/* Services Section */}
-          <div className="flex flex-col gap-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-accent">Services</h3>
-            <nav className="flex flex-col gap-2.5 text-[0.94rem]">
-              <Link href="/services" className={clsx(linkRules.base, linkRules.footerNav)}>All Services</Link>
-              {siteConfig.services.slice(0, 4).map((service) => (
-                <Link key={service.slug} href={`/services/${service.slug}`} className={clsx(linkRules.base, linkRules.footerNav)}>
-                  {service.name}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          {/* Gallery Categories */}
-          <div className="flex flex-col gap-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-accent">Gallery</h3>
-            <nav className="flex flex-col gap-2.5 text-[0.94rem]">
-              <Link href="/gallery" className={clsx(linkRules.base, linkRules.footerNav)}>All Photos</Link>
-              <Link href="/gallery/architecture" className={clsx(linkRules.base, linkRules.footerNav)}>Architecture</Link>
-              <Link href="/gallery/deities" className={clsx(linkRules.base, linkRules.footerNav)}>Deities & Shrines</Link>
-              <Link href="/gallery/rituals" className={clsx(linkRules.base, linkRules.footerNav)}>Daily Rituals</Link>
-              <Link href="/gallery/festivals" className={clsx(linkRules.base, linkRules.footerNav)}>Festivals</Link>
-            </nav>
-          </div>
-
-          {/* Explore Section */}
-          <div className="flex flex-col gap-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-brand-accent">Explore</h3>
-            <nav className="flex flex-col gap-2.5 text-[0.94rem]">
-              <Link href="/#community" className={clsx(linkRules.base, linkRules.footerNav)}>Community</Link>
-              <Link href="/#faq" className={clsx(linkRules.base, linkRules.footerNav)}>FAQs</Link>
-              <Link href="/events" className={clsx(linkRules.base, linkRules.footerNav)}>Events</Link>
-              <Link href="/#visit" className={clsx(linkRules.base, linkRules.footerNav)}>Contact Us</Link>
-              <Link href="/search" className={clsx(linkRules.base, linkRules.footerNav)}>Search</Link>
-            </nav>
-          </div>
-        </div>
-      </div>
-
-      <div className={`${layoutRules.container} ${layoutRules.pagePadding} py-16`}>
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-start">
-          <div className="flex flex-col gap-6">
-            <Link href="/#home" className="flex items-center gap-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent transition-colors motion-reduce:transition-none">
-              <div className="relative h-12 w-12 overflow-hidden rounded-full bg-white/10">
+    <footer id="footer-contact" className="border-t border-brand-accent/20 bg-brand-dark text-white">
+      <div className={clsx(layoutRules.container, layoutRules.pagePadding, "py-14")}>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+          <div className="flex flex-col gap-7">
+            <Link
+              href="/#home"
+              className="flex max-w-max items-center gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent"
+            >
+              <div className="relative h-11 w-11 overflow-hidden rounded-full border border-brand-accent/35 bg-white">
                 <Image
                   src="/images/logo.png"
                   alt="Tridhara Milan Mandir logo"
-                  width={48}
-                  height={48}
+                  width={44}
+                  height={44}
                   className="h-full w-full object-contain"
                 />
               </div>
               <div className="flex flex-col leading-tight">
-                <span className="font-display text-xl font-semibold text-white">
+                <span className="font-display text-xl font-bold text-white">
                   {footerContent.brand}
                 </span>
-                <span className="text-sm uppercase tracking-[0.18em] text-brand-accent">
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">
                   {footerContent.tagline}
                 </span>
               </div>
             </Link>
 
-            <p className="max-w-2xl text-sm text-white/75">{footerContent.summary}</p>
+            <p className="max-w-2xl text-base leading-relaxed text-white/75">
+              {footerContent.summary}
+            </p>
 
-            <div className="flex flex-wrap gap-3">
-              <Button
-                href={footerContent.donateCta.href}
-                variant="inverted"
-                size="lg"
-                className="w-fit"
-              >
-                {footerContent.donateCta.label}
-              </Button>
-              <Button
-                href={footerContent.visitLink.href}
-                variant="ghost"
-                size="lg"
-                className="border border-white/20 text-white hover:bg-white/10"
-              >
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Button href={footerContent.visitLink.href} variant="outlineOnDark" size="lg">
                 {footerContent.visitLink.label}
+              </Button>
+              <Button href={footerContent.donateCta.href} variant="inverted" size="lg">
+                {footerContent.donateCta.label}
               </Button>
             </div>
 
-            <form className="flex flex-col gap-4 sm:flex-row" aria-label="Newsletter signup">
+            <form className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto]" aria-label="Newsletter signup">
               <TextField
                 id="footer-email"
                 type="email"
                 placeholder={footerContent.newsletterPlaceholder}
                 tone="dark"
                 required
-                className="sm:w-80"
                 aria-label="Email address"
               />
-              <Button variant="inverted" type="submit">
+              <Button variant="outlineOnDark" type="submit">
                 {footerContent.newsletterCta}
               </Button>
             </form>
 
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3">
               {footerContent.socials.map((social) => {
                 const Icon = iconMap[social.label as keyof typeof iconMap];
                 return (
@@ -155,73 +130,78 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {Icon ? <Icon className={iconSizes.sm} /> : null}
+                    {Icon ? <Icon className={iconSizes.sm} aria-hidden="true" /> : null}
                   </Link>
                 );
               })}
             </div>
           </div>
 
-          <div className="flex flex-col gap-6 rounded-3xl border border-white/10 bg-white/5 p-6 text-[0.95rem] leading-relaxed text-white/95">
-            <div className="space-y-2">
-              <p className="uppercase tracking-[0.24em] text-brand-accent">Essential details</p>
-              <h3 className="font-display text-2xl text-white">{footerContent.brand}</h3>
-              <p className="max-w-sm text-white/75">
-                Core contact references for Tridhara Milan Mandir. Visit the full guide for
-                directions, visitor etiquette, and accessibility.
+          <div className="grid gap-6">
+            <div className="rounded-lg border border-white/20 bg-white/[0.05] p-6">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">
+                Essential details
               </p>
-            </div>
-
-            <div className="space-y-5 leading-[1.8]">
-              <div>
-                <h4 className="font-semibold text-white">Address</h4>
-                <address className="not-italic text-white/75 space-y-1.5">
-                  {napContent.addressLines.map((line) => (
-                    <span key={line} className="block">
-                      {line}
-                    </span>
-                  ))}
-                </address>
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <h4 className="font-semibold text-white">Contact</h4>
-                <a className={clsx(linkRules.base, linkRules.onDark)} href={`tel:${napContent.phone}`}>
-                  {napContent.phone}
-                </a>
-                <a className={clsx(linkRules.base, linkRules.onDark)} href={`mailto:${napContent.email}`}>
-                  {napContent.email}
-                </a>
-              </div>
-              {weekdayHours ? (
+              <h3 className="mt-3 font-display text-2xl font-bold text-white">
+                {footerContent.brand}
+              </h3>
+              <div className="mt-5 grid gap-5 text-sm leading-relaxed text-white/75">
                 <div>
-                  <h4 className="font-semibold text-white">Darshan hours</h4>
-                  <p className="mt-1">
-                    {weekdayHours.dayOfWeek.join(", ")} · {weekdayHours.opens} – {weekdayHours.closes}
-                  </p>
-                  {weekendHours ? (
-                    <p className="mt-1">
-                      {weekendHours.dayOfWeek.join(", ")} · {weekendHours.opens} –{" "}
-                      {weekendHours.closes}
-                    </p>
-                  ) : null}
+                  <h4 className="font-bold text-white">Address</h4>
+                  <address className="mt-2 not-italic">
+                    {napContent.addressLines.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
+                  </address>
                 </div>
-              ) : null}
-            </div>
-
-            <div>
-              <Button
-                href={footerContent.visitLink.href}
-                variant="secondary"
-                size="md"
-                className="w-fit border-brand-primary/25"
-              >
-                {footerContent.visitLink.label}
-              </Button>
+                <div>
+                  <h4 className="font-bold text-white">Contact</h4>
+                  <a className={clsx(linkRules.base, linkRules.onDark, "mt-2 block")} href={`tel:${napContent.phone}`}>
+                    {napContent.phone}
+                  </a>
+                  <a className={clsx(linkRules.base, linkRules.onDark, "mt-1 block")} href={`mailto:${napContent.email}`}>
+                    {napContent.email}
+                  </a>
+                </div>
+                {weekdayHours ? (
+                  <div>
+                    <h4 className="font-bold text-white">Darshan hours</h4>
+                    <p className="mt-2">
+                      {weekdayHours.dayOfWeek.join(", ")} · {weekdayHours.opens} - {weekdayHours.closes}
+                    </p>
+                    {weekendHours ? (
+                      <p className="mt-1">
+                        {weekendHours.dayOfWeek.join(", ")} · {weekendHours.opens} - {weekendHours.closes}
+                      </p>
+                    ) : null}
+                  </div>
+                ) : null}
+              </div>
             </div>
           </div>
         </div>
+
+        <div className="mt-12 grid gap-8 border-t border-white/20 pt-10 sm:grid-cols-2 lg:grid-cols-4">
+          {footerColumns.map((column) => (
+            <div key={column.title}>
+              <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">
+                {column.title}
+              </h3>
+              <nav className="mt-4 flex flex-col gap-2.5 text-sm">
+                {column.links.map((link) => (
+                  <Link key={link.href} href={link.href} className={clsx(linkRules.base, linkRules.footerNav)}>
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="border-t border-white/10 py-6 text-center text-sm text-white/60">
+
+      <div className="border-t border-white/20 px-6 py-5 text-center text-sm text-white/55">
         {footerContent.legal}
       </div>
     </footer>

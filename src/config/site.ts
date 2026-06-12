@@ -85,7 +85,7 @@ export const siteConfig = {
       endDate: "2026-07-06",
       description:
         "Annual nine-day chariot festival featuring Jagannath, Balabhadra, and Subhadra with evening sankirtan and community feast.",
-      url: "/events#rath-yatra"
+      url: "/festivals/rath-yatra"
     },
     {
       slug: "janmashtami",
@@ -94,7 +94,7 @@ export const siteConfig = {
       endDate: "2026-08-15",
       description:
         "Midnight abhishek, jhulan darshan, and bhajan sandhya celebrating Lord Krishna's advent.",
-      url: "/events#janmashtami"
+      url: "/festivals/janmashtami"
     }
   ],
   map: {

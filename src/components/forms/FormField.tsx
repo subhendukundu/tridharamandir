@@ -1,8 +1,8 @@
 "use client";
 
-import type { InputHTMLAttributes, TextareaHTMLAttributes, SelectHTMLAttributes } from "react";
+import { forwardRef, type InputHTMLAttributes, type TextareaHTMLAttributes, type SelectHTMLAttributes } from "react";
 import clsx from "clsx";
-import { UseFormRegister, FieldError } from "react-hook-form";
+import { FieldError } from "react-hook-form";
 
 type BaseFieldProps = {
   label?: string;
@@ -15,15 +15,18 @@ type BaseFieldProps = {
 // Input Field
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & BaseFieldProps;
 
-export function InputField({
-  className,
-  label,
-  id,
-  error,
-  tone = "light",
-  helpText,
-  ...props
-}: InputFieldProps) {
+export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(function InputField(
+  {
+    className,
+    label,
+    id,
+    error,
+    tone = "light",
+    helpText,
+    ...props
+  },
+  ref
+) {
   return (
     <div className="flex flex-col gap-2">
       {label && (
@@ -38,12 +41,13 @@ export function InputField({
         </label>
       )}
       <input
+        ref={ref}
         id={id}
         className={clsx(
-          "h-12 w-full rounded-xl border px-4 text-sm font-medium transition",
-          "focus:outline-none focus:ring-2 focus:ring-brand-primary/50",
+          "h-12 w-full rounded-md border px-4 text-sm font-medium transition",
+          "focus:outline-none focus:ring-2 focus:ring-brand-accent/50",
           tone === "light"
-            ? "border-neutral-300 bg-white text-brand-primary placeholder:text-neutral-400"
+            ? "border-brand-accent/35 bg-neutral-50 text-brand-dark placeholder:text-neutral-500"
             : "border-brand-accent/50 bg-white/10 text-white placeholder:text-brand-accent/80",
           error && "border-red-500 focus:ring-red-500/50",
           className
@@ -67,20 +71,23 @@ export function InputField({
       )}
     </div>
   );
-}
+});
 
 // Textarea Field
 type TextareaFieldProps = TextareaHTMLAttributes<HTMLTextAreaElement> & BaseFieldProps;
 
-export function TextareaField({
-  className,
-  label,
-  id,
-  error,
-  tone = "light",
-  helpText,
-  ...props
-}: TextareaFieldProps) {
+export const TextareaField = forwardRef<HTMLTextAreaElement, TextareaFieldProps>(function TextareaField(
+  {
+    className,
+    label,
+    id,
+    error,
+    tone = "light",
+    helpText,
+    ...props
+  },
+  ref
+) {
   return (
     <div className="flex flex-col gap-2">
       {label && (
@@ -95,12 +102,13 @@ export function TextareaField({
         </label>
       )}
       <textarea
+        ref={ref}
         id={id}
         className={clsx(
-          "w-full rounded-xl border px-4 py-3 text-sm font-medium transition min-h-[120px]",
-          "focus:outline-none focus:ring-2 focus:ring-brand-primary/50",
+          "min-h-[120px] w-full rounded-md border px-4 py-3 text-sm font-medium transition",
+          "focus:outline-none focus:ring-2 focus:ring-brand-accent/50",
           tone === "light"
-            ? "border-neutral-300 bg-white text-brand-primary placeholder:text-neutral-400"
+            ? "border-brand-accent/35 bg-neutral-50 text-brand-dark placeholder:text-neutral-500"
             : "border-brand-accent/50 bg-white/10 text-white placeholder:text-brand-accent/80",
           error && "border-red-500 focus:ring-red-500/50",
           className
@@ -124,20 +132,23 @@ export function TextareaField({
       )}
     </div>
   );
-}
+});
 
 // Select Field
 type SelectFieldProps = SelectHTMLAttributes<HTMLSelectElement> & BaseFieldProps;
 
-export function SelectField({
-  className,
-  label,
-  id,
-  error,
-  tone = "light",
-  children,
-  ...props
-}: SelectFieldProps) {
+export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(function SelectField(
+  {
+    className,
+    label,
+    id,
+    error,
+    tone = "light",
+    children,
+    ...props
+  },
+  ref
+) {
   return (
     <div className="flex flex-col gap-2">
       {label && (
@@ -152,12 +163,13 @@ export function SelectField({
         </label>
       )}
       <select
+        ref={ref}
         id={id}
         className={clsx(
-          "h-12 w-full rounded-xl border px-4 text-sm font-medium transition",
-          "focus:outline-none focus:ring-2 focus:ring-brand-primary/50",
+          "h-12 w-full rounded-md border px-4 text-sm font-medium transition",
+          "focus:outline-none focus:ring-2 focus:ring-brand-accent/50",
           tone === "light"
-            ? "border-neutral-300 bg-white text-brand-primary"
+            ? "border-brand-accent/35 bg-neutral-50 text-brand-dark"
             : "border-brand-accent/50 bg-white/10 text-white",
           error && "border-red-500 focus:ring-red-500/50",
           className
@@ -175,4 +187,4 @@ export function SelectField({
       )}
     </div>
   );
-}
+});

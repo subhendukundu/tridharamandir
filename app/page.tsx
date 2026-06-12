@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
 
-import { AboutSection } from "@/components/sections/AboutSection";
-import { FAQSection } from "@/components/sections/FAQSection";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { ServicesSection } from "@/components/sections/ServicesSection";
-import { CommunitySection } from "@/components/sections/CommunitySection";
-import { DonationSection } from "@/components/sections/DonationSection";
-import { ContactSection } from "@/components/sections/ContactSection";
-import { QuickFactsSection } from "@/components/sections/QuickFactsSection";
+import { HomeRedesign } from "@/components/sections/HomeRedesign";
 import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { siteConfig } from "@/config/site";
 import { testimonialContent } from "@/data/content";
@@ -203,7 +196,7 @@ export default function HomePage() {
   };
 
   return (
-    <main>
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -231,7 +224,6 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
       />
-      <HeroSection />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", item: "/" },
@@ -240,13 +232,7 @@ export default function HomePage() {
           { name: "Contact", item: "/#visit" }
         ]}
       />
-      <QuickFactsSection />
-      <AboutSection variant="storyboard" />
-      <ServicesSection />
-      <CommunitySection />
-      <DonationSection />
-      <FAQSection />
-      <ContactSection />
-    </main>
+      <HomeRedesign />
+    </>
   );
 }

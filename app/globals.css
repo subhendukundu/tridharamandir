@@ -4,7 +4,11 @@
 
 :root {
   color-scheme: light only;
-  --header-height: 80px;
+  --header-height: 64px;
+  --temple-ink: #241019;
+  --temple-paper: #fffdf8;
+  --temple-line: #ead8bd;
+  --temple-gold: #d8a94c;
 }
 
 * {
@@ -13,8 +17,9 @@
 
 body {
   margin: 0;
+  overflow-x: hidden;
   font-feature-settings: "liga" 1, "kern" 1;
-  background: #fffdf8;
+  background: linear-gradient(180deg, #fffdf8 0%, #fff7ea 100%);
   color: theme("colors.neutral.900");
 }
 
@@ -31,6 +36,177 @@ main {
 .glass-panel {
   background: theme("backgroundImage.frosted-panel");
   backdrop-filter: blur(12px);
+}
+
+.dot-grid {
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.96), rgba(255, 247, 234, 0.96)),
+    radial-gradient(circle, rgba(216, 169, 76, 0.22) 1px, transparent 1px);
+  background-size: auto, 28px 28px;
+}
+
+.hard-surface {
+  border: 1px solid var(--temple-line);
+  background: #fffdf8;
+  box-shadow: 0 18px 45px rgba(75, 31, 50, 0.1);
+  border-radius: 8px;
+}
+
+.soft-dim {
+  color: #6b6b6b;
+}
+
+@keyframes story-hero-pan {
+  from {
+    transform: scale(1.03) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.09) translate3d(-1%, -1.5%, 0);
+  }
+}
+
+.story-hero-image {
+  transform-origin: center center;
+  animation: story-hero-pan 28s ease-in-out infinite alternate;
+}
+
+.story-hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(36, 16, 25, 0.94) 0%, rgba(36, 16, 25, 0.74) 42%, rgba(36, 16, 25, 0.28) 100%),
+    linear-gradient(180deg, rgba(36, 16, 25, 0.08) 0%, rgba(36, 16, 25, 0.76) 100%);
+}
+
+.tridhara-story-effect {
+  pointer-events: none;
+  position: absolute;
+  inset: var(--header-height) 0 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.tridhara-stream-canvas {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.tridhara-effect-core {
+  position: absolute;
+  left: min(72vw, calc(50vw + 260px));
+  top: 47%;
+  width: clamp(220px, 24vw, 350px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid rgba(232, 190, 92, 0.68);
+  border-radius: 999px;
+  box-shadow:
+    0 0 0 10px rgba(255, 247, 218, 0.06),
+    0 0 85px rgba(216, 169, 76, 0.46),
+    0 30px 100px rgba(0, 0, 0, 0.44);
+  transform: translate(-50%, -50%);
+}
+
+.tridhara-effect-core::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 244, 190, 0.18), transparent 34%),
+    linear-gradient(180deg, transparent 46%, rgba(36, 16, 25, 0.58) 100%);
+}
+
+.tridhara-core-flame {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  height: 42px;
+  width: 18px;
+  border-radius: 999px 999px 999px 999px;
+  background: linear-gradient(180deg, #fff6c7 0%, #e6b84f 48%, rgba(232, 102, 80, 0.1) 100%);
+  box-shadow:
+    0 0 24px rgba(255, 236, 148, 0.95),
+    0 0 70px rgba(232, 190, 92, 0.72);
+  transform: translateX(-50%);
+}
+
+.tridhara-stream-label {
+  position: absolute;
+  min-width: 142px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(36, 16, 25, 0.44);
+  padding: 0.72rem 0.9rem;
+  color: #fff7da;
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(14px);
+}
+
+.tridhara-stream-label span,
+.tridhara-stream-label small {
+  display: block;
+}
+
+.tridhara-stream-label span {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tridhara-stream-label small {
+  margin-top: 0.15rem;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.76rem;
+}
+
+.tridhara-label-shaiva {
+  left: min(54vw, calc(50vw + 90px));
+  top: 20%;
+  border-color: rgba(155, 200, 255, 0.46);
+}
+
+.tridhara-label-vaishnava {
+  left: min(53vw, calc(50vw + 60px));
+  bottom: 18%;
+  border-color: rgba(232, 190, 92, 0.54);
+}
+
+.tridhara-label-shakta {
+  right: max(1.5rem, calc((100vw - 1160px) / 2 + 1.5rem));
+  top: 17%;
+  border-color: rgba(232, 103, 103, 0.5);
+}
+
+@media (max-width: 1023px) {
+  .tridhara-stream-label {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .story-hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(36, 16, 25, 0.38) 0%, rgba(36, 16, 25, 0.82) 56%, rgba(36, 16, 25, 0.96) 100%),
+      linear-gradient(90deg, rgba(36, 16, 25, 0.68), rgba(36, 16, 25, 0.22));
+  }
+
+  .tridhara-story-effect {
+    opacity: 0.72;
+  }
+
+  .tridhara-effect-core {
+    left: 72%;
+    top: 50%;
+    width: min(42vw, 210px);
+    opacity: 0.78;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-hero-image {
+    animation: none;
+  }
 }
 
 /* FAQ Deep Linking - Highlight Animation */
