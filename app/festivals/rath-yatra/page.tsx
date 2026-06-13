@@ -98,6 +98,21 @@ export default function RathYatraPage() {
       name: siteConfig.name,
       url: siteConfig.url
     },
+    performer: {
+      "@type": "PerformingGroup",
+      name: "Temple Priests and Pujaris",
+      description:
+        "Tridhara Milan Mandir's dedicated priests conducting traditional rituals and ceremonies"
+    },
+    offers: {
+      "@type": "Offer",
+      name: "Free Entry",
+      price: "0",
+      priceCurrency: "INR",
+      availability: "https://schema.org/InStock",
+      url: `${siteConfig.url}/festivals/rath-yatra`,
+      validFrom: "2026-06-28"
+    },
     isAccessibleForFree: true,
     image: getOgImageUrl(
       "/images/tridhara-radha-krishna-mandir.png",
