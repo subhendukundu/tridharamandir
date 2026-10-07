@@ -1,0 +1,61 @@
+/* ---------------------------------------------------------------- 404 page (.nf-) */
+.nf-art picture { display: block; }
+.nf-sticker { --s: clamp(120px, 31vw, 150px); position: absolute; z-index: 2; right: 3%; top: 2%; transform: rotate(10deg); }
+.nf-sticker .sticker__num { font-size: .36em; }
+.nf-sticker .sticker__en, .nf-sticker .sticker__en--long { max-width: 80%; letter-spacing: .05em; }
+.nf-br { display: none; }
+/* desktop: the art stands on the band's floor. Wider than 1440 px it runs on to the right (up to 200 more board units,
+   drawn in the file) instead of stopping in a hard edge at the end of the 1440 px column. */
+@media (min-width: 900px) {
+  .nf-hero { --nf-aw: calc(var(--pa-w) * min(100vw, var(--max))); --nf-ext: clamp(0px, (100vw - var(--max)) / 2, 200px); }
+  .nf-hero .nf-art { top: auto; bottom: 0; right: calc(-1 * var(--nf-ext)); width: calc(var(--nf-aw) + var(--nf-ext)); height: calc(var(--nf-aw) * 620 / 840); }
+  .nf-art picture { height: 100%; }
+  .nf-art img { width: 100%; height: 100%; object-fit: cover; object-position: 0 50%; }
+  .nf-sticker { --s: clamp(120px, calc(min(100vw, 1440px) * .104), 150px); right: calc(var(--nf-ext) + var(--nf-aw) * .02); top: 16%; }
+}
+@media (max-width: 599px) {
+  .nf-br { display: inline; }
+  .nf-t { display: inline-block; font-size: min(200px, calc(100cqi / 3.9)); line-height: 1.05; }
+}
+@supports not (width: 1cqi) {
+  @media (max-width: 599px) { .nf-t { font-size: min(200px, calc((100vw - 2 * var(--gutter)) / 3.9)); } }
+}
+
+.nf-path { font-size: 16px; line-height: 1.5; overflow-wrap: anywhere; }
+.nf-path__v { padding: 2px 8px; border: 2px dashed currentColor; font-family: var(--bn); font-weight: 700; font-size: 16px; }
+
+/* the signboards: real links, cut like the planks on the post */
+.nf-signs { display: flex; flex-wrap: wrap; gap: 18px 20px; margin-top: 10px; }
+.nf-sign {
+  --b: var(--shola); --fg: var(--kajal);
+  position: relative; isolation: isolate; display: inline-flex; flex-direction: column; justify-content: center; gap: 2px; min-height: 64px; min-width: 132px;
+  padding: 10px 44px 10px 18px; color: var(--fg); filter: drop-shadow(5px 5px 0 var(--kajal)); transition: transform .15s ease;
+}
+.nf-sign::before, .nf-sign::after { content: ""; position: absolute; z-index: -1; }
+.nf-sign::before { inset: 0; background: var(--kajal); clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 50%, calc(100% - 28px) 100%, 0 100%); }
+.nf-sign::after { inset: 4px 5px 4px 4px; background: var(--b); clip-path: polygon(0 0, calc(100% - 25px) 0, 100% 50%, calc(100% - 25px) 100%, 0 100%); }
+.nf-sign--back { padding: 10px 18px 10px 44px; }
+.nf-sign--back::before { clip-path: polygon(28px 0, 100% 0, 100% 100%, 28px 100%, 0 50%); }
+.nf-sign--back::after { inset: 4px 4px 4px 5px; clip-path: polygon(25px 0, 100% 0, 100% 100%, 25px 100%, 0 50%); }
+.nf-sign:hover { text-decoration: none; transform: translate(-2px, -2px); }
+.nf-sign--home { --b: var(--shola); }
+.nf-sign--darshan { --b: var(--haldi); }
+.nf-sign--festivals { --b: var(--sindoor); --fg: var(--shola); }
+.nf-sign--seva { --b: var(--peacock-d); --fg: var(--shola); }
+.nf-sign--visit { --b: var(--abir); --fg: var(--shola); }
+.nf-sign__bn { font-weight: 800; font-size: 22px; line-height: 1.15; white-space: nowrap; }
+.nf-sign__en { font-family: var(--caps); font-weight: 800; font-size: 13px; line-height: 1.2; letter-spacing: .12em; text-transform: uppercase; }
+@media (max-width: 599px) {
+  .nf-signs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .nf-sign { min-width: 0; }
+  .nf-sign--home { grid-column: 1 / -1; justify-self: start; }
+}
+
+/* today at the mandir */
+.nf-today { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 48px; }
+.nf-today__t { display: flex; flex-direction: column; gap: 4px; }
+.nf-today__h { font-weight: 800; font-stretch: 75%; font-size: clamp(40px, 4.2vw, 60px); line-height: 1.05; }
+.nf-today__en { font-family: var(--caps); font-weight: 800; font-size: clamp(16px, 1.4vw, 20px); letter-spacing: .06em; text-transform: uppercase; color: var(--sindoor-ink); }
+.nf-today__b { display: flex; flex-direction: column; gap: 8px; flex: 1 1 380px; min-width: 0; }
+.nf-today__hrs { font-size: 17px; line-height: 1.5; color: var(--muted); }
+.nf-today__tell { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: 16px; line-height: 1.5; }

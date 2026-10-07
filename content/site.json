@@ -1,0 +1,720 @@
+{
+  "_read_me": "All the facts the website shows live here. Edit this file, then run: python3 build.py. Anything marked confirm: true, or written as [CONFIRM] or [IN CAPITALS], still needs checking by the mandir before launch.",
+  "site": {
+    "name_en": "Tridhara Milan Mandir",
+    "name_bn": "ত্রিধারা মিলন মন্দির",
+    "short_bn": "ত্রিধারা",
+    "place_en": "Panchmura",
+    "tagline_en": "Naba Brindaban · Panchmura’s Second Vrindavan",
+    "signature_bn": "বাঙালির বারো মাসে তেরো পার্বণ",
+    "domain": "https://tridharamandir.com",
+    "trust_line": "",
+    "year": 2026,
+    "description": "Tridhara Milan Mandir, Panchmura: Mahadev, Radha-Krishna and Maa Kali in one mandir. Darshan daily from 5 AM, free anna-daan prasad, festivals all year."
+  },
+  "contact": {
+    "phone": "+91 96091 75202",
+    "phone_e164": "+919609175202",
+    "email": "info@tridharamandir.com",
+    "whatsapp": null,
+    "address_lines": [
+      "Tridhara Milan Mandir Road,",
+      "Panchmura, Bankura,",
+      "West Bengal 722156"
+    ],
+    "street": "Tridhara Milan Mandir Road",
+    "locality": "Panchmura",
+    "district": "Bankura",
+    "region": "West Bengal",
+    "postcode": "722156",
+    "country": "IN",
+    "map_url": "https://maps.app.goo.gl/W5XD2Cpb2Cx14qUd9",
+    "geo": [
+      22.967507,
+      87.1709535
+    ],
+    "seva_desk": "Seva desk 8 AM – 6 PM",
+    "social": [
+      [
+        "Facebook",
+        "https://www.facebook.com/TridharaMilanMandir"
+      ],
+      [
+        "Instagram",
+        "https://www.instagram.com/tridharamilanmandir"
+      ],
+      [
+        "YouTube",
+        "https://www.youtube.com/@tridharamandir"
+      ]
+    ]
+  },
+  "hours": {
+    "_note": "Minutes after midnight, India time. Darshan opens at 5:00 AM (300) and closes at 9:00 PM (1260) on weekdays, 9:30 PM (1290) on Saturday and Sunday.",
+    "open": 300,
+    "close_weekday": 1260,
+    "close_weekend": 1290,
+    "lines": [
+      "Mon–Fri 5:00 AM – 9:00 PM",
+      "Sat–Sun 5:00 AM – 9:30 PM"
+    ]
+  },
+  "schedule": [
+    {
+      "time": "5:00",
+      "ampm": "AM",
+      "bn": "মঙ্গল আরতি",
+      "en": "Mangal Arati",
+      "note": "With tulsi parikrama",
+      "start": 300,
+      "end": 330
+    },
+    {
+      "time": "7:30",
+      "ampm": "AM",
+      "bn": "রাজভোগ দর্শন",
+      "en": "Raj-bhog darshan",
+      "note": "Jhulan darshan till noon",
+      "start": 450,
+      "end": 720
+    },
+    {
+      "time": "12:30",
+      "ampm": "PM",
+      "bn": "অন্নদান প্রসাদ",
+      "en": "Anna-daan prasad",
+      "note": "Free for every visitor, till 2 PM",
+      "start": 750,
+      "end": 840
+    },
+    {
+      "time": "6:30",
+      "ampm": "PM",
+      "bn": "ত্রিধারা সন্ধ্যা আরতি",
+      "en": "Tridhara Sandhya Arati",
+      "note": "Trishul, chakra and shankha in one arati",
+      "start": 1110,
+      "end": 1200
+    },
+    {
+      "time": "8:00",
+      "ampm": "PM",
+      "bn": "বৃন্দাবন সভা",
+      "en": "Vrindavan Sabha",
+      "note": "Katha from 8 PM",
+      "start": 1200,
+      "end": null
+    }
+  ],
+  "tithi_nights": {
+    "_note": "Ekadashi, Purnima and Amavasya nights: kirtan through the night. Add each year’s dates from the panjika.",
+    "dates": [
+      "2026-10-10",
+      "2026-10-25",
+      "2026-11-08",
+      "2026-11-24",
+      "2027-03-22",
+      "2027-06-18",
+      "2027-08-17"
+    ]
+  },
+  "festivals": [
+    {
+      "id": "mahalaya",
+      "bn": "মহালয়া",
+      "en": "Mahalaya",
+      "start": "2026-10-10",
+      "end": "2026-10-10",
+      "dhara": "shakta",
+      "moon": "new",
+      "date_bn": "১০ অক্টোবর",
+      "date_en": "Sat 10 Oct 2026"
+    },
+    {
+      "id": "durga",
+      "bn": "দুর্গাপূজা",
+      "en": "Durga Puja",
+      "start": "2026-10-16",
+      "end": "2026-10-21",
+      "dhara": "shakta",
+      "big": true,
+      "date_bn": "১৬–২১ অক্টোবর",
+      "date_en": "Fri 16 – Wed 21 Oct 2026",
+      "days": [
+        {
+          "date": "2026-10-16",
+          "bn": "ষষ্ঠী",
+          "en": "Shashthi"
+        },
+        {
+          "date": "2026-10-17",
+          "bn": "সপ্তমী",
+          "en": "Saptami"
+        },
+        {
+          "date": "2026-10-18",
+          "bn": "সপ্তমী",
+          "en": "Saptami"
+        },
+        {
+          "date": "2026-10-19",
+          "bn": "মহাষ্টমী",
+          "en": "Mahashtami"
+        },
+        {
+          "date": "2026-10-20",
+          "bn": "মহানবমী",
+          "en": "Mahanavami"
+        },
+        {
+          "date": "2026-10-21",
+          "bn": "বিজয়া দশমী",
+          "en": "Bijoya Dashami"
+        }
+      ],
+      "short_en": "Durga Puja"
+    },
+    {
+      "id": "lakshmi",
+      "bn": "কোজাগরী লক্ষ্মীপূজা",
+      "en": "Kojagari Lakshmi Puja",
+      "start": "2026-10-25",
+      "end": "2026-10-25",
+      "dhara": "all",
+      "moon": "full",
+      "date_bn": "২৫ অক্টোবর",
+      "date_en": "Sun 25 Oct 2026"
+    },
+    {
+      "id": "kali",
+      "bn": "কালীপূজা",
+      "en": "Kali Puja",
+      "start": "2026-11-08",
+      "end": "2026-11-08",
+      "dhara": "shakta",
+      "moon": "new",
+      "big": true,
+      "date_bn": "৮ নভেম্বর",
+      "date_en": "Sun 8 Nov 2026",
+      "short_en": "Kali Puja"
+    },
+    {
+      "id": "bhaiphonta",
+      "bn": "ভাইফোঁটা",
+      "en": "Bhai Phonta",
+      "start": "2026-11-11",
+      "end": "2026-11-11",
+      "dhara": "all",
+      "date_bn": "১১ নভেম্বর",
+      "date_en": "Wed 11 Nov 2026"
+    },
+    {
+      "id": "jagaddhatri",
+      "bn": "জগদ্ধাত্রী পূজা",
+      "en": "Jagaddhatri Puja",
+      "start": "2026-11-18",
+      "end": "2026-11-18",
+      "dhara": "shakta",
+      "date_bn": "১৮ নভেম্বর",
+      "date_en": "Wed 18 Nov 2026"
+    },
+    {
+      "id": "rash",
+      "bn": "রাসপূর্ণিমা",
+      "en": "Rash Purnima",
+      "start": "2026-11-24",
+      "end": "2026-11-24",
+      "dhara": "vaishnava",
+      "moon": "full",
+      "date_bn": "২৪ নভেম্বর",
+      "date_en": "Tue 24 Nov 2026"
+    },
+    {
+      "id": "poush",
+      "bn": "পৌষ সংক্রান্তি",
+      "en": "Poush Sankranti",
+      "start": "2027-01-15",
+      "end": "2027-01-15",
+      "dhara": "all",
+      "date_bn": "১৫ জানুয়ারি",
+      "date_en": "Fri 15 Jan 2027"
+    },
+    {
+      "id": "saraswati",
+      "bn": "সরস্বতী পূজা",
+      "en": "Saraswati Puja",
+      "start": "2027-02-11",
+      "end": "2027-02-11",
+      "dhara": "all",
+      "date_bn": "১১ ফেব্রুয়ারি",
+      "date_en": "Thu 11 Feb 2027"
+    },
+    {
+      "id": "shivaratri",
+      "bn": "মহাশিবরাত্রি",
+      "en": "Maha Shivaratri",
+      "start": "2027-03-06",
+      "end": "2027-03-06",
+      "dhara": "shaiva",
+      "big": true,
+      "date_bn": "৬ মার্চ",
+      "date_en": "Sat 6 Mar 2027",
+      "short_en": "Shivaratri"
+    },
+    {
+      "id": "dol",
+      "bn": "দোলযাত্রা",
+      "en": "Dol Yatra · Gaura Purnima",
+      "start": "2027-03-22",
+      "end": "2027-03-22",
+      "dhara": "vaishnava",
+      "moon": "full",
+      "big": true,
+      "date_bn": "২২ মার্চ",
+      "date_en": "Mon 22 Mar 2027",
+      "short_en": "Dol Yatra"
+    },
+    {
+      "id": "basanti",
+      "bn": "বাসন্তী পূজা",
+      "en": "Basanti Puja",
+      "start": "2027-04-12",
+      "end": "2027-04-16",
+      "dhara": "shakta",
+      "date_bn": "১২–১৬ এপ্রিল",
+      "date_en": "Mon 12 – Fri 16 Apr 2027"
+    },
+    {
+      "id": "charak",
+      "bn": "চড়ক · চৈত্র সংক্রান্তি",
+      "en": "Charak · Chaitra Sankranti",
+      "start": "2027-04-14",
+      "end": "2027-04-14",
+      "dhara": "shaiva",
+      "date_bn": "১৪ এপ্রিল",
+      "date_en": "Wed 14 Apr 2027"
+    },
+    {
+      "id": "boishakh",
+      "bn": "পয়লা বৈশাখ",
+      "en": "Poila Boishakh · 1434",
+      "start": "2027-04-15",
+      "end": "2027-04-15",
+      "dhara": "all",
+      "date_bn": "১৫ এপ্রিল",
+      "date_en": "Thu 15 Apr 2027"
+    },
+    {
+      "id": "snan",
+      "bn": "স্নানযাত্রা",
+      "en": "Snan Yatra",
+      "start": "2027-06-18",
+      "end": "2027-06-18",
+      "dhara": "vaishnava",
+      "moon": "full",
+      "date_bn": "১৮ জুন",
+      "date_en": "Fri 18 Jun 2027"
+    },
+    {
+      "id": "rath",
+      "bn": "রথযাত্রা",
+      "en": "Rath Yatra",
+      "start": "2027-07-05",
+      "end": "2027-07-13",
+      "dhara": "vaishnava",
+      "big": true,
+      "date_bn": "৫ জুলাই",
+      "date_en": "Mon 5 Jul 2027",
+      "note_en": "The mandir’s 5th Pratishtha anniversary · Ulto Rath on Tue 13 Jul",
+      "days": [
+        {
+          "date": "2027-07-05",
+          "bn": "রথযাত্রা",
+          "en": "Rath Yatra"
+        },
+        {
+          "date": "2027-07-13",
+          "bn": "উল্টোরথ",
+          "en": "Ulto Rath"
+        }
+      ],
+      "short_en": "Rath Yatra"
+    },
+    {
+      "id": "ulto",
+      "bn": "উল্টোরথ",
+      "en": "Ulto Rath",
+      "start": "2027-07-13",
+      "end": "2027-07-13",
+      "dhara": "vaishnava",
+      "date_bn": "১৩ জুলাই",
+      "date_en": "Tue 13 Jul 2027"
+    },
+    {
+      "id": "jhulan",
+      "bn": "ঝুলন পূর্ণিমা",
+      "en": "Jhulan Purnima",
+      "start": "2027-08-17",
+      "end": "2027-08-17",
+      "dhara": "vaishnava",
+      "moon": "full",
+      "date_bn": "১৭ আগস্ট",
+      "date_en": "Tue 17 Aug 2027"
+    },
+    {
+      "id": "janmashtami",
+      "bn": "জন্মাষ্টমী",
+      "en": "Janmashtami",
+      "start": "2027-08-25",
+      "end": "2027-08-25",
+      "dhara": "vaishnava",
+      "big": true,
+      "confirm": true,
+      "date_bn": "২৫ আগস্ট",
+      "date_en": "Wed 25 Aug 2027",
+      "short_en": "Janmashtami"
+    }
+  ],
+  "heroes": {
+    "_note": "The first screen of the homepage. A big festival takes it 14 days before it starts, keeps it through its last day, and says thank you the day after. The rest of the year the evergreen screen shows, with a countdown to the next big festival. lines = the two lines of the big Bengali headline; w = width of each line and a/d = how far its letters rise and fall, measured with the real font (python3 tools/measure_titles.py).",
+    "lead_days": 14,
+    "evergreen": {
+      "tone": "shola",
+      "lines": [
+        "এক ঘটে",
+        "তিন ধারা"
+      ],
+      "m": [
+        [
+          2.56,
+          0.91,
+          0.03
+        ],
+        [
+          2.91,
+          0.92,
+          0.14
+        ]
+      ],
+      "sub": "Three streams, one mandir",
+      "body": "Mahadev’s stillness, Radha-Krishna’s bhakti and Maa Kali’s shakti, in one mandir in Panchmura. Darshan every day from 5 AM.",
+      "ctas": [
+        [
+          "Plan your darshan",
+          "darshan"
+        ],
+        [
+          "Offer seva",
+          "seva"
+        ]
+      ]
+    },
+    "durga": {
+      "tone": "sindoor",
+      "lines": [
+        "পুজো",
+        "আসছে"
+      ],
+      "m": [
+        [
+          1.76,
+          0.66,
+          0.34
+        ],
+        [
+          2.38,
+          0.65,
+          0.17
+        ]
+      ],
+      "lines_on": [
+        "শুভ",
+        "শারদীয়া"
+      ],
+      "m_on": [
+        [
+          1.34,
+          0.67,
+          0.0
+        ],
+        [
+          2.79,
+          0.98,
+          0.15
+        ]
+      ],
+      "lines_thanks": [
+        "আসছে বছর",
+        "আবার হবে"
+      ],
+      "m_thanks": [
+        [
+          3.97,
+          0.65,
+          0.17
+        ],
+        [
+          3.55,
+          0.65,
+          0.14
+        ]
+      ],
+      "thanks_sticker": [
+        "শুভ",
+        "বিজয়া",
+        "Shubho Bijoya"
+      ],
+      "sub": "Durga Puja at Tridhara · 16–21 October",
+      "body": "Shashthi to Dashami: five days of dhak, bhog and arati in Panchmura.",
+      "ctas": [
+        [
+          "See the Puja days",
+          "durga"
+        ],
+        [
+          "Book a bhog seva",
+          "seva"
+        ]
+      ]
+    },
+    "kali": {
+      "tone": "kajal",
+      "lines": [
+        "শ্যামা",
+        "পূজা"
+      ],
+      "m": [
+        [
+          1.81,
+          0.66,
+          0.0
+        ],
+        [
+          1.5,
+          0.66,
+          0.39
+        ]
+      ],
+      "sub": "Kali Puja · Dipanwita night · 8 November",
+      "body": "Dipanwita, the night of lamps, with Maa Kali.",
+      "ctas": [
+        [
+          "See the festival",
+          "festivals#kali"
+        ],
+        [
+          "Offer a seva",
+          "seva"
+        ]
+      ]
+    },
+    "shivaratri": {
+      "tone": "slate",
+      "lines": [
+        "শিব",
+        "রাত্রি"
+      ],
+      "m": [
+        [
+          1.29,
+          0.92,
+          0.01
+        ],
+        [
+          1.52,
+          0.92,
+          0.14
+        ]
+      ],
+      "sub": "Maha Shivaratri at Tridhara · 6 March",
+      "body": "Mahadev’s great night: jal and bel-patra for the Shiva linga.",
+      "ctas": [
+        [
+          "See the festival",
+          "festivals#shivaratri"
+        ],
+        [
+          "Offer a seva",
+          "seva"
+        ]
+      ]
+    },
+    "dol": {
+      "tone": "abir",
+      "lines": [
+        "দোল",
+        "যাত্রা"
+      ],
+      "m": [
+        [
+          1.63,
+          0.65,
+          0.03
+        ],
+        [
+          1.56,
+          0.65,
+          0.1
+        ]
+      ],
+      "sub": "Dol Yatra · Gaura Purnima · 22 March",
+      "body": "Abir for Radha-Krishna, and the birthday of Sri Chaitanya Mahaprabhu.",
+      "ctas": [
+        [
+          "See the festival",
+          "festivals#dol"
+        ],
+        [
+          "Offer a seva",
+          "seva"
+        ]
+      ]
+    },
+    "rath": {
+      "tone": "haldi",
+      "lines": [
+        "রথ",
+        "যাত্রা"
+      ],
+      "m": [
+        [
+          1.03,
+          0.66,
+          0.14
+        ],
+        [
+          1.56,
+          0.65,
+          0.1
+        ]
+      ],
+      "sub": "Rath Yatra · five years of Tridhara · 5 July",
+      "body": "The rath rolls out on the mandir’s own birthday: Tridhara was consecrated on Rath Yatra 2022.",
+      "ctas": [
+        [
+          "See the festival",
+          "festivals#rath"
+        ],
+        [
+          "Offer a seva",
+          "seva"
+        ]
+      ]
+    },
+    "janmashtami": {
+      "tone": "neel",
+      "lines": [
+        "শুভ",
+        "জন্মাষ্টমী"
+      ],
+      "m": [
+        [
+          1.34,
+          0.67,
+          0.0
+        ],
+        [
+          2.94,
+          0.98,
+          0.09
+        ]
+      ],
+      "sub": "Janmashtami in Naba Brindaban · 25 August",
+      "body": "Sri Krishna’s birthday at Naba Brindaban, Panchmura’s Second Vrindavan.",
+      "ctas": [
+        [
+          "See the festival",
+          "festivals#janmashtami"
+        ],
+        [
+          "Offer a seva",
+          "seva"
+        ]
+      ]
+    }
+  },
+  "marquee": [
+    "দুর্গাপূজা ১৬–২১ অক্টোবর",
+    "লক্ষ্মীপূজা ২৫ অক্টোবর",
+    "কালীপূজা ৮ নভেম্বর",
+    "রাসপূর্ণিমা ২৪ নভেম্বর",
+    "সরস্বতী পূজা ১১ ফেব্রুয়ারি",
+    "শিবরাত্রি ৬ মার্চ",
+    "দোলযাত্রা ২২ মার্চ",
+    "রথযাত্রা ও পঞ্চম প্রতিষ্ঠা দিবস ৫ জুলাই"
+  ],
+  "seva_home": [
+    {
+      "amount": "₹1,001",
+      "bn": "৮০ জনের অন্নদান",
+      "en": "Anna-daan for 80",
+      "desc": "Prasad for 80 devotees, cooked in terracotta handis.",
+      "accent": "haldi"
+    },
+    {
+      "amount": "₹5,001",
+      "bn": "স্বাস্থ্য শিবির",
+      "en": "Health camps",
+      "desc": "Medical supplies for the quarterly camps across 15 Panchmura villages.",
+      "accent": "sindoor"
+    },
+    {
+      "amount": "₹11,001",
+      "bn": "শিল্পশিক্ষা বৃত্তি",
+      "en": "Heritage-arts scholarship",
+      "desc": "Textbooks, instruments and travel for five heritage-arts students.",
+      "accent": "peacock"
+    }
+  ],
+  "payment": {
+    "methods": "UPI, bank transfer or cheque",
+    "receipt": "Receipt within 48 hours",
+    "tax": "80G certification in progress",
+    "upi": "",
+    "bank": "",
+    "how": "For UPI or bank details, call or email the seva desk (8 AM – 6 PM daily)."
+  },
+  "forms": {
+    "_note": "The production site posts every form to /api/form on the tridharamandir Worker, which emails it to the mandir through ZeptoMail. The test link has no server, so there the forms show a summary instead.",
+    "endpoint": "/api/form"
+  },
+  "redirects": {
+    "_note": "Old tridharamandir.com addresses and where they should go on the new site. The Cloudflare Worker uses this list (301 redirects, with or without a trailing slash, any letter case); build.py also writes it as _redirects and .htaccess for other hosting. A key ending in * covers every address under it; exact addresses win.",
+    "/plan-your-visit": "/visit/",
+    "/why-visit": "/visit/",
+    "/guides/visit-from-kolkata": "/visit/#route",
+    "/guides/bankura-temple-tour-itinerary": "/visit/",
+    "/guest-house": "/visit/#stay",
+    "/guides/guest-house-experiences": "/visit/#experiences",
+    "/faqs": "/visit/#questions",
+    "/about-us": "/about/",
+    "/history": "/about/",
+    "/events": "/festivals/",
+    "/festivals/rath-yatra": "/festivals/#rath",
+    "/festivals/janmashtami": "/festivals/#janmashtami",
+    "/services": "/seva/",
+    "/services/donation-and-seva": "/seva/",
+    "/services/bhog-and-prasad": "/seva/",
+    "/services/darshan-and-timings": "/darshan/",
+    "/services/marriage-and-rituals": "/seva/#rituals",
+    "/volunteer": "/seva/#volunteer",
+    "/gallery": "/about/",
+    "/gallery/rituals": "/about/",
+    "/gallery/festivals": "/about/",
+    "/gallery/deities": "/about/",
+    "/gallery/architecture": "/about/",
+    "/gallery/all": "/about/",
+    "/preview/about": "/about/",
+    "/search": "/",
+    "/sitemap": "/sitemap.xml",
+    "/icon.png": "/favicon-32.png",
+    "/apple-icon.png": "/apple-touch-icon.png",
+    "/gallery/*": "/about/",
+    "/services/*": "/seva/",
+    "/guides/*": "/visit/",
+    "/preview/*": "/about/"
+  },
+  "analytics": {
+    "ga4": "G-LEJ542QV0B"
+  }
+}

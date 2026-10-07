@@ -1,48 +1,22 @@
 {
-  "name": "tridhara-landing",
-  "version": "0.1.0",
+  "name": "tridharamandir",
+  "version": "2.0.0",
   "private": true,
+  "description": "tridharamandir.com: the Utsav website for Tridhara Milan Mandir, Panchmura (static site built by build.py, served by a Cloudflare Worker).",
+  "type": "module",
   "packageManager": "yarn@1.22.22",
   "engines": {
     "node": ">=20.19.0",
     "yarn": "1.x"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "build:worker": "opennextjs-cloudflare build",
-    "start": "next start",
-    "lint": "next lint",
-    "preview": "yarn build:worker && opennextjs-cloudflare preview",
-    "deploy": "yarn build:worker && wrangler deploy",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
-    "email:dev": "email dev --dir src/emails --port 3001"
-  },
-  "dependencies": {
-    "@hookform/resolvers": "^5.2.2",
-    "@opennextjs/cloudflare": "^1.11.0",
-    "clsx": "2.1.0",
-    "lucide-react": "0.303.0",
-    "next": "^14.2.0",
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0",
-    "react-hook-form": "^7.66.0",
-    "zod": "^4.1.12"
+    "build": "python3 build.py",
+    "build:worker": "python3 build.py --site-only --strict",
+    "test": "python3 build.py --site-only && node worker/test.mjs",
+    "dev": "python3 build.py --site-only && wrangler dev",
+    "deploy": "yarn build:worker && wrangler deploy"
   },
   "devDependencies": {
-    "@react-email/components": "^0.5.7",
-    "@react-email/preview-server": "4.3.2",
-    "@react-email/render": "^1.4.0",
-    "@types/node": "20.10.6",
-    "@types/react": "^18.3.0",
-    "@types/react-dom": "^18.3.0",
-    "autoprefixer": "10.4.16",
-    "eslint": "8.56.0",
-    "eslint-config-next": "14.2.33",
-    "postcss": "8.4.32",
-    "react-email": "^4.3.2",
-    "tailwindcss": "3.3.6",
-    "typescript": "5.3.3",
     "wrangler": "^4.44.0"
   }
 }

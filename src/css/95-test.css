@@ -1,0 +1,29 @@
+/* TEST LINK ONLY: the Test panel (not in the production build) */
+.tpanel { position: fixed; right: 12px; bottom: calc(env(safe-area-inset-bottom, 0px) + 12px); z-index: 250; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; font-family: var(--bn); }
+.tpanel__toggle {
+  min-height: 44px; padding: 10px 16px; border: 3px solid var(--kajal); background: var(--haldi); color: var(--kajal); box-shadow: 4px 4px 0 var(--kajal);
+  font-family: var(--caps); font-weight: 800; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; cursor: pointer;
+}
+.tpanel__toggle.is-on { background: var(--sindoor); color: var(--shola); }
+.tpanel__box {
+  width: min(360px, calc(100vw - 24px)); max-height: min(78vh, 640px); overflow-y: auto; padding: 16px; border: 3px solid var(--kajal);
+  background: var(--shola); color: var(--kajal); box-shadow: 6px 6px 0 var(--kajal); display: flex; flex-direction: column; gap: 10px;
+}
+.tpanel__head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.tpanel__h { font-family: var(--caps); font-weight: 800; font-size: 16px; letter-spacing: .1em; text-transform: uppercase; }
+.tpanel__x { width: 36px; height: 36px; border: 2px solid var(--kajal); background: transparent; font-size: 22px; line-height: 1; cursor: pointer; }
+.tpanel__p, .tpanel__now { font-size: 14px; line-height: 1.4; }
+.tpanel__now { font-weight: 700; }
+.tpanel__small { font-size: 13px; line-height: 1.4; color: var(--muted); }
+.tpanel__row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.tpanel__row input { min-height: 40px; padding: 4px 8px; border: 2px solid var(--kajal); background: #fff; font-size: 15px; }
+.tpanel__btn { min-height: 40px; padding: 6px 12px; border: 2px solid var(--kajal); background: var(--kajal); color: var(--haldi); font-family: var(--caps); font-weight: 800; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+.tpanel__btn--ghost { background: transparent; color: var(--kajal); }
+.tpanel__btn:disabled { opacity: .4; cursor: default; }
+.tpanel__presets { display: flex; flex-wrap: wrap; gap: 6px; }
+.tpanel__chip { min-height: 34px; padding: 4px 10px; border: 2px solid var(--kajal); border-radius: 999px; background: #fff; font-size: 13px; line-height: 1.2; cursor: pointer; }
+.tpanel__chip:hover { background: var(--haldi); }
+.tpanel__count { font-weight: 800; font-size: 15px; }
+.tpanel__hr { width: 100%; border: 0; border-top: 2px dashed rgba(22, 16, 12, .3); margin: 4px 0; }
+mark.tbc.tbc--flash { animation: tbcflash 1.4s ease 2; }
+@keyframes tbcflash { 50% { background: var(--sindoor); color: var(--shola); box-shadow: 0 0 0 6px var(--sindoor); } }

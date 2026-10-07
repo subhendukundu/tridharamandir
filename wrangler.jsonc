@@ -1,10 +1,19 @@
+// tridharamandir.com runs on this Cloudflare Worker.
+// Cloudflare Workers Builds builds it from GitHub on every push: `yarn build:worker` (python3 build.py → dist/site),
+// then `npx wrangler deploy` on main (the live site) or `npx wrangler versions upload` on other branches (a preview link).
+// The custom domains (tridharamandir.com, www) and the ZEPTOMAIL_* secrets are set on the Worker in the Cloudflare
+// dashboard, not here, and a deploy keeps them.
 {
+  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "tridharamandir",
-  "main": ".open-next/worker.js",
+  "main": "worker/index.js",
   "compatibility_date": "2025-05-05",
-  "compatibility_flags": ["nodejs_compat"],
   "assets": {
-    "directory": ".open-next/assets",
-    "binding": "ASSETS"
+    "directory": "dist/site",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    // the Worker sees every request first: old-address redirects, /api/form, headers
+    "run_worker_first": true
   }
 }

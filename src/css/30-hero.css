@@ -1,0 +1,123 @@
+/* ---------------------------------------------------------------- the coloured first band (under the floating header) */
+.top { position: relative; isolation: isolate; overflow: hidden; background: var(--tone-bg); color: var(--tone-fg); }
+.top::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: url(img/grain.svg) 0 0 / 320px 320px; opacity: .08; }
+.top__in { position: relative; max-width: var(--max); margin-inline: auto; padding-top: var(--hdr-h); }
+
+/* ---------------------------------------------------------------- homepage first screen: one at a time */
+.hero { display: none; flex-direction: column; justify-content: space-between; gap: clamp(18px, 2.2vw, 26px); padding: clamp(6px, 1.2vw, 16px) var(--gutter) clamp(28px, 2.6vw, 36px); }
+html:not([data-hero]) .hero[data-hero="evergreen"],
+html[data-hero="evergreen"] .hero[data-hero="evergreen"],
+html[data-hero="durga"] .hero[data-hero="durga"],
+html[data-hero="kali"] .hero[data-hero="kali"],
+html[data-hero="shivaratri"] .hero[data-hero="shivaratri"],
+html[data-hero="dol"] .hero[data-hero="dol"],
+html[data-hero="rath"] .hero[data-hero="rath"],
+html[data-hero="janmashtami"] .hero[data-hero="janmashtami"] { display: flex; }
+
+/* parts that change with the festival's state: coming (countdown) · on (the days) · thanks (the day after) */
+.hero [data-when] { display: none; }
+.hero [data-when="all"],
+html[data-hero-state="coming"] .hero [data-when~="coming"],
+html[data-hero-state="on"] .hero [data-when~="on"],
+html[data-hero-state="thanks"] .hero [data-when~="thanks"] { display: block; }
+.hero .hero__copy[data-when] { display: none; }
+.hero .hero__copy[data-when="all"],
+html[data-hero-state="coming"] .hero .hero__copy[data-when~="coming"],
+html[data-hero-state="on"] .hero .hero__copy[data-when~="on"],
+html[data-hero-state="thanks"] .hero .hero__copy[data-when~="thanks"] { display: flex; }
+
+/* the two-line Bengali headline, sized to fit its column (see heroes in content/site.json for the measured line widths) */
+.hero__head { position: relative; z-index: 2; container-type: inline-size; }
+.hero__headin {
+  position: relative;
+  --hs: clamp(104px, 25cqi, 188px);
+  --fs: min(264px, calc(100cqi / var(--wmax)), calc((100cqi - var(--hs)) / (var(--w1) + .25)), calc(var(--th-max) / var(--th)));
+}
+.hero__title {
+  font-family: var(--bn); font-weight: 800; font-stretch: 75%; font-size: var(--fs); line-height: 1; color: var(--tone-head);
+  text-shadow: .03em .03em 0 var(--tone-shadow); padding-top: calc(var(--pt) * 1em); padding-bottom: calc(var(--pb) * 1em);
+}
+.hero__l { display: block; white-space: nowrap; }
+.hero__l + .hero__l { margin-top: max(calc((var(--lead) - 1) * 1em), calc(var(--under, 0) * (var(--hs) - (1.65 - var(--a2, 1)) * var(--fs) + 8px) - (1 - var(--under, 0)) * 9999px)); }
+.hero__sticker { --s: var(--hs); position: absolute; left: calc(var(--fs) * (var(--w1) + .25)); top: calc(var(--fs) * (var(--pt) + .16)); }
+.hero__copy { position: relative; z-index: 2; flex-direction: column; gap: 10px; }
+.hero__sub { font-family: var(--caps); font-weight: 800; font-size: clamp(25px, 2.8vw, 40px); line-height: 1.08; letter-spacing: .02em; text-transform: uppercase; text-wrap: balance; }
+.hero__body { max-width: 640px; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.45; }
+.hero__copy .btns { margin-top: clamp(8px, 1.1vw, 16px); }
+.hero__art { position: relative; z-index: 0; display: block; }
+.hero__art img { display: block; width: 100%; height: auto; }
+
+/* today, on phones: what's next at the mandir */
+.livebar {
+  position: relative; z-index: 2; display: none; align-items: center; justify-content: space-between; gap: 12px;
+  margin: 0 var(--gutter) clamp(26px, 6vw, 34px); padding: 12px 12px 12px 16px; border: 3px solid var(--kajal); background: var(--shola); color: var(--kajal); box-shadow: 6px 6px 0 var(--kajal);
+}
+.livebar__t { display: flex; align-items: flex-start; gap: 10px; min-width: 0; font-size: 16px; line-height: 1.3; }
+.livebar__dot { flex: none; width: 11px; height: 11px; margin-top: 6px; border-radius: 50%; background: var(--sindoor); animation: pulse 2s ease-in-out infinite; }
+.livebar__k { font-weight: 800; }
+.livebar__when { display: block; font-family: var(--caps); font-weight: 800; font-size: 18px; letter-spacing: .03em; color: var(--sindoor); }
+@keyframes pulse { 50% { opacity: .35; } }
+
+@media (min-width: 900px) {
+  :root { --art-w: min(61.11vw, 880px); --art-h: calc(var(--art-w) * .95); --th-max: min(470px, 32.6vw); }
+  .hero { min-height: calc(var(--art-h) - var(--hdr-h)); }
+  /* the art file runs 200 board units past the board's edge: on screens wider than 1440 px the box grows into the free margin and shows it */
+  .hero__art { --ext: clamp(0px, (100vw - var(--max)) / 2, calc(var(--art-w) * .2273)); position: absolute; top: 0; right: calc(-1 * var(--ext)); width: calc(var(--art-w) + var(--ext)); height: var(--art-h); }
+  .hero__art img { width: 100%; height: 100%; object-fit: cover; object-position: 0 50%; }
+  .hero__head, .hero__copy { width: min(100%, 56vw, 800px); }
+}
+@media (max-width: 899px) {
+  :root { --th-max: 9999px; }
+  .hero { gap: 14px; }
+  .hero__art { margin-inline: calc(-1 * var(--gutter)); }
+  .livebar { display: flex; }
+}
+@media (min-width: 600px) and (max-width: 899px) {
+  .hero__art { margin-inline: auto; width: min(100%, 560px); }
+}
+/* phones: the headline gets the full width and the sticker sits on the picture below it */
+@media (max-width: 599px) {
+  .hero__headin { --hs: clamp(100px, 30cqi, 124px); --fs: min(264px, calc(100cqi / var(--wmax))); }
+  .hero__l + .hero__l { margin-top: calc((var(--lead) - 1) * 1em); }
+  .hero__sticker { left: auto; right: 2px; top: calc(100% + 10px); }
+}
+
+/* ---------------------------------------------------------------- inner-page first screen */
+.phero { position: relative; display: flex; flex-direction: column; gap: clamp(18px, 2vw, 26px); padding: clamp(10px, 2.4vw, 40px) var(--gutter) clamp(36px, 4.4vw, 64px); }
+.phero__text { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 14px; container-type: inline-size; }
+.phero__title {
+  font-family: var(--bn); font-weight: 800; font-stretch: 75%; font-size: min(var(--ph-max, 200px), calc(100cqi / var(--w, 3))); line-height: 1.02;
+  color: var(--tone-head); text-shadow: .035em .035em 0 var(--tone-shadow); white-space: nowrap; padding-top: calc(var(--pt, .1) * 1em);
+}
+.phero__en { margin-top: 6px; font-family: var(--caps); font-weight: 800; font-size: clamp(25px, 2.8vw, 40px); line-height: 1.08; letter-spacing: .02em; text-transform: uppercase; text-wrap: balance; }
+.phero__sub { max-width: 620px; font-size: clamp(17px, 1.46vw, 21px); line-height: 1.5; }
+.phero .btns { margin-top: 8px; }
+.phero__art { position: relative; z-index: 0; display: block; }
+.phero__art img { display: block; width: 100%; height: auto; }
+.phero__sticker { position: absolute; z-index: 3; }
+@media (min-width: 900px) {
+  :root { --ph-h: min(43.06vw, 620px); }
+  .phero { min-height: calc(var(--ph-h) - var(--hdr-h)); justify-content: center; }
+  .phero__text { width: min(100%, 55vw, 780px); }
+  .phero__art { position: absolute; top: 0; right: 0; width: calc(var(--pa-w, .5) * min(100vw, var(--max))); }
+}
+@media (max-width: 899px) {
+  .phero__art { margin-inline: calc(-1 * var(--gutter)); }
+  .phero__sticker { position: relative; }
+}
+@media (min-width: 600px) and (max-width: 899px) {
+  .phero__art { margin-inline: auto; width: min(100%, 560px); }
+}
+
+/* browsers without container-query units (iOS 15, older Android Chrome): size from the viewport instead */
+@supports not (width: 1cqi) {
+  .hero__headin { --cw: calc(100vw - 2 * var(--gutter)); --hs: clamp(104px, 25vw, 188px); --fs: min(264px, calc(var(--cw) / var(--wmax)), calc((var(--cw) - var(--hs)) / (var(--w1) + .25)), calc(var(--th-max) / var(--th))); }
+  .phero__title { font-size: min(var(--ph-max, 200px), calc((100vw - 2 * var(--gutter)) / var(--w, 3))); }
+  @media (max-width: 599px) {
+    .hero__headin { --hs: clamp(100px, 30vw, 124px); --fs: min(264px, calc(var(--cw) / var(--wmax))); }
+  }
+  @media (min-width: 900px) {
+    .hero__headin { --cw: min(56vw, 800px); --hs: clamp(104px, 13vw, 188px); }
+    .phero__title { font-size: min(var(--ph-max, 200px), calc(min(55vw, 780px) / var(--w, 3))); }
+  }
+}

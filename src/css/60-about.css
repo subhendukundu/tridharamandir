@@ -1,0 +1,243 @@
+/* ---------------------------------------------------------------- ABOUT page (.abt-) */
+
+/* first screen: the art sits on the band's floor, with the Pratishtha sticker on it */
+.abt-hero__art picture { display: block; }
+.abt-hero__sticker { --s: clamp(128px, 34vw, 150px); position: absolute; z-index: 2; left: 3%; top: 2%; transform: rotate(8deg); }
+.abt-hero__sticker .sticker__num { font-size: .36em; }
+.abt-hero__sticker .sticker__en, .abt-hero__sticker .sticker__en--long { max-width: 72%; letter-spacing: .05em; }
+.abt-hero__br { display: none; }
+/* desktop: wider than 1440 px the art runs on to the right (up to 200 more board units, drawn in the file) instead of stopping in a hard edge */
+@media (min-width: 900px) {
+  .abt-hero { --abt-aw: calc(var(--pa-w) * min(100vw, var(--max))); --abt-ext: clamp(0px, (100vw - var(--max)) / 2, 200px); }
+  .abt-hero .abt-hero__art { top: auto; bottom: 0; right: calc(-1 * var(--abt-ext)); width: calc(var(--abt-aw) + var(--abt-ext)); height: calc(var(--abt-aw) * 620 / 840); }
+  .abt-hero__art picture { height: 100%; }
+  .abt-hero__art img { width: 100%; height: 100%; object-fit: cover; object-position: 0 50%; }
+  .abt-hero__sticker { --s: calc(min(100vw, 1440px) * .1333); left: auto; right: calc(var(--abt-ext) + var(--abt-aw) * .06); top: 15%; }
+  .abt-hero__sticker .sticker__en, .abt-hero__sticker .sticker__en--long { max-width: 88%; letter-spacing: .06em; }
+}
+@media (max-width: 599px) {
+  .abt-hero__sticker .sticker__num { font-size: .33em; }   /* the four-digit year keeps clear of the border on small stickers */
+  .abt-hero__br { display: inline; }
+  .abt-hero__t { display: inline-block; font-size: min(200px, calc(100cqi / 3.12)); line-height: 1; }
+}
+@supports not (width: 1cqi) {
+  @media (max-width: 599px) { .abt-hero__t { font-size: min(200px, calc((100vw - 2 * var(--gutter)) / 3.12)); } }
+}
+
+/* ---------------------------------------------------------------- the names it goes by */
+.abt-names { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 24px 48px; align-items: center; }
+.abt-names__t { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.abt-names__h { font-weight: 800; font-stretch: 75%; font-size: clamp(38px, 3.9vw, 56px); line-height: 1.05; color: var(--haldi); text-wrap: balance; }
+.abt-names__en { font-family: var(--caps); font-weight: 800; font-size: clamp(15px, 1.25vw, 18px); letter-spacing: .1em; text-transform: uppercase; }
+.abt-names__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 20px; }
+.abt-name { display: flex; flex-direction: column; gap: 4px; min-width: 0; padding: 14px 16px; border: 3px solid var(--shola); }
+.abt-name__bn { font-weight: 800; font-size: clamp(20px, 1.6vw, 24px); line-height: 1.25; }
+.abt-name__en { font-family: var(--caps); font-weight: 800; font-size: 13px; line-height: 1.3; letter-spacing: .1em; text-transform: uppercase; color: var(--haldi); }
+.abt-name__d { font-size: 15px; line-height: 1.45; color: var(--dusk); }
+.abt-name--blessing { background: var(--haldi); color: var(--kajal); border-color: var(--haldi); box-shadow: 6px 6px 0 var(--sindoor); transform: rotate(-1deg); }
+.abt-name--blessing .abt-name__en { color: var(--kajal); }
+.abt-name--blessing .abt-name__d { color: var(--kajal); font-weight: 700; }
+@media (max-width: 1199px) {
+  .abt-names { grid-template-columns: minmax(0, 1fr); }
+  .abt-names__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 559px) { .abt-names__list { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------------------------------------------------------------- the journey: poster cards on a line */
+.abt-tl { --ov: clamp(90px, 10.4vw, 150px); position: relative; display: flex; flex-direction: column; padding-bottom: 10px; }
+.abt-step { position: relative; display: flex; justify-content: flex-start; }
+.abt-step--r { justify-content: flex-end; }
+.abt-step + .abt-step { margin-top: calc(-1 * var(--ov)); }
+.abt-step::before { content: ""; position: absolute; left: 50%; top: 76px; width: 6px; margin-left: -3px; height: calc(100% - var(--ov)); background: var(--kajal); }
+.abt-step:last-child::before { display: none; }
+.abt-step__node { position: absolute; z-index: 1; top: 58px; left: 50%; width: 36px; height: 36px; margin-left: -18px; border-radius: 50%; border: 5px solid var(--kajal); background: var(--bg); }
+.abt-step__stub { position: absolute; top: 74px; height: 4px; background: var(--kajal); }
+.abt-step--l .abt-step__stub { left: 45%; right: 50%; }
+.abt-step--r .abt-step__stub { left: 50%; right: 45%; }
+.abt-step__card {
+  --art: clamp(72px, 26cqi, 160px);
+  position: relative; width: 45.7%; min-height: 320px; padding: clamp(22px, 2.1vw, 30px) clamp(20px, 2.2vw, 32px) clamp(24px, 2.2vw, 32px);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-content: start; gap: 8px 14px; background: var(--bg); color: var(--shola);
+  border: 4px solid var(--kajal); box-shadow: 10px 10px 0 var(--kajal); transform: rotate(var(--rot)); container-type: inline-size; transition: transform .25s ease;
+}
+.abt-step__card:hover { transform: rotate(0deg) translateY(-4px); }
+.abt-step--light .abt-step__card { color: var(--kajal); }
+.abt-step__card > * { grid-column: 1 / -1; min-width: 0; }
+/* the year and its English line on the left, the icon in its own column beside them */
+.abt-step__card > .abt-step__yr { grid-column: 1; grid-row: 1; }
+.abt-step__card > .abt-step__en { grid-column: 1; grid-row: 2; }
+.abt-step__card > .abt-step__art { grid-column: 2; grid-row: 1 / span 2; align-self: start; width: var(--art); height: auto; }
+/* the year fills its own column (one size for every card); a day-month before it shrinks with it, and drops to its own line if it must */
+.abt-step__yr { --yfs: min(100px, calc(100cqi / 3.45)); container-type: inline-size; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 10px; }
+.abt-step__pre { font-weight: 800; font-size: calc(var(--yfs) * .34); line-height: 1; white-space: nowrap; }
+.abt-step__y {
+  font-weight: 800; font-stretch: 75%; font-size: var(--yfs); line-height: .95;
+  color: var(--acc); text-shadow: .05em .05em 0 var(--kajal); white-space: nowrap;
+}
+@supports not (width: 1cqi) {
+  .abt-step__card { --art: clamp(72px, 11vw, 160px); }
+  .abt-step__yr { --yfs: clamp(52px, 7vw, 100px); }
+}
+.abt-step__en { font-family: var(--caps); font-weight: 800; font-size: 16px; letter-spacing: .14em; text-transform: uppercase; }
+.abt-step__bn { margin-top: 14px; max-width: 360px; font-weight: 800; font-size: clamp(28px, 2.5vw, 36px); line-height: 1.15; }
+.abt-step__t { font-family: var(--caps); font-weight: 800; font-size: clamp(16px, 1.25vw, 18px); letter-spacing: .08em; text-transform: uppercase; }
+.abt-step__d { margin-top: 4px; max-width: 470px; font-size: clamp(17px, 1.25vw, 18px); line-height: 1.55; }
+.abt-chips { display: flex; flex-wrap: wrap; gap: 12px 14px; margin-top: 8px; }
+.abt-chip { display: inline-flex; align-items: baseline; gap: 10px; padding: 8px 14px; background: var(--kajal); color: var(--haldi); }
+.abt-chip__n { font-weight: 800; font-stretch: 75%; font-size: clamp(32px, 2.8vw, 40px); line-height: 1; white-space: nowrap; }
+.abt-chip__l { font-family: var(--caps); font-weight: 800; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--shola); }
+.abt-five { align-self: flex-start; margin-top: 8px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 8px 14px; border: 2px solid var(--shola); }
+.abt-five__bn { font-weight: 800; font-size: 24px; line-height: 1.15; }
+.abt-five__en { font-family: var(--caps); font-weight: 800; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--haldi); }
+@media (max-width: 999px) {
+  .abt-tl { --gy: 30px; }
+  .abt-step { margin-left: 40px; }
+  .abt-step--r { justify-content: flex-start; }
+  .abt-step + .abt-step { margin-top: var(--gy); }
+  .abt-step::before { left: -24px; top: 40px; height: calc(100% + var(--gy)); }
+  .abt-step__node { left: -24px; top: 24px; width: 32px; height: 32px; margin-left: -16px; border-width: 4px; }
+  .abt-step--l .abt-step__stub, .abt-step--r .abt-step__stub { left: -8px; right: auto; width: 8px; top: 38px; }
+  .abt-step__card { width: 100%; min-height: 0; transform: rotate(calc(var(--rot) * .4)); }
+}
+/* phones: the year takes the whole width; the icon moves down beside the Bengali title */
+@media (max-width: 599px) {
+  .abt-step__card > .abt-step__yr, .abt-step__card > .abt-step__en { grid-column: 1 / -1; }
+  .abt-step__card > .abt-step__art { grid-row: 3 / span 2; align-self: center; width: 72px; }
+  .abt-step__card > .abt-step__bn { grid-column: 1; grid-row: 3; }
+  .abt-step__card > .abt-step__t { grid-column: 1; grid-row: 4; }
+  @supports not (width: 1cqi) { .abt-step__yr { --yfs: calc((100vw - 2 * var(--gutter) - 92px) / 3.45); } }
+}
+
+/* ---------------------------------------------------------------- three streams, one arati */
+.abt-dharas { align-items: stretch; }
+.abt-dh { --focus: var(--haldi); display: flex; flex-direction: column; min-width: 0; background: var(--d-bg); color: var(--shola); border: 4px solid var(--kajal); box-shadow: 10px 10px 0 var(--kajal); }
+.abt-dh--dark { box-shadow: 10px 10px 0 var(--sindoor); }
+.abt-dh__art { display: block; width: 100%; height: auto; aspect-ratio: 352 / 250; border-bottom: 4px solid var(--kajal); }
+.abt-dh__body { flex: 1 1 auto; display: flex; flex-direction: column; gap: 8px; padding: clamp(20px, 2vw, 28px); }
+.abt-dh__top { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
+.abt-dh__name { font-weight: 800; font-stretch: 75%; font-size: clamp(64px, 6.7vw, 96px); line-height: 1.05; color: var(--haldi); }
+.abt-dh__top .ic { color: var(--haldi); margin-bottom: 12px; }
+.abt-dh__en { font-family: var(--caps); font-weight: 800; font-size: 16px; letter-spacing: .14em; text-transform: uppercase; }
+.abt-dh__deity { margin-top: 12px; font-weight: 800; font-size: clamp(32px, 2.8vw, 40px); line-height: 1.15; }
+.abt-dh__deityen { font-family: var(--caps); font-weight: 800; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--haldi); }
+.abt-dh__d { margin-top: 4px; font-size: 18px; line-height: 1.5; color: var(--sand); }
+.abt-dh__fest {
+  margin-top: 16px; align-self: flex-start; display: inline-flex; flex-direction: column; gap: 2px; padding: 8px 14px;
+  background: var(--haldi); color: var(--kajal); box-shadow: 4px 4px 0 var(--kajal); font-weight: 800; font-size: 19px; line-height: 1.25;
+}
+.abt-dh--dark .abt-dh__fest { box-shadow: 4px 4px 0 var(--sindoor); }
+.abt-dh__fest:hover { text-decoration: none; transform: translate(-2px, -2px); }
+.abt-dh__festen { font-family: var(--caps); font-weight: 800; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+.abt-dh__sound { margin-top: auto; padding-top: 18px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; border-top: 2px solid rgba(255, 246, 230, .3); }
+.abt-dh__soundk { font-family: var(--caps); font-weight: 700; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--dusk); }
+.abt-dh__soundbn { font-weight: 800; font-size: 22px; }
+.abt-dh__sounden { font-family: var(--caps); font-weight: 800; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--haldi); }
+.abt-also { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+.abt-also__t { display: flex; flex-direction: column; gap: 2px; font-weight: 800; font-size: 22px; line-height: 1.2; }
+.abt-also__en { font-family: var(--caps); font-weight: 800; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; }
+.abt-also__list { display: flex; flex-wrap: wrap; gap: 12px 14px; }
+.abt-also__list li {
+  display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding: 8px 14px; border: 3px solid var(--kajal);
+  background: var(--shola); box-shadow: 4px 4px 0 var(--kajal); font-weight: 700; font-size: 18px; line-height: 1.25;
+}
+.abt-also__li-en { font-family: var(--caps); font-weight: 800; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.abt-arati { align-self: stretch; justify-content: flex-start; gap: 16px 36px; padding: clamp(20px, 2vw, 28px) clamp(20px, 2.5vw, 36px); box-shadow: 10px 10px 0 var(--sindoor); }
+.abt-arati .aratiband__t { flex: 1 1 380px; }
+.abt-arati__en { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.5; color: var(--muted); }
+.abt-arati__when { margin-top: 2px; font-weight: 700; font-size: 16px; line-height: 1.5; }
+
+/* ---------------------------------------------------------------- the architecture */
+.abt-arch { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(32px, 4.4vw, 64px); align-items: start; }
+.abt-arch__fig { margin: 0; border: 4px solid var(--kajal); box-shadow: 12px 12px 0 var(--kajal); background: var(--neel); }
+.abt-arch__svg { display: block; width: 100%; height: auto; }
+.abt-arch__num { font-family: var(--bn); font-weight: 800; font-size: 26px; fill: var(--kajal); }
+.abt-arch__dim { font-family: var(--bn); font-weight: 800; font-size: 24px; fill: var(--shola); }
+.abt-parts { display: flex; flex-direction: column; border-bottom: 3px solid var(--kajal); }
+.abt-part { display: flex; gap: 18px; padding: 16px 0 18px; border-top: 3px solid var(--kajal); }
+.abt-part__n {
+  flex: none; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; border: 3px solid var(--kajal);
+  background: var(--shola); box-shadow: 3px 3px 0 var(--kajal); font-weight: 800; font-size: 24px; line-height: 1;
+}
+.abt-part__t { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.abt-part__bn { font-weight: 800; font-size: clamp(22px, 1.9vw, 28px); line-height: 1.2; }
+.abt-part__en { font-family: var(--caps); font-weight: 800; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--sindoor-ink); }
+.abt-part__d { margin-top: 4px; font-size: 17px; line-height: 1.5; }
+@media (max-width: 999px) { .abt-arch { grid-template-columns: minmax(0, 1fr); } .abt-arch__fig { max-width: 640px; } }
+
+/* ---------------------------------------------------------------- the work */
+.abt-work { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 640px); gap: clamp(32px, 3.9vw, 56px); align-items: center; }
+.abt-feat { display: flex; flex-direction: column; gap: 12px; min-width: 0; container-type: inline-size; }
+.abt-feat__n { font-weight: 800; font-stretch: 75%; font-size: clamp(110px, 15vw, 220px); font-size: min(220px, 42cqi); line-height: .92; color: var(--haldi); text-shadow: .036em .036em 0 var(--sindoor); white-space: nowrap; }
+.abt-feat__bn { margin-top: 10px; font-weight: 800; font-size: clamp(30px, 3vw, 44px); line-height: 1.2; }
+.abt-feat__en { font-family: var(--caps); font-weight: 800; font-size: 18px; letter-spacing: .12em; text-transform: uppercase; color: var(--haldi); }
+.abt-feat__d { margin-top: 8px; max-width: 560px; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; color: var(--sand); }
+.abt-grow { display: flex; flex-direction: column; gap: 12px; max-width: 520px; margin-top: 10px; }
+.abt-grow__row { display: grid; grid-template-columns: 58px minmax(0, 1fr) 96px; align-items: center; gap: 12px; }
+.abt-grow__k { font-weight: 800; font-size: 20px; line-height: 1; }
+.abt-grow__bar { justify-self: start; width: calc(var(--v) * 100%); height: 22px; background: var(--haldi); box-shadow: 4px 4px 0 var(--sindoor); }
+.abt-grow__n { font-weight: 800; font-stretch: 75%; font-size: 30px; line-height: 1; color: var(--haldi); }
+.abt-feat__handis { display: flex; gap: 18px; margin-top: 18px; }
+.abt-handi { width: clamp(64px, 6.7vw, 96px); height: auto; }
+.abt-stats { display: flex; flex-direction: column; gap: 36px; min-width: 0; }
+.abt-stat {
+  display: flex; align-items: center; gap: clamp(16px, 2vw, 28px); padding: clamp(22px, 2.1vw, 30px) clamp(20px, 2.2vw, 32px);
+  background: var(--bg); color: var(--shola); border: 4px solid var(--kajal); box-shadow: 10px 10px 0 var(--sh);
+}
+.abt-stat__n { flex: none; min-width: 2.1em; font-weight: 800; font-stretch: 75%; font-size: clamp(80px, 8.9vw, 128px); line-height: .95; text-shadow: .047em .047em 0 var(--kajal); white-space: nowrap; }
+.abt-stat__t { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.abt-stat__bn { font-weight: 800; font-size: clamp(24px, 2.1vw, 30px); line-height: 1.2; }
+.abt-stat__en { font-family: var(--caps); font-weight: 800; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--en, var(--haldi)); }
+.abt-stat__d { margin-top: 4px; font-size: 17px; line-height: 1.5; }
+@media (max-width: 1099px) { .abt-work { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 599px) {
+  .abt-stat { flex-direction: column; align-items: flex-start; }
+  .abt-grow__row { grid-template-columns: 48px minmax(0, 1fr) 80px; }
+}
+
+/* ---------------------------------------------------------------- Panchmura */
+.abt-pm { display: grid; grid-template-columns: minmax(0, 540px) minmax(0, 1fr); gap: clamp(32px, 4.4vw, 64px); align-items: center; }
+.abt-pm__art { margin: 0; border: 4px solid var(--kajal); box-shadow: 12px 12px 0 var(--kajal); }
+.abt-pm__art img { display: block; width: 100%; height: auto; }
+.abt-pm__t { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.abt-pm__h { padding-top: .08em; font-weight: 800; font-stretch: 75%; font-size: clamp(72px, 8.3vw, 120px); line-height: 1.1; text-shadow: .05em .05em 0 var(--kajal); }
+.abt-pm__en { margin-bottom: 18px; font-family: var(--caps); font-weight: 800; font-size: clamp(20px, 1.8vw, 26px); letter-spacing: .06em; text-transform: uppercase; color: var(--haldi); }
+.abt-pm__facts .fact__k { color: var(--shola); }
+.abt-pm__facts .fact__t { font-size: clamp(21px, 1.7vw, 24px); }
+.abt-pm__facts .fact__d { color: var(--mint); }
+.abt-pm .btns { margin-top: 22px; }
+@media (max-width: 899px) { .abt-pm { grid-template-columns: minmax(0, 1fr); } .abt-pm__art { max-width: 480px; } }
+
+/* ---------------------------------------------------------------- the people */
+.abt-people { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(28px, 2.8vw, 40px); align-items: stretch; }
+.abt-pcard { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: clamp(22px, 2vw, 28px); border: 4px solid var(--kajal); box-shadow: 10px 10px 0 var(--kajal); background: var(--paper2); color: var(--kajal); }
+.abt-pcard--founder { background: var(--shola); box-shadow: 10px 10px 0 var(--sindoor); }
+.abt-pcard--vol { background: var(--sindoor); color: var(--shola); scroll-margin-top: 24px; }
+/* the founder's monogram: his initials painted on a haldi medallion (the site has no photographs) */
+.abt-mono {
+  display: grid; place-items: center; width: clamp(96px, 8.3vw, 120px); aspect-ratio: 1; border-radius: 50%;
+  background: var(--haldi); color: var(--kajal); border: 4px solid var(--kajal);
+  box-shadow: inset 0 0 0 7px var(--haldi), inset 0 0 0 11px var(--sindoor), 6px 6px 0 var(--kajal);
+}
+.abt-mono__t { padding-top: .12em; font-weight: 800; font-stretch: 75%; font-size: clamp(38px, 3.4vw, 50px); line-height: 1; white-space: nowrap; }
+.abt-mono__d { margin-inline: .06em; color: var(--sindoor-ink); }
+.abt-pcard__ic { width: clamp(96px, 8.3vw, 120px); height: auto; }
+.abt-pcard__bn { margin-top: 10px; font-weight: 800; font-stretch: 75%; font-size: clamp(46px, 4.45vw, 64px); line-height: 1.05; }
+.abt-pcard--vol .abt-pcard__bn { margin-top: 0; text-shadow: .07em .07em 0 var(--kajal); }
+.abt-pcard__en { font-family: var(--caps); font-weight: 800; font-size: clamp(18px, 1.5vw, 22px); letter-spacing: .08em; text-transform: uppercase; color: var(--sindoor-ink); }
+.abt-pcard--vol .abt-pcard__en { color: var(--shola); }
+.abt-pcard__role { margin-top: 2px; font-weight: 700; font-size: 19px; line-height: 1.35; }
+.abt-pcard__roleen { font-family: var(--caps); font-weight: 800; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.abt-pcard__d { margin-top: 6px; font-size: 18px; line-height: 1.55; }
+.abt-pcard__go { margin-top: auto; padding-top: 16px; }
+@media (max-width: 1099px) {
+  .abt-people { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .abt-pcard--vol { grid-column: 1 / -1; }
+}
+@media (max-width: 699px) { .abt-people { grid-template-columns: minmax(0, 1fr); } }
+.abt-arati .aratiband__bn { text-wrap: balance; }
+
+/* a section-head aside that wraps under its title keeps to the right edge (desktop) */
+.abt-head .sec-head__aside, .abt-head .sec-head__en { text-wrap: balance; }
+@media (min-width: 900px) { .abt-head .sec-head__aside { margin-left: auto; } }
+.abt-step__d, .abt-dh__d, .abt-part__d, .abt-stat__d, .abt-pcard__d, .abt-name__d { text-wrap: pretty; }
+.abt-arati__when .u { padding-block: 10px; }

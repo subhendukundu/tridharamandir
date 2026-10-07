@@ -1,0 +1,374 @@
+/* ---------------------------------------------------------------- SEVA page (.sev-) */
+
+/* first screen: the art sits on the band's floor; the round sticker rides beside the big সেবা */
+.sev-hero__art picture { display: block; }
+.sev-hero__sticker {
+  --sev-fs: min(250px, calc(100cqi / 3.17)); --sev-gap: clamp(12px, 4cqi, 60px);
+  --s: clamp(116px, calc(var(--sev-fs) * .8), 200px);
+  position: absolute; z-index: 3; top: calc(var(--sev-fs) * .06); left: calc(var(--sev-fs) * 1.5 + var(--sev-gap));
+  transform: rotate(-9deg);
+}
+.sev-hero__sticker .sticker__num { font-size: .3em; }
+.sev-hero__sticker .sticker__en { max-width: 86%; letter-spacing: .08em; }
+@supports not (width: 1cqi) {
+  .sev-hero__sticker { --sev-fs: min(250px, calc((100vw - 2 * var(--gutter)) / 3.17)); --sev-gap: clamp(12px, 3.6vw, 60px); }
+  @media (min-width: 900px) { .sev-hero__sticker { --sev-fs: min(250px, calc(min(55vw, 780px) / 3.17)); } }
+}
+/* desktop: the art stands on the band's floor. Wider than 1440 px it runs on to the right (up to 200 more board units,
+   drawn in the file) instead of stopping in a hard edge at the end of the 1440 px column. */
+@media (min-width: 900px) {
+  .sev-hero { --sev-aw: calc(var(--pa-w) * min(100vw, var(--max))); --sev-ext: clamp(0px, (100vw - var(--max)) / 2, 200px); }
+  .sev-hero .sev-hero__art { top: auto; bottom: 0; right: calc(-1 * var(--sev-ext)); width: calc(var(--sev-aw) + var(--sev-ext)); height: calc(var(--sev-aw) * 620 / 840); }
+  .sev-hero__art picture { height: 100%; }
+  .sev-hero__art img { width: 100%; height: 100%; object-fit: cover; object-position: 0 50%; }
+}
+
+.sev-hero__also { margin-top: 4px; font-size: 16px; line-height: 1.5; }
+.sev-hero__also span { font-family: var(--caps); font-weight: 800; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; margin-right: 4px; }
+.sev-hero__also a { font-weight: 700; }
+
+/* ---------------------------------------------------------------- choose a seva */
+.sev-cardwrap { padding-top: 6px; }
+.sev-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(44px, 4vw, 56px) clamp(24px, 2.5vw, 36px); }
+.sev-card { position: relative; display: flex; min-width: 0; }
+.sev-card__tag {
+  position: absolute; left: 22px; top: -16px; z-index: 1; display: inline-flex; align-items: baseline; gap: 8px; padding: 5px 12px;
+  background: var(--kajal); color: var(--haldi); white-space: nowrap;
+}
+.sev-card__tag [lang="bn"] { font-weight: 700; font-size: 15px; line-height: 1.2; }
+.sev-card__tag-en { font-family: var(--caps); font-weight: 800; font-size: 13px; line-height: 1.2; letter-spacing: .14em; text-transform: uppercase; }
+.sev-card__in { flex: 1 1 auto; padding-top: clamp(28px, 2.6vw, 34px); }
+.sev-card__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.sev-card__top .seva-card__amt { min-width: 0; }
+.sev-card__price { white-space: nowrap; }
+.sev-card__per { font-size: .45em; letter-spacing: .04em; }
+.sev-ic { flex: none; width: clamp(56px, 5.8vw, 84px); height: auto; }
+.sev-swipe { display: none; }
+@media (max-width: 1099px) { .sev-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 699px) {
+  .sev-cardwrap {
+    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; margin-inline: calc(-1 * var(--gutter));
+    padding: 22px var(--gutter) 26px; scroll-padding-inline: var(--gutter); scrollbar-width: thin;
+  }
+  .sev-cards { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: min(calc(100vw - 2 * var(--gutter) - 36px), 300px); gap: 20px; width: max-content; }
+  .sev-card { scroll-snap-align: start; }
+  .sev-swipe { display: flex; align-items: center; gap: 10px; margin-top: calc(-1 * var(--gap) + 8px); font-weight: 700; font-size: 16px; }
+  .sev-swipe__en { font-family: var(--caps); font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; }
+}
+
+/* ---------------------------------------------------------------- the plate calculator */
+.sev-calc {
+  --focus: var(--kajal);
+  display: grid; grid-template-columns: minmax(0, 1fr) clamp(300px, 30vw, 420px); gap: clamp(24px, 3.9vw, 56px);
+  padding: clamp(20px, 3.3vw, 48px); background: var(--haldi); color: var(--kajal); border: 4px solid var(--kajal); box-shadow: 14px 14px 0 var(--sindoor);
+}
+.sev-calc__l { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.sev-calc__q { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.sev-calc__qbn { font-weight: 800; font-size: clamp(26px, 2.1vw, 30px); line-height: 1.2; }
+.sev-calc__qen { font-family: var(--caps); font-weight: 800; font-size: clamp(14px, 1.1vw, 16px); letter-spacing: .14em; text-transform: uppercase; }
+.sev-picks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.5vw, 22px); }
+.sev-pick {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 0; min-height: clamp(76px, 7.8vw, 112px); padding: 8px 6px;
+  border: 3px solid var(--kajal); border-radius: 0; background: var(--shola); color: var(--kajal); box-shadow: 5px 5px 0 var(--kajal); cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.sev-pick:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--kajal); }
+.sev-pick[aria-pressed="true"] { background: var(--kajal); color: var(--haldi); box-shadow: 5px 5px 0 var(--sindoor); }
+.sev-pick__n { font-weight: 800; font-stretch: 75%; font-size: clamp(38px, 3.75vw, 54px); line-height: 1; }
+.sev-pick__n--word { font-size: clamp(24px, 2.1vw, 30px); line-height: 1.15; }
+.sev-pick__en { font-family: var(--caps); font-weight: 800; font-size: 13px; line-height: 1.2; letter-spacing: .1em; text-transform: uppercase; text-align: center; }
+.sev-calc__amt { display: flex; align-items: flex-end; gap: 10px; }
+.sev-calc__rupee { font-family: var(--caps); font-weight: 800; font-size: 40px; line-height: 56px; }
+.sev-calc__field { flex: 0 1 300px; }
+.sev-calc__grid { margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.sev-calc__svg { display: block; width: 100%; height: auto; }
+.sev-calc__cap { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-weight: 700; font-size: clamp(18px, 1.4vw, 20px); line-height: 1.3; }
+.sev-calc__capen { font-family: var(--caps); font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.sev-calc__r { display: flex; flex-direction: column; justify-content: center; gap: 12px; min-width: 0; padding-left: clamp(24px, 3.3vw, 48px); border-left: 4px solid var(--kajal); container-type: inline-size; }
+.sev-calc__k { font-family: var(--caps); font-weight: 800; font-size: 16px; letter-spacing: .14em; text-transform: uppercase; }
+.sev-calc__total {
+  --len: 6; font-family: var(--caps); font-weight: 800; font-size: min(168px, calc(100cqi / (var(--len) * .4))); line-height: .92;
+  color: var(--sindoor-ink); text-shadow: .036em .036em 0 var(--kajal); white-space: nowrap;
+}
+.sev-calc__bn { margin-top: 10px; font-weight: 700; font-size: clamp(20px, 1.6vw, 24px); line-height: 1.35; }
+.sev-calc__en { font-family: var(--caps); font-weight: 800; font-size: clamp(15px, 1.25vw, 18px); line-height: 1.3; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.sev-calc__est { font-size: 15px; line-height: 1.5; color: var(--muted); }
+.sev-calc__estk {
+  display: inline-block; margin-right: 6px; padding: 2px 8px; background: var(--kajal); color: var(--haldi);
+  font-family: var(--caps); font-weight: 800; font-size: 12px; line-height: 1.3; letter-spacing: .12em; text-transform: uppercase;
+}
+.sev-calc__go { margin-top: 12px; }
+@media (max-width: 1023px) {
+  .sev-calc { grid-template-columns: minmax(0, 1fr); box-shadow: 10px 10px 0 var(--sindoor); }
+  .sev-calc__r { padding: 22px 0 0; border-left: 0; border-top: 4px solid var(--kajal); }
+  .sev-calc__total { font-size: min(120px, calc(100cqi / (var(--len) * .4))); }
+}
+@media (max-width: 599px) {
+  .sev-picks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sev-pick--custom { grid-column: 1 / -1; min-height: 64px; }
+  .sev-calc__go .btn { width: 100%; }
+}
+@supports not (width: 1cqi) { .sev-calc__total { font-size: clamp(64px, 9vw, 140px); } }
+
+/* ---------------------------------------------------------------- the seva request form and its live summary */
+.sev-order { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: clamp(32px, 3.9vw, 56px); align-items: start; }
+.sev-order .sev-form { min-width: 0; gap: 26px; scroll-margin-top: 16px; }
+.sev-fs { margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.sev-fs__l { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding: 0; margin-bottom: 4px; }
+.sev-opts { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 228px), 1fr)); gap: 14px; }
+.sev-pays { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 18px; }
+.sev-opt, .sev-pay {
+  display: flex; align-items: flex-start; gap: 12px; min-width: 0; min-height: 64px; padding: 14px 16px;
+  border: 3px solid var(--kajal); background: var(--shola); color: var(--kajal); cursor: pointer; transition: box-shadow .15s ease, background-color .15s ease;
+}
+.sev-opt:hover, .sev-pay:hover { box-shadow: 4px 4px 0 var(--kajal); }
+.sev-opt:has(input:checked), .sev-pay:has(input:checked) { background: var(--haldi); box-shadow: 5px 5px 0 var(--kajal); }
+.sev-opt input, .sev-pay input { flex: none; width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--kajal); }
+.sev-opt--other { border-style: dashed; }
+.sev-opt__t { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.sev-pay { align-items: center; }
+.sev-pay__t { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; min-width: 0; }
+.sev-pays__how { margin-top: 4px; font-size: 16px; line-height: 1.5; color: var(--muted); }
+.sev-opt__bn { font-weight: 800; font-size: 19px; line-height: 1.25; }
+.sev-opt__en, .sev-pay__en { font-family: var(--caps); font-weight: 800; font-size: 13px; line-height: 1.25; letter-spacing: .1em; text-transform: uppercase; }
+.sev-opt__amt { font-size: 15px; line-height: 1.35; color: var(--muted); }
+.sev-pay__bn { font-weight: 800; font-size: 20px; line-height: 1.2; }
+.sev-formnote { max-width: 62ch; font-size: 15px; line-height: 1.5; color: var(--muted); }
+.sev-form .sev-amtf { max-width: 420px; }
+.sev-form .form__submit { min-height: clamp(60px, 5.3vw, 76px); padding-inline: clamp(20px, 2.5vw, 36px); font-size: clamp(20px, 1.95vw, 28px); box-shadow: 6px 6px 0 var(--kajal); }
+.sev-form .form-result { scroll-margin-top: 16px; }
+.sev-next { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding-top: 14px; border-top: 2px dashed var(--kajal); }
+.sev-next__t { flex: 1 1 240px; font-size: 16px; line-height: 1.5; }
+
+.sev-sum {
+  position: sticky; top: 24px; display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: clamp(20px, 2.2vw, 32px);
+  background: var(--neel); color: var(--shola); border: 4px solid var(--kajal); box-shadow: 12px 12px 0 var(--kajal); container-type: inline-size;
+}
+.sev-sum__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.sev-sum__t { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.sev-sum__kk { font-family: var(--caps); font-weight: 800; font-size: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--haldi); }
+.sev-sum__bn { font-weight: 800; font-stretch: 75%; font-size: clamp(36px, 3.6vw, 52px); line-height: 1.1; overflow-wrap: anywhere; }
+.sev-sum__en { font-family: var(--caps); font-weight: 800; font-size: 18px; line-height: 1.25; letter-spacing: .1em; text-transform: uppercase; }
+.sev-sum__medal { flex: none; display: grid; place-items: center; width: clamp(84px, 7.8vw, 112px); aspect-ratio: 1; border-radius: 50%; background: var(--haldi); border: 3px solid var(--kajal); }
+.sev-sum__ic { display: block; width: 76%; }
+.sev-sum__ic .sev-ic { width: 100%; }
+.sev-sum__rows { margin: 12px 0 0; display: flex; flex-direction: column; }
+.sev-sum__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 2px dashed rgba(255, 246, 230, .4); }
+.sev-sum__row:last-child { border-bottom: 0; }
+.sev-sum__row dt { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font-weight: 600; font-size: 17px; }
+.sev-sum__row dd { margin: 0; min-width: 0; font-weight: 700; font-size: 18px; text-align: right; overflow-wrap: anywhere; }
+.sev-sum__k { font-family: var(--caps); font-weight: 700; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .8; }
+.sev-sum__total { margin-top: 10px; padding-top: 18px; border-top: 4px solid var(--shola); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 8px 16px; }
+.sev-sum__tk { display: flex; flex-direction: column; gap: 2px; font-weight: 800; font-size: 26px; line-height: 1.1; }
+.sev-sum__tk .sev-sum__k { color: var(--haldi); opacity: 1; }
+.sev-sum__amtw { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; min-width: 0; }
+.sev-sum__amt {
+  --len: 6; font-family: var(--caps); font-weight: 800; font-size: min(76px, calc(72cqi / (var(--len) * .42))); line-height: .9;
+  color: var(--haldi); white-space: nowrap; text-align: right;
+}
+@supports not (width: 1cqi) { .sev-sum__amt { font-size: clamp(40px, 5vw, 72px); } }
+.sev-sum__per { font-family: var(--caps); font-weight: 800; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--haldi); }
+.sev-sum__note { margin-top: 14px; font-size: 15px; line-height: 1.5; color: var(--sand); }
+@media (max-width: 1099px) {
+  .sev-order { grid-template-columns: minmax(0, 1fr); }
+  .sev-sum { position: static; order: -1; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; box-shadow: 8px 8px 0 var(--kajal); }
+  .sev-sum__medal, .sev-sum__rows, .sev-sum__note { display: none; }
+  .sev-sum__total { margin: 0; padding: 0; border: 0; }
+  .sev-sum__tk { display: none; }
+  .sev-sum__amt { font-size: min(56px, calc(100cqi / (var(--len) * .55))); }
+}
+@media (max-width: 699px) {
+  .sev-pays { grid-template-columns: minmax(0, 1fr); }
+  .sev-form .form__submit { width: 100%; }
+}
+
+/* ---------------------------------------------------------------- how to pay: the three ways, and the seva desk that gives the details */
+.sev-payrow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: clamp(28px, 3.9vw, 56px); align-items: center; }
+.sev-ways { display: flex; flex-direction: column; gap: 22px; }
+.sev-way {
+  display: flex; align-items: center; gap: 18px; min-width: 0; padding: 14px 22px 14px 16px;
+  border: 4px solid var(--kajal); box-shadow: 8px 8px 0 var(--kajal); background: var(--shola); color: var(--kajal);
+}
+.sev-way--upi { background: var(--haldi); transform: rotate(-.6deg); }
+.sev-way--bank { transform: rotate(.5deg); }
+.sev-way--cheque { background: var(--paper2); transform: rotate(-.4deg); }
+.sev-way__ic { flex: none; width: clamp(52px, 4.4vw, 64px); height: auto; }
+.sev-way__h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; min-width: 0; }
+.sev-way__bn { font-weight: 800; font-stretch: 75%; font-size: clamp(30px, 2.6vw, 38px); line-height: 1.1; }
+.sev-way__en { font-family: var(--caps); font-weight: 800; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--sindoor-ink); }
+.sev-way--upi .sev-way__en { color: var(--kajal); }
+.sev-paydesk {
+  --focus: var(--kajal);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 14px; min-width: 0; padding: clamp(22px, 2.5vw, 36px);
+  background: var(--shola); color: var(--kajal); border: 4px solid var(--kajal); box-shadow: 12px 12px 0 var(--haldi);
+}
+.sev-paydesk__k { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+.sev-paydesk__k [lang="bn"] { font-weight: 800; font-stretch: 75%; font-size: clamp(34px, 3.1vw, 46px); line-height: 1.1; }
+.sev-paydesk__ke { font-family: var(--caps); font-weight: 800; font-size: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--sindoor-ink); }
+.sev-paydesk__t { max-width: 46ch; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.5; text-wrap: pretty; }
+.sev-paydesk__phone { margin-top: 6px; }
+.sev-paydesk__phone .copyval__v { font-family: var(--caps); font-weight: 800; font-size: clamp(32px, 3.2vw, 46px); line-height: 1; letter-spacing: .02em; }
+.sev-paydesk__mail .copyval__v { font-size: 18px; text-decoration: underline; text-underline-offset: 4px; }
+.sev-payfacts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; }
+.sev-safe { display: flex; flex-direction: column; gap: 10px; max-width: 920px; padding: 18px 22px; border: 3px dashed rgba(255, 246, 230, .55); font-size: 17px; line-height: 1.5; }
+.sev-safe strong { color: var(--haldi); }
+@media (max-width: 899px) {
+  .sev-payrow { grid-template-columns: minmax(0, 1fr); }
+  .sev-ways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .sev-way { flex-direction: column; justify-content: flex-start; gap: 8px; padding: 14px 8px 12px; text-align: center; transform: none; box-shadow: 6px 6px 0 var(--kajal); }
+  .sev-way__h { flex-direction: column; align-items: center; }
+  .sev-way__bn { font-size: clamp(21px, 4.6vw, 32px); }
+  .sev-way__en { font-size: 12px; }
+  .sev-payfacts { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------------------------------------------------------------- where it goes */
+.sev-imps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+.sev-imp { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding-left: clamp(20px, 2.2vw, 32px); border-left: 4px solid var(--shola); container-type: inline-size; }
+.sev-medal { width: clamp(92px, 8.6vw, 124px); height: auto; }
+.sev-imp__n { margin-top: 6px; font-weight: 800; font-stretch: 75%; font-size: clamp(80px, 9vw, 150px); font-size: min(150px, 40cqi); line-height: .95; color: var(--shola); text-shadow: .047em .047em 0 var(--kajal); white-space: nowrap; }
+.sev-imp__bn { margin-top: 8px; font-weight: 800; font-size: clamp(26px, 2.2vw, 32px); line-height: 1.2; }
+.sev-imp__en { font-family: var(--caps); font-weight: 800; font-size: 17px; letter-spacing: .14em; text-transform: uppercase; color: var(--shola); }
+.sev-imp__d { margin-top: 4px; max-width: 340px; font-size: 18px; line-height: 1.55; color: var(--shola); }
+@media (max-width: 899px) { .sev-imps { gap: 24px; } .sev-imp__d { font-size: 16px; } }
+@media (max-width: 699px) {
+  .sev-imps { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .sev-imp__n { font-size: clamp(80px, 26vw, 120px); font-size: min(120px, 40cqi); }
+  .sev-imp__d { font-size: 17px; }
+}
+
+/* ---------------------------------------------------------------- anna-daan prasad is free */
+.sev-prasad { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 48px; }
+.sev-prasad__t { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.sev-prasad__h { font-weight: 800; font-stretch: 75%; font-size: clamp(40px, 4.45vw, 64px); line-height: 1.05; text-wrap: balance; }
+.sev-prasad__en { font-family: var(--caps); font-weight: 800; font-size: clamp(16px, 1.4vw, 20px); letter-spacing: .06em; text-transform: uppercase; }
+.sev-prasad__list { display: flex; flex-wrap: wrap; gap: 20px 28px; }
+.sev-prasad__list li {
+  display: flex; flex-direction: column; gap: 6px; flex: 1 1 220px; max-width: 320px; padding: 16px 20px;
+  background: var(--shola); border: 3px solid var(--kajal); box-shadow: 6px 6px 0 var(--kajal); font-size: 16px; line-height: 1.45;
+}
+.sev-prasad__big { font-family: var(--caps); font-weight: 800; font-size: clamp(30px, 2.8vw, 40px); line-height: 1; color: var(--sindoor); }
+@media (max-width: 599px) { .sev-prasad__list li { max-width: none; } }
+
+/* ---------------------------------------------------------------- rituals and ceremonies (the old /services/marriage-and-rituals) */
+.sev-rits { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(24px, 2.5vw, 32px); }
+.sev-rit { display: flex; min-width: 0; }
+.sev-rit__in { flex: 1 1 auto; }
+.sev-rit .seva-card__amt { font-size: clamp(40px, 3.3vw, 52px); }
+.sev-rit .seva-card__desc { flex: 0 0 auto; }
+.sev-rit .seva-card__bn { text-wrap: balance; }
+.sev-rit__k { margin-top: 4px; font-family: var(--caps); font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--sindoor-ink); }
+.sev-rit__inc { flex: 1 1 auto; display: flex; flex-direction: column; gap: 5px; font-size: 16px; line-height: 1.4; }
+.sev-rit__inc li { position: relative; padding-left: 20px; }
+.sev-rit__inc li::before { content: ""; position: absolute; left: 1px; top: .42em; width: 8px; height: 8px; background: var(--accent); border: 2px solid var(--kajal); transform: rotate(45deg); }
+.sev-ritgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: clamp(32px, 3.9vw, 56px); align-items: start; }
+.sev-ritinfo { display: flex; flex-direction: column; gap: 32px; min-width: 0; }
+.sev-ritimes { padding: clamp(22px, 2.2vw, 30px); background: var(--kajal); color: var(--shola); border: 4px solid var(--kajal); box-shadow: 10px 10px 0 var(--sindoor); }
+.sev-ritimes__h, .sev-rithow__h, .sev-ritbook__h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; }
+.sev-ritimes__h { margin-bottom: 6px; }
+.sev-ritimes__h [lang="bn"], .sev-rithow__h [lang="bn"], .sev-ritbook__h [lang="bn"] { font-weight: 800; font-stretch: 75%; font-size: clamp(32px, 2.9vw, 42px); line-height: 1.1; }
+.sev-ritimes__h [lang="bn"] { color: var(--haldi); }
+.sev-ritimes__en, .sev-rithow__en, .sev-ritbook__en { font-family: var(--caps); font-weight: 800; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; }
+.sev-rithow__en, .sev-ritbook__en { color: var(--sindoor-ink); }
+.sev-ritime { display: flex; flex-direction: column; gap: 6px; padding: 14px 0 12px; border-top: 2px dashed rgba(255, 246, 230, .35); }
+.sev-ritime__h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+.sev-ritime__en { font-family: var(--caps); font-weight: 800; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--haldi); }
+.sev-ritime__h [lang="bn"] { font-weight: 700; font-size: 17px; line-height: 1.3; }
+.sev-ritime__slots { display: flex; flex-wrap: wrap; gap: 4px 24px; }
+.sev-ritime__slot { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.sev-ritime__t { font-family: var(--caps); font-weight: 800; font-size: clamp(24px, 2.1vw, 30px); line-height: 1.15; letter-spacing: .02em; white-space: nowrap; }
+.sev-ritime__w, .sev-ritime__note { font-size: 15px; line-height: 1.4; color: var(--sand); }
+.sev-rithow__h { margin-bottom: 16px; }
+.sev-steps { display: flex; flex-direction: column; gap: 14px; }
+.sev-step { display: flex; align-items: flex-start; gap: 14px; }
+.sev-step__n {
+  flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; border: 3px solid var(--kajal);
+  background: var(--haldi); box-shadow: 3px 3px 0 var(--kajal); font-weight: 800; font-size: 22px; line-height: 1;
+}
+.sev-step__t { padding-top: 7px; font-size: 17px; line-height: 1.5; text-wrap: pretty; }
+.sev-ritfaq { margin: 0; border-top: 3px solid var(--kajal); }
+.sev-ritq { padding: 14px 0; border-bottom: 2px solid rgba(22, 16, 12, .2); }
+.sev-ritq__q { font-weight: 800; font-size: 18px; line-height: 1.3; }
+.sev-ritq__a { margin: 4px 0 0; font-size: 16px; line-height: 1.5; color: var(--muted); text-wrap: pretty; }
+.sev-ritbook { --focus: var(--kajal); display: flex; flex-direction: column; gap: 18px; min-width: 0; padding: clamp(22px, 2.5vw, 36px); background: var(--shola); border: 4px solid var(--kajal); box-shadow: 12px 12px 0 var(--kajal); scroll-margin-top: 16px; }
+.sev-ritform, .sev-volform { scroll-margin-top: 16px; }
+@media (max-width: 1199px) { .sev-rits { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1023px) { .sev-ritgrid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 699px) {
+  .sev-ritwrap { padding-top: 14px; }
+  .sev-rits { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: min(calc(100vw - 2 * var(--gutter) - 36px), 300px); gap: 20px; width: max-content; }
+  .sev-rit { scroll-snap-align: start; }
+  .sev-ritbook { box-shadow: 8px 8px 0 var(--kajal); }
+}
+
+/* ---------------------------------------------------------------- volunteering (the old /volunteer) */
+.sev-vol { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.4fr); gap: clamp(32px, 3.9vw, 56px); align-items: start; }
+.sev-volinfo { display: flex; flex-direction: column; gap: 26px; min-width: 0; }
+.sev-volinfo__big { padding: clamp(22px, 2.2vw, 30px); background: var(--haldi); color: var(--kajal); border: 4px solid var(--kajal); box-shadow: 10px 10px 0 var(--kajal); transform: rotate(-1deg); }
+.sev-volinfo__k { font-family: var(--caps); font-weight: 800; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; }
+.sev-volinfo__n { margin-top: 10px; padding-top: .1em; font-weight: 800; font-stretch: 75%; font-size: clamp(44px, 4.2vw, 60px); line-height: 1.05; }
+.sev-volinfo__en { font-family: var(--caps); font-weight: 800; font-size: clamp(18px, 1.6vw, 22px); letter-spacing: .08em; text-transform: uppercase; }
+.sev-volinfo__d { margin-top: 8px; font-size: 17px; line-height: 1.5; text-wrap: pretty; }
+.sev-volfacts .fact__k { color: var(--shola); }
+.sev-volfacts .copyval__v { font-weight: 700; }
+.sev-volcard { --focus: var(--kajal); min-width: 0; padding: clamp(22px, 2.5vw, 36px); background: var(--shola); color: var(--kajal); border: 4px solid var(--kajal); box-shadow: 12px 12px 0 var(--haldi); }
+.sev-volcard .field__err { color: var(--sindoor-ink); }
+.sev-areas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.sev-area {
+  --accent: var(--sindoor);
+  display: flex; align-items: flex-start; gap: 12px; min-width: 0; padding: 14px 14px 14px 16px;
+  border: 3px solid var(--kajal); background: var(--shola); color: var(--kajal); cursor: pointer; transition: box-shadow .15s ease, background-color .15s ease;
+}
+.sev-area:hover { box-shadow: 4px 4px 0 var(--kajal); }
+.sev-area:has(input:checked) { background: var(--haldi); box-shadow: 5px 5px 0 var(--accent); }
+.sev-area input { flex: none; width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--kajal); }
+.sev-area__t { display: flex; flex-direction: column; gap: 2px; flex: 1 1 auto; min-width: 0; }
+.sev-area__bn { font-weight: 800; font-size: 19px; line-height: 1.25; }
+.sev-area__en { font-family: var(--caps); font-weight: 800; font-size: 13px; line-height: 1.25; letter-spacing: .1em; text-transform: uppercase; }
+.sev-area__d { margin-top: 2px; font-size: 15px; line-height: 1.4; color: var(--muted); text-wrap: pretty; }
+.sev-area__ic { flex: none; width: clamp(40px, 3.6vw, 52px); height: auto; }
+.sev-area--home { grid-column: 1 / -1; border-style: dashed; }
+@media (min-width: 1100px) { .sev-volinfo { position: sticky; top: 24px; } }
+@media (max-width: 1099px) { .sev-vol { grid-template-columns: minmax(0, 1fr); } .sev-volinfo__big { transform: none; } }
+@media (max-width: 599px) { .sev-areas { grid-template-columns: minmax(0, 1fr); } .sev-volcard { box-shadow: 8px 8px 0 var(--haldi); } }
+
+/* ---------------------------------------------------------------- questions and the seva desk */
+.sev-faqgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px); gap: clamp(32px, 4.4vw, 64px); align-items: start; }
+@media (min-width: 1100px) { .sev-desk { position: sticky; top: 24px; } }   /* beside the questions, the desk card keeps its own height and stays in view */
+.sev-faq { display: flex; flex-direction: column; border-bottom: 3px solid var(--kajal); }
+.sev-q { display: flex; gap: clamp(16px, 2vw, 28px); padding: clamp(22px, 2.1vw, 30px) 0 clamp(24px, 2.2vw, 32px); border-top: 3px solid var(--kajal); scroll-margin-top: 24px; }
+.sev-q__n {
+  flex: none; width: clamp(44px, 4.4vw, 64px); height: clamp(44px, 4.4vw, 64px); border-radius: 50%; border: 3px solid var(--kajal); background: var(--q);
+  color: var(--shola); box-shadow: 4px 4px 0 var(--kajal); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: clamp(24px, 2.2vw, 32px); line-height: 1;
+}
+.sev-q--light .sev-q__n { color: var(--kajal); }
+.sev-q__t { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.sev-q__h { font-weight: 800; font-stretch: 75%; font-size: clamp(32px, 3.05vw, 44px); line-height: 1.15; text-wrap: balance; }
+.sev-q__en { font-family: var(--caps); font-weight: 800; font-size: clamp(14px, 1.2vw, 17px); letter-spacing: .1em; text-transform: uppercase; color: var(--sindoor-ink); }
+.sev-q__a { margin-top: 6px; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.5; }
+.sev-desk {
+  --focus: var(--haldi);
+  display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: clamp(24px, 2.5vw, 36px); background: var(--kajal); color: var(--shola);
+  border: 4px solid var(--kajal); box-shadow: 12px 12px 0 var(--haldi); scroll-margin-top: 24px;
+}
+.sev-desk__head { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.sev-desk__ic { width: clamp(76px, 7.8vw, 112px); height: auto; }
+.sev-desk__h { font-weight: 800; font-stretch: 75%; font-size: clamp(48px, 5vw, 72px); line-height: 1.05; text-shadow: .07em .07em 0 var(--sindoor); }
+.sev-desk__en { font-family: var(--caps); font-weight: 800; font-size: 20px; letter-spacing: .12em; text-transform: uppercase; color: var(--haldi); }
+.sev-desk__hours { margin-top: 10px; font-family: var(--caps); font-weight: 800; font-size: clamp(38px, 3.2vw, 46px); line-height: 1; letter-spacing: .02em; }
+.sev-desk__days { display: block; margin-top: 8px; font-family: var(--bn); font-weight: 600; font-size: 16px; line-height: 1.3; letter-spacing: 0; color: var(--dusk); }
+.sev-desk__live { display: flex; align-items: center; gap: 10px; font-size: 17px; line-height: 1.4; color: var(--dusk); }
+.sev-desk__dot { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--sindoor); }
+.sev-desk__live[data-open="yes"] .sev-desk__dot { background: var(--mint); box-shadow: 0 0 0 3px var(--peacock); }
+.sev-desk__contact { margin-top: auto; padding-top: 22px; border-top: 2px solid rgba(255, 246, 230, .3); display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.sev-desk__phone .copyval__v { font-family: var(--caps); font-weight: 800; font-size: clamp(30px, 2.9vw, 42px); line-height: 1; letter-spacing: .02em; color: var(--haldi); }
+.sev-desk__mail .copyval__v { font-size: 18px; text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 1099px) {
+  .sev-faqgrid { grid-template-columns: minmax(0, 1fr); }
+  .sev-desk__head { flex-direction: row; align-items: center; }
+}
+
+/* a section-head aside that wraps under its title keeps to the right edge (desktop) */
+.sev-head .sec-head__aside, .sev-head .sec-head__en { text-wrap: balance; }
+@media (min-width: 900px) { .sev-head .sec-head__aside { margin-left: auto; } }
+.sev-card .seva-card__desc, .sev-rit .seva-card__desc, .sev-imp__d, .sev-q__a { text-wrap: pretty; }

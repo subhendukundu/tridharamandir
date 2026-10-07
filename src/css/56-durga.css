@@ -1,0 +1,330 @@
+/* ---------------------------------------------------------------- Durga Puja 2026 (pages/durga.py). Every selector starts with .dur- */
+
+/* parts that change with the date: the page wrapper carries dur-s-coming · dur-s-on · dur-s-thanks · dur-s-after
+   (set before the page is drawn by TMM_DUR, then on every tick by 56-durga.js); without a script the 'coming' parts show */
+.dur-when { display: none; }
+.dur-s-coming .dur-when--c, .dur-s-on .dur-when--o, .dur-s-thanks .dur-when--t, .dur-s-after .dur-when--a { display: block; }
+.dur-s-coming .dur-when--c.dur-when--i, .dur-s-on .dur-when--o.dur-when--i,
+.dur-s-thanks .dur-when--t.dur-when--i, .dur-s-after .dur-when--a.dur-when--i { display: inline; }
+
+/* ---------------------------------------------------------------- first screen: the Puja poster */
+.dur-hero { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 2px var(--gutter) 30px; }
+.dur-hero__head { position: relative; z-index: 2; container-type: inline-size; }
+.dur-hero__title {
+  font-family: var(--bn); font-weight: 800; font-stretch: 75%; line-height: 1.02; white-space: nowrap;
+  font-size: min(200px, calc(100cqi / 2.8)); padding: .15em 0 .08em;
+  color: var(--tone-head); text-shadow: .03em .03em 0 var(--tone-shadow);
+}
+.dur-hero__sticker { z-index: 3; }
+/* a long day name (বিজয়া দশমী) on the sticker's second line */
+.dur-sticker__bn--long { font-size: .104em; max-width: 86%; }
+.dur-hero__art { position: relative; z-index: 0; }
+.dur-hero__art img { display: block; width: 100%; height: auto; }
+.dur-hero__copy { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 10px; }
+.dur-hero__en { font-family: var(--caps); font-weight: 800; font-size: clamp(25px, 2.8vw, 40px); line-height: 1.08; letter-spacing: .02em; text-transform: uppercase; text-wrap: balance; }
+.dur-hero__sub { max-width: 620px; font-size: clamp(17px, 1.46vw, 21px); line-height: 1.5; }
+.dur-hero__copy .btns { margin-top: clamp(10px, 1.5vw, 22px); }
+
+@media (min-width: 900px) {
+  /* drawn like the design's 1440 x 656 board, scaled with the window: u = one board pixel */
+  .dur-hero {
+    --u: calc(min(100vw, 1440px) / 1440);
+    justify-content: center; gap: 0; min-height: calc(656 * var(--u) - var(--hdr-h));
+    padding: calc(28 * var(--u)) var(--gutter) calc(54 * var(--u));
+  }
+  .dur-hero__head { container-type: normal; align-self: flex-start; }
+  .dur-hero__title { font-size: calc(240 * var(--u)); }
+  .dur-hero__sticker--d { --s: calc(188 * var(--u)); position: absolute; left: calc(100% + 34 * var(--u)); top: calc(-6 * var(--u)); }
+  .dur-hero__sticker--m { display: none; }
+  .dur-hero__art {
+    --ext: clamp(0px, (100vw - 1440px) / 2 - 16px, 200px);
+    position: absolute; right: calc(-1 * var(--ext)); bottom: 0; width: calc(880 * var(--u) + var(--ext)); height: calc(656 * var(--u));
+  }
+  .dur-hero__art picture { display: block; height: 100%; }
+  .dur-hero__art img { width: 100%; height: 100%; object-fit: cover; object-position: 0 50%; }
+  .dur-hero__copy { width: min(100%, calc(820 * var(--u))); margin-top: calc(6 * var(--u)); }
+}
+@media (max-width: 899px) {
+  .dur-hero__sticker--d { display: none; }
+  .dur-hero__art { margin-inline: calc(-1 * var(--gutter)); container-type: inline-size; }
+  .dur-hero__sticker--m { --s: max(112px, 31cqi); position: absolute; left: 5cqi; top: 8cqi; }
+}
+@media (min-width: 600px) and (max-width: 899px) {
+  .dur-hero__art { margin-inline: auto; width: min(100%, 560px); }
+  .dur-hero__title { font-size: min(170px, calc(100cqi / 2.8)); }
+}
+@media (max-width: 599px) {
+  .dur-hero__copy .btns { gap: 14px 12px; }
+  .dur-hero__copy .btn { min-height: 48px; padding: 11px 14px; font-size: 15px; }
+  .dur-hero__copy .btn--ghost { padding: 8px 11px; }
+}
+
+/* ---------------------------------------------------------------- the five days */
+.dur-page .sec-head__en { text-wrap: balance; }
+.dur-status { align-items: flex-start; }
+.dur-status .live__dot { margin-top: .4em; }
+.dur-status [data-dur-status] { min-width: 0; }
+.dur-s-thanks .dur-status .live__dot, .dur-s-after .dur-status .live__dot { animation: none; background: var(--muted); }
+.dur-days-wrap { display: flex; flex-direction: column; gap: 30px; }
+.dur-days__hint { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; font-weight: 700; font-size: 17px; line-height: 1.35; color: var(--muted); }
+.dur-days__hint .caps { font-size: 13px; letter-spacing: .14em; color: var(--sindoor-ink); }
+.dur-days { display: grid; grid-template-columns: minmax(0, 1fr); grid-auto-flow: row dense; gap: 34px; }
+@media (min-width: 700px) { .dur-days { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 20px; } }
+@media (min-width: 1200px) {
+  .dur-days { grid-template-columns: minmax(0, 150fr) repeat(5, minmax(0, 214fr)); gap: 40px 18px; }
+  .dur-days > .dur-day { grid-row: 1; }
+}
+
+/* without the page script every day sheet simply shows, and there is nothing to choose */
+.dur-page:not(.dur-js) .dur-sheet[hidden] { display: grid !important; }
+.dur-page:not(.dur-js) .dur-days__hint, .dur-page:not(.dur-js) .dur-day__tog { display: none; }
+
+/* a day card (the whole card opens its day sheet: the button's ::after covers it) */
+.dur-day {
+  --panel: var(--haldi);
+  position: relative; display: flex; flex-direction: column; min-width: 0; padding: 18px;
+  background: var(--shola); color: var(--kajal); border: 3px solid var(--kajal); box-shadow: 7px 7px 0 var(--kajal);
+  container-type: inline-size; transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease; scroll-margin-top: 44px;
+}
+.dur-day:hover { transform: translateY(-4px); }
+.dur-day--pre { padding-inline: 16px; background: var(--kajal); color: var(--shola); box-shadow: 7px 7px 0 var(--sindoor); }
+.dur-day--open { background: var(--sindoor); color: var(--shola); box-shadow: 10px 10px 0 var(--kajal); }
+.dur-day--open, .dur-day--open:hover { transform: translateY(-14px); }
+.dur-day--pre.dur-day--open { background: var(--kajal); box-shadow: 10px 10px 0 var(--sindoor); }
+/* during the Puja, days already gone: the picture fades, the words stay readable */
+.dur-day--past:not(.dur-day--open) { box-shadow: 4px 4px 0 var(--kajal); }
+.dur-day--past:not(.dur-day--open) .dur-day__art img { filter: grayscale(1); opacity: .45; }
+.dur-day--past.dur-day--pre:not(.dur-day--open) { box-shadow: 4px 4px 0 var(--sindoor); }
+
+.dur-day__tag {
+  position: absolute; z-index: 2; left: 14px; top: -17px; display: flex; align-items: center; gap: 8px; max-width: calc(100% - 4px);
+  padding: 4px 12px; background: var(--kajal); color: var(--haldi); white-space: nowrap;
+  font-family: var(--caps); font-weight: 800; font-size: 13px; line-height: 1.3; letter-spacing: .14em; text-transform: uppercase;
+}
+.dur-day__tag [lang="bn"] { font-family: var(--bn); font-weight: 700; font-size: 15px; letter-spacing: 0; text-transform: none; word-spacing: .2em; }
+.dur-day__tag--today { background: var(--haldi); color: var(--kajal); box-shadow: 3px 3px 0 var(--kajal); }
+.dur-day__tagdot { flex: none; width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
+@container (max-width: 165px) { .dur-day__tagdot, .dur-day__tage { display: none; } }   /* the full tag is ~196px wide */
+
+.dur-day__date { display: flex; flex-direction: column; gap: 1px; }
+.dur-day__pre { margin-bottom: 6px; font-size: 13px; letter-spacing: .16em; color: var(--haldi); }
+.dur-day__db { font-weight: 700; font-size: 17px; line-height: 1.25; }
+.dur-day__de { font-family: var(--caps); font-weight: 800; font-size: 12px; line-height: 1.35; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.dur-day--open .dur-day__de { color: var(--shola); }
+.dur-day--pre .dur-day__de { color: var(--sand); }
+
+.dur-day__art {
+  position: relative; flex: none; display: flex; align-items: center; justify-content: center; height: 160px; margin: 14px -18px 0;
+  background: var(--panel); border-block: 3px solid var(--kajal); overflow: hidden;
+}
+.dur-day__art img { flex: none; width: 200px; max-width: none; height: 160px; }
+.dur-day--pre .dur-day__art { justify-content: flex-start; height: auto; margin: 16px 0 0; background: none; border: 0; overflow: visible; }
+.dur-day--pre .dur-day__art img { width: min(114px, 100%); height: auto; }
+/* plus / minus: this card opens */
+.dur-day__tog { position: absolute; right: 8px; bottom: 8px; width: 30px; height: 30px; border-radius: 50%; background: var(--kajal); box-shadow: 0 0 0 2px var(--shola); }
+.dur-day--pre .dur-day__tog { right: 0; bottom: 0; background: var(--haldi); box-shadow: none; }
+.dur-day__tog::before, .dur-day__tog::after { content: ""; position: absolute; left: 8px; top: 13.5px; width: 14px; height: 3px; background: var(--haldi); transition: transform .2s ease; }
+.dur-day--pre .dur-day__tog::before, .dur-day--pre .dur-day__tog::after { background: var(--kajal); }
+.dur-day__tog::after { transform: rotate(90deg); }
+.dur-day--open .dur-day__tog::after { transform: rotate(0deg); }
+
+.dur-day__h { margin-top: 16px; }
+.dur-day__btn {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%; padding: 0; border: 0; border-radius: 0;
+  background: none; color: inherit; font: inherit; text-align: left; cursor: pointer;
+}
+.dur-day__btn::after { content: ""; position: absolute; inset: -3px; z-index: 1; }
+.dur-day__btn:focus-visible { outline: none; }
+.dur-day__btn:focus-visible::after { outline: 3px solid var(--focus); outline-offset: 11px; }
+.dur-day__bn { font-weight: 800; font-stretch: 75%; font-size: min(58px, calc(100cqi / 2.95)); line-height: 1.02; white-space: nowrap; }
+.dur-day--pre .dur-day__bn { font-size: min(40px, calc(100cqi / 2.6)); }
+.dur-day__en { font-family: var(--caps); font-weight: 800; font-size: 14px; line-height: 1.3; letter-spacing: .12em; text-transform: uppercase; }
+
+.dur-day__rite { display: flex; flex-direction: column; gap: 3px; margin-top: 14px; }
+.dur-day__rb { font-weight: 800; font-size: 19px; line-height: 1.25; }
+.dur-day__re { font-size: 16px; line-height: 1.4; color: var(--muted); }
+.dur-day--open .dur-day__re { color: var(--shola); }
+.dur-day--pre .dur-day__re { color: var(--sand); }
+.dur-day__extra { display: flex; flex-direction: column; gap: 2px; margin-top: 12px; padding: 8px 10px; border: 2px dashed currentColor; font-weight: 700; font-size: 15px; line-height: 1.3; }
+.dur-day__exe { font-family: var(--caps); font-weight: 800; font-size: 12px; line-height: 1.3; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.dur-day--open .dur-day__exe { color: var(--shola); }
+.dur-day__sp { flex: 1 0 22px; }
+
+.dur-day__band { display: flex; flex-direction: column; gap: 4px; margin: 0 -18px -18px; padding: 14px 18px 16px; background: var(--kajal); color: var(--shola); border-top: 3px solid var(--kajal); }
+.dur-day--pre .dur-day__band { margin-inline: -16px; padding-inline: 16px; background: var(--sindoor); }
+.dur-day__bl { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 8px; }
+.dur-day__blb { font-weight: 800; font-size: 17px; line-height: 1.25; }
+.dur-day__ble { font-family: var(--caps); font-weight: 800; font-size: 12px; line-height: 1.3; letter-spacing: .12em; text-transform: uppercase; color: var(--haldi); }
+.dur-day--pre .dur-day__ble { color: var(--shola); }
+.dur-day__bv { font-family: var(--caps); font-weight: 800; font-size: min(36px, calc(100cqi / 4.9)); line-height: 1.05; letter-spacing: .01em; color: var(--haldi); white-space: nowrap; }
+.dur-day__bv small { margin-left: .14em; font-size: .46em; }
+.dur-day--pre .dur-day__bv { font-size: 24px; color: var(--shola); }
+.dur-day__bs { margin-top: 2px; font-family: var(--caps); font-weight: 800; font-size: 12px; line-height: 1.3; letter-spacing: .12em; text-transform: uppercase; }
+
+@media (max-width: 699px) {
+  /* phones: text on the left, the vignette on the right, the band underneath */
+  .dur-day { display: grid; grid-template-columns: minmax(0, 1fr) 124px; align-content: start; padding: 0; }
+  .dur-day > :not(.dur-day__tag) { grid-column: 1; }
+  .dur-day__date { padding: 18px 12px 0 16px; }
+  .dur-day__h, .dur-day__rite, .dur-day__extra { margin-inline: 16px 12px; }
+  .dur-day__h { margin-top: 10px; }
+  .dur-day__bn { font-size: min(50px, calc((100cqi - 152px) / 2.95)); }
+  .dur-day--pre .dur-day__bn { font-size: 44px; }
+  .dur-day__sp { flex: none; height: 18px; }
+  .dur-day > .dur-day__art { grid-column: 2; grid-row: 1 / span 4; height: auto; margin: 0; border-block: 0; border-left: 3px solid var(--kajal); }
+  .dur-day--x > .dur-day__art { grid-row: 1 / span 5; }
+  .dur-day__art img { width: 124px; height: auto; }
+  .dur-day--pre .dur-day__art { justify-content: center; margin: 0; border-left: 3px solid var(--muted); }
+  .dur-day--pre .dur-day__art img { width: 104px; }
+  .dur-day--pre .dur-day__tog { right: 8px; bottom: 8px; }
+  .dur-day > .dur-day__band { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 14px; margin: 0; padding: 12px 16px 13px; }
+  .dur-day__bl { flex-direction: column; gap: 1px; }
+  .dur-day__bv { font-size: 30px; }
+  .dur-day__bs { flex-basis: 100%; }
+  .dur-day--open, .dur-day--open:hover, .dur-day:hover { transform: none; }
+}
+
+/* the day sheet: opens under the card (phones) or under its row (wider screens) */
+.dur-sheet {
+  grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px clamp(32px, 4.4vw, 64px);
+  padding: clamp(20px, 2.4vw, 32px); background: var(--shola); color: var(--kajal); border: 3px solid var(--kajal); box-shadow: 8px 8px 0 var(--sindoor);
+}
+.dur-sheet__intro { display: flex; flex-direction: column; gap: 12px; min-width: 0; margin-bottom: 26px; }
+.dur-sheet__k { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.dur-sheet__k .caps { font-size: 14px; line-height: 1.35; letter-spacing: .12em; color: var(--sindoor-ink); }
+.dur-sheet__today { padding: 2px 10px; background: var(--haldi); border: 2px solid var(--kajal); font-weight: 800; font-size: 15px; line-height: 1.3; }
+.dur-sheet__lead { font-weight: 600; font-size: clamp(18px, 1.5vw, 21px); line-height: 1.5; }
+.dur-sheet__col { display: flex; flex-direction: column; min-width: 0; }
+.dur-sheet__h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; padding-bottom: 8px; border-bottom: 3px solid var(--kajal); font-weight: 800; font-size: 21px; line-height: 1.25; }
+.dur-sheet__h .caps { font-size: 13px; letter-spacing: .14em; color: var(--sindoor-ink); }
+.dur-sheet__list { display: flex; flex-direction: column; }
+.dur-sheet__call { margin-top: 20px; padding: 12px 14px; border: 2px dashed var(--kajal); font-weight: 600; font-size: 16px; line-height: 1.5; }
+.dur-row { position: relative; display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 2px 12px; padding: 10px 0; border-bottom: 2px dashed rgba(22, 16, 12, .22); transition: opacity .2s ease; }
+.dur-row__t { font-family: var(--caps); font-weight: 800; font-size: 19px; line-height: 1.25; white-space: nowrap; }
+.dur-row__w { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.dur-row__bn { font-weight: 700; font-size: 17px; line-height: 1.3; }
+.dur-row__en { font-size: 15px; line-height: 1.4; color: var(--muted); }
+.dur-row__tag {
+  grid-column: 2; justify-self: start; margin-top: 4px; padding: 2px 9px; background: var(--kajal); color: var(--haldi);
+  font-family: var(--caps); font-weight: 800; font-size: 12px; line-height: 1.35; letter-spacing: .14em; text-transform: uppercase;
+}
+.dur-row__tag [lang="bn"] { font-family: var(--bn); font-weight: 700; font-size: 13px; letter-spacing: 0; text-transform: none; }
+.dur-row--now { margin-inline: -10px; padding-inline: 10px; background: var(--haldi); border-bottom-color: transparent; }
+.dur-row--now .dur-row__en { color: var(--kajal); }
+.dur-row--next .dur-row__t { color: var(--sindoor-ink); }
+.dur-row--past { opacity: .75; }   /* the smallest text stays at 4.9:1 */
+@media (max-width: 699px) {
+  .dur-sheet { grid-template-columns: minmax(0, 1fr); gap: 26px; margin-top: -14px; padding: 20px 18px 22px; }
+  .dur-sheet__intro { margin-bottom: 20px; }
+  .dur-row { grid-template-columns: 80px minmax(0, 1fr); }
+  .dur-row__en { font-size: 16px; }
+}
+
+/* ---------------------------------------------------------------- Sandhi Puja */
+.dur-sandhi { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 470px); gap: 32px 56px; align-items: center; }
+.dur-sandhi__t { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; min-width: 0; container-type: inline-size; }
+.dur-sandhi__time {
+  display: flex; align-items: baseline; gap: .1em; font-family: var(--caps); font-weight: 800; font-size: min(150px, 20.5cqi); line-height: .92;
+  letter-spacing: .005em; color: var(--haldi); text-shadow: .035em .035em 0 var(--kajal); white-space: nowrap;
+}
+.dur-sandhi__time small { font-size: .34em; }
+.dur-sandhi__bn { margin-top: 6px; font-weight: 800; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.25; text-wrap: balance; }
+.dur-sandhi__en { max-width: 54ch; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.5; }
+.dur-sandhi__live {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-top: 6px; padding: 10px 16px;
+  background: var(--shola); color: var(--kajal); border: 3px solid var(--kajal); box-shadow: 6px 6px 0 var(--kajal);
+}
+.dur-sandhi__live[data-state="now"] { background: var(--haldi); }
+.dur-sandhi__dot { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--sindoor); }
+.dur-sandhi__live[data-state="now"] .dur-sandhi__dot { animation: pulse 1.6s ease-in-out infinite; }
+.dur-sandhi__live[data-state="done"] .dur-sandhi__dot { background: var(--muted); }
+.dur-sandhi__lb { font-weight: 800; font-size: 21px; line-height: 1.25; }
+.dur-sandhi__le { font-family: var(--caps); font-weight: 800; font-size: 15px; line-height: 1.3; letter-spacing: .1em; text-transform: uppercase; }
+.dur-sandhi__src { max-width: 62ch; font-size: 15px; line-height: 1.5; color: var(--sand); }
+.dur-sandhi__art img { display: block; width: 100%; height: auto; }
+@media (max-width: 899px) {
+  .dur-sandhi { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .dur-sandhi__art { order: -1; justify-self: center; width: min(100%, 380px); }
+  .dur-sandhi__src { font-size: 16px; }
+}
+
+/* ---------------------------------------------------------------- bhog seva */
+.dur-seva { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 32px clamp(32px, 3.4vw, 48px); align-items: stretch; }
+.dur-seva__feature { display: flex; flex-direction: column; gap: 14px; min-width: 0; color: var(--shola); }
+.dur-seva__art { width: 100%; max-width: 340px; height: auto; }
+.dur-seva__h { font-weight: 800; font-size: clamp(26px, 2.1vw, 30px); line-height: 1.22; }
+.dur-seva__p { font-size: 17px; line-height: 1.55; color: var(--sand); }
+.dur-seva__small { font-size: 15px; line-height: 1.5; color: var(--dusk); }
+.dur-seva__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.dur-seva__how { max-width: 74ch; font-size: 17px; line-height: 1.5; color: var(--sand); }
+@media (max-width: 1199px) {
+  .dur-seva { grid-template-columns: minmax(0, 1fr); }
+  .dur-seva__feature { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); align-items: center; gap: 8px 32px; }
+  .dur-seva__art { grid-row: 1 / span 3; }
+}
+@media (max-width: 899px) {
+  .dur-seva__cards { gap: 20px; }
+}
+@media (max-width: 699px) {
+  .dur-seva__cards { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+}
+@media (max-width: 599px) {
+  .dur-seva__feature { display: flex; }
+  .dur-seva__art { max-width: 300px; }
+  .dur-seva__small { font-size: 16px; }
+}
+
+/* ---------------------------------------------------------------- coming for the Puja */
+.dur-tips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+.dur-tip {
+  display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 26px 24px 28px; background: var(--shola); color: var(--kajal);
+  border: 3px solid var(--kajal); box-shadow: 8px 8px 0 var(--kajal); transform: rotate(var(--rot, 0deg));
+}
+.dur-tip__ic { flex: none; width: 72px; height: 72px; }
+.dur-tip__t { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.dur-tip__h { margin-top: 6px; font-weight: 800; font-size: clamp(23px, 1.85vw, 26px); line-height: 1.22; }
+.dur-tip__en { font-family: var(--caps); font-weight: 800; font-size: 14px; line-height: 1.3; letter-spacing: .12em; text-transform: uppercase; color: var(--sindoor-ink); }
+.dur-tip__p { margin-top: 2px; font-size: 17px; line-height: 1.5; color: var(--muted); }
+@media (max-width: 1099px) { .dur-tips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 599px) {
+  .dur-tips { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .dur-tip { flex-direction: row; align-items: flex-start; gap: 14px; padding: 18px 18px 20px; box-shadow: 6px 6px 0 var(--kajal); }
+  .dur-tip__ic { width: 56px; height: 56px; }
+  .dur-tip__h { margin-top: 0; font-size: 22px; }
+  .dur-tip__p { font-size: 16px; }
+}
+
+/* ---------------------------------------------------------------- after Puja: what comes next */
+.dur-next { display: flex; align-items: center; justify-content: space-between; gap: 40px 48px; }
+.dur-next__t { flex: 0 1 400px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.dur-next__h { font-weight: 800; font-stretch: 75%; font-size: clamp(88px, 8.4vw, 120px); line-height: 1.04; text-shadow: .05em .05em 0 var(--kajal); }
+.dur-next__en { font-family: var(--caps); font-weight: 800; font-size: clamp(17px, 1.8vw, 26px); line-height: 1.2; letter-spacing: .06em; text-transform: uppercase; color: var(--kajal); }
+.dur-next__p { margin-top: 10px; font-size: clamp(17px, 1.35vw, 19px); line-height: 1.55; }
+.dur-next__row { flex: 0 0 auto; display: grid; grid-auto-flow: column; grid-auto-columns: 260px; gap: 36px; align-items: stretch; }
+.dur-cal {
+  display: flex; flex-direction: column; justify-content: space-between; gap: 18px; min-width: 0; padding: 26px; background: var(--shola); color: var(--kajal);
+  border: 4px solid var(--kajal); box-shadow: 10px 10px 0 var(--kajal); transform: rotate(1.2deg); transition: transform .25s ease;
+}
+.dur-cal:hover { text-decoration: none; transform: rotate(0deg) translateY(-6px); }
+.dur-cal__top, .dur-cal__bot { display: flex; flex-direction: column; gap: 8px; }
+.dur-cal__bot { gap: 14px; }
+.dur-cal__k { font-size: 15px; letter-spacing: .14em; color: var(--sindoor-ink); }
+.dur-cal__h { font-weight: 800; font-stretch: 75%; font-size: clamp(44px, 3.75vw, 54px); line-height: 1.05; }
+.dur-cal__p { font-size: 17px; line-height: 1.5; color: var(--muted); }
+.dur-cal__btn {
+  align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 11px 16px; background: var(--kajal); color: var(--haldi);
+  font-family: var(--caps); font-weight: 800; font-size: 15px; line-height: 1.05; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
+}
+@media (max-width: 1199px) {
+  .dur-next { flex-direction: column; align-items: stretch; }
+  .dur-next__t { flex: none; max-width: 680px; }
+  .dur-next__row { justify-content: start; grid-auto-columns: minmax(0, 260px); }
+}
+@media (max-width: 899px) {
+  .dur-next__en { color: var(--shola); }
+  .dur-next__row {
+    grid-auto-columns: min(64%, 250px); gap: 22px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+    margin-inline: calc(-1 * var(--gutter)); padding: 12px var(--gutter) 34px; scroll-padding-inline: var(--gutter); scrollbar-width: thin;
+  }
+  .dur-next__row > * { scroll-snap-align: start; }
+}

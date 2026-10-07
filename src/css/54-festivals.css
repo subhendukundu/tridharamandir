@@ -1,0 +1,279 @@
+/* ---------------------------------------------------------------- festival calendar (/festivals/) */
+
+/* first screen: the year wheel is inline SVG (its month names use the page font); the sticker counts down to the next big festival */
+.fes-art { position: relative; margin: 0 calc(-1 * var(--gutter)) calc(-1 * clamp(36px, 4.4vw, 64px)); aspect-ratio: 740 / 790; overflow: hidden; }
+/* phones: board x 780–1520, y −70–720 — the wheel sits low and left, leaving the top-right corner free for the sticker */
+.fes-wheel { position: absolute; left: calc(-20 / 740 * 100%); top: calc(70 / 790 * 100%); width: calc(680 / 740 * 100%); max-width: none; height: auto; }
+.fes-sticker { --s: clamp(118px, 30vw, 140px); position: absolute; z-index: 3; top: 6px; right: 12px; }   /* 118px+: every line stays inside the circle */
+.fes-wh__s { fill: var(--shola); stroke: var(--kajal); stroke-width: 4; stroke-linejoin: round; }
+.fes-wh__s--alt { fill: var(--paper2); }
+.fes-wh__s.is-cur { fill: var(--sindoor); }
+.fes-wh__l { fill: var(--kajal); font-family: var(--bn); font-weight: 800; font-stretch: 75%; font-size: 30px; }
+.fes-wh__l.is-cur { fill: var(--shola); }
+.fes-wh__hub { font-family: var(--bn); font-weight: 800; font-stretch: 75%; font-size: 38px; }
+.fes-wh__halo { fill: none; }
+.fes-wh__halo.is-cur { fill: var(--shola); }
+.fes-wh__dot { stroke: var(--kajal); stroke-width: 2.5; transition: opacity .2s ease; }
+.fes-wh__dot--shaiva { fill: var(--ash); }
+.fes-wh__dot--vaishnava { fill: var(--peacock-d); }
+.fes-wh__dot--shakta { fill: var(--sindoor); }
+.fes-wh__dot--all { fill: var(--shola); }
+.fes-wheel[data-filter="shaiva"] .fes-wh__dot:not(.fes-wh__dot--shaiva),
+.fes-wheel[data-filter="vaishnava"] .fes-wh__dot:not(.fes-wh__dot--vaishnava),
+.fes-wheel[data-filter="shakta"] .fes-wh__dot:not(.fes-wh__dot--shakta),
+.fes-wheel[data-filter="all"] .fes-wh__dot:not(.fes-wh__dot--all) { opacity: .18; }
+@media (min-width: 600px) and (max-width: 899px) {
+  .fes-art { width: min(100%, 560px); margin-inline: auto; }
+}
+@media (min-width: 900px) {
+  .fes-top { --ph-h: min(50vw, 720px); }   /* the design's first screen is 720 tall, not 620 */
+  .fes-top .phero__text { width: min(100%, 51.5vw, 780px); }   /* the title ends before the wheel's rim */
+  .fes-top .phero__en, .fes-top .phero__sub { max-width: min(620px, calc(.5 * min(100vw, var(--max)) - var(--gutter) - 16px)); }
+  .fes-art { position: absolute; top: calc(-1 * var(--hdr-h)); right: 0; width: calc(680 / 1440 * min(100vw, var(--max))); margin: 0; aspect-ratio: 680 / 720; overflow: visible; }
+  .fes-wheel { position: static; width: 100%; }
+  .fes-sticker { --s: max(118px, min(11.12vw, 160px)); top: calc(510 / 720 * 100%); left: calc(-40 / 680 * 100%); right: auto; }
+}
+
+/* ---------------------------------------------------------------- filter by dhara (shown by the script) */
+.fes-filter { padding: 18px var(--gutter); background: var(--shola); color: var(--kajal); border-bottom: 3px solid var(--kajal); }
+.fes-filter__in {
+  max-width: calc(var(--max) - 128px); margin-inline: auto; display: grid; align-items: center; gap: 12px 24px;
+  grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "k cta" "chips chips";
+}
+.fes-filter__k { grid-area: k; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.fes-filter__bn { font-weight: 800; font-size: 22px; line-height: 1.1; }
+.fes-filter__en { font-family: var(--caps); font-weight: 800; font-size: 12px; line-height: 1.2; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.fes-filter__scroll { grid-area: chips; min-width: 0; }
+.fes-filter__cta { grid-area: cta; }
+@media (max-width: 399px) {   /* "News", so the label beside it stays on one line */
+  .fes-filter__get { display: none; }
+  .fes-filter__bn { font-size: 20px; }
+}
+.fes-chips { display: flex; align-items: center; gap: 12px; }
+.fes-chip {
+  --c-bg: var(--shola); --c-fg: var(--kajal); --c-sh: var(--sindoor);
+  flex: none; display: inline-flex; align-items: center; gap: 8px; min-height: 50px; padding: 0 16px; border: 3px solid var(--kajal); border-radius: 0;
+  background: var(--c-bg); color: var(--c-fg); cursor: pointer; white-space: nowrap; transition: transform .15s ease, box-shadow .15s ease;
+}
+.fes-chip:hover { transform: translate(-1px, -1px); }
+.fes-chip[aria-pressed="true"] { box-shadow: 4px 4px 0 var(--c-sh); transform: translate(-2px, -2px); }
+.fes-chip__ic { display: none; flex: none; }
+.fes-chip[aria-pressed="true"] .fes-chip__ic { display: block; }
+.fes-chip__bn { font-weight: 700; font-size: 19px; line-height: 1; }
+.fes-chip__en { font-family: var(--caps); font-weight: 800; font-size: 13px; line-height: 1; letter-spacing: .12em; text-transform: uppercase; }
+.fes-chip--every { --c-bg: var(--kajal); --c-fg: var(--haldi); }
+.fes-chip--shaiva { --c-bg: var(--ash); --c-fg: var(--shola); }
+.fes-chip--vaishnava { --c-bg: var(--peacock-d); --c-fg: var(--shola); }
+.fes-chip--shakta { --c-bg: var(--sindoor); --c-fg: var(--shola); --c-sh: var(--kajal); }
+.fes-chip--all { --c-bg: var(--shola); --c-fg: var(--kajal); }
+@media (max-width: 899px) {
+  .fes-filter__scroll {
+    overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin;
+    margin-inline: calc(-1 * var(--gutter)); padding: 4px var(--gutter) 10px; scroll-padding-inline: var(--gutter);
+  }
+  .fes-chips { width: max-content; }
+}
+@media (min-width: 900px) {
+  .fes-filter { padding-block: 22px; }
+  .fes-chips { flex-wrap: wrap; gap: 12px 14px; padding: 2px 0 4px; }
+  .fes-chip { padding-inline: 18px; }
+}
+@media (min-width: 1200px) {
+  .fes-filter { padding-block: 26px; }
+  .fes-filter__in { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "k chips cta"; gap: 16px 32px; }
+}
+
+/* ---------------------------------------------------------------- month by month */
+.fes-key { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 18px; font-weight: 600; font-size: 17px; line-height: 1.3; }
+.fes-key__i { display: inline-flex; align-items: center; gap: 6px; }
+.fes-key__en { font-family: var(--caps); font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.fes-key__p { max-width: 360px; }   /* keeps the aside beside the heading from 900px up */
+.fes-moon { flex: none; }
+@media (max-width: 899px) { .fes-key { justify-content: flex-start; } }
+
+.fes-scope { margin-top: calc(-.4 * var(--gap)); font-weight: 600; font-size: clamp(17px, 1.35vw, 19px); line-height: 1.45; }
+.fes-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px 28px; }
+@media (min-width: 600px) { .fes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 24px; } }
+@media (min-width: 1000px) { .fes-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1360px) { .fes-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 28px; } }
+
+.fes-month {
+  --pad: clamp(18px, 1.55vw, 22px);
+  position: relative; display: flex; flex-direction: column; min-width: 0; padding: var(--pad);
+  background: var(--shola); color: var(--kajal); border: 3px solid var(--kajal); box-shadow: 6px 6px 0 var(--kajal);
+}
+.fes-month.is-cur { border: 4px solid var(--sindoor); box-shadow: 8px 8px 0 var(--kajal); }
+.fes-tag {
+  position: absolute; left: 18px; top: -17px; display: flex; align-items: center; gap: 8px; padding: 4px 12px;
+  background: var(--sindoor); color: var(--shola); font-weight: 700; font-size: 15px; line-height: 1.3; word-spacing: .2em; white-space: nowrap;
+}
+.fes-tag--ny { background: var(--kajal); color: var(--haldi); }
+.fes-month.is-cur .fes-tag--ny { left: auto; right: 18px; }
+.fes-tag__dot { flex: none; width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
+.fes-tag__en { font-family: var(--caps); font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; word-spacing: 0; }
+
+.fes-month__head { display: flex; flex-direction: column; gap: 4px; padding-bottom: 12px; border-bottom: 3px solid var(--kajal); }
+.fes-month__r1 { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.fes-month__bn { font-weight: 800; font-stretch: 75%; font-size: clamp(46px, 3.75vw, 54px); line-height: 1.05; white-space: nowrap; }
+.fes-month.is-cur .fes-month__bn { color: var(--sindoor); }
+.fes-month__yr { padding-top: 10px; font-weight: 700; font-size: 18px; line-height: 1.2; color: var(--muted); }
+.fes-month__r2 { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 10px; }
+.fes-month__en { font-family: var(--caps); font-weight: 800; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+.fes-month__season { display: flex; align-items: baseline; gap: 6px; font-weight: 700; font-size: 15px; line-height: 1.2; white-space: nowrap; }
+.fes-month__sen { font-family: var(--caps); font-weight: 800; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+/* festivals in a month: rows (two or more), or one big date */
+.fes-rows { display: flex; flex-direction: column; padding-top: 4px; }
+.fes-row { display: flex; gap: 12px; padding: 14px 0; }
+.fes-row:where(:not([hidden])) ~ .fes-row:where(:not([hidden])) { border-top: 2px dashed rgba(22, 16, 12, .3); }
+.fes-date {
+  flex: none; align-self: flex-start; width: 66px; padding: 7px 0 6px; border: 2px solid var(--kajal); background: var(--paper2); color: var(--kajal);
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+}
+.fes-date__d { font-weight: 800; font-stretch: 75%; font-size: 30px; line-height: 1; color: var(--sindoor); white-space: nowrap; }
+.fes-date--long .fes-date__d { font-size: 22px; line-height: 1.15; }
+.fes-date__m { font-weight: 700; font-size: 13px; line-height: 1.2; }
+.fes-row__t { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.fes-row__bn { font-weight: 800; font-stretch: 75%; font-size: 24px; line-height: 1.15; }
+.fes-row__en, .fes-row__date { font-family: var(--caps); font-weight: 800; font-size: 12px; line-height: 1.3; letter-spacing: .1em; text-transform: uppercase; }
+.fes-row__en { color: var(--muted); }
+.fes-rows .fes-row--special {
+  position: relative; margin: 10px calc(-1 * var(--pad)) 0; padding: 16px var(--pad);
+  background: var(--haldi); border-top: 3px solid var(--kajal); border-bottom: 3px solid var(--kajal);
+}
+.fes-rows .fes-row--special + .fes-row { border-top: 0; }
+.fes-row--special .fes-date { background: var(--kajal); color: var(--shola); }
+.fes-row--special .fes-date__d { color: var(--haldi); }
+.fes-row--special .fes-row__bn { padding-right: 56px; font-size: 28px; line-height: 1.1; }
+.fes-row--special .fes-row__en { color: var(--kajal); }
+.fes-row__sp { margin-top: 8px; font-weight: 800; font-size: 18px; line-height: 1.2; }
+.fes-row__spen { font-weight: 600; font-size: 15px; line-height: 1.3; }
+.fes-row__wheel { position: absolute; right: 16px; top: 14px; transform: rotate(-8deg); }
+
+.fes-feat { display: flex; flex-direction: column; gap: 4px; padding-top: 16px; }
+.fes-feat__day { display: flex; align-items: flex-end; gap: 12px; min-width: 0; }
+.fes-feat__d { font-weight: 800; font-stretch: 75%; font-size: clamp(72px, 6.1vw, 88px); line-height: .9; color: var(--sindoor); white-space: nowrap; }
+.fes-feat__mw { display: flex; flex-direction: column; gap: 1px; min-width: 0; padding-bottom: 7px; }
+.fes-feat__m { font-weight: 700; font-size: 20px; line-height: 1.2; }
+.fes-feat__wd { font-weight: 600; font-size: 15px; line-height: 1.25; color: var(--muted); }
+.fes-feat__date { margin-top: 2px; font-family: var(--caps); font-weight: 800; font-size: 13px; line-height: 1.3; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.fes-feat__bn { margin-top: 8px; font-weight: 800; font-stretch: 75%; font-size: 36px; line-height: 1.1; }
+.fes-feat--nitya .fes-feat__bn { margin-top: 0; font-size: 40px; }
+.fes-feat__en { font-family: var(--caps); font-weight: 800; font-size: 14px; line-height: 1.3; letter-spacing: .1em; text-transform: uppercase; }
+.fes-feat__p { margin-top: 8px; font-size: 16px; line-height: 1.45; color: var(--muted); }
+.fes-feat__p + .fes-feat__p { margin-top: 2px; }
+.fes-feat__note { display: flex; flex-direction: column; gap: 1px; margin-top: 10px; padding-top: 10px; border-top: 2px dashed rgba(22, 16, 12, .3); font-weight: 700; font-size: 16px; line-height: 1.3; }
+.fes-feat__nen { font-family: var(--caps); font-weight: 800; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+
+.fes-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-top: 5px; }
+.fes-at {   /* the mandir's own big celebrations */
+  display: inline-flex; align-items: center; gap: 6px; padding: 2px 9px 1px; border: 2px solid var(--kajal); background: var(--haldi); color: var(--kajal);
+  font-weight: 700; font-size: 14px; line-height: 1.3; white-space: nowrap; vertical-align: middle;
+}
+.fes-at__en { font-family: var(--caps); font-weight: 800; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+.fes-scope .fes-at { margin-left: 4px; }
+.fes-dh { display: inline-flex; align-items: center; padding: 2px 9px 1px; border: 2px solid var(--kajal); font-weight: 700; font-size: 14px; line-height: 1.3; white-space: nowrap; }
+.fes-dh--shaiva { background: var(--ash); color: var(--shola); }
+.fes-dh--vaishnava { background: var(--peacock-d); color: var(--shola); }
+.fes-dh--shakta { background: var(--sindoor); color: var(--shola); }
+.fes-dh--all { background: var(--shola); color: var(--kajal); }
+.fes-pill { display: inline-flex; align-items: center; padding: 2px 10px; border: 2px solid var(--kajal); border-radius: 999px; background: var(--kajal); color: var(--haldi); font-weight: 700; font-size: 14px; line-height: 1.3; white-space: nowrap; }
+.fes-pill[data-state="on"] { background: var(--sindoor); border-color: var(--sindoor); color: var(--shola); }
+.fes-pill[data-state="past"] { background: transparent; border-color: rgba(22, 16, 12, .35); color: var(--muted); }
+.fes-fest { scroll-margin-top: 24px; }
+.fes-fest:target { animation: fes-flash 2.4s ease 1; }
+@keyframes fes-flash { 0%, 55% { background-color: #FFE58A; box-shadow: 0 0 0 8px #FFE58A; } }
+.fes-fest.is-done .fes-date__d, .fes-fest.is-done .fes-feat__d { color: var(--muted); }
+.fes-fest.is-done .fes-row__bn, .fes-fest.is-done .fes-feat__bn { color: var(--muted); }
+
+.fes-month__cta { padding-top: 6px; }
+.fes-none { display: flex; flex-direction: column; gap: 2px; padding-top: 18px; font-weight: 700; font-size: 17px; line-height: 1.3; }
+.fes-none__en { font-family: var(--caps); font-weight: 800; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.fes-panel {
+  flex: 1 1 auto; min-height: 168px; margin: 20px calc(-1 * var(--pad)) calc(-1 * var(--pad)); background: var(--panel, var(--sindoor));
+  border-top: 3px solid var(--kajal); display: flex; align-items: center; justify-content: center; padding: 12px;
+}
+.fes-panel__art { width: 180px; transition: opacity .2s ease, filter .2s ease; }
+
+/* quieter: months already over, and months with nothing for the chosen dhara */
+.fes-month.is-past { background: var(--paper2); border-color: rgba(22, 16, 12, .45); box-shadow: 3px 3px 0 rgba(22, 16, 12, .22); }
+.fes-month.is-past .fes-month__bn, .fes-month.is-past .fes-date__d, .fes-month.is-past .fes-feat__d { color: var(--muted); }
+.fes-month.is-past .fes-month__head { border-bottom-color: rgba(22, 16, 12, .45); }
+.fes-month.is-past .fes-panel, .fes-month.is-empty .fes-panel { border-top-color: rgba(22, 16, 12, .45); }
+.fes-month.is-past .fes-panel__art { filter: grayscale(1); opacity: .45; }
+.fes-month.is-past .fes-panel { background: var(--sand); }
+.fes-month.is-empty { align-self: start; }   /* nothing for this dhara: a short card, no painting */
+.fes-month.is-empty .fes-panel { display: none; }
+.fes-month.is-empty .fes-month__head { opacity: .6; }
+
+@media (max-width: 599px) {
+  .fes-panel { min-height: 140px; }
+  .fes-panel__art { width: 140px; }
+}
+
+/* ---------------------------------------------------------------- next up: the next big festival */
+.fes-count { display: flex; align-items: flex-end; gap: 14px; }
+.fes-count__n { font-weight: 800; font-stretch: 75%; font-size: clamp(80px, 7.8vw, 112px); line-height: .9; color: var(--haldi); text-shadow: .045em .045em 0 var(--sindoor); white-space: nowrap; }
+.fes-count__t { display: flex; flex-direction: column; gap: 2px; padding-bottom: 8px; text-align: left; }
+.fes-count__bn { font-weight: 800; font-size: clamp(22px, 1.95vw, 28px); line-height: 1.1; }
+.fes-count__en { font-family: var(--caps); font-weight: 800; font-size: 14px; line-height: 1.2; letter-spacing: .14em; text-transform: uppercase; color: var(--haldi); }
+
+.fes-next { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; align-items: start; }
+.fes-np {
+  --rot: -1.6deg; container-type: inline-size;
+  display: flex; flex-direction: column; gap: 10px; min-width: 0; width: 100%; max-width: 452px;
+  padding: clamp(20px, 2.1vw, 30px) clamp(20px, 2.1vw, 30px) clamp(24px, 2.4vw, 34px);
+  background: var(--p-bg); color: var(--p-fg); border: 4px solid var(--kajal); box-shadow: 14px 14px 0 var(--haldi);
+  transform: rotate(var(--rot)); transition: transform .25s ease;
+}
+.fes-np:hover { text-decoration: none; transform: rotate(0deg) translateY(-6px); }
+.fes-np--kali { border-color: var(--shola); }
+.fes-np__top { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 30px; }
+.fes-np__dh { font-weight: 600; font-size: clamp(16px, 1.25vw, 18px); line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fes-np__pill { flex: none; padding: 5px 14px; border-radius: 999px; background: var(--p-pill-bg); color: var(--p-pill-fg); font-weight: 700; font-size: clamp(16px, 1.25vw, 18px); line-height: 1.2; white-space: nowrap; }
+.fes-np__art { width: 100%; }
+.fes-np__title {
+  margin-top: 4px; font-weight: 800; font-stretch: 75%; font-size: min(116px, calc(100cqi / (var(--w, 3) + .08))); line-height: 1.02;
+  color: var(--p-title, inherit); text-shadow: .052em .052em 0 var(--kajal); white-space: nowrap;
+  padding-bottom: calc(max(0, var(--d, .2) - .18) * 1em);   /* room for ু ূ below the line */
+}
+.fes-np__date { font-weight: 700; font-size: clamp(22px, 2.1vw, 30px); line-height: 1.2; }
+.fes-np__en { font-family: var(--caps); font-weight: 800; font-size: clamp(14px, 1.2vw, 17px); line-height: 1.3; letter-spacing: .1em; text-transform: uppercase; }
+
+.fes-next__t { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.fes-next__h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 10px; font-weight: 800; font-size: clamp(28px, 2.4vw, 34px); line-height: 1.2; }
+.fes-next__hen { font-family: var(--caps); font-weight: 800; font-size: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--haldi); }
+.fes-exp__i { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px 24px; padding: 20px 0; border-top: 2px solid rgba(255, 246, 230, .28); }
+.fes-exp__k { font-family: var(--caps); font-weight: 800; font-size: 14px; line-height: 1.3; letter-spacing: .14em; text-transform: uppercase; color: var(--haldi); }
+.fes-exp__t { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.fes-exp__bn { font-weight: 800; font-size: clamp(22px, 1.8vw, 26px); line-height: 1.25; }
+.fes-exp__en { font-family: var(--caps); font-weight: 800; font-size: 14px; line-height: 1.3; letter-spacing: .1em; text-transform: uppercase; }
+.fes-exp__p { margin-top: 2px; font-size: 17px; line-height: 1.5; color: var(--sand); }
+.fes-next__t .btns { margin-top: 18px; }
+.fes-next--none { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+.fes-next__p { max-width: 62ch; font-size: clamp(18px, 1.5vw, 21px); line-height: 1.5; }
+@media (max-width: 599px) {
+  .fes-np { margin-inline: auto; }
+}
+@media (min-width: 900px) {
+  .fes-next { grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 48px 56px; padding-left: 8px; }
+  .fes-next--none { display: flex; }
+}
+@media (min-width: 1200px) {
+  .fes-next { grid-template-columns: minmax(0, 452px) minmax(0, 1fr); column-gap: 80px; }
+  .fes-exp__i { grid-template-columns: 190px minmax(0, 1fr); }
+  .fes-next__t .btns { margin-top: 26px; }
+}
+
+/* ---------------------------------------------------------------- about these dates */
+.fes-noteband { padding-block: clamp(28px, 3vw, 40px); }
+.fes-note { display: flex; align-items: center; gap: 18px 28px; }
+.fes-note__ic { flex: none; }
+.fes-note__t { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.fes-note__h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; font-weight: 800; font-size: clamp(22px, 1.8vw, 26px); line-height: 1.2; }
+.fes-note__en { font-family: var(--caps); font-weight: 800; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--sindoor); }
+.fes-note__p { font-size: clamp(16px, 1.25vw, 18px); line-height: 1.5; color: var(--muted); }
+@media (max-width: 599px) {
+  .fes-note { align-items: flex-start; }
+  .fes-note__ic { width: 46px; height: auto; margin-top: 4px; }
+}
