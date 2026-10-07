@@ -6,6 +6,7 @@ from lib import art
 from lib.art import arrow, shikhara, sun, svg_doc, f, KAJAL, SHOLA, HALDI, SINDOOR, NEEL
 from lib.motifs import trishul
 from lib import byear as BY
+from pages.seva import times
 
 PAGE = dict(key='darshan', title='Darshan and arati times',
             description='Darshan at Tridhara Milan Mandir, Panchmura: open every day from 5 AM, the Tridhara Sandhya Arati at 6:30 PM, '
@@ -62,15 +63,19 @@ def hero_art():
     return d, s + sparks + temple + glow + medals + diyas
 
 
-def yt_screen():
-    """The 16:9 picture in the YouTube frame, drawn in the poster language (not a photo): sun, diyas, play button."""
-    w, h = 752, 423
-    d, s = sun('dnLv', 376, 190, 150, HALDI, NEEL)
-    diyas = ''.join(BY.diya(x, 392, .62) for x in range(58, 752, 90))
-    sp = spark(110, 92, .9) + spark(650, 74, 1.1, SHOLA) + spark(668, 250, .7) + spark(84, 262, .7, SHOLA)
-    play = (f'<circle cx="384" cy="198" r="60" fill="{KAJAL}"/><circle cx="376" cy="190" r="60" fill="{SINDOOR}" stroke="{KAJAL}" stroke-width="5"/>'
-            f'<path d="M362,164 L404,190 L362,216 Z" fill="{SHOLA}" stroke="{KAJAL}" stroke-width="4" stroke-linejoin="round"/>')
-    return svg_doc((0, 0, w, h), f'<rect width="{w}" height="{h}" fill="{NEEL}"/>{s}{sp}{diyas}{play}', d)
+def yt_banner():
+    """The banner of the YouTube channel card, drawn in the poster language (not a photo, and nothing like a video
+    player: no play button): the mandir against a rising haldi sun, with diyas and sparks."""
+    w, h = 752, 280
+    d, s = sun('dnLv', 376, 292, 206, HALDI, NEEL)
+    tx, ty, ts = 376, 262, 1.62
+    temple = shikhara(tx, ty, ts, fill=KAJAL, line=KAJAL)
+    glow = (f'<g transform="translate({tx},{ty}) scale({ts})"><path d="M-9,0 L-9,-12 A9,9 0 0 1 9,-12 L9,0 Z" fill="{HALDI}"/>'
+            f'<path d="M0,-126 L20,-120.5 L0,-115 Z" fill="{SINDOOR}" stroke="{KAJAL}" stroke-width="2"/></g>')
+    ground = f'<path d="M0,262 L{w},262 L{w},{h} L0,{h} Z" fill="{KAJAL}"/>'
+    diyas = ''.join(BY.diya(x, 250, .6) for x in (54, 142, 230, 506, 594, 682))
+    sp = spark(110, 64, .9) + spark(646, 58, 1.1, SHOLA) + spark(690, 166, .7) + spark(70, 170, .7, SHOLA) + spark(560, 120, .55, SHOLA)
+    return svg_doc((0, 0, w, h), f'<rect width="{w}" height="{h}" fill="{NEEL}"/>{s}{sp}{ground}{temple}{glow}{diyas}', d)
 
 
 def medal_svg(kind):
@@ -140,12 +145,13 @@ def youtube_url(ctx):
 def first_screen(ctx):
     d, s = hero_art()
     files = art.board_files('darshan-hero', d, s, view=VIEW, view_m=VIEW_M)
-    ctx.add_img('darshan-youtube.svg', yt_screen())
+    ctx.add_img('darshan-youtube.svg', yt_banner())
     # before the script runs (or without it) the sticker shows the arati time; site.js turns it into a countdown
     stk = sticker('৬:৩০', 'সন্ধ্যা আরতি', 'Every evening', label='Tridhara Sandhya Arati, 6:30 PM every evening',
                   cls='phero__sticker dar-sticker', data=' data-dar-arati')
     extra = f'<div class="btns">{btn(ctx, "Today’s timings", "#today", "shola")}{btn(ctx, "The mandir on YouTube", "#youtube", "ghost")}</div>'
-    sub = 'Open every day from 5 AM. Come for the Tridhara Sandhya Arati at 6:30 PM, when trishul, chakra and shankha meet in one arati.'
+    sub = ('Open every day from 5\N{NO-BREAK SPACE}AM. Come for the Tridhara Sandhya Arati at 6:30\N{NO-BREAK SPACE}PM, '
+           'when trishul, chakra and shankha meet in one arati.')
     hero = ui.page_hero(ctx, 'darshan', 'দর্শন ও আরতি', 'Darshan and arati times', sub, w=4.8, art_files=files, pa_w=ART_W / 1440,
                         extra=extra, sticker_html=stk, pt=.16, sr_en='Darshan and arati times', ph_max=160)
     return hero.replace('class="phero"', 'class="phero dar-hero"', 1) + marquee(DAY_ITEMS)
@@ -203,8 +209,8 @@ def hours(ctx):
     board = (f'<div class="dar-hrs">'
              f'<div class="dar-hrs__row dar-hrs__row--axis" aria-hidden="true"><div class="dar-hrs__l"><span class="dar-hrs__k">Darshan hours · IST</span></div>'
              f'<div class="dar-hrs__track">{axis}</div></div>'
-             + row('weekday', 'সোম–শুক্র', 'Monday to Friday', bar(o, cwd, H['lines'][0].split(' ', 1)[1]))
-             + row('weekend', 'শনি–রবি', 'Saturday and Sunday', bar(o, cwe, H['lines'][1].split(' ', 1)[1]))
+             + row('weekday', 'সোম–শুক্র', 'Monday to Friday', bar(o, cwd, times(H['lines'][0].split(' ', 1)[1])))
+             + row('weekend', 'শনি–রবি', 'Saturday and Sunday', bar(o, cwe, times(H['lines'][1].split(' ', 1)[1])))
              + row('tithi', 'একাদশী, পূর্ণিমা, অমাবস্যা', 'Ekadashi · Purnima · Amavasya',
                    bar(o, cwe, '<span class="dar-hrs__long">Extended hours · kirtan through the night</span> '
                        '<span class="dar-hrs__short">Kirtan through the night</span>', ' dar-hrs__bar--tithi') + tail,
@@ -213,7 +219,7 @@ def hours(ctx):
     legend = ('<div class="dar-legend"><span class="dar-legend__mark" aria-hidden="true"></span>'
               '<div><p><strong>Tridhara Sandhya Arati, 6:30 PM daily</strong></p>'
               + ui.note('the arati time follows the current website’s homepage (18:30). Elsewhere that website also gives '
-                        '6:30–8:00 PM and 7:00–8:30 PM.', 'p')
+                        '6:30–8 PM and 7–8:30 PM.', 'p')
               + ui.note('only seven kirtan nights are listed so far, and no Ekadashi. Please send this year’s Ekadashi, Purnima and Amavasya dates.', 'p')
               + '</div></div>')
 
@@ -224,7 +230,7 @@ def hours(ctx):
         return (f'<li class="dar-tk" style="--tk: var(--{accent});"><p class="dar-tk__t">{time}</p>'
                 f'<p class="dar-tk__bn" lang="bn">{bn}</p><p class="dar-tk__en">{en}</p></li>')
     tickets = (ticket(t('12:00', 'PM'), 'রাধাকৃষ্ণের ভোগ', 'Bhog before Radha-Krishna', 'sindoor')
-               + ticket(t('12:30–2:00', 'PM'), 'অন্নদান প্রসাদ', 'Anna-daan prasad, free', 'haldi')
+               + ticket(t('12:30–2', 'PM'), 'অন্নদান প্রসাদ', 'Anna-daan prasad, free', 'haldi')
                + ticket(t('5:30', 'PM'), 'হালকা খাবার', 'Light meal during festivals', 'peacock')
                + ticket(t('8', 'AM') + '–' + t('6', 'PM'), 'সেবা ডেস্ক', 'Seva desk', 'neel'))
     aside = '<p>Darshan begins at 5:00 AM with Mangal Arati and tulsi parikrama.</p>'
@@ -247,7 +253,7 @@ def shrines(ctx):
     band = (f'<div class="dar-also"><h3 class="dar-also__h"><span lang="bn">আরও দর্শন</span> <span class="dar-also__he">Also in the mandir</span></h3>'
             f'<ul class="dar-also__list">{chip("জগন্নাথ", "Jagannath, on the altar")}{chip("চৈতন্য মহাপ্রভু", "Chaitanya Mahaprabhu")}'
             f'{chip("রাম–সীতা", "Rama–Sita")}{chip("হনুমান", "Hanuman")}</ul></div>')
-    aside = '<p>Mahadev, Radha-Krishna and Maa Kali, worshipped side by side in one courtyard.</p>'
+    aside = '<p>Mahadev, Radha-Krishna and Maa Kali, worshipped together in one mandir.</p>'
     return section(sec_head('তিন ধারার দর্শন', 'The three shrines', aside, hid='shrines-h')
                    + f'<div class="rail dar-shrines">{ps}</div>' + band, 'haldi', cls='dar-sec', sid='shrines', labelledby='shrines-h')
 
@@ -265,20 +271,26 @@ def arati(ctx):
                    + f'<ol class="dar-arati">{items}</ol>', 'sindoor', cls='dar-sec', sid='arati', labelledby='arati-h')
 
 
-# ---------------------------------------------------------------- 6 · the mandir on YouTube (a link out: no embed, no claim of a live stream)
+# ---------------------------------------------------------------- 6 · the mandir on YouTube: a channel card that links out.
+# No embed, and nothing that reads like a live stream (no play button, no arati time beside it): FACTS gives the channel only.
 def youtube(ctx):
     yt = youtube_url(ctx)
     handle = '@' + yt.rstrip('/').rsplit('@', 1)[-1]
-    frame = (f'<a class="dar-yt__frame" href="{esc(yt)}" rel="noopener" target="_blank" aria-label="The mandir’s YouTube channel, {handle} (opens YouTube)">'
-             f'<span class="dar-yt__screen"><img src="{ctx.img("darshan-youtube.svg")}" alt="" width="752" height="423" loading="lazy" decoding="async">'
-             f'<span class="dar-yt__tag">YouTube</span> <span class="dar-yt__chan">{handle}</span></span> '
-             f'<span class="dar-yt__bar"><span class="dar-yt__bar-k">The mandir on YouTube</span><span>{handle}</span></span></a>')
+    social = dict(ctx.data['contact']['social'])
+    card = (f'<a class="dar-yt__frame" href="{esc(yt)}" rel="noopener" target="_blank" aria-label="Follow the mandir on YouTube, {handle} (opens YouTube)">'
+            f'<span class="dar-yt__banner"><img src="{ctx.img("darshan-youtube.svg")}" alt="" width="752" height="280" loading="lazy" decoding="async"></span>'
+            f'<span class="dar-yt__chan"><span class="dar-yt__avatar">{art.ghot_mark("ghot dar-yt__mark", 64)}</span>'
+            f'<span class="dar-yt__who"><span class="dar-yt__name" lang="bn">{esc(ctx.data["site"]["name_bn"])}</span>'
+            f'<span class="dar-yt__handle">{handle}</span></span>'
+            f'<span class="dar-yt__follow">Follow on YouTube{arrow(16)}</span></span></a>')
+    also = ''
+    if social.get('Facebook') and social.get('Instagram'):
+        also = (f'<p class="dar-yt__also">The mandir is also on <a class="u" href="{esc(social["Facebook"])}" rel="noopener" target="_blank">Facebook</a> '
+                f'and <a class="u" href="{esc(social["Instagram"])}" rel="noopener" target="_blank">Instagram</a>.</p>')
     text = (f'<div class="dar-yt__text">{sec_head("ইউটিউবে মন্দির", "The mandir on YouTube", hid="youtube-h")}'
-            f'<p class="dar-yt__p">Far from Panchmura? Follow the mandir on its YouTube channel, {handle}.</p>'
-            f'<p class="dar-yt__when"><span class="dar-yt__bn" lang="bn">প্রতিদিন সন্ধ্যা ৬:৩০-এ মন্দিরে আরতি</span> '
-            f'<span class="dar-yt__en">At the mandir: the arati at 6:30 PM every evening</span></p>'
-            f'<div class="btns">{btn(ctx, "Watch on YouTube" + arrow(16), yt, "haldi")}</div></div>')
-    return section(f'<div class="dar-yt">{text}{frame}</div>', 'kajal', cls='dar-sec', sid='youtube', labelledby='youtube-h')
+            f'<p class="dar-yt__p">Far from Panchmura? Follow the mandir on its YouTube channel, {handle}.</p>{also}'
+            f'<div class="btns">{btn(ctx, "Follow the mandir on YouTube" + arrow(16), yt, "haldi")}</div></div>')
+    return section(f'<div class="dar-yt">{text}{card}</div>', 'kajal', cls='dar-sec', sid='youtube', labelledby='youtube-h')
 
 
 # ---------------------------------------------------------------- 7 · before you come

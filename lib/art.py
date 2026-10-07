@@ -239,13 +239,15 @@ def route_map(label='Route from Kolkata to Panchmura by way of Bishnupur: about 
              f'<circle cx="-16" cy="12" r="6" fill="{KAJAL}"/><circle cx="16" cy="12" r="6" fill="{KAJAL}"/><path d="M-40,22 L40,22" stroke="{KAJAL}" stroke-width="3"/></g>')
 
     def lab(x, y, bn, en, size=34, color=SHOLA, anchor='start'):
+        en_y = y + 22 + max(0, size - 34) // 2     # a bigger Bengali name drops further (the dot under ড়): keep the English clear of it
         return (f'<text x="{x}" y="{y}" text-anchor="{anchor}" fill="{color}" class="map-bn" font-size="{size}" lang="bn">{bn}</text>'
-                f'<text x="{x}" y="{y + 22}" text-anchor="{anchor}" fill="{color}" class="map-en" font-size="14">{en}</text>')
+                f'<text x="{x}" y="{en_y}" text-anchor="{anchor}" fill="{color}" class="map-en" font-size="14">{en}</text>')
 
     def pill(x, y, text, rot, bg=SHOLA, fg=KAJAL, w=168):
         return (f'<g transform="translate({x},{y}) rotate({rot})"><rect x="{-w / 2}" y="-20" width="{w}" height="40" rx="20" fill="{bg}" stroke="{KAJAL}" stroke-width="3"/>'
                 f'<text x="0" y="8" text-anchor="middle" fill="{fg}" class="map-bn" font-size="19" lang="bn">{text}</text></g>')
-    return (f'<svg class="route-map" viewBox="0 0 720 440" role="img" aria-label="{label}">'
+    # 460 high, so "TRIDHARA MILAN MANDIR" under পাঁচমুড়া (baseline y = 445) is drawn whole
+    return (f'<svg class="route-map" viewBox="0 0 720 460" role="img" aria-label="{label}">'
             f'{trees}<path d="{road}" fill="none" stroke="{KAJAL}" stroke-width="22" stroke-linecap="round"/>'
             f'<path d="{road}" fill="none" stroke="{HALDI}" stroke-width="13" stroke-linecap="round"/>'
             f'<path d="{road}" fill="none" stroke="{KAJAL}" stroke-width="2" stroke-dasharray="10 10"/>{car}{train}'

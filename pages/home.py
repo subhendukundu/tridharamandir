@@ -1,6 +1,8 @@
 """Homepage: festival mode (six big festivals take the first screen 14 days ahead) or the evergreen screen,
 then the day at the mandir, the three dharas, the festival year, seva, visiting, the story and reminders."""
 import json
+import re
+from urllib.parse import quote
 from lib import ui
 from lib.ui import esc, btn, sec_head, section, sticker, marquee, poster, dhara_poster, seva_card, field, tbc
 from lib.art import arrow, icon_trishul, icon_chakra, icon_shankha, icon_play, route_map
@@ -15,6 +17,8 @@ SR_EN = {'evergreen': 'Three streams in one ghot', 'durga': 'The Puja is coming'
          'durga_thanks': 'Again next year', 'kali': 'Shyama Puja', 'shivaratri': 'Shivaratri', 'dol': 'Dol Yatra',
          'rath': 'Rath Yatra', 'janmashtami': 'Happy Janmashtami'}
 BASELINE, GAP = 0.81, 0.06   # where the baseline sits in a 1em line (Anek Bangla); space between the two lines' letters
+DAY_MONTH = re.compile(r'(\d) (January|February|March|April|May|June|July|August|September|October|November|December)\b')
+NBSP = '\u00a0'   # no-break space
 
 
 def metrics(m):
@@ -82,12 +86,20 @@ def hero_head(hid, lines, m, when, fe, sr, static=None, first=False):
             f'<span class="sr-only" lang="en"> · {sr}</span></h1>{hero_sticker(hid, fe, static)}</div></div>')
 
 
-def hero_copy(ctx, sub, body, ctas, when, extra=''):
+def sub_html(sub):
+    """The line under the headline. A date stays in one piece ("25 August", "16–21 October") and each dot stays with the
+    words before it; on wide screens a line with dots breaks only at a dot (each part is a .hero__seg)."""
+    parts = [DAY_MONTH.sub('\\1' + NBSP + '\\2', p) for p in sub.split(' · ')]
+    if len(parts) == 1:
+        return parts[0]
+    return (NBSP + '· ').join(f'<span class="hero__seg">{p}</span>' for p in parts)
+
+
+def hero_copy(ctx, sub, body, ctas, when, extra='', after_sub=''):
     b = ''
     for k, (label, key) in enumerate(ctas):
         b += btn(ctx, label, key, 'tone' if k == 0 else 'ghost')
-    sub = sub.replace(' · ', '\u00a0· ')   # keep the dot with the words before it when the line wraps
-    return (f'<div class="hero__copy" data-when="{when}"><p class="hero__sub">{sub}</p>'
+    return (f'<div class="hero__copy" data-when="{when}"><p class="hero__sub">{sub_html(sub)}{after_sub}</p>'
             f'<p class="hero__body">{body}{extra}</p><div class="btns">{b}</div></div>')
 
 
@@ -98,6 +110,8 @@ def hero(ctx, hid):
            f'<img src="{ctx.img("hero-" + hid + ".svg")}" alt="" width="1080" height="836" loading="lazy" decoding="async"></picture>'
            f'<script>TMM_HERO.eager(document.currentScript.previousElementSibling)</script>')
     conf = ' ' + tbc() if H.get('confirm') else ''
+    # a festival whose date the mandir has not confirmed says so, as the calendar and the seva form do
+    tbd = ' <span class="hero__tbd">(date to be confirmed)</span>' if fe and fe.get('confirm') else ''
     if hid == 'evergreen':
         heads = hero_head(hid, H['lines'], H['m'], 'all', None, SR_EN[hid])
         copy = hero_copy(ctx, H['sub'], H['body'], H['ctas'], 'all')
@@ -109,7 +123,7 @@ def hero(ctx, hid):
             heads = hero_head(hid, H['lines'], H['m'], 'coming on' + ('' if 'lines_thanks' in H else ' thanks'), fe, SR_EN[hid])
         if 'lines_thanks' in H:
             heads += hero_head(hid, H['lines_thanks'], H['m_thanks'], 'thanks', fe, SR_EN[hid + '_thanks'], static=H.get('thanks_sticker'))
-        copy = (hero_copy(ctx, H['sub'] + conf, H['body'], H['ctas'], 'coming on')
+        copy = (hero_copy(ctx, H['sub'] + conf, H['body'], H['ctas'], 'coming on', after_sub=tbd)
                 + hero_copy(ctx, f'Thank you for celebrating {fe["en"].split(" · ")[0]} with us',
                             '<span data-next-big>See what comes next on the festival calendar.</span>',
                             [('See the festival year', 'festivals'), ('Plan your darshan', 'darshan')], 'thanks'))
@@ -136,7 +150,7 @@ def today(ctx):
     aside = (f'<p class="live"><span class="live__dot" aria-hidden="true"></span><span data-live="line">Darshan every day from 5:00 AM</span></p>'
              + btn(ctx, 'Darshan and arati times' + arrow(16), 'darshan', 'kajal', cls='btn--sm'))
     h = ctx.data['hours']['lines']
-    note = (f'<p class="day-note"><span><strong>Darshan</strong> {h[0]} · {h[1].replace("Sat–Sun 5:00 AM – ", "Sat–Sun till ")}</span>'
+    note = (f'<p class="day-note"><span><strong>Darshan</strong> {ui.times(h[0])} · {ui.times(h[1].replace("Sat–Sun 5:00 AM – ", "Sat–Sun till "))}</span>'
             f'<span>Ekadashi, Purnima and Amavasya: kirtan through the night</span></p>')
     return section(sec_head('আজ পাঁচমুড়ায়', 'The day at the mandir', aside, hid='today-h') + f'<ol class="day">{tiles}</ol>' + note,
                    'shola', sid='today', labelledby='today-h')
@@ -150,17 +164,35 @@ def dharas(ctx):
     band = (f'<div class="aratiband"><span class="aratiband__icons">{icon_trishul()}{icon_chakra()}{icon_shankha()}</span>'
             f'<span class="aratiband__t"><span class="aratiband__bn" lang="bn">ত্রিশূল, চক্র আর শঙ্খ: তিন ধারা, এক আরতি</span>'
             f'<span class="aratiband__en">Trishul, chakra and shankha meet in the Tridhara Sandhya Arati · 6:30 PM</span></span></div>')
-    aside = '<p>Mahadev’s stillness, Radha-Krishna’s bhakti and Maa Kali’s shakti, worshipped side by side in Panchmura.</p>'
-    return section(sec_head('এক মন্দিরে তিন ধারা', 'Three streams of devotion, one courtyard', aside, hid='dharas-h')
+    # Radha-Krishna is in the main sanctum, with shrines for Shiva and Kali: one mandir, not one courtyard (content/CURRENT_SITE_FACTS.md)
+    aside = '<p>Mahadev’s stillness, Radha-Krishna’s bhakti and Maa Kali’s shakti, worshipped together in one mandir in Panchmura.</p>'
+    return section(sec_head('এক মন্দিরে তিন ধারা', 'Three streams of devotion, one mandir', aside, hid='dharas-h')
                    + f'<div class="rail dharas">{ps}</div>' + band + offer_note, 'haldi', sid='dharas', labelledby='dharas-h')
 
 
 def festivals(ctx):
-    ps = ''.join(poster(ctx, k) for k in ('durga', 'lakshmi', 'kali', 'rash', 'saraswati', 'shivaratri', 'dol', 'rath', 'janmashtami'))
-    aside = ('<p>The next festivals at the mandir. Tap a poster to see what happens on the day.</p>'
+    # each poster opens its row in the festival calendar; Durga Puja's opens the Durga Puja page
+    ps = ''.join(poster(ctx, k)
+                 for k in ('durga', 'lakshmi', 'kali', 'rash', 'saraswati', 'shivaratri', 'dol', 'rath', 'janmashtami'))
+    aside = ('<p>The next festivals at the mandir. Tap a poster for its dates.</p>'
              + btn(ctx, 'Full calendar' + arrow(16), 'festivals', 'kajal', cls='btn--sm'))
     return section(sec_head('উৎসবের পাঁজি', '<span lang="bn">বাঙালির বারো মাসে তেরো পার্বণ</span> · The festival year', aside, hid='fest-h')
                    + f'<div class="posters" data-next-posters="6">{ps}</div>', 'paper', sid='utsav', labelledby='fest-h')
+
+
+SEVA_FORM_IDS = (('annadaan', 'anna-daan', '₹1,001'), ('health', 'health', '₹5,001'), ('scholarship', 'scholarship', '₹11,001'))
+
+
+def seva_form_link(s):
+    """The seva page's form, opened on the seva this card offers (its ids: annadaan, festival, health, monthly, scholarship,
+    steward, other). A card matches by its name and amount in content/site.json; one the seva page does not list opens
+    "Another seva" with its name and amount filled in."""
+    en = s['en'].lower()
+    for sid, word, amount in SEVA_FORM_IDS:
+        if word in en and s['amount'] == amount:
+            return f'seva?seva={sid}#seva-form'
+    digits = ''.join(ch for ch in s['amount'] if ch.isdigit())
+    return f'seva?seva=other&which={quote(s["en"])}' + (f'&amount={digits}' if digits else '') + '#seva-form'
 
 
 def seva(ctx):
@@ -169,7 +201,7 @@ def seva(ctx):
                f'<p class="seva-feature__bn" lang="bn">পাত প্রসাদ, প্রতিদিন</p><p class="seva-feature__en">Plates of anna-daan, every single day</p>'
                f'<p class="seva-feature__p">Sattvic, onion-free anna-daan prasad, cooked in terracotta handis and served free to every visitor from 12:30 PM.</p>'
                f'<p class="seva-feature__small">{P["methods"]} · {P["receipt"].lower().replace("receipt", "receipt")} · {P["tax"]}</p></div>')
-    cards = ''.join(seva_card(ctx, s) for s in ctx.data['seva_home'])
+    cards = ''.join(seva_card(ctx, s, key=seva_form_link(s)) for s in ctx.data['seva_home'])
     head = sec_head('সেবা', 'Seva that feeds, heals and teaches', btn(ctx, 'All seva options' + arrow(16), 'seva', 'haldi', cls='btn--sm'), hid='seva-h')
     note = ui.note('the old website listed seva amounts in three different sets; these three are from its homepage.', 'p')
     return section(head + f'<div class="seva-grid">{feature}<div><div class="seva-cards">{cards}</div>{note}</div></div>', 'kajal', sid='seva', labelledby='seva-h')
@@ -192,7 +224,7 @@ def visit(ctx):
 
 
 def story(ctx):
-    steps = [('২০১২', '2012–16', 'Visioning circles', 'Community visioning circles meet about a mandir.'),
+    steps = [('২০১২', '2012–16', 'Visioning circles', 'The community meets in visioning circles to imagine the mandir.'),
              ('২০১৬', '2016–19', 'The land', 'Trustees acquire the temple plot in Panchmura.'),
              ('২০২০', '2020–21', 'Marble and teak', 'Construction: marble murtis and teak doors.'),
              ('২০২২', '1 Jul 2022', 'Pratishtha', 'Consecrated on Rath Yatra.')]
@@ -208,11 +240,13 @@ def story(ctx):
 def remind(ctx):
     f = field('remind-contact', 'ইমেল', 'Email', 'email', name='email', required=True,
               placeholder='you@example.com', autocomplete='email')
-    form = (f'<form class="remind__form form" id="remind" data-form="remind" data-subject="Festival news and seva newsletter" novalidate>'
+    # a sign-up: its own thank-you, and no seva-desk line under it
+    attrs = ui.form_attrs('remind', 'Festival news and seva newsletter', sent='Thank you. You’re on the list for festival news.', sent_note='')
+    form = (f'<form class="remind__form form"{attrs}>'
             f'<div class="remind__row">{f}<button class="btn" type="submit">Sign up</button></div>{ui.honeypot("remind")}'
             f'<div class="form-result" data-form-result hidden tabindex="-1"></div></form>')
     return section(f'<div class="remind"><div class="remind__t"><h2 class="remind__h" lang="bn" id="remind-h">উৎসবের আগে খবর পান</h2>'
-                   f'<p class="remind__en">Festival news and the seva newsletter, by email</p></div>{form}</div>',
+                   f'<p class="remind__en">Festival news and the seva newsletter, <span class="nowrap">by email</span></p></div>{form}</div>',
                    'haldi', cls='sec--tight', sid='remind-band', labelledby='remind-h')
 
 

@@ -63,7 +63,8 @@ def render(ctx):
 - Focus ring: `outline: 3px solid var(--focus)`; `--focus` is kajal on light/yellow/red grounds and haldi on dark ones (set per band and tone). Don't hide it with your own box-shadow rings.
 - Stickers: `sticker__num--3` (three digits), `--short` (আজ), `--word`, and `sticker__en--long`. `--sindoor-ink` is the red for small text on paper.
 - Wide screens: first-screen art files run 200 board units past x = 1440 and the art box grows into the free margin (up to 200px) on screens wider than 1440, so nothing ends in a hard cut.
-- Forms get `method="post"` automatically (no personal data in addresses if the script fails); summaries format dates and `data-format="inr"` amounts.
+- Forms get `method="post"` automatically (no personal data in addresses if the script fails, and the Worker still sends them); summaries format dates and `data-format="inr"` amounts.
+- `ui.times(s)` writes English times in the site's one style (`12:30–2 PM`, `5 AM–9 PM`, kept on one line); use it on hours that come from `content/site.json`.
 
 ## Facts and placeholders
 
@@ -75,7 +76,7 @@ def render(ctx):
 
 ## Behaviour
 
-- Forms: build with `ui.form(ctx, 'seva-form', 'Seva request', fields_html, submit='Send request')` and `ui.field(...)`. `src/js/40-forms.js` checks them and shows the visitor a summary to send (or posts to the form service once one is set in site.json). For a radio group: `<fieldset class="..." data-required data-label="Seva"><legend>…</legend><label><input type="radio" name="seva" value="…" data-text="Anna-daan for 80 · ₹1,001"> …</label></fieldset>`. Extra summary lines: in your JS set `form.tmmExtra = () => ['Plates: 80']`.
+- Forms: build with `ui.form(ctx, 'seva-form', 'Seva request', fields_html, submit='Send request')` and `ui.field(...)` (a hand-built form uses `ui.form_attrs(fid, subject)` on its `<form>` and `ui.honeypot(fid)` inside it). `sent=` / `sent_note=` set the thank-you heading and the line under it. On the live site every form goes to the Worker (`POST /api/form`), which emails it to the mandir; a new form needs no Worker change (build.py lists the forms for it). No `novalidate` in the HTML: site.js turns the browser's checks off when it runs. `src/js/40-forms.js` checks them and shows the visitor a summary to send (or posts to the form service once one is set in site.json). For a radio group: `<fieldset class="..." data-required data-label="Seva"><legend>…</legend><label><input type="radio" name="seva" value="…" data-text="Anna-daan for 80 · ₹1,001"> …</label></fieldset>`. Extra summary lines: in your JS set `form.tmmExtra = () => ['Plates: 80']`.
 - Live things (opening status, countdowns, "today"): in `src/js/5N-<key>.js`, inside `(function(){ var T = window.TMM; T.onPage('<key>', function(){ T.onTick(function(){ … }); }); })();`.
   Helpers: `T.now()` (India time, or the test time on the test link), `T.today()`, `T.daysTo('2026-10-16')`, `T.bn(12)` → ১২, `T.fmt(1110)` → 6:30 PM, `T.dayState()` (cur/nxt slot, open, close, tithi), `T.nowLine(st)`, `T.daysLabel(start, end)`, `T.fest(id)`, `T.nextBig()`, `T.data` (site.json subset).
   Markup hooks that already work anywhere: `data-live="line"` (status sentence), `data-live="open"`, `data-slot="i"` tiles with `data-slot-tag`, `data-days-to="YYYY-MM-DD" data-days-end=…` pills, `data-count-to="YYYY-MM-DD"` (+`data-bn`), `[data-copy]` buttons.

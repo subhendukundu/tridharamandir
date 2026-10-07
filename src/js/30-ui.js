@@ -46,8 +46,8 @@
     });
   });
 
-  /* ---------------------------------------------------------------- route maps on phones: start at the mandir's end */
-  T.qsa('.map-scroll').forEach(function (el) { if (el.scrollWidth > el.clientWidth + 4) el.scrollLeft = el.scrollWidth; });
+  /* route maps on phones scroll sideways and start at the left, at Kolkata, where the route begins
+     (no script: starting at the mandir's end cut the first pill, "মোট ১৮০ কিমি", to "৮০ কিমি") */
 
   /* ---------------------------------------------------------------- copy buttons */
   function selectText(el) {

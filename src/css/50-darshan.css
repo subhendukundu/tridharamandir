@@ -10,7 +10,7 @@
 .dar-sticker .sticker__num--3, .dar-sticker .sticker__num--short { font-size: .34em; line-height: 1; }
 .dar-sticker .sticker__num--word { font-size: .24em; line-height: 1.05; }
 .dar-sticker .sticker__bn { font-size: .112em; line-height: 1.15; max-width: 84%; }
-.dar-sticker .sticker__en, .dar-sticker .sticker__en--long { margin-top: .02em; font-size: max(10px, .058em); letter-spacing: .07em; max-width: 76%; }
+.dar-sticker .sticker__en, .dar-sticker .sticker__en--long { margin-top: .02em; font-size: max(12px, .058em); letter-spacing: .04em; max-width: 84%; }
 @media (min-width: 900px) {
   /* the art stands on the bottom of the band (its diyas on the ground line); the sticker rides on the sun's lower left, as on the board.
      Wider than 1440 px the art runs on to the right, up to 200 more board units (drawn in the file), instead of stopping in a hard edge. */
@@ -18,7 +18,11 @@
   .dar-hero .phero__art { top: auto; bottom: 0; right: calc(-1 * var(--dar-ext)); width: calc(var(--dar-aw) + var(--dar-ext)); height: calc(var(--dar-aw) * 524 / 840); }
   .dar-hero .phero__art img { width: 100%; height: 100%; object-fit: cover; object-position: 0 50%; }
   .dar-hero .dar-sticker { --s: clamp(124px, 13.06vw, 188px); left: calc(100% - var(--dar-aw) * .81); bottom: calc(var(--dar-aw) * .0406); }
+  /* the text column reaches into the art; its lines stop short of the sticker's left edge (40px spare covers a desktop scrollbar in 100vw) */
+  .dar-hero { --dar-tx: calc(min(100vw, var(--max)) - var(--dar-aw) * .81 - var(--gutter) - 40px); }
+  .dar-hero .phero__sub, .dar-hero .phero__text .btns { max-width: min(620px, var(--dar-tx)); }
 }
+.dar-hero .phero__sub { text-wrap: pretty; }
 @media (max-width: 899px) {
   .dar-hero { display: grid; grid-template-columns: minmax(0, 1fr); }
   .dar-hero .phero__art { grid-row: 2; grid-column: 1; }
@@ -120,6 +124,9 @@
 
 /* the three shrines and the other deities */
 @media (min-width: 900px) { .dar-shrines { width: 100%; max-width: 1312px; margin-inline: auto; } }
+/* (700–899 px: the shared .rail in 10-components.css shows all three shrines side by side and sizes the posters for it.)
+   An offering line that has to wrap splits evenly. */
+.dar-shrines .dhara__offer { text-wrap: balance; }
 .dar-also {
   align-self: center; display: flex; align-items: center; max-width: 100%; padding: 22px 6px 22px 32px;
   border: 3px solid var(--kajal); background: var(--shola); color: var(--kajal); box-shadow: 8px 8px 0 var(--kajal);
@@ -156,28 +163,42 @@
   .dar-arati__bn { font-size: 34px; }
 }
 
-/* the mandir on YouTube */
+/* the mandir on YouTube: a channel card that links out (a banner, the mandir's mark and name, "Follow"), not a video player */
 .dar-yt { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 784px); gap: 44px 64px; align-items: center; }
 .dar-yt__text { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 .dar-yt__p { margin-top: 8px; max-width: 34em; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; color: var(--sand); }
-.dar-yt__when { display: flex; flex-direction: column; gap: 2px; padding-left: 14px; border-left: 3px solid var(--haldi); }
-.dar-yt__bn { display: block; font-weight: 700; font-size: clamp(19px, 1.55vw, 22px); line-height: 1.4; color: var(--haldi); }
-.dar-yt__en { display: block; font-family: var(--caps); font-weight: 800; font-size: 14px; line-height: 1.3; letter-spacing: .1em; text-transform: uppercase; color: var(--dusk); }
+.dar-yt__also { max-width: 34em; font-size: 17px; line-height: 1.55; color: var(--sand); }
+.dar-yt__also a { color: var(--shola); font-weight: 700; }
 .dar-yt__text .btns { margin-top: 12px; }
 .dar-yt__frame {
-  display: block; min-width: 0; padding: 12px 12px 0; background: var(--kajal); color: var(--shola); border: 4px solid var(--haldi);
+  display: block; min-width: 0; padding: 12px; background: var(--kajal); color: var(--shola); border: 4px solid var(--haldi);
   box-shadow: 12px 12px 0 var(--sindoor); transition: transform .15s ease, box-shadow .15s ease;
 }
 .dar-yt__frame:hover { text-decoration: none; transform: translate(-2px, -2px); box-shadow: 14px 14px 0 var(--sindoor); }
-.dar-yt__screen { position: relative; display: block; overflow: hidden; }
-.dar-yt__screen img { display: block; width: 100%; height: auto; aspect-ratio: 752 / 423; }
-.dar-yt__tag { position: absolute; left: 2.4%; top: 4.2%; padding: 7px 12px; background: var(--kajal); color: var(--shola); font-family: var(--caps); font-weight: 800; font-size: 15px; line-height: 1; letter-spacing: .12em; text-transform: uppercase; }
-.dar-yt__chan { position: absolute; right: 2.4%; top: 5.2%; font-family: var(--caps); font-weight: 800; font-size: 14px; line-height: 1; letter-spacing: .16em; text-transform: uppercase; color: var(--shola); }
-.dar-yt__bar { display: flex; justify-content: space-between; align-items: center; gap: 6px 16px; flex-wrap: wrap; min-height: 54px; padding: 8px 6px; font-family: var(--caps); font-weight: 800; font-size: clamp(14px, 1.2vw, 17px); line-height: 1.2; letter-spacing: .1em; text-transform: uppercase; }
-.dar-yt__bar-k { color: var(--haldi); }
+.dar-yt__banner { display: block; overflow: hidden; }
+.dar-yt__banner img { display: block; width: 100%; height: auto; aspect-ratio: 752 / 280; }
+.dar-yt__chan { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding: 0 4px 4px 12px; }
+.dar-yt__avatar {
+  /* the mark in the colours it has on a light ground */
+  --g-under: transparent; --g-water: var(--neel); --g-leaf: var(--peacock); --g-body: var(--sindoor); --g-band: var(--shola); --g-dot: var(--kajal);
+  position: relative; z-index: 1; flex: none; display: grid; place-items: center; width: clamp(80px, 7.4vw, 106px); aspect-ratio: 1;
+  margin-top: calc(-1 * clamp(26px, 2.6vw, 38px)); border-radius: 50%; background: var(--shola); border: 4px solid var(--haldi); box-shadow: 5px 5px 0 var(--sindoor);
+}
+.dar-yt__mark { width: 64%; height: auto; }
+.dar-yt__who { flex: 1 1 200px; display: flex; flex-direction: column; gap: 2px; min-width: 0; padding-top: 10px; }
+.dar-yt__name { font-weight: 800; font-size: clamp(22px, 2vw, 30px); line-height: 1.2; }
+.dar-yt__handle { font-family: var(--caps); font-weight: 800; font-size: clamp(14px, 1.15vw, 16px); line-height: 1.3; letter-spacing: .12em; text-transform: uppercase; color: var(--haldi); overflow-wrap: anywhere; }
+.dar-yt__follow {
+  flex: none; display: inline-flex; align-items: center; gap: 8px; margin: 10px 0 0 auto; padding: 11px 16px; background: var(--haldi); color: var(--kajal);
+  box-shadow: 4px 4px 0 var(--sindoor); font-family: var(--caps); font-weight: 800; font-size: 15px; line-height: 1; letter-spacing: .1em; text-transform: uppercase;
+}
 @media (min-width: 900px) and (max-width: 1199px) { .dar-yt { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 40px; } }
 @media (max-width: 899px) { .dar-yt { grid-template-columns: minmax(0, 1fr); } .dar-yt__frame { max-width: 784px; } }
-@media (max-width: 519px) { .dar-yt__chan { display: none; } .dar-yt__frame { padding: 8px 8px 0; box-shadow: 8px 8px 0 var(--sindoor); } }
+@media (max-width: 519px) {
+  .dar-yt__frame { padding: 8px; box-shadow: 8px 8px 0 var(--sindoor); }
+  .dar-yt__chan { column-gap: 14px; padding-left: 8px; }
+  .dar-yt__who { flex-basis: 150px; }
+}
 
 /* before you come: four rules and the ramp */
 .dar-rules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }

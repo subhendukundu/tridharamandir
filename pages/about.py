@@ -176,20 +176,29 @@ def arch_drawing():
            f'<path d="M560,{f(top_y)} L600,{f(top_y)}" stroke-dasharray="4 5"/></g>'
            f'<text x="0" y="0" transform="translate(616,{f((top_y + 571) / 2)}) rotate(-90)" text-anchor="middle" class="abt-arch__dim" lang="bn">৪৫ ফুট</text>')
 
+    def murti(cx, crown=HALDI):
+        """A marble murti, seen through the door of the sanctum: white on the dark doorway, crowned in gold."""
+        return (f'<path d="M{cx - 7},494 C{cx - 9},502 {cx - 11},512 {cx - 11},{ty} L{cx + 11},{ty} C{cx + 11},512 {cx + 9},502 {cx + 7},494 Z" '
+                f'fill="{SHOLA}" stroke="{KAJAL}" stroke-width="2"/><circle cx="{cx}" cy="487" r="6" fill="{SHOLA}" stroke="{KAJAL}" stroke-width="2"/>'
+                f'<path d="M{cx - 5},483 L{cx},473 L{cx + 5},483 Z" fill="{crown}" stroke="{KAJAL}" stroke-width="1.5" stroke-linejoin="round"/>')
+    murtis = murti(tx - 11) + murti(tx + 11)
+
     def num(n, x, y, lx=None, ly=None):
         lead = f'<path d="M{x},{y} L{lx},{ly}" stroke="{KAJAL}" stroke-width="3"/><circle cx="{lx}" cy="{ly}" r="5" fill="{KAJAL}"/>' if lx is not None else ''
         return (f'{lead}<circle cx="{x}" cy="{y}" r="21" fill="{SHOLA}" stroke="{KAJAL}" stroke-width="4"/>'
                 f'<text x="{x}" y="{y + 9}" text-anchor="middle" class="abt-arch__num" lang="bn">{n}</text>')
+    # one marker for each item of the list beside the drawing (arch_section), in the same order
     marks = (num('১', 188, 236, 318, 300)        # the Nagara body of the shikhara
              + num('২', 548, 150, 584, 150)       # 45 feet
              + num('৩', 150, 488, 228, 532)       # relief panels
-             + num('৪', 470, 420, 400, 498)       # through the door: shegun-beamed ceilings
-             + num('৫', 72, 372, 90, 420))        # tulsi mancha
+             + num('৪', 470, 420, 402, 488)       # the teak door frame; through it, the shegun-beamed ceilings
+             + num('৫', 72, 372, 90, 420)         # tulsi mancha
+             + num('৬', 236, 396, 349, 503))      # the marble murtis in the sanctum
     label = ('Drawing of the mandir: a Nagara-style shikhara 45 feet tall, a frieze of carved relief panels on the plinth, '
-             'the doorway to the sanctum and a tulsi mancha')
+             'the doorway to the sanctum with its marble murtis, and a tulsi mancha')
     return (f'<svg class="abt-arch__svg" viewBox="0 0 {W} {H}" role="img" aria-label="{label}"><defs>{sd}</defs>'
             f'<rect width="{W}" height="{H}" fill="{NEEL}"/>{ss}{ground}{temple(tx, ty, s, SHOLA, KAJAL, SINDOOR, SINDOOR, HALDI)}{panels}'
-            f'{tulsi_mancha(110, 571, .95)}{dim}{marks}</svg>')
+            f'{murtis}{tulsi_mancha(110, 571, .95)}{dim}{marks}</svg>')
 
 
 # ---------------------------------------------------------------- first screen
@@ -267,8 +276,9 @@ def journey_section(ctx):
 def dharas_section(ctx):
     def fest(fid):
         fe = ui.festival(ctx, fid)
-        return (f'<a class="abt-dh__fest" href="{esc(ctx.href("festivals#" + fid))}"><span lang="bn">{fe["bn"]} · {fe["date_bn"]}</span>'
-                f'<span class="abt-dh__festen">{fe["en"].split(" · ")[0]} · {fe["date_en"]}</span></a>')
+        nb = lambda s: s.replace(' ', '\N{NO-BREAK SPACE}')     # a date never breaks inside (৬ মার্চ, Sat 6 Mar 2027)
+        return (f'<a class="abt-dh__fest" href="{esc(ctx.href("festivals#" + fid))}"><span lang="bn">{fe["bn"]} · {nb(fe["date_bn"])}</span>'
+                f'<span class="abt-dh__festen">{fe["en"].split(" · ")[0]} · {nb(fe["date_en"])}</span></a>')
     cols = [
         dict(k='shaiva', bg='slate', dh='শৈব', en='Shaiva · stillness', icon=icon_trishul(), deity='মহাদেব', deity_en='Mahadev',
              body='A Shiva linga and a meditating Shiva.', extra=[], sound=('ডমরু', 'Damru'), fest='shivaratri'),
@@ -296,7 +306,7 @@ def dharas_section(ctx):
             f'<span class="aratiband__t"><span class="aratiband__bn" lang="bn">ত্রিধারা সন্ধ্যা আরতিতে ত্রিশূল, চক্র আর শঙ্খ এক হয়</span>'
             f'<span class="abt-arati__en">In the Tridhara Sandhya Arati the trishul, chakra and shankha meet, with the Shaiva damru, the Vaishnava mridanga and the Shakta ulu.</span>'
             f'<span class="abt-arati__when">Every evening at 6:30 PM · <a class="u" href="{esc(ctx.href("darshan"))}">Today’s darshan times</a></span></span></div>')
-    also = [('রাম–সীতা', 'Rama–Sita'), ('হনুমান', 'Hanuman'), ('শ্রীচৈতন্য মহাপ্রভু', 'Sri Chaitanya Mahaprabhu')]
+    also = [('রাম–সীতা', 'Rama–Sita'), ('হনুমান', 'Hanuman'), ('চৈতন্য মহাপ্রভু', 'Chaitanya Mahaprabhu')]
     also_html = ('<div class="abt-also"><p class="abt-also__t"><span lang="bn">মন্দিরে আরও</span><span class="abt-also__en">Also in the mandir</span></p>'
                  '<ul class="abt-also__list">' + ''.join(f'<li><span lang="bn">{b}</span><span class="abt-also__li-en">{e}</span></li>' for b, e in also)
                  + '</ul></div>')
@@ -357,12 +367,12 @@ def panchmura_section(ctx):
     facts = (fact('The Bankura horse', 'বাঁকুড়ার ঘোড়া, পাঁচমুড়ার মাটিতে',
                   'Registered as a Geographical Indication, “Bankura Panchmura Terracotta Craft”, on 28 March 2018, and the logo of All India Handicrafts.')
              + fact('Artisans’ Studio Passport · ₹9,200 per person', 'স্টুডিও পাসপোর্ট',
-                    'Hands-on terracotta days with daily craft demonstrations and clay modelling, in direct patronage of Panchmura’s potters. '
+                    'Hands-on terracotta days with daily craft demonstrations and clay modelling, supporting Panchmura’s potters directly. '
                     'Includes a workshop kit, a wheel session with a master artisan, a souvenir firing and lunch at the craft village.')
              + fact('Terracotta Residency · ₹32,000 for two weeks', 'টেরাকোটা রেসিডেন্সি',
                     'A two-to-four-week residency for ceramic artists and researchers, ending in an exhibition that supports the mandir’s programmes. '
                     'Includes studio space, artisan mentorship, a material stipend, and a chance to show and sell.')
-             + fact('Craft-village walk', 'দুপুর ২টোয় কুমোরপাড়া', 'A 2 PM walk through the potters’ lanes of Panchmura.'))
+             + fact('Craft-village walk', 'দুপুর ২টায় কুমোরপাড়া', 'A 2 PM walk through the potters’ lanes of Panchmura.'))
     btns = (f'<div class="btns">{btn(ctx, "Plan your visit" + arrow(16), "visit", "haldi", cls="btn--sm")}'
             f'{btn(ctx, "Guest-house experiences", "visit#experiences", "ghost", cls="btn--sm")}</div>')
     return section(f'<div class="abt-pm"><figure class="abt-pm__art"><img src="{src}" alt="A Bankura horse in Panchmura terracotta, against a yellow sun" '

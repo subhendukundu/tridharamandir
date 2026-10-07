@@ -8,6 +8,7 @@ from lib import art
 from lib.art import arrow, shikhara, sun, svg_doc, route_map, f, KAJAL, SHOLA, HALDI, SINDOOR, NEEL, PEACOCK_D
 from lib.motifs import _mane, horse_body, horse_defs
 from lib import byear as BY
+from pages.seva import times
 
 PAGE = dict(key='visit', title='Plan your visit',
             description='Reach Tridhara Milan Mandir in Panchmura, Bankura: 180 km from Kolkata, trains to Bishnupur or Bankura, '
@@ -32,7 +33,7 @@ PASSPORT, RESIDENCY = 'Artisans’ Studio Passport', 'Terracotta Residency'
 RETREAT, FAMILY = 'Art & Wellness Retreat', 'Family & School Discovery'
 EXPERIENCES = [
     dict(name=PASSPORT, bn='কারিগর স্টুডিও পাসপোর্ট', price=9200, unit='per person', tone=('haldi', 'kajal'),
-         desc='A hands-on terracotta residency, with daily craft demonstrations, clay modelling and direct patronage of Panchmura’s potters.',
+         desc='A hands-on terracotta residency, with daily craft demonstrations and clay modelling, supporting Panchmura’s potters directly.',
          incl=['A workshop kit', 'A wheel session with a master artisan', 'A souvenir firing', 'Lunch at the craft village']),
     dict(name=RESIDENCY, bn='টেরাকোটা রেসিডেন্সি', price=32000, unit='for two weeks', tone=('peacock-d', 'shola'),
          desc='A creative residency of two to four weeks for ceramic artists and researchers, ending with an exhibition that supports temple programmes.',
@@ -188,7 +189,7 @@ def first_screen(ctx):
     # without the script the sticker gives the opening time; site.js turns it into open now / closed now
     stk = sticker('রোজ', 'ভোর ৫টা থেকে', 'Darshan daily', label='Darshan every day from 5 AM', cls='phero__sticker vis-sticker', data=' data-vis-open')
     extra = f'<div class="btns">{btn(ctx, "How to get here", "#route", "shola")}{btn(ctx, "Stay the night", "#stay", "ghost")}</div>'
-    sub = 'Panchmura’s Second Vrindavan, 180 km from Kolkata, in the potters’ village of the Bankura horse.'
+    sub = 'Panchmura’s Second Vrindavan, 180\N{NO-BREAK SPACE}km from Kolkata, in the potters’ village of the Bankura horse.'
     hero = ui.page_hero(ctx, 'visit', 'পাঁচমুড়ায় আসুন', 'Plan your visit', sub, w=5.34, art_files=files, pa_w=ART_W / 1440,
                         extra=extra, sticker_html=stk, pt=.22, sr_en='Come to Panchmura', ph_max=146)
     return hero.replace('class="phero"', 'class="phero vis-hero"', 1) + marquee(VISIT_ITEMS)
@@ -267,7 +268,7 @@ def stay(ctx):
 def book(ctx):
     c = ctx.data['contact']
     opts =[('', 'Choose a room')] + [(en, f'{en} · {rupees(p)} a night') for _, en, p, _ in ROOMS] + [('Not sure yet', 'Not sure yet: please suggest one')]
-    row1 = (field('book-name', 'নাম', 'Name', 'text', name='name', required=True, autocomplete='name', placeholder='Your full name')
+    row1 = (field('book-name', 'নাম', 'Your name', 'text', name='name', required=True, autocomplete='name', placeholder='Your full name')
             + field('book-phone', 'ফোন', 'Phone', 'tel', name='phone', required=True, autocomplete='tel', placeholder='+91 98300 00000', attrs=' inputmode="tel"'))
     row2 = (field('book-email', 'ইমেল', 'Email', 'email', name='email', autocomplete='email', placeholder='you@example.com', hint='Optional, for a written reply.')
             + field('book-guests', 'কতজন', 'Guests', 'number', name='guests', required=True, value='2', attrs=' min="1" max="40" inputmode="numeric"'))
@@ -310,7 +311,7 @@ def village(ctx):
 
     walk = ('<div class="vis-vill__r"><span class="vis-vill__k">2 PM</span> <span class="vis-vill__rt"><span class="vis-vill__bn" lang="bn">কুমোরপাড়া ভ্রমণ</span> '
             '<span class="vis-vill__en">Craft-village walk</span> <span class="vis-vill__note">A walk through the craft village at 2 PM. '
-            'For the fee, ask the guest house.</span></span></div>')
+            'Ask the guest house for details.</span></span></div>')
     ask_walk = btn(ctx, 'Ask about the walk' + arrow(16), '#book', 'shola', attrs=' data-also="' + esc(WALK) + '"')
     text = (f'<div class="vis-vill__t">{sec_head("কুমোরপাড়ায়", "In the potters’ village", hid="village-h")}'
             f'<p class="vis-vill__big" lang="bn">বাঁকুড়ার ঘোড়া তৈরি হয় এখানেই</p>'
@@ -380,12 +381,12 @@ def questions(ctx):
               '<p class="vis-q__p">Darshan is open to all, no booking needed.</p>'
               '<p class="vis-q__p">Groups of 10 or more, guest-house stays, special pujas and temple weddings: please contact the mandir in advance.</p>')
           + q('৩', 'peacock-d', 'When is the mandir open?', 'মন্দির কখন খোলা থাকে?', 'ভোর ৫টা থেকে',
-              f'<p class="vis-q__p">Every day: {H["lines"][0]}, {H["lines"][1]}. On Ekadashi, Purnima and Amavasya the hours are longer, '
+              f'<p class="vis-q__p">Every day: {times(H["lines"][0])}, {times(H["lines"][1])}. On Ekadashi, Purnima and Amavasya the hours are longer, '
               f'with kirtan through the night.</p><p class="vis-q__p"><a class="u" href="{ctx.href("darshan#today")}">Today’s timings at the mandir</a></p>')
           + q('৪', 'abir', 'When is the best time?', 'কখন আসা সবচেয়ে ভালো?', 'অক্টোবর থেকে মার্চ',
               '<p class="vis-q__p">October to March. July and August, in the monsoon, are green; carry rain gear. '
               'Weekdays are less crowded than weekends.</p>'
-              '<p class="vis-q__p">For the Tridhara Sandhya Arati at 6:30 PM, arrive 30 minutes early to find a seat and leave your footwear at the seva desk.</p>'
+              '<p class="vis-q__p">For the Tridhara Sandhya Arati at 6:30 PM, arrive 30 minutes early to find a seat and leave your footwear.</p>'
               f'<p class="vis-q__p"><a class="u" href="{ctx.href("festivals")}">The festival calendar</a></p>')
           + q('৫', 'sindoor', 'What should I wear?', 'কী পরে আসব?', 'কাঁধ ও হাঁটু ঢাকা',
               '<p class="vis-q__p">Clothes that cover the shoulders and knees. Remove shoes and leather belts before the sanctum, and keep silence during arati.</p>'
@@ -394,11 +395,11 @@ def questions(ctx):
               '<p class="vis-q__p">Photography is allowed in the courtyards; ask before photographing inside the sanctum; no flash, '
               'and no interior photography during arati.</p>')
           + q('৭', 'peacock-d', 'Is there food?', 'খাবারের ব্যবস্থা আছে?', 'বিনামূল্যে প্রসাদ',
-              '<p class="vis-q__p">Anna-daan prasad, 12:30–2 PM, after the midday bhog: sattvic, onion-free and free for everyone, '
+              f'<p class="vis-q__p">Anna-daan prasad, {times("12:30–2 PM")}, after the midday bhog: sattvic, onion-free and free for everyone, '
               'about 2,000 meals a day.</p>'
               '<p class="vis-q__p">Staying at the guest house? Note any food allergies in your booking enquiry.</p>'))
     more = (f'<div class="vis-more"><p class="vis-more__h"><span class="vis-more__bn" lang="bn">আর কোনো প্রশ্ন?</span> <span class="vis-more__en">Anything else?</span></p>'
-            f'<p class="vis-more__p">Call or write to the mandir · {c["seva_desk"]}</p>'
+            f'<p class="vis-more__p">Call or write to the mandir · {times(c["seva_desk"])}</p>'
             f'<p class="vis-more__c">{copy_value(c["phone"], href="tel:" + c["phone_e164"])}{copy_value(c["email"], href="mailto:" + c["email"])}</p></div>')
     head = sec_head('জেনে রাখুন', 'Good to know', btn(ctx, 'Festival calendar' + arrow(16), 'festivals', 'kajal', cls='btn--sm'), hid='questions-h')
     return section(head + f'<div class="vis-know">{facilities}<div class="vis-faq">{qs}{more}</div></div>',
@@ -410,7 +411,7 @@ def json_ld(ctx):
     c = ctx.data['contact']
     return [{
         '@context': 'https://schema.org', '@type': 'LodgingBusiness',
-        'name': 'Tridhara Milan Mandir Guest House',
+        'name': 'Guest house at Tridhara Milan Mandir',
         'description': 'Eight boutique suites, 100 m from the courtyard of Tridhara Milan Mandir, Panchmura. '
                        'Rooms include anna-daan meals and temple access, with optional terracotta workshops.',
         'url': ctx.url('visit') + '#stay', 'telephone': c['phone_e164'], 'email': c['email'],

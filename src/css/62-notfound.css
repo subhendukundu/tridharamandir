@@ -59,3 +59,4 @@
 .nf-today__b { display: flex; flex-direction: column; gap: 8px; flex: 1 1 380px; min-width: 0; }
 .nf-today__hrs { font-size: 17px; line-height: 1.5; color: var(--muted); }
 .nf-today__tell { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: 16px; line-height: 1.5; }
+.nf-today__tell a.copyval__v { display: inline-flex; align-items: center; min-height: 44px; }   /* a full 44px to tap, like the Copy button */

@@ -30,21 +30,24 @@ DEFAULT_OPEN = 'ashtami'   # the day that is open before the Puja (the design's 
 NEXT_IDS = ['lakshmi', 'kali', 'rash', 'saraswati', 'shivaratri', 'dol', 'rath', 'janmashtami']   # festivals that have a poster
 
 # The Puja days as designed (b_durga.DAYS); dates, names and how many calendar days each covers come from site.json.
+# rbn/ren and lead say what each day of Durga Puja is (its customary rites), not a timetable: the mandir has announced
+# none, so no order or hour is given except the Sandhi Puja time from the panjika.
 # puja: timed rows for the day's sheet (only times that are known; the rest are announced at the mandir).
 DAYS = [
     dict(k='shashthi', rbn='বোধন', ren='Bodhon, the awakening', panel='haldi',
-         lead='The Puja begins with Bodhon, the awakening.', puja=[]),
-    dict(k='saptami', rbn='নবপত্রিকা স্নান', ren='Nabapatrika snan at dawn', panel='neel',
+         lead='Shashthi is the day of Bodhon, the awakening, when the Puja begins.', puja=[]),
+    dict(k='saptami', rbn='নবপত্রিকা স্নান', ren='Nabapatrika snan', panel='neel',
          extra=('তিথি চলবে রবিবার ১৮ অক্টোবর পর্যন্ত', 'Saptami runs into Sun 18 Oct'),
-         lead='Nabapatrika snan at dawn. In the Benimadhab Shil panjika, Saptami runs on into Sunday 18 October, so the whole weekend is Saptami.',
+         lead='Saptami is the day of Nabapatrika snan, traditionally at dawn. In the Benimadhab Shil panjika, '
+              'Saptami runs on into Sunday 18 October, so the whole weekend is Saptami.',
          puja=[]),
-    dict(k='ashtami', rbn='অঞ্জলি ও সন্ধিপূজা', ren='Pushpanjali in the morning, then Sandhi Puja', panel='haldi', busy=True,
-         lead='Usually busy: come early. Pushpanjali is in the morning, then Sandhi Puja at 7:26–8:14 AM (Benimadhab Shil panjika).',
-         puja=[('7:26 AM', 'সন্ধিপূজা', 'Sandhi Puja, 7:26–8:14 AM (Benimadhab Shil panjika)', (SANDHI['start'], SANDHI['end']))]),
+    dict(k='ashtami', rbn='অঞ্জলি ও সন্ধিপূজা', ren='Pushpanjali and Sandhi Puja', panel='haldi', busy=True,
+         lead='Mahashtami is the day of Sandhi Puja, and of pushpanjali in the morning. It is usually busy: come early.',
+         puja=[('7:26 AM', 'সন্ধিপূজা', 'Sandhi Puja, until 8:14 AM (Benimadhab Shil panjika)', (SANDHI['start'], SANDHI['end']))]),
     dict(k='navami', rbn='হোম ও ভোগ', ren='Navami homa and bhog', panel='kajal',
-         lead='Mahanavami: the Navami homa, and bhog.', puja=[]),
+         lead='Mahanavami is the day of the Navami homa, and of bhog.', puja=[]),
     dict(k='dashami', rbn='সিঁদুর খেলা ও বিসর্জন', ren='Sindoor khela and bisarjan', panel='peacock-d',
-         lead='Bijoya Dashami: sindoor khela, then bisarjan. Shubho Bijoya.', puja=[]),
+         lead='Bijoya Dashami is the day of sindoor khela, then bisarjan. Shubho Bijoya.', puja=[]),
 ]
 
 
@@ -218,9 +221,9 @@ def tip_icon(kind):
     elif kind == 'care':
         inner = (f'<rect x="8" y="16" width="56" height="46" rx="6" fill="{SHOLA}" stroke="{KAJAL}" stroke-width="4"/><path d="M26,16 L26,8 L46,8 L46,16" {s}/>'
                  f'<path d="M30,28 L42,28 L42,34 L48,34 L48,46 L42,46 L42,52 L30,52 L30,46 L24,46 L24,34 L30,34 Z" fill="{SINDOOR}" stroke="{KAJAL}" stroke-width="2.5" stroke-linejoin="round"/>')
-    else:   # watch
+    else:   # watch: a screen with a play button (no red dot: that reads as "live", and nothing is streamed)
         inner = (f'<rect x="6" y="12" width="60" height="42" rx="6" fill="{KAJAL}"/><path d="M30,24 L46,33 L30,42 Z" fill="{HALDI}"/>'
-                 f'<path d="M24,64 L48,64 M36,54 L36,64" {s}/><circle cx="58" cy="10" r="7" fill="{SINDOOR}" stroke="{KAJAL}" stroke-width="3"/>')
+                 f'<path d="M24,64 L48,64 M36,54 L36,64" {s}/>')
     return f'<svg class="dur-tip__ic" width="72" height="72" viewBox="0 0 72 72" aria-hidden="true" focusable="false">{inner}</svg>'
 
 
@@ -342,7 +345,7 @@ def everyday_rows(ctx, iso, night=False):
 def announced(ctx):
     """Where the Puja timings come from (the seva desk's hours: site.json, 'Seva desk 8 AM – 6 PM', open daily)."""
     c = ctx.data['contact']
-    hours = c['seva_desk'].replace('Seva desk ', '')
+    hours = c['seva_desk'].replace('Seva desk ', '').replace(' – ', '–')     # time ranges as 8 AM–6 PM, like 12:30–2 PM
     return (f'<p class="dur-sheet__call">Each day’s puja timings are announced at the mandir. Call the seva desk on '
             f'<a class="u nowrap" href="tel:{c["phone_e164"]}">{c["phone"]}</a> ({hours} daily).</p>')
 
@@ -447,7 +450,7 @@ def sandhi_section(ctx):
             f'<p class="dur-sandhi__bn" lang="bn">অষ্টমী আর নবমীর সন্ধিক্ষণের {bn(mins)} মিনিট</p>'
             f'<p class="dur-sandhi__en">The {mins} minutes when Ashtami ends and Navami begins, on the morning of Mahashtami.</p>'
             f'{live}'
-            f'<p class="dur-sandhi__src">7:26–8:14 AM is the time in the Benimadhab Shil panjika.</p>'
+            f'<p class="dur-sandhi__src">The time is from the Benimadhab Shil panjika.</p>'
             + ui.note(f'Another panjika gives {SANDHI["other"]} for Sandhi Puja. The page uses the Benimadhab Shil time.', 'p')
             + '</div>'
             f'<div class="dur-sandhi__art"><img src="{ctx.img("dur-sandhi.svg")}" alt="" width="480" height="400" loading="lazy" decoding="async"></div></div>')
@@ -455,39 +458,42 @@ def sandhi_section(ctx):
 
 
 # ---------------------------------------------------------------- bhog seva
+# The seva form (pages/seva.py, #seva-form) opens with the seva chosen (src/js/58-seva.js): ?seva=festival takes its listed
+# ₹5,001; the Khichuri seva is not on its list, so it comes as "another seva" with its name and amount.
+SEVA_FESTIVAL = 'seva?seva=festival#seva-form'
+SEVA_KHICHURI = 'seva?seva=other&which=Khichuri%20seva&amount=1001#seva-form'
+
+
 def seva_section(ctx):
     ctx.add_img('dur-seva.svg', seva_art())
     P = ctx.data['payment']
-    form = 'seva#seva-form'
     feature = (f'<div class="dur-seva__feature"><img class="dur-seva__art" src="{ctx.img("dur-seva.svg")}" alt="" width="340" height="256" loading="lazy" decoding="async">'
                f'<p class="dur-seva__h" lang="bn">পুজোর ভোগ, মাটির হাঁড়িতে</p>'
                f'<p class="dur-seva__p">Sattvic, onion-free bhog, cooked in the terracotta handis of the mandir kitchen. '
                f'Anna-daan prasad stays free for every visitor, from 12:30 PM.</p>'
                f'<p class="dur-seva__small">{P["methods"]} · {P["receipt"].lower()} · {P["tax"]}</p></div>')
-    cards = [dict(amount='₹5,001', bn='উৎসবের অন্নদান', en='Festival anna-daan', accent='sindoor',
+    cards = [dict(amount='₹5,001', bn='উৎসবের অন্নদান', en='Festival anna-daan', accent='sindoor', form=SEVA_FESTIVAL,
                   desc='Bhog for about 400 devotees during the Puja, cooked in the mandir’s terracotta handis.'),
-             dict(amount='₹1,001', bn='খিচুড়ি সেবা', en='Khichuri seva', accent='haldi',
+             dict(amount='₹1,001', bn='খিচুড়ি সেবা', en='Khichuri seva', accent='haldi', form=SEVA_KHICHURI,
                   desc='Bhog khichuri for about 75 devotees.')]
-    cs = ''.join(ui.seva_card(ctx, c, key=form) for c in cards)
+    cs = ''.join(ui.seva_card(ctx, c, key=c['form']) for c in cards)
     head = sec_head('পুজোর সেবা', 'Puja seva · bhog and anna-daan',
-                    btn(ctx, 'Book a bhog seva' + arrow(16), form, 'haldi', cls='btn--sm'), hid='seva-h')
-    how = ('<p class="dur-seva__how">On the seva form, Festival anna-daan is on the list. For Khichuri seva, '
-           'choose ‘Another seva’ and tell us which.</p>'
-           + ui.note('These amounts are from the bhog page of the current website, which gives seva amounts three different ways.', 'p'))
-    return section(head + f'<div class="dur-seva">{feature}<div class="dur-seva__cards">{cs}</div></div>' + how,
+                    btn(ctx, 'Book a bhog seva' + arrow(16), SEVA_FESTIVAL, 'haldi', cls='btn--sm'), hid='seva-h')
+    note = ui.note('These amounts are from the bhog page of the current website, which gives seva amounts three different ways.', 'p')
+    return section(head + f'<div class="dur-seva">{feature}<div class="dur-seva__cards">{cs}</div></div>' + note,
                    'kajal', sid='seva', labelledby='seva-h')
 
 
 # ---------------------------------------------------------------- coming for the Puja
 def tips_section(ctx):
     yt = dict(ctx.data['contact']['social'])['YouTube']
-    tips = [('early', 'অষ্টমীর সকাল', 'Usually busy: come early',
-             f'Come early for pushpanjali. Sandhi Puja is {fmt(SANDHI["start"])[:-3]}–{fmt(SANDHI["end"])} on {date_en(SANDHI["date"])} '
-             '(Benimadhab Shil panjika).', -.8),
+    tips = [('early', 'অষ্টমীর সকাল', 'Usually busy: come early',     # the Sandhi time is on the Mahashtami card and in #sandhi
+             f'Pushpanjali and Sandhi Puja are on Mahashtami morning, {date_en(SANDHI["date"])}.', -.8),
             ('dress', 'পোশাক', 'Dress code', 'Shoulders and knees covered. No leather in the garbhagriha. Phones on silent, and no flash during arati.', .6),
             ('care', 'পুজোর দিনে', 'On festival days', 'First aid during the festival. Drinking water and restrooms near the anna-daan hall, '
              'lockers for small bags by the eastern entrance, and wheelchair access from the eastern gate.', -.5),
-            ('watch', 'আসতে পারছেন না?', 'Can’t come?', f'<a class="u" href="{yt}" rel="noopener" target="_blank">The mandir on YouTube</a>', .7)]
+            ('watch', 'আসতে পারছেন না?', 'Can’t come?',      # the channel exists; nothing says the Puja is streamed (FACTS)
+             f'<a class="u" href="{yt}" rel="noopener" target="_blank">Follow the mandir on YouTube</a>', .7)]
     cards = ''.join(f'<article class="dur-tip" style="--rot: {r}deg;">{tip_icon(k)}<div class="dur-tip__t"><h3 class="dur-tip__h" lang="bn">{b}</h3>'
                     f'<p class="dur-tip__en">{e}</p><p class="dur-tip__p">{p}</p></div></article>' for k, b, e, p, r in tips)
     aside = f'<div class="btns">{btn(ctx, "Plan your visit" + arrow(16), "visit", "kajal", cls="btn--sm")}</div>'

@@ -33,7 +33,9 @@
       var dd = S[st.nxt].start - st.mins;
       return (st.open ? 'Darshan is open · ' : 'Opens at ' + T.fmt(D.hours.open) + ' · ') + S[st.nxt].en + ' in ' + T.dur(dd);
     }
-    return 'Closed for the night · ' + S[0].en + ' at ' + T.fmt(S[0].start);
+    /* an ordinary night (or a kirtan night whose date isn't in tithi_nights yet): say no more than "closed now",
+       so it never contradicts the kirtan through the night promised for every Ekadashi, Purnima and Amavasya */
+    return 'Closed now · ' + S[0].en + ' at ' + T.fmt(S[0].start);
   };
 
   T.openText = function (st) {

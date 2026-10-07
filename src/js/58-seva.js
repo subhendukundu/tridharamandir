@@ -95,7 +95,7 @@
       update();
     }
 
-    /* ---------------------------------------------------------------- the seva desk: open or closed now (India time; open daily, 8 AM – 6 PM) */
+    /* ---------------------------------------------------------------- the seva desk: open or closed now (India time; open daily, 8 AM–6 PM) */
     var desk = T.qs('[data-sev-desk]');
     if (desk) {
       T.onTick(function () {
@@ -144,6 +144,12 @@
 
     /* festivals that have already passed this year drop out of the occasion list */
     if (whenSel) T.qsa('option[data-end]', whenSel).forEach(function (o) { if (T.daysTo(o.getAttribute('data-end')) < 0) o.remove(); });
+    /* a seva date from today on, like the ceremony date (the shared check in 40-forms.js then refuses a day in the past);
+       kept up to date if the page stays open past midnight */
+    if (dateIn) {
+      dateIn.min = T.iso(T.now());
+      T.onTick(function () { dateIn.min = T.iso(T.now()); });
+    }
 
     function chosen() { for (var i = 0; i < radios.length; i++) if (radios[i].checked) return radios[i]; return null; }
     function checked(name) { var el = T.qs('input[name="' + name + '"]:checked', form); return el ? el.getAttribute('data-text') : ''; }
@@ -157,9 +163,19 @@
       return parts.join(' · ') || (o && o.value === 'date' ? 'Choose a date' : 'Any day');
     }
 
-    /* "Another seva": ask which one; the amount is then up to the visitor */
+    /* a field's message from an earlier send goes when the field comes or goes (the same markup as 40-forms.js uses) */
+    function clearError(el) {
+      var id = (el.id || el.name) + '-err', err = document.getElementById(id);
+      if (err) err.remove();
+      el.removeAttribute('aria-invalid');
+      var d = (el.getAttribute('aria-describedby') || '').split(' ').filter(function (x) { return x && x !== id; });
+      if (d.length) el.setAttribute('aria-describedby', d.join(' ')); else el.removeAttribute('aria-describedby');
+    }
+
+    /* "Another seva": ask which one; the amount is then up to the visitor. Picking it again later starts with a clean field. */
     function otherMode(on) {
       if (!whichWrap || !whichIn) return;
+      clearError(whichIn);
       whichWrap.hidden = !on;
       whichIn.disabled = !on;
       whichIn.required = on;
@@ -218,7 +234,11 @@
       if (b) pick(b.getAttribute('data-sev-pick'), b.hasAttribute('data-sev-from-calc') ? calcAmount : 0);
     });
     radios.forEach(function (r) {
-      r.addEventListener('change', function () { otherMode(r.hasAttribute('data-other')); amount.value = r.getAttribute('data-amount') || ''; refresh(); });
+      r.addEventListener('change', function () {
+        otherMode(r.hasAttribute('data-other'));
+        amount.value = r.getAttribute('data-amount') || '';
+        amount.dispatchEvent(new Event('input', { bubbles: true }));   // re-checks an amount that showed an error (and refreshes the summary)
+      });
     });
     form.addEventListener('input', refresh);
     form.addEventListener('change', refresh);
@@ -246,7 +266,7 @@
         var next = document.createElement('div');
         next.className = 'sev-next';
         next.innerHTML = '<p class="sev-next__t"><strong>Then pay</strong> by UPI, bank transfer or cheque: for the details, call or email the seva desk '
-          + '(8 AM – 6 PM daily). Receipt within 48 hours of contribution confirmation.</p>'
+          + '(<span class="nowrap">8 AM–6 PM</span> daily). Receipt within 48 hours of contribution confirmation.</p>'
           + '<a class="btn btn--sm btn--haldi" href="#pay">How to pay</a>';
         box.appendChild(next);
       }).observe(box, { childList: true });

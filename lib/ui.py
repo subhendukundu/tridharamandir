@@ -28,10 +28,13 @@ class Ctx:
     def href(self, key):
         if key.startswith(('http://', 'https://', 'mailto:', 'tel:', '#')):
             return key
-        anchor = ''
+        anchor = query = ''
         if '#' in key:
             key, a = key.split('#', 1)
             anchor = '#' + a
+        if '?' in key:   # e.g. 'seva?seva=festival#seva-form' opens the seva form with that seva chosen
+            key, q = key.split('?', 1)
+            query = '?' + q
         if key not in SLUGS:
             raise KeyError(f'unknown page key {key!r}')
         slug = SLUGS[key]
@@ -39,7 +42,7 @@ class Ctx:
             base = 'index.html' if key == 'home' else f'{slug}.html'
         else:
             base = '/' if key == 'home' else ('/404.html' if key == 'notfound' else f'/{slug}/')
-        return base + anchor
+        return base + query + anchor
 
     def url(self, key):
         """Absolute production URL (canonical links, sitemap)."""
@@ -252,6 +255,19 @@ def field(fid, label_bn, label_en, kind='text', name=None, required=False, place
             f'<span class="field__en">{label_en}</span>{star}</label>{ctl}{h}</div>')
 
 
+def times(s):
+    """English times in the site's one style, as in '12:30–2 PM': no ':00', and a range joined by an en dash without spaces,
+    kept on one line (a no-break space before AM/PM, a word joiner after the dash).
+    'Mon–Fri 5:00 AM – 9:00 PM' -> 'Mon–Fri 5 AM–9 PM'; 'Seva desk 8 AM – 6 PM' -> 'Seva desk 8 AM–6 PM'.
+    Used on running text and on what comes from content/site.json (hours, seva desk, payment); dates and Bengali numerals are left alone."""
+    s = re.sub(r'\b([0-9]{1,2}):00(?=\s?[AP]M\b)', r'\1', s)
+
+    def rng(m):
+        a, ap, b, bp = m.groups()
+        return a + ('\N{NO-BREAK SPACE}' + ap if ap else '') + '–\N{WORD JOINER}' + b + '\N{NO-BREAK SPACE}' + bp
+    return re.sub(r'\b([0-9]{1,2}(?::[0-9]{2})?)(?:\s?([AP]M))?\s*[–-]\s*([0-9]{1,2}(?::[0-9]{2})?)\s?([AP]M)\b', rng, s)
+
+
 def honeypot(fid):
     """A field people never see or fill; form robots usually do, and the server ignores what they send.
     Also carries the form's name, so the Worker can still send a form that was posted without JavaScript."""
@@ -260,10 +276,23 @@ def honeypot(fid):
             f'<input type="hidden" name="_form" value="{fid}"></div>')
 
 
-def form(ctx, fid, subject, inner, submit='Send', cls=''):
+def form_attrs(fid, subject, sent=None, sent_note=None):
+    """The attributes every form handled by site.js carries. No novalidate here: site.js switches the browser's own
+    checks off when it runs (it shows its own messages), so without the script the browser still stops an empty form.
+    sent = the thank-you heading once the form has gone (default: 'Thank you. Your message has gone to the mandir.');
+    sent_note = the line under it ('' for none; default: the seva desk's hours)."""
+    out = f' id="{fid}" data-form="{fid}" data-subject="{esc(subject)}"'
+    if sent is not None:
+        out += f' data-sent="{esc(sent)}"'
+    if sent_note is not None:
+        out += f' data-sent-note="{esc(sent_note)}"'
+    return out
+
+
+def form(ctx, fid, subject, inner, submit='Send', cls='', sent=None, sent_note=None):
     """A form handled by site.js: it checks the fields, then either sends them to the form service in site.json
     (forms.endpoint) or shows the visitor a summary to send to the mandir by email or phone."""
-    return (f'<form class="form{" " + cls if cls else ""}" id="{fid}" data-form="{fid}" data-subject="{esc(subject)}" novalidate>{inner}{honeypot(fid)}'
+    return (f'<form class="form{" " + cls if cls else ""}"{form_attrs(fid, subject, sent, sent_note)}>{inner}{honeypot(fid)}'
             f'<div class="form__foot"><button class="btn btn--sindoor form__submit" type="submit">{submit}</button></div>'
             f'<div class="form-result" data-form-result hidden tabindex="-1"></div></form>')
 
@@ -297,7 +326,7 @@ def menu(ctx, current):
             f'<button class="menu__close" type="button" data-menu-close>{icon_close()}<span class="sr-only">Close menu</span></button></div>'
             f'<nav aria-label="Menu"><ul class="menu__list">{items}</ul></nav>'
             f'<div class="menu__foot">{btn(ctx, "Offer seva", "seva", "haldi")}'
-            f'<p class="menu__info">Darshan {ctx.data["hours"]["lines"][0]} · {ctx.data["hours"]["lines"][1]}</p>'
+            f'<p class="menu__info">Darshan {times(ctx.data["hours"]["lines"][0])} · {times(ctx.data["hours"]["lines"][1])}</p>'
             f'<p class="menu__info">{copy_value(c["phone"], href="tel:" + c["phone_e164"])}</p>'
             f'<p class="menu__info">{copy_value(c["email"], href="mailto:" + c["email"])}</p></div></div>')
 
@@ -327,8 +356,8 @@ def footer(ctx):
 </div>
 <div class="foot__cols">
 {col("আসুন", "Visit", f'<span>{addr}</span><a href="{c["map_url"]}" rel="noopener" target="_blank" class="u">Open in Google Maps</a><a href="{ctx.href("visit")}" class="u">How to get here</a>')}
-{col("দর্শন", "Darshan", f'<span>{ctx.data["hours"]["lines"][0]}</span><span>{ctx.data["hours"]["lines"][1]}</span><span>Tridhara Sandhya Arati 6:30 PM</span><a href="{ctx.href("darshan")}" class="u">Today at the mandir</a>')}
-{col("যোগাযোগ", "Contact", copy_value(c["phone"], href="tel:" + c["phone_e164"]) + copy_value(c["email"], href="mailto:" + c["email"]) + f'<span>{c["seva_desk"]}</span>')}
+{col("দর্শন", "Darshan", f'<span>{times(ctx.data["hours"]["lines"][0])}</span><span>{times(ctx.data["hours"]["lines"][1])}</span><span>Tridhara Sandhya Arati 6:30 PM</span><a href="{ctx.href("darshan")}" class="u">Today at the mandir</a>')}
+{col("যোগাযোগ", "Contact", copy_value(c["phone"], href="tel:" + c["phone_e164"]) + copy_value(c["email"], href="mailto:" + c["email"]) + f'<span>{times(c["seva_desk"])}</span>')}
 {col("সঙ্গে থাকুন", "Follow", social)}
 </div>
 <nav class="foot__nav" aria-label="All pages">{''.join(f'<a href="{ctx.href(k)}">{e}</a>' for k, e in (('home', 'Home'), ('darshan', 'Darshan'), ('festivals', 'Festivals'), ('durga', 'Durga Puja 2026'), ('seva', 'Seva'), ('visit', 'Visit'), ('about', 'About')))}</nav>

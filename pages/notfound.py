@@ -4,7 +4,7 @@ from lib import ui
 from lib.ui import esc, btn, section, copy_value
 from lib.art import arrow, sun, board_files, SINDOOR, HALDI, SHOLA, KAJAL, PEACOCK_D, ABIR
 from lib.motifs import f, horse_defs, horse_body
-from pages.seva import art_block
+from pages.seva import art_block, times
 
 PAGE = dict(key='notfound', title='Page not found',
             description='This page is not on the Tridhara Milan Mandir website. Find darshan times, festivals, seva and the way to Panchmura from here.',
@@ -78,7 +78,7 @@ def today_band(ctx):
     return section(f'<div class="nf-today"><div class="nf-today__t"><h2 class="nf-today__h" lang="bn" id="nf-today-h">আজ মন্দিরে</h2>'
                    f'<p class="nf-today__en">Today at the mandir</p></div>'
                    f'<div class="nf-today__b"><p class="live"><span class="live__dot" aria-hidden="true"></span><span data-live="line">Darshan every day from 5:00 AM</span></p>'
-                   f'<p class="nf-today__hrs">{h[0]} · {h[1]}</p>'
+                   f'<p class="nf-today__hrs">{times(h[0])} · {times(h[1])}</p>'
                    f'<p class="nf-today__tell">A broken link brought you here? Tell us: {copy_value(c["email"], href="mailto:" + c["email"])}</p></div>'
                    f'<div class="btns">{btn(ctx, "Plan your darshan" + arrow(16), "darshan", "kajal", cls="btn--sm")}</div></div>',
                    'shola', cls='sec--tight', sid='today', labelledby='nf-today-h')

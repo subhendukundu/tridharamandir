@@ -7,7 +7,7 @@ import math
 import re
 from urllib.parse import quote
 from lib import ui
-from lib.ui import esc, btn, section, field, form, copy_value, bn
+from lib.ui import esc, btn, section, field, form, copy_value, bn, times  # noqa: F401 (times is used here and by other pages)
 from lib.art import arrow, sun, board_files, shikhara, SINDOOR, HALDI, SHOLA, KAJAL, NEEL, ABIR, PEACOCK, PEACOCK_D
 from lib.motifs import f, horse_flat, wheel
 
@@ -320,7 +320,7 @@ def pay_fieldset(ctx):
     # the current site never publishes the UPI ID, the bank details or the cheque payee: the seva desk gives them
     return (f'<fieldset class="sev-fs" data-required data-label="Payment"><legend class="sev-fs__l"><span class="field__bn" lang="bn">কীভাবে দেবেন</span>'
             f'<span class="field__en">How you will pay</span></legend><div class="sev-pays">{opts}</div>'
-            f'<p class="sev-pays__how">{P["how"]}</p></fieldset>')
+            f'<p class="sev-pays__how">{times(P["how"])}</p></fieldset>')
 
 
 def form_section(ctx):
@@ -336,6 +336,7 @@ def form_section(ctx):
     for fid in OCCASIONS:      # data-end lets the page drop festivals that have already passed; data-name is for the summary card
         fe = ui.festival(ctx, fid)
         when = when.replace(f'<option value="{fid}">', f'<option value="{fid}" data-end="{fe["end"]}" data-name="{esc(names[fid])}">', 1)
+    when = when.replace('<option value="', '<option lang="bn" value="')     # every occasion leads with its Bengali name
     which = ('<div class="sev-which" data-sev-which-wrap hidden>'
              + field('seva-which', 'কোন সেবা', 'Which seva', 'text', name='which', placeholder='For example, Khichuri seva',
                      attrs=' data-sev-which disabled')
@@ -379,7 +380,7 @@ def form_section(ctx):
                f'<div class="sev-sum__total"><span class="sev-sum__tk"><span lang="bn">মোট</span><span class="sev-sum__k">Total</span></span>'
                f'<span class="sev-sum__amtw"><span class="sev-sum__amt" data-sum="total">{inr(RATE_AMOUNT)}</span>'
                f'<span class="sev-sum__per" data-sum-per hidden>a month</span></span></div>'
-               f'<p class="sev-sum__note">{RECEIPT}. Anna-daan prasad is served free every day, 12:30–2 PM.</p></aside>')
+               f'<p class="sev-sum__note">{RECEIPT}. Anna-daan prasad is served free every day, {times("12:30–2 PM")}.</p></aside>')
     aside = f'<p>A few details and how you will pay. {RECEIPT}.</p>'
     return section(sec_head('আপনার সেবা', 'Your seva request', aside, hid='order-h')
                    + f'<div class="sev-order">{the_form}{summary}</div>', 'paper', cls='sev-order-sec', sid='order', labelledby='order-h')
@@ -425,14 +426,14 @@ def pay_section(ctx):
     mail = 'mailto:' + c['email'] + '?subject=' + quote('Seva payment details')
     desk = (f'<div class="sev-paydesk"><p class="sev-paydesk__k"><span lang="bn">বিবরণ সেবা ডেস্কে</span>'
             f'<span class="sev-paydesk__ke">Details from the seva desk</span></p>'
-            f'<p class="sev-paydesk__t">{P["how"]} Paying by cheque? Ask them whom to make it payable to.</p>'
+            f'<p class="sev-paydesk__t">{times(P["how"])} Paying by cheque? Ask them whom to make it payable to.</p>'
             f'<p class="sev-paydesk__phone">{copy_value(c["phone"], href="tel:" + c["phone_e164"])}</p>'
             f'<p class="sev-paydesk__mail">{copy_value(c["email"], href=mail)}</p></div>')
 
     def fact(k, t):
         return f'<div class="fact"><p class="fact__k">{k}</p><p class="fact__t">{t}</p></div>'
     facts = (fact('Receipt', 'Within 48 hours of contribution confirmation') + fact('Tax', P['tax'])
-             + fact('Seva desk', '8 AM – 6 PM daily'))
+             + fact('Seva desk', times('8 AM–6 PM') + ' daily'))
     safe = ('<div class="sev-safe"><p><strong>No card payments on this website.</strong> It never asks for card details or passwords. '
             'The seva form sends the mandir your request; you pay afterwards, in the way you chose.</p></div>')
     aside = f'<p>{P["methods"]}. Send your request first, then pay in the way that suits you.</p>'
@@ -467,7 +468,7 @@ def prasad_band(ctx):
     return section(f'<div class="sev-prasad"><div class="sev-prasad__t"><h2 class="sev-prasad__h" lang="bn" id="prasad-h">অন্নদান প্রসাদ সবার জন্য</h2>'
                    f'<p class="sev-prasad__en">Anna-daan prasad is free for every visitor</p></div>'
                    f'<ul class="sev-prasad__list">'
-                   f'<li><span class="sev-prasad__big">12:30 – 2 PM</span><span>The free midday meal, every day, for visitors, villagers and devotees alike.</span></li>'
+                   f'<li><span class="sev-prasad__big">{times("12:30–2 PM")}</span><span>The free midday meal, every day, for visitors, villagers and devotees alike.</span></li>'
                    f'<li><span class="sev-prasad__big">₹300</span><span>Takeaway prasad, packed for elders or devotees who cannot come. The ₹300 covers the packaging.</span></li>'
                    f'</ul></div>',
                    'haldi', cls='sec--tight', sid='prasad', labelledby='prasad-h')
@@ -541,8 +542,8 @@ CEREMONIES = [('', 'Choose one'), ('wedding', 'Temple wedding · ₹31,001'), ('
               ('namkaran', 'Namkaran · ₹7,501'), ('upanayan', 'Upanayan (Poite) · ₹7,501'), ('griha', 'Griha Pravesh'),
               ('bhoomi', 'Bhoomi Pujan · ₹5,001'), ('vehicle', 'Vehicle or business puja · ₹3,001'), ('other', 'Another ceremony')]
 SANSKARS = ('annaprashan', 'namkaran', 'upanayan')
-RIT_TIMES = [('বিবাহমণ্ডপ', 'Wedding mandap', [('6:00–11:00 AM', ''), ('4:00–9:00 PM', '')], 'Every day'),
-             ('সংস্কার', 'Sanskar ceremonies', [('7:00–10:00 AM', 'Weekdays'), ('3:00–6:00 PM', 'Weekends')], ''),
+RIT_TIMES = [('বিবাহমণ্ডপ', 'Wedding mandap', [('6–11 AM', ''), ('4–9 PM', '')], 'Every day'),
+             ('সংস্কার', 'Sanskar ceremonies', [('7–10 AM', 'Weekdays'), ('3–6 PM', 'Weekends')], ''),
              ('পুরোহিতের পরামর্শ', 'Priest consultation', [('7:30–8:30 PM', 'Evenings')], 'An appointment is recommended')]
 RIT_STEPS = ['Tell the mandir your dates, how many people are coming, and your family’s traditions.',
              'The mandir arranges the priests, a kirtan group, the decoration and the prasad menu.',
@@ -692,9 +693,11 @@ def faq_section(ctx):
     c = ctx.data['contact']
     qa = [('রসিদ কবে পাব?', 'When do I get a receipt?', 'Within 48 hours of contribution confirmation.', 'sindoor'),
           ('কর ছাড় পাওয়া যাবে?', 'Is it tax-deductible?', 'Not yet. The mandir is actively working on obtaining 80G certification.', 'haldi'),
-          ('ভোগে থাকতে পারি?', 'Can I attend the bhog?', 'Bhog is offered before Radha-Krishna at noon; anna-daan prasad is served free to every visitor, 12:30–2 PM.', 'peacock'),
+          ('ভোগে থাকতে পারি?', 'Can I attend the bhog?', 'Yes, everyone is welcome. After the midday bhog, anna-daan prasad is served free '
+                                                           f'to every visitor, {times("12:30–2 PM")}.', 'peacock'),
           ('অনলাইনে দেওয়া যায়?', 'Can I pay online?', 'Yes, by UPI or bank transfer: call or email the seva desk for the details. This website takes no card payments.', 'neel'),
-          ('সেবার খবর পাব?', 'Will I hear how my seva helped?', 'Yes. The mandir sends quarterly impact reports by email; ask the seva desk to add you to the seva newsletter.', 'abir')]
+          ('সেবার খবর পাব?', 'Will I hear how my seva helped?', 'Yes. The mandir sends quarterly impact reports by email: '
+                                                                  f'<a class="u" href="{esc(ctx.href("home#remind"))}">sign up for the seva newsletter</a> on the homepage.', 'abir')]
     items = ''
     for i, (bq, eq, a, tone) in enumerate(qa):
         light = ' sev-q--light' if tone == 'haldi' else ''
@@ -706,8 +709,8 @@ def faq_section(ctx):
              f'<path d="M60,14 C74,18 84,28 88,42 M58,28 C66,30 72,36 74,44" fill="none" stroke="{KAJAL}" stroke-width="6" stroke-linecap="round"/></g></svg>')
     desk = (f'<aside class="sev-desk" id="desk" aria-labelledby="desk-h">'
             f'<div class="sev-desk__head">{phone}<div><h3 class="sev-desk__h" lang="bn" id="desk-h">সেবা ডেস্ক</h3><p class="sev-desk__en">Seva desk</p></div></div>'
-            f'<p class="sev-desk__hours">8 AM – 6 PM <span class="sev-desk__days"><span lang="bn">প্রতিদিন</span> · every day</span></p>'
-            f'<p class="sev-desk__live" data-sev-desk><span class="sev-desk__dot" aria-hidden="true"></span><span data-sev-desk-line>Open 8 AM – 6 PM daily, India time</span></p>'
+            f'<p class="sev-desk__hours">{times("8 AM–6 PM")} <span class="sev-desk__days"><span lang="bn">প্রতিদিন</span> · every day</span></p>'
+            f'<p class="sev-desk__live" data-sev-desk><span class="sev-desk__dot" aria-hidden="true"></span><span data-sev-desk-line>Open {times("8 AM–6 PM")} daily, India time</span></p>'
             f'<div class="sev-desk__contact"><p class="sev-desk__phone">{copy_value(c["phone"], href="tel:" + c["phone_e164"])}</p>'
             f'<p class="sev-desk__mail">{copy_value(c["email"], href="mailto:" + c["email"])}</p>'
             f'<div>{btn(ctx, "Call the seva desk" + arrow(16), "tel:" + c["phone_e164"], "haldi", cls="btn--sm")}</div></div></aside>')

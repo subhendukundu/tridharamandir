@@ -78,9 +78,10 @@ html.menu-open { overflow: hidden; }
 .foot__h { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; font-weight: 800; font-size: 22px; line-height: 1.2; color: var(--haldi); }
 .foot__he { font-family: var(--caps); font-weight: 700; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
 .foot__b { margin-top: 12px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; font-size: 17px; line-height: 1.5; }
-.foot__b > a { padding-block: 7px; }
+/* links in the footer are at least 44px tall to tap */
+.foot__b > a { display: inline-flex; align-items: center; min-height: 44px; }
 .foot__nav { display: flex; flex-wrap: wrap; gap: 4px 28px; padding-top: 24px; border-top: 2px solid rgba(255, 246, 230, .25); }
-.foot__nav a { padding-block: 9px; font-family: var(--caps); font-weight: 800; font-size: 16px; letter-spacing: .1em; text-transform: uppercase; color: var(--haldi); }
+.foot__nav a { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--caps); font-weight: 800; font-size: 16px; letter-spacing: .1em; text-transform: uppercase; color: var(--haldi); }
 .foot__base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding-top: 24px; border-top: 2px solid rgba(255, 246, 230, .25); font-size: 15px; color: #E9DCC8; }
 .foot__sig { font-weight: 700; }
 @media (max-width: 1099px) { .foot__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

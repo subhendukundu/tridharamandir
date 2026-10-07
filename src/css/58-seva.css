@@ -209,6 +209,8 @@
 .sev-paydesk__phone { margin-top: 6px; }
 .sev-paydesk__phone .copyval__v { font-family: var(--caps); font-weight: 800; font-size: clamp(32px, 3.2vw, 46px); line-height: 1; letter-spacing: .02em; }
 .sev-paydesk__mail .copyval__v { font-size: 18px; text-decoration: underline; text-underline-offset: 4px; }
+/* phone numbers and emails that stand on their own (seva desk, how to pay, volunteering): a full 44px to tap, like the Copy button beside them */
+.sev-paydesk a.copyval__v, .sev-desk a.copyval__v, .sev-volfacts a.copyval__v { display: inline-flex; align-items: center; min-height: 44px; }
 .sev-payfacts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; }
 .sev-safe { display: flex; flex-direction: column; gap: 10px; max-width: 920px; padding: 18px 22px; border: 3px dashed rgba(255, 246, 230, .55); font-size: 17px; line-height: 1.5; }
 .sev-safe strong { color: var(--haldi); }

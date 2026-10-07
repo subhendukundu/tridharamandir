@@ -376,7 +376,7 @@
     }
   ],
   "heroes": {
-    "_note": "The first screen of the homepage. A big festival takes it 14 days before it starts, keeps it through its last day, and says thank you the day after. The rest of the year the evergreen screen shows, with a countdown to the next big festival. lines = the two lines of the big Bengali headline; w = width of each line and a/d = how far its letters rise and fall, measured with the real font (python3 tools/measure_titles.py).",
+    "_note": "The first screen of the homepage. A big festival takes it 14 days before it starts, keeps it through its last day, and says thank you the day after. The rest of the year the evergreen screen shows, with a countdown to the next big festival. lines = the two lines of the big Bengali headline; w = width of each line and a/d = how far its letters rise and fall, measured with the real font (python3 tools/measure_titles.py). ctas = [button text, page]: a page key with an optional #anchor (festivals#kali), or seva?seva=<id>#seva-form to open the seva form on one seva (ids: annadaan, festival, health, monthly, scholarship, steward). A festival marked confirm: true shows (date to be confirmed) after sub.",
     "lead_days": 14,
     "evergreen": {
       "tone": "shola",
@@ -473,7 +473,7 @@
         ],
         [
           "Book a bhog seva",
-          "seva"
+          "seva?seva=festival#seva-form"
         ]
       ]
     },
@@ -558,7 +558,7 @@
         ]
       ],
       "sub": "Dol Yatra · Gaura Purnima · 22 March",
-      "body": "Abir for Radha-Krishna, and the birthday of Sri Chaitanya Mahaprabhu.",
+      "body": "Abir for Radha-Krishna, and the birthday of Chaitanya Mahaprabhu.",
       "ctas": [
         [
           "See the festival",
@@ -619,7 +619,7 @@
           0.09
         ]
       ],
-      "sub": "Janmashtami in Naba Brindaban · 25 August",
+      "sub": "Janmashtami at Tridhara · 25 August",
       "body": "Sri Krishna’s birthday at Naba Brindaban, Panchmura’s Second Vrindavan.",
       "ctas": [
         [

@@ -4,7 +4,7 @@
 .fes-art { position: relative; margin: 0 calc(-1 * var(--gutter)) calc(-1 * clamp(36px, 4.4vw, 64px)); aspect-ratio: 740 / 790; overflow: hidden; }
 /* phones: board x 780–1520, y −70–720 — the wheel sits low and left, leaving the top-right corner free for the sticker */
 .fes-wheel { position: absolute; left: calc(-20 / 740 * 100%); top: calc(70 / 790 * 100%); width: calc(680 / 740 * 100%); max-width: none; height: auto; }
-.fes-sticker { --s: clamp(118px, 30vw, 140px); position: absolute; z-index: 3; top: 6px; right: 12px; }   /* 118px+: every line stays inside the circle */
+.fes-sticker { --s: clamp(124px, 32vw, 140px); position: absolute; z-index: 3; top: 6px; right: 12px; }   /* 124px+: every line stays inside the circle */
 .fes-wh__s { fill: var(--shola); stroke: var(--kajal); stroke-width: 4; stroke-linejoin: round; }
 .fes-wh__s--alt { fill: var(--paper2); }
 .fes-wh__s.is-cur { fill: var(--sindoor); }
@@ -31,7 +31,7 @@
   .fes-top .phero__en, .fes-top .phero__sub { max-width: min(620px, calc(.5 * min(100vw, var(--max)) - var(--gutter) - 16px)); }
   .fes-art { position: absolute; top: calc(-1 * var(--hdr-h)); right: 0; width: calc(680 / 1440 * min(100vw, var(--max))); margin: 0; aspect-ratio: 680 / 720; overflow: visible; }
   .fes-wheel { position: static; width: 100%; }
-  .fes-sticker { --s: max(118px, min(11.12vw, 160px)); top: calc(510 / 720 * 100%); left: calc(-40 / 680 * 100%); right: auto; }
+  .fes-sticker { --s: max(124px, min(11.12vw, 160px)); top: calc(510 / 720 * 100%); left: calc(-40 / 680 * 100%); right: auto; }
 }
 
 /* ---------------------------------------------------------------- filter by dhara (shown by the script) */

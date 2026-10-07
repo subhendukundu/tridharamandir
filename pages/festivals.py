@@ -13,8 +13,8 @@ from lib.motifs import f, shiuli, kash, dhak, wheel
 from lib import byear as BY
 
 PAGE = dict(key='festivals', title='Festival calendar 2026–27',
-            description='The festival year at Tridhara Milan Mandir, Panchmura: Durga Puja, Kali Puja, Rash, Shivaratri, Dol and Rath Yatra, '
-                        'month by month from Ashwin 1433 to Bhadra 1434.',
+            description='The festival year at Tridhara Milan Mandir, Panchmura, Ashwin 1433 to Bhadra 1434: Durga Puja, Kali Puja, '
+                        'Rash Purnima, Shivaratri, Dol and Rath Yatra.',   # 151 characters: keep it under about 155
             tone='haldi')
 
 IST = timezone(timedelta(hours=5, minutes=30))
@@ -50,7 +50,8 @@ MONTHS = [
 ]
 # what the design adds to a festival (display only; dates stay those of site.json)
 EXTRA = {
-    'janmashtami': dict(note=('মধ্যরাতে অভিষেক ও আরতি', 'Akhanda nama sankirtan, then the midnight abhishek and arati')),
+    # the current site names both without an order: no "then"
+    'janmashtami': dict(note=('মধ্যরাতে অভিষেক ও আরতি', 'Akhanda nama sankirtan, and the abhishek and arati at midnight')),
     'rath': dict(special='পঞ্চম প্রতিষ্ঠা দিবস'),                                                # English = 1st half of note_en
 }
 UNCONFIRMED = ' (date to be confirmed)'   # plain text: content/site.json marks the date with "confirm"
@@ -457,11 +458,13 @@ BHOG = ('Every day', 'ভোগ ও প্রসাদ', 'Bhog and prasad', 'Ann
 def expect(ctx, fid):
     """What to expect, from content/FACTS.md and the festival's first screen in site.json."""
     H = ctx.data['heroes']
-    if fid == 'durga':
-        return [('Fri 16 – Wed 21 Oct', 'ষষ্ঠী থেকে বিজয়া দশমী', 'Five days', 'Bodhon on Shashthi; Saptami runs into Sun 18 Oct by the panjika.'),
-                ('Mon 19 Oct', 'অঞ্জলি ও সন্ধিপূজা', 'Mahashtami', 'Pushpanjali in the morning and Sandhi Puja 7:26–8:14 AM (Benimadhab Shil panjika). Ashtami morning is usually busy: come early.'),
+    if fid == 'durga':   # what each day of the Puja is; the only time the mandir's dates give is Sandhi Puja's (no order of rites)
+        return [('Fri 16 – Wed 21 Oct', 'ষষ্ঠী থেকে বিজয়া দশমী', 'Five days', 'The Puja begins with Bodhon on Shashthi. '
+                 'In the Benimadhab Shil panjika, Saptami runs into Sun 18 Oct.'),
+                ('Mon 19 Oct', 'অঞ্জলি ও সন্ধিপূজা', 'Mahashtami', 'Sandhi Puja 7:26–8:14 AM (Benimadhab Shil panjika); pushpanjali in the morning. '
+                 'Ashtami morning is usually busy: come early.'),
                 BHOG,
-                ('Wed 21 Oct', 'সিঁদুর খেলা ও বিসর্জন', 'Bijoya Dashami', 'Sindoor khela, then bisarjan.')]
+                ('Wed 21 Oct', 'সিঁদুর খেলা ও বিসর্জন', 'Bijoya Dashami', 'The day of sindoor khela, then bisarjan.')]
     if fid == 'kali':
         return [('Sun 8 Nov', 'দীপান্বিতা কালীপূজা', 'Dipanwita night', H['kali']['body']),
                 ('Amavasya night', 'সারা রাত কীর্তন', 'Open late', 'Extended hours and kirtan through the night.'),
@@ -479,7 +482,7 @@ def expect(ctx, fid):
                 BHOG]
     if fid == 'janmashtami':
         return [('Wed 25 Aug' + UNCONFIRMED, 'নব বৃন্দাবনে জন্মাষ্টমী', 'Janmashtami at Naba Brindaban', H['janmashtami']['body'] + ' More than 5,000 devotees come.'),
-                ('Midnight', 'অখণ্ড নাম সংকীর্তন ও অভিষেক', 'Sankirtan, abhishek and arati', 'Akhanda nama sankirtan, then the midnight abhishek and arati.'),
+                ('Midnight', 'অখণ্ড নাম সংকীর্তন ও অভিষেক', 'Sankirtan, abhishek and arati', 'Akhanda nama sankirtan, and the abhishek and arati at midnight.'),
                 BHOG]
     return [BHOG]
 
@@ -493,7 +496,8 @@ def next_variant(ctx, fe, shown):
     fid = fe['id']
     items = ''.join(expect_item(*x) for x in expect(ctx, fid))
     if fid == 'durga':
-        btns = btn(ctx, 'See the Puja days' + arrow(16), 'durga', 'haldi') + btn(ctx, 'Book a bhog seva', 'seva', 'ghost')
+        # the seva form opens with Festival anna-daan (₹5,001) chosen
+        btns = btn(ctx, 'See the Puja days' + arrow(16), 'durga', 'haldi') + btn(ctx, 'Book a bhog seva', 'seva?seva=festival#seva-form', 'ghost')
     else:
         btns = btn(ctx, 'Offer a seva' + arrow(16), 'seva', 'haldi') + btn(ctx, 'Find it in the calendar', '#' + fid, 'ghost')
     h = ' hidden' if not shown else ''
@@ -533,10 +537,13 @@ def note_band(ctx):
 
 
 def remind(ctx):
-    """Festival news and the seva newsletter by email: the homepage's band with its own form id."""
+    """Festival news and the seva newsletter by email: the homepage's band with its own form id.
+    ui.form_attrs: no novalidate in the markup (src/js/40-forms.js sets it when it runs, so without the script the browser
+    still checks the email); data-sent is the thank-you once the sign-up has gone, with no seva-desk line under it (as on home)."""
     fl = field('remind-fes-contact', 'ইমেল', 'Email', 'email', name='email', required=True,
                placeholder='you@example.com', autocomplete='email')
-    form = (f'<form class="remind__form form" id="remind-fes" data-form="remind-fes" data-subject="Festival news and seva newsletter" novalidate>'
+    attrs = ui.form_attrs('remind-fes', 'Festival news and seva newsletter', sent='Thank you. You’re on the list for festival news.', sent_note='')
+    form = (f'<form class="remind__form form"{attrs}>'
             f'<div class="remind__row">{fl}<button class="btn" type="submit">Sign up</button></div>{ui.honeypot("remind-fes")}'
             f'<div class="form-result" data-form-result hidden tabindex="-1"></div></form>')
     return section(f'<div class="remind"><div class="remind__t"><h2 class="remind__h" lang="bn" id="remind-h">উৎসবের আগে খবর পান</h2>'

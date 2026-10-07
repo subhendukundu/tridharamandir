@@ -38,8 +38,8 @@
 
 .visit-grid { display: grid; grid-template-columns: minmax(0, 768px) minmax(0, 1fr); gap: 40px 56px; align-items: start; }
 .map-panel { min-width: 0; padding: clamp(14px, 1.7vw, 24px); background: #0A7A6F; border: 4px solid var(--kajal); box-shadow: 10px 10px 0 var(--kajal); }
-.map-cap { margin-top: 12px; font-size: 15px; line-height: 1.4; color: var(--mint); }
-.map-hint { display: none; margin-top: 8px; font-size: 14px; color: var(--mint); }
+.map-cap { margin-top: 12px; font-size: 15px; line-height: 1.4; color: var(--shola); }      /* shola on the map green: 4.9:1 (mint was 4.48:1) */
+.map-hint { display: none; margin-top: 8px; font-size: 14px; color: var(--shola); }
 @media (max-width: 599px) { .map-hint { display: block; } }
 .map-scroll { overflow-x: auto; scrollbar-width: thin; }
 .route-map { width: 100%; min-width: 500px; height: auto; }

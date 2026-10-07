@@ -20,6 +20,7 @@
     var v = el.validity;
     var rule = el.getAttribute('data-validate');
     var val = (el.value || '').trim();
+    if (v && v.badInput) return el.type === 'number' ? 'Please enter a number.' : 'Please check this.';   // before "fill this in": the browser reports what was typed as empty
     if (v && v.valueMissing) return 'Please fill this in.';
     if (rule === 'phone-or-email' && val) {
       var isMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), digits = val.replace(/\D/g, '').length;
@@ -30,6 +31,10 @@
     var nice = function (x) { var m = /^(\d{4})-(\d\d)-(\d\d)$/.exec(x); return m ? T.fmtDate(new Date(+m[1], m[2] - 1, +m[3])) : x; };
     if (v && v.rangeUnderflow) return el.type === 'date' ? 'Please choose ' + nice(el.min) + ' or later.' : 'Please enter ' + el.min + ' or more.';
     if (v && v.rangeOverflow) return el.type === 'date' ? 'Please choose ' + nice(el.max) + ' or earlier.' : 'Please enter ' + el.max + ' or less.';
+    if (v && v.stepMismatch && el.type === 'number') {   // amounts and counts are whole numbers (step="1", or no step at all)
+      var step = el.getAttribute('step');
+      return !step || +step === 1 ? 'Please enter a whole number.' : 'Please enter a number in steps of ' + step + '.';
+    }
     if (v && !v.valid) return 'Please check this.';
     return '';
   }
@@ -91,14 +96,17 @@
     var subject = form.getAttribute('data-subject') || 'Message from the website';
     var text = subject + '\n' + lines.join('\n');
     if (mode === 'sent') {
-      box.appendChild(el('p', 'form-result__h', 'Thank you. Your message has gone to the mandir.'));
-      box.appendChild(el('p', 'form-result__note', 'The seva desk is open 8 AM – 6 PM daily, India time. For anything urgent, call ' + D.contact.phone + '.'));
+      /* a form may say its own thank-you (data-sent) and the line under it (data-sent-note; empty: none), e.g. a sign-up */
+      var note = form.hasAttribute('data-sent-note') ? form.getAttribute('data-sent-note')
+        : 'The seva desk is open 8 AM–6 PM daily, India time. For anything urgent, call ' + D.contact.phone + '.';
+      box.appendChild(el('p', 'form-result__h', form.getAttribute('data-sent') || 'Thank you. Your message has gone to the mandir.'));
+      if (note) box.appendChild(el('p', 'form-result__note', note));
     } else {
       if (T.staging) box.appendChild(el('p', 'form-result__test', 'Test site · nothing was sent'));
       box.appendChild(el('p', 'form-result__h', mode === 'failed' ? 'That didn’t go through. Please send it yourself.' : 'Almost there: send this to the mandir'));
       box.appendChild(el('p', 'form-result__note', T.staging
         ? 'On the finished site this goes straight to the mandir. For now, here is what they would receive:'
-        : 'Copy these details and email them to the mandir, or call the seva desk (8 AM – 6 PM daily).'));
+        : 'Copy these details and email them to the mandir, or call the seva desk (8 AM–6 PM daily).'));
       var pre = el('pre', 'form-result__sum', text); pre.setAttribute('data-copy-text', '');
       var scope = el('div', ''); scope.setAttribute('data-copy-scope', ''); scope.appendChild(pre);
       var btns = el('div', 'btns');
@@ -115,10 +123,29 @@
     T.say(box.querySelector('.form-result__h').textContent);
   }
 
+  /* a message under a field goes as soon as the field is put right: typing (input) or choosing (change; a script that
+     picks an option, such as "Enquire" on the seva page, sends change) */
+  function recheck(e) {
+    var t = e.target;
+    if (!t || !t.getAttribute) return;
+    if (t.getAttribute('aria-invalid') === 'true') showError(t, errorFor(t));
+    var fs = (t.type === 'radio' || t.type === 'checkbox') && t.closest('fieldset[data-required]');
+    if (fs && T.qsa('input', fs).some(function (i) { return i.checked; })) {
+      var m = fs.querySelector(':scope > .field__err');
+      if (m) m.remove();
+    }
+  }
+
   T.qsa('form[data-form]').forEach(function (form) {
-    form.addEventListener('input', function (e) { if (e.target.getAttribute('aria-invalid') === 'true') showError(e.target, errorFor(e.target)); });
+    /* the page checks the fields itself (its own messages); without this script the browser's checks still apply */
+    form.noValidate = true;
+    form.addEventListener('input', recheck);
+    form.addEventListener('change', recheck);
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      /* a new attempt: the last result (a thank-you, or a summary) goes until this one has its own */
+      var old = form.querySelector('[data-form-result]');
+      if (old) old.hidden = true;
       var first = null;
       T.qsa('input, select, textarea', form).forEach(function (c) {
         if (!c.name || c.type === 'hidden' || c.disabled) return;

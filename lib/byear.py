@@ -129,7 +129,7 @@ SPECS = [
     dict(id='shiva', month='ফাল্গুন', en='Maha Shivaratri', dhara='Shaiva', bg='#24324A', sun='#E4E9EE', dots='#24324A', head=SHOLA, shadow=KAJAL, fg=SHOLA,
          w=('শিব', 'রাত্রি'), num='৫', sub='Maha Shivaratri at Tridhara', body='A night awake with Mahadev: jal and bel-patra for the Shiva linga.', art=art_shiva()),
     dict(id='dol', month='ফাল্গুন', en='Dol Yatra', dhara='Vaishnava', bg='#D81B60', sun='#FFD23F', dots='#D81B60', head=SHOLA, shadow=KAJAL, fg=SHOLA,
-         w=('দোল', 'যাত্রা'), num='১০', sub='Dol Purnima · Gaura Purnima', body='Abir for Radha-Krishna, and the birthday of Sri Chaitanya Mahaprabhu.', art=art_dol()),
+         w=('দোল', 'যাত্রা'), num='১০', sub='Dol Purnima · Gaura Purnima', body='Abir for Radha-Krishna, and the birthday of Chaitanya Mahaprabhu.', art=art_dol()),
 ]
 
 
