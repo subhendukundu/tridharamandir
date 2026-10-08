@@ -103,10 +103,11 @@
       if (note) box.appendChild(el('p', 'form-result__note', note));
     } else {
       if (T.staging) box.appendChild(el('p', 'form-result__test', 'Test site · nothing was sent'));
-      box.appendChild(el('p', 'form-result__h', mode === 'failed' ? 'That didn’t go through. Please send it yourself.' : 'Almost there: send this to the mandir'));
+      box.appendChild(el('p', 'form-result__h', mode === 'failed' ? 'Almost there: please send this to the mandir yourself' : 'Almost there: send this to the mandir'));
       box.appendChild(el('p', 'form-result__note', T.staging
         ? 'On the finished site this goes straight to the mandir. For now, here is what they would receive:'
-        : 'Copy these details and email them to the mandir, or call the seva desk (8 AM–6 PM daily).'));
+        : (mode === 'failed' ? 'The website couldn’t send it just now. ' : '')
+          + 'Copy these details and email them to the mandir, or call the seva desk (8 AM–6 PM daily).'));
       var pre = el('pre', 'form-result__sum', text); pre.setAttribute('data-copy-text', '');
       var scope = el('div', ''); scope.setAttribute('data-copy-scope', ''); scope.appendChild(pre);
       var btns = el('div', 'btns');
