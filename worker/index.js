@@ -114,7 +114,9 @@ async function apiForm(request, env, url) {
     page: pagePath(body.page),
     lines,
   });
-  return result.ok ? json({ ok: true }) : json({ ok: false, error: result.error }, result.status);
+  if (result.ok) return json({ ok: true });
+  const { ok, status, ...why } = result;
+  return json({ ok: false, ...why }, status);
 }
 
 // A form posted the old-fashioned way (site.js did not run): every form carries _form and _hp (lib/ui.py honeypot).
@@ -230,13 +232,19 @@ async function sendMail(env, url, m) {
     if (!res.ok) {
       const detail = await res.text().catch(() => '');
       console.error('form: ZeptoMail refused', m.form, res.status, detail.slice(0, 300));
-      return { ok: false, status: 502, error: 'mail' };
+      // ZeptoMail's own error codes (e.g. TM_4001 / SERR_157), so a failure can be diagnosed from the browser; no secrets in them
+      let code = '';
+      try {
+        const e = JSON.parse(detail).error || {};
+        code = [e.code, ...((e.details || []).map((d) => d.code))].filter(Boolean).join(' ').slice(0, 80);
+      } catch (e) { /* not JSON */ }
+      return { ok: false, status: 502, error: 'mail', mail_status: res.status, mail_code: code };
     }
     console.log('form: sent', m.form, live ? 'live' : url.hostname);
     return { ok: true };
   } catch (err) {
     console.error('form: ZeptoMail unreachable', m.form, String(err));
-    return { ok: false, status: 502, error: 'mail' };
+    return { ok: false, status: 502, error: 'mail_unreachable', mail_code: String((err && err.name) || 'error').slice(0, 40) };
   } finally {
     clearTimeout(timer);
   }
