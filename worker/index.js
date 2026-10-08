@@ -162,13 +162,21 @@ async function plainForm(request, env, url) {
 }
 
 async function sendMail(env, url, m) {
-  const key = (env.ZEPTOMAIL_API_KEY || '').trim();
-  const from = (env.ZEPTOMAIL_FROM_EMAIL || '').trim();
+  // the token alone; secrets are sometimes saved as "Zoho-enczapikey <token>", "Zoho-enczapikey_<token>" or in quotes
+  const key = secret(env.ZEPTOMAIL_API_KEY).replace(/^zoho-enczapikey[\s_:=]*/i, '').trim();
+  let from = secret(env.ZEPTOMAIL_FROM_EMAIL);
+  let fromName = secret(env.ZEPTOMAIL_FROM_NAME);
+  const angled = /^(.*)<([^<>]+)>\s*$/.exec(from);          // "Name <address>" → address (and the name, if none is set)
+  if (angled) { from = angled[2].trim(); fromName = fromName || angled[1].trim().replace(/^"|"$/g, ''); }
   if (!key || !from) {
     console.error('form: ZeptoMail is not configured (ZEPTOMAIL_API_KEY / ZEPTOMAIL_FROM_EMAIL missing)');
     return { ok: false, status: 503, error: 'not_configured' };
   }
-  const to = (env.ZEPTOMAIL_TO_EMAIL || DATA.contact.email).split(',').map((s) => s.trim()).filter((s) => EMAIL_RE.test(s));
+  if (!EMAIL_RE.test(from)) {
+    console.error('form: ZEPTOMAIL_FROM_EMAIL is not an email address');
+    return { ok: false, status: 503, error: 'not_configured', mail_code: 'from_address' };
+  }
+  const to = (secret(env.ZEPTOMAIL_TO_EMAIL) || DATA.contact.email).split(',').map((s) => s.trim()).filter((s) => EMAIL_RE.test(s));
   if (!to.length) return { ok: false, status: 503, error: 'not_configured' };
 
   const live = url.hostname === DATA.host;
@@ -208,7 +216,7 @@ async function sendMail(env, url, m) {
     + `<p style="margin:0;color:#5b4a3f;font-size:14px">Page: <a href="${esc(pageUrl)}">${esc(pageUrl)}</a></p></div>`;
 
   const payload = {
-    from: { address: from, name: (env.ZEPTOMAIL_FROM_NAME || '').trim() || `${DATA.name} website` },
+    from: { address: from, name: fromName || `${DATA.name} website` },
     to: to.map((address) => ({ email_address: { address, name: DATA.name } })),
     subject,
     textbody,
@@ -224,7 +232,7 @@ async function sendMail(env, url, m) {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: /^zoho-enczapikey\s/i.test(key) ? key : 'Zoho-enczapikey ' + key,
+        Authorization: 'Zoho-enczapikey ' + key,
       },
       body: JSON.stringify(payload),
       signal: ctl.signal,
@@ -251,6 +259,10 @@ async function sendMail(env, url, m) {
 }
 
 /* ------------------------------------------------------------------ small helpers */
+
+function secret(v) {
+  return String(v || '').trim().replace(/^(["'])([\s\S]*)\1$/, '$2').trim();
+}
 
 function sameOrigin(request, url) {
   const origin = request.headers.get('origin');

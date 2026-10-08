@@ -108,6 +108,13 @@ await test('form: key without its prefix, several recipients, no email given', a
     assert.equal(r.status, 200);
     const { headers, body } = m.sent[0];
     assert.equal(headers.Authorization, 'Zoho-enczapikey RAWKEY');
+    for (const k of ['Zoho-enczapikey_RAWKEY', '"Zoho-enczapikey RAWKEY"', ' zoho-enczapikey  RAWKEY\n']) {
+      await post('/api/form', seva, {}, { ...env, ZEPTOMAIL_API_KEY: k });
+      assert.equal(m.sent[m.sent.length - 1].headers.Authorization, 'Zoho-enczapikey RAWKEY', JSON.stringify(k));
+    }
+    await post('/api/form', seva, {}, { ...env, ZEPTOMAIL_FROM_EMAIL: 'Tridhara Mandir <noreply@tridharamandir.com>' });
+    assert.deepEqual(m.sent[m.sent.length - 1].body.from, { address: 'noreply@tridharamandir.com', name: 'Tridhara Mandir' });
+    assert.equal((await post('/api/form', seva, {}, { ...env, ZEPTOMAIL_FROM_EMAIL: 'not an address' })).status, 503);
     assert.equal(body.to.length, 2);
     assert.equal(body.reply_to, undefined);
     assert.equal(body.subject, 'Seva request');
