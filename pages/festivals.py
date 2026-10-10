@@ -452,7 +452,7 @@ def big_poster(ctx, fe):
             f'<span class="fes-np__en">{line}{conf}</span></a>')
 
 
-BHOG = ('Every day', 'ভোগ ও প্রসাদ', 'Bhog and prasad', 'Anna-daan prasad from 12:30 PM, and a light meal at 5:30 PM during festivals.')
+BHOG = ('Every day', 'ভোগ ও প্রসাদ', 'Bhog and prasad', 'Anna prasad from 12:30 PM (₹60 per person), and a light meal at 5:30 PM during festivals.')
 
 
 def expect(ctx, fid):

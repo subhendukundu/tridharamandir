@@ -9,12 +9,13 @@ Source: tridharamandir.com (all 24 sitemap pages, via subagent) + panjika date r
 - Arati: trishul (Shaiva), chakra (Vaishnava), shankha (Shakta); Shaiva damru, Vaishnava mridanga, Devi ululation (ulu).
 - Architecture: Nagara style, 45-foot shikhara, inspired by Govind Dev Temple, 28 hand-carved relief panels (Dasavatara, Krishna lila), shegun-beamed ceilings, tulsi mancha.
 - Kitchen: terracotta handis; sattvic, onion-free food. Site: "Anna-Daan Prasad: a free midday meal shared by visitors, villagers, and devotees"; FAQ "prasad is completely free"; "serves approximately 2,000 meals daily to all visitors"; started with 600 daily plates in 2022; prasadam "prepared with seasonal produce and terracotta handi vessels" (the site does NOT say the handis are made in Panchmura).
+- **Correction (10 Oct 2026, from the mandir’s side): anna prasad, the midday meal, is ₹60 per person. It is not free**; the old site’s "free" wording was wrong. "Anna-daan" on this site means the seva of feeding devotees (₹1,001 feeds 80, the mandir’s own measure).
 - The site links YouTube @tridharamandir but says nothing about live-streaming the arati: any live darshan is a proposal → [CONFIRM].
 - Rules: shoulders and knees covered; no leather in the garbhagriha; phones on silent; no flash during arati.
 
 ## Day
 - Darshan Mon–Fri 5:00 AM–9:00 PM; Sat–Sun 5:00 AM–9:30 PM.
-- 5:00 Mangal Arati + tulsi parikrama; 7:30–12:00 Jhulan & raj-bhog darshan; 12:00 bhog before Radha-Krishna; 12:30–2:00 PM anna-daan prasad; 5:30 PM light meal during festivals; 6:30 PM Tridhara Sandhya Arati (site also says 6:30–8:00 and 7:00–8:30: CONFIRM); 8:00 PM Vrindavan Sabha katha.
+- 5:00 Mangal Arati + tulsi parikrama; 7:30–12:00 Jhulan & raj-bhog darshan; 12:00 bhog before Radha-Krishna; 12:30–2:00 PM anna prasad (₹60 per person); 5:30 PM light meal during festivals; 6:30 PM Tridhara Sandhya Arati (site also says 6:30–8:00 and 7:00–8:30: CONFIRM); 8:00 PM Vrindavan Sabha katha.
 - Seva desk 8 AM–6 PM. Ekadashi, Purnima, Amavasya: extended hours, kirtan through the night.
 
 ## Seva (site has 3 conflicting sets: CONFIRM)

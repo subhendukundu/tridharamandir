@@ -1,5 +1,7 @@
 # What the current tridharamandir.com says (read 7 Oct 2026)
 
+Correction (10 Oct 2026, from the mandir’s side): anna prasad is ₹60 per person, not free. Every "free prasad" line below is the old site’s mistake.
+
 Decision (7 Oct 2026): for launch, settle every open item with what the current site says. Where it contradicts itself, its homepage wins.
 Anything it never states (UPI ID, bank details, trust name, registration, PAN) is left off; visitors are pointed to the seva desk.
 No photographs: the illustrated design stays as agreed; "Photo to come" places are removed.

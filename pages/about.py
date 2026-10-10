@@ -339,8 +339,8 @@ def work_section(ctx):
             '<p class="abt-grow__row"><span class="abt-grow__k" lang="bn">২০২২</span><span class="abt-grow__bar" style="--v: .3;"></span><span class="abt-grow__n" lang="bn">৬০০</span></p>'
             '<p class="abt-grow__row"><span class="abt-grow__k" lang="bn">আজ</span><span class="abt-grow__bar" style="--v: 1;"></span><span class="abt-grow__n" lang="bn">২০০০+</span></p></div>')
     feature = (f'<div class="abt-feat"><p class="abt-feat__n" lang="bn">২০০০+</p><p class="abt-feat__bn" lang="bn">পাত প্রসাদ, প্রতিদিন</p>'
-               f'<p class="abt-feat__en">Anna-daan · plates a day</p>'
-               f'<p class="abt-feat__d">Cooked in terracotta handis, sattvic and onion-free, and served free as anna-daan prasad from 12:30 to 2 PM. '
+               f'<p class="abt-feat__en">Prasad · plates a day</p>'
+               f'<p class="abt-feat__d">Cooked in terracotta handis, sattvic and onion-free, and served as anna prasad from 12:30 to 2 PM. '
                f'It began in 2022 with 600 plates a day.</p>{grow}<div class="abt-feat__handis">{handis}</div></div>')
 
     def stat(num, b, e, body, tone, shadow, en):
@@ -350,7 +350,7 @@ def work_section(ctx):
              + stat('৫০০+', 'রোগী, প্রতি শিবিরে', 'Patients at each health camp',
                     'Quarterly camps across 15 Panchmura villages, with volunteer doctors from Kolkata and Durgapur.', 'neel', 'sindoor', 'haldi'))
     aside = btn(ctx, 'Offer seva' + arrow(16), 'seva', 'haldi', cls='btn--sm')
-    return section(sec_head('আমাদের কাজ', 'The work: <span class="nowrap">anna-daan,</span> learning, healing', aside, hid='work-h')
+    return section(sec_head('আমাদের কাজ', 'The work: prasad, learning, healing', aside, hid='work-h')
                    + f'<div class="abt-work">{feature}<ul class="abt-stats">{stats}</ul></div>', 'kajal', sid='work', labelledby='work-h')
 
 

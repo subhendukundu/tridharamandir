@@ -17,7 +17,7 @@ PAGE = dict(key='seva', title='Seva, rituals and volunteering',
             tone='haldi')
 
 CLAY = '#C0602F'; CLAY_D = '#A44D23'; CLAY_L = '#DE7D45'; LEAF = '#4E8B31'; LEAF_D = '#2C5A19'; KHICHURI = '#EBA637'
-RATE_AMOUNT, RATE_PLATES = 1001, 80          # "₹1,001 feeds 80 devotees" (content/FACTS.md): about ₹12.50 a plate
+RATE_AMOUNT, RATE_PLATES = 1001, 80          # "₹1,001 feeds 80 devotees": the mandir’s own anna-daan measure (content/FACTS.md)
 
 
 def sec_head(*a, **k):
@@ -276,9 +276,9 @@ def calc_section(ctx):
              f'<p class="sev-calc__total" data-calc-total>{inr(RATE_AMOUNT)}</p>'
              f'<div aria-live="polite" aria-atomic="true"><p class="sev-calc__bn" lang="bn" data-calc-bn>প্রায় ৮০ জনের পাত</p>'
              f'<p class="sev-calc__en" data-calc-en>About 80 plates of anna-daan</p></div>'
-             f'<p class="sev-calc__est"><span class="sev-calc__estk">An estimate</span> About ₹12.50 a plate (₹1,001 feeds 80 devotees).</p>'
+             f'<p class="sev-calc__est"><span class="sev-calc__estk">An estimate</span> By the mandir’s measure, ₹1,001 feeds 80 devotees.</p>'
              f'<div class="sev-calc__go">{go}</div></div>')
-    aside = '<p>Every plate is sattvic and onion-free, cooked in terracotta handis, and served free to whoever comes.</p>'
+    aside = '<p>Every plate is sattvic and onion-free, cooked in terracotta handis in the mandir kitchen.</p>'
     return section(sec_head('কতজনকে খাওয়াবেন?', 'How many will you feed?', aside, hid='plates-h')
                    + f'<div class="sev-calc" data-sev-calc>{left}{right}</div>', 'kajal', sid='plates', labelledby='plates-h')
 
@@ -380,7 +380,7 @@ def form_section(ctx):
                f'<div class="sev-sum__total"><span class="sev-sum__tk"><span lang="bn">মোট</span><span class="sev-sum__k">Total</span></span>'
                f'<span class="sev-sum__amtw"><span class="sev-sum__amt" data-sum="total">{inr(RATE_AMOUNT)}</span>'
                f'<span class="sev-sum__per" data-sum-per hidden>a month</span></span></div>'
-               f'<p class="sev-sum__note">{RECEIPT}. Anna-daan prasad is served free every day, {times("12:30–2 PM")}.</p></aside>')
+               f'<p class="sev-sum__note">{RECEIPT}.</p></aside>')
     aside = f'<p>A few details and how you will pay. {RECEIPT}.</p>'
     return section(sec_head('আপনার সেবা', 'Your seva request', aside, hid='order-h')
                    + f'<div class="sev-order">{the_form}{summary}</div>', 'paper', cls='sev-order-sec', sid='order', labelledby='order-h')
@@ -452,7 +452,7 @@ def impact_section(ctx):
     def col(num, b, e, body, m):
         return (f'<li class="sev-imp">{m}<p class="sev-imp__n" lang="bn">{num}</p><p class="sev-imp__bn" lang="bn">{b}</p>'
                 f'<p class="sev-imp__en">{e}</p><p class="sev-imp__d">{body}</p></li>')
-    cols = (col('২০০০+', 'পাত প্রসাদ, প্রতিদিন', 'Plates a day', 'Anna-daan from the mandir kitchen: sattvic, onion-free, cooked in terracotta handis.',
+    cols = (col('৮০', 'জনের পাত, ₹১,০০১-এ', 'Devotees fed for ₹1,001', 'Anna-daan from the mandir kitchen: sattvic, onion-free, cooked in terracotta handis.',
                 medal(mini_handi(58, 70, .9, 3.8)))
             + col('১২০+', 'ছাত্রছাত্রী, প্রতি বছর', 'Students a year', 'Supported in Sanskrit, music and STEM.',
                   medal(f'<g transform="translate(20,18) scale(.76)">{ic_book_inner()}</g>', SHOLA))
@@ -463,12 +463,13 @@ def impact_section(ctx):
                    'sindoor', sid='where', labelledby='imp-h')
 
 
-# ---------------------------------------------------------------- prasad is free
+# ---------------------------------------------------------------- anna prasad: when, and what it costs
 def prasad_band(ctx):
-    return section(f'<div class="sev-prasad"><div class="sev-prasad__t"><h2 class="sev-prasad__h" lang="bn" id="prasad-h">অন্নদান প্রসাদ সবার জন্য</h2>'
-                   f'<p class="sev-prasad__en">Anna-daan prasad is free for every visitor</p></div>'
+    return section(f'<div class="sev-prasad"><div class="sev-prasad__t"><h2 class="sev-prasad__h" lang="bn" id="prasad-h">দুপুরের অন্নপ্রসাদ</h2>'
+                   f'<p class="sev-prasad__en">Anna prasad, every day after the midday bhog</p></div>'
                    f'<ul class="sev-prasad__list">'
-                   f'<li><span class="sev-prasad__big">{times("12:30–2 PM")}</span><span>The free midday meal, every day, for visitors, villagers and devotees alike.</span></li>'
+                   f'<li><span class="sev-prasad__big">{times("12:30–2 PM")}</span><span>Every day, after the midday bhog: sattvic and onion-free, for visitors, villagers and devotees alike.</span></li>'
+                   f'<li><span class="sev-prasad__big">₹60</span><span>Per person, for the anna prasad.</span></li>'
                    f'<li><span class="sev-prasad__big">₹300</span><span>Takeaway prasad, packed for elders or devotees who cannot come. The ₹300 covers the packaging.</span></li>'
                    f'</ul></div>',
                    'haldi', cls='sec--tight', sid='prasad', labelledby='prasad-h')
@@ -693,8 +694,8 @@ def faq_section(ctx):
     c = ctx.data['contact']
     qa = [('রসিদ কবে পাব?', 'When do I get a receipt?', 'Within 48 hours of contribution confirmation.', 'sindoor'),
           ('কর ছাড় পাওয়া যাবে?', 'Is it tax-deductible?', 'Not yet. The mandir is actively working on obtaining 80G certification.', 'haldi'),
-          ('ভোগে থাকতে পারি?', 'Can I attend the bhog?', 'Yes, everyone is welcome. After the midday bhog, anna-daan prasad is served free '
-                                                           f'to every visitor, {times("12:30–2 PM")}.', 'peacock'),
+          ('ভোগে থাকতে পারি?', 'Can I attend the bhog?', 'Yes, everyone is welcome at the midday bhog. Anna prasad follows, '
+                                                           f'{times("12:30–2 PM")}, at ₹60 per person.', 'peacock'),
           ('অনলাইনে দেওয়া যায়?', 'Can I pay online?', 'Yes, by UPI or bank transfer: call or email the seva desk for the details. This website takes no card payments.', 'neel'),
           ('সেবার খবর পাব?', 'Will I hear how my seva helped?', 'Yes. The mandir sends quarterly impact reports by email: '
                                                                   f'<a class="u" href="{esc(ctx.href("home#remind"))}">sign up for the seva newsletter</a> on the homepage.', 'abir')]

@@ -20,7 +20,7 @@ VIEW = (600, 96, 1040, 524)
 ART_W = 840          # the art column inside the 1440 board (VIEW without the extra 200)
 VIEW_M = (700, 96, 740, 524)
 VISIT_ITEMS = ['কলকাতা থেকে ১৮০ কিমি', 'বিষ্ণুপুর থেকে ৩০ কিমি', 'ট্রেনে বিষ্ণুপুর বা বাঁকুড়া জংশন', 'দুপুর ২টায় কুমোরপাড়া ভ্রমণ',
-               'অতিথিশালায় আটটি স্যুট', 'প্রতিদিন ভোর ৫টা থেকে দর্শন', 'অন্নদান প্রসাদ দুপুর ১২:৩০ থেকে']
+               'অতিথিশালায় আটটি স্যুট', 'প্রতিদিন ভোর ৫টা থেকে দর্শন', 'অন্নপ্রসাদ দুপুর ১২:৩০ থেকে']
 ROOMS = [('শান্তি ডিলাক্স স্টুডিও', 'Shanti Deluxe Studio', 3600, 'kajal'),
          ('বৃন্দাবন কোর্টইয়ার্ড স্যুট', 'Vrindavan Courtyard Suite', 4500, 'sindoor'),
          ('পিলগ্রিম ফ্যামিলি রুম', 'Pilgrim Family Room', 5800, 'neel')]
@@ -232,7 +232,7 @@ def route(ctx):
                 f'<p class="vis-day__t">{text}</p></li>')
     day = (f'<div class="vis-day"><h3 class="vis-day__h"><span lang="bn">বিষ্ণুপুর হয়ে একদিনে</span> <span class="vis-day__he">A day trip by way of Bishnupur</span></h3>'
            f'<ol class="vis-day__list">{stop("সকাল", "Morning", "Bishnupur’s Rasmancha, Jor-Bangla and Madan Mohan temples, 2–" + J + "3 hours")}'
-           f'{stop("১২:৩০", "12:30 PM", "Anna-daan prasad at the mandir in Panchmura")}'
+           f'{stop("১২:৩০", "12:30 PM", "Anna prasad at the mandir in Panchmura, ₹60 per person")}'
            f'{stop("৬:৩০", "6:30 PM", "The Tridhara Sandhya Arati")}</ol></div>')
     head = sec_head('কীভাবে আসবেন', 'Getting here', '<p>Kolkata to Bishnupur, then 30 km by road to Panchmura.</p>', hid='route-h')
     return section(head + f'<div class="vis-route">{mapp}{card}</div><ul class="vis-tks">{tickets}</ul>{day}',
@@ -258,7 +258,7 @@ def stay(ctx):
             f'<ul class="vis-terms">{term("দুপুর ২টা", "Check-in 2 PM")}{term("সকাল ১১টা", "Check-out 11 AM")}{term("৩০% অগ্রিম", "Advance to book")}</ul>'
             f'{btn(ctx, "Book a room" + arrow(16), "#book", "haldi", cls="vis-band__btn")}</div>')
     head = sec_head('অতিথিশালায় থাকুন', 'Stay at the guest house',
-                    '<p>Eight boutique suites, 100 m from the mandir courtyard. Rooms include anna-daan meals and temple access, '
+                    '<p>Eight boutique suites, 100 m from the mandir courtyard. Rooms include anna prasad meals and temple access, '
                     'with optional terracotta workshops.</p>', hid='stay-h')
     other = '<p class="vis-other">Other guest houses are in Bishnupur, 30 km away, and in Bankura town, 45 km away.</p>'
     return section(head + f'<ul class="rail vis-rooms">{rooms}</ul>' + band + other, 'haldi', cls='vis-sec', sid='stay', labelledby='stay-h')
@@ -394,9 +394,9 @@ def questions(ctx):
           + q('৬', 'neel', 'Can I take photos?', 'ছবি তোলা যায়?', 'হ্যাঁ, প্রাঙ্গণে',
               '<p class="vis-q__p">Photography is allowed in the courtyards; ask before photographing inside the sanctum; no flash, '
               'and no interior photography during arati.</p>')
-          + q('৭', 'peacock-d', 'Is there food?', 'খাবারের ব্যবস্থা আছে?', 'বিনামূল্যে প্রসাদ',
-              f'<p class="vis-q__p">Anna-daan prasad, {times("12:30–2 PM")}, after the midday bhog: sattvic, onion-free and free for everyone, '
-              'about 2,000 meals a day.</p>'
+          + q('৭', 'peacock-d', 'Is there food?', 'খাবারের ব্যবস্থা আছে?', 'অন্নপ্রসাদ, জনপ্রতি ৬০ টাকা',
+              f'<p class="vis-q__p">Anna prasad, {times("12:30–2 PM")}, after the midday bhog: sattvic and onion-free, ₹60 per person. '
+              'The mandir kitchen serves about 2,000 plates a day.</p>'
               '<p class="vis-q__p">Staying at the guest house? Note any food allergies in your booking enquiry.</p>'))
     more = (f'<div class="vis-more"><p class="vis-more__h"><span class="vis-more__bn" lang="bn">আর কোনো প্রশ্ন?</span> <span class="vis-more__en">Anything else?</span></p>'
             f'<p class="vis-more__p">Call or write to the mandir · {times(c["seva_desk"])}</p>'
@@ -413,7 +413,7 @@ def json_ld(ctx):
         '@context': 'https://schema.org', '@type': 'LodgingBusiness',
         'name': 'Guest house at Tridhara Milan Mandir',
         'description': 'Eight boutique suites, 100 m from the courtyard of Tridhara Milan Mandir, Panchmura. '
-                       'Rooms include anna-daan meals and temple access, with optional terracotta workshops.',
+                       'Rooms include anna prasad meals and temple access, with optional terracotta workshops.',
         'url': ctx.url('visit') + '#stay', 'telephone': c['phone_e164'], 'email': c['email'],
         'address': {'@type': 'PostalAddress', 'addressLocality': c['locality'], 'addressRegion': c['region'],
                     'postalCode': c['postcode'], 'addressCountry': c['country']},

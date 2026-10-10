@@ -9,7 +9,7 @@ from lib.art import arrow, icon_trishul, icon_chakra, icon_shankha, icon_play, r
 
 PAGE = dict(key='home', title='Tridhara Milan Mandir · Panchmura’s Second Vrindavan',
             description='Tridhara Milan Mandir, Panchmura: Mahadev, Radha-Krishna and Maa Kali in one mandir. '
-                        'Darshan daily from 5 AM, free anna-daan prasad, festivals all year.',
+                        'Darshan daily from 5 AM, anna prasad at midday, festivals all year.',
             tone=None)
 
 HERO_ORDER = ['evergreen', 'durga', 'kali', 'shivaratri', 'dol', 'rath', 'janmashtami']
@@ -198,8 +198,8 @@ def seva_form_link(s):
 def seva(ctx):
     P = ctx.data['payment']
     feature = (f'<div class="seva-feature"><p class="seva-feature__n" lang="bn">২০০০+</p>'
-               f'<p class="seva-feature__bn" lang="bn">পাত প্রসাদ, প্রতিদিন</p><p class="seva-feature__en">Plates of anna-daan, every single day</p>'
-               f'<p class="seva-feature__p">Sattvic, onion-free anna-daan prasad, cooked in terracotta handis and served free to every visitor from 12:30 PM.</p>'
+               f'<p class="seva-feature__bn" lang="bn">পাত প্রসাদ, প্রতিদিন</p><p class="seva-feature__en">Plates of prasad from the mandir kitchen, every day</p>'
+               f'<p class="seva-feature__p">Sattvic, onion-free anna prasad, cooked in terracotta handis and served after the midday bhog from 12:30 PM, at ₹60 per person. An anna-daan seva feeds devotees in the name you choose.</p>'
                f'<p class="seva-feature__small">{P["methods"]} · {P["receipt"].lower().replace("receipt", "receipt")} · {P["tax"]}</p></div>')
     cards = ''.join(seva_card(ctx, s, key=seva_form_link(s)) for s in ctx.data['seva_home'])
     head = sec_head('সেবা', 'Seva that feeds, heals and teaches', btn(ctx, 'All seva options' + arrow(16), 'seva', 'haldi', cls='btn--sm'), hid='seva-h')

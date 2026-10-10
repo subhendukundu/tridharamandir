@@ -18,7 +18,7 @@ PAGE = dict(key='darshan', title='Darshan and arati times',
 VIEW = (600, 96, 1040, 524)
 ART_W = 840          # the art column inside the 1440 board (VIEW without the extra 200)
 VIEW_M = (760, 96, 680, 524)
-DAY_ITEMS = ['মঙ্গল আরতি ভোর ৫:০০', 'রাজভোগ দর্শন সকাল ৭:৩০', 'ভোগ দুপুর ১২:০০', 'অন্নদান প্রসাদ দুপুর ১২:৩০', 'ত্রিধারা সন্ধ্যা আরতি ৬:৩০',
+DAY_ITEMS = ['মঙ্গল আরতি ভোর ৫:০০', 'রাজভোগ দর্শন সকাল ৭:৩০', 'ভোগ দুপুর ১২:০০', 'অন্নপ্রসাদ দুপুর ১২:৩০', 'ত্রিধারা সন্ধ্যা আরতি ৬:৩০',
              'বৃন্দাবন সভা রাত ৮:০০', 'প্রতিদিন ভোর ৫টা থেকে দর্শন']
 
 
@@ -230,7 +230,7 @@ def hours(ctx):
         return (f'<li class="dar-tk" style="--tk: var(--{accent});"><p class="dar-tk__t">{time}</p>'
                 f'<p class="dar-tk__bn" lang="bn">{bn}</p><p class="dar-tk__en">{en}</p></li>')
     tickets = (ticket(t('12:00', 'PM'), 'রাধাকৃষ্ণের ভোগ', 'Bhog before Radha-Krishna', 'sindoor')
-               + ticket(t('12:30–2', 'PM'), 'অন্নদান প্রসাদ', 'Anna-daan prasad, free', 'haldi')
+               + ticket(t('12:30–2', 'PM'), 'অন্নপ্রসাদ', 'Anna prasad, ₹60 per person', 'haldi')
                + ticket(t('5:30', 'PM'), 'হালকা খাবার', 'Light meal during festivals', 'peacock')
                + ticket(t('8', 'AM') + '–' + t('6', 'PM'), 'সেবা ডেস্ক', 'Seva desk', 'neel'))
     aside = '<p>Darshan begins at 5:00 AM with Mangal Arati and tulsi parikrama.</p>'

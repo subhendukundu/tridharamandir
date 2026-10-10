@@ -8,7 +8,7 @@
   var T = window.TMM;
 
   T.onPage('seva', function () {
-    var RATE = 1001 / 80;            // ₹1,001 feeds 80 devotees (the current site's homepage), so a plate is about ₹12.50: an estimate
+    var RATE = 1001 / 80;            // ₹1,001 feeds 80 devotees: the mandir's own anna-daan measure, so the plates are an estimate
     var MAX = 9999999, DRAW_MAX = 2000;
 
     function num(v) {
@@ -73,11 +73,11 @@
         total.style.setProperty('--len', String(Math.max(total.textContent.length, 5)));
         fit(total);
         if (!a) { lineBn.textContent = 'টাকার অঙ্ক লিখুন'; lineEn.textContent = 'Type an amount to see the plates'; }
-        else if (n < 1) { lineBn.textContent = 'এক পাতের চেয়ে কম'; lineEn.textContent = 'Less than one plate (about ₹12.50 a plate)'; }
+        else if (n < 1) { lineBn.textContent = 'এক পাতের চেয়ে কম'; lineEn.textContent = 'Less than one plate'; }
         else { lineBn.textContent = 'প্রায় ' + T.bn(group(n)) + ' জনের পাত'; lineEn.textContent = 'About ' + group(n) + plural(n, ' plate', ' plates') + ' of anna-daan'; }
         capBn.textContent = n ? T.bn(group(n)) + ' জন, ' + T.bn(group(n)) + 'টি পাত' : 'পাত এখনও খালি';
-        capEn.textContent = n > DRAW_MAX ? 'Showing ' + group(DRAW_MAX) + ' plates: more than a day of anna-daan at the mandir'
-          : (n >= 2000 ? 'About a day of anna-daan at the mandir' : 'Each plate is one devotee fed');
+        capEn.textContent = n > DRAW_MAX ? 'Showing ' + group(DRAW_MAX) + ' plates: more than a day of prasad at the mandir'
+          : (n >= 2000 ? 'About a day of prasad at the mandir' : 'Each plate is one devotee fed');
         draw(n);
       };
 
@@ -253,7 +253,7 @@
     /* extra lines for the summary the visitor sends (see T.formSummary in 40-forms.js) */
     form.tmmExtra = function () {
       var r = chosen(), a = num(amount.value), lines = [];
-      if (r && r.hasAttribute('data-plates') && a) lines.push('Plates (estimate): about ' + group(platesFor(a)) + ' (₹1,001 feeds 80, so about ₹12.50 a plate)');
+      if (r && r.hasAttribute('data-plates') && a) lines.push('Plates (estimate): about ' + group(platesFor(a)) + ' (₹1,001 feeds 80)');
       if (r && r.hasAttribute('data-monthly')) lines.push('How often: every month');
       return lines;
     };

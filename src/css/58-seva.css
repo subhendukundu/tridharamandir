@@ -239,7 +239,7 @@
   .sev-imp__d { font-size: 17px; }
 }
 
-/* ---------------------------------------------------------------- anna-daan prasad is free */
+/* ---------------------------------------------------------------- anna prasad: when, and what it costs */
 .sev-prasad { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 48px; }
 .sev-prasad__t { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .sev-prasad__h { font-weight: 800; font-stretch: 75%; font-size: clamp(40px, 4.45vw, 64px); line-height: 1.05; text-wrap: balance; }

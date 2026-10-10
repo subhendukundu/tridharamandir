@@ -70,7 +70,7 @@ def render(ctx):
 
 - Facts only from `content/FACTS.md` and `content/site.json`. The approved design copy in `b_<page>.py` was checked against it: reuse it, but if a line contradicts FACTS, FACTS wins.
 - Write gaps as `[CONFIRM]` (after the claim) or as a placeholder in capitals: `[UPI ID]`, `[BANK DETAILS]`, `[TRUST NAME AND REGISTRATION]`, `[PHOTO]`. Every `[CAPITALS]` in visible text is turned into a yellow mark automatically; `ui.tbc()` makes one explicitly.
-- The Shakta deity is **Maa Kali** (not Durga). Anna-daan prasad is **free**. No claim that the arati is live-streamed (the mandir has a YouTube channel; anything "live" is `[CONFIRM]`). No WhatsApp number exists.
+- The Shakta deity is **Maa Kali** (not Durga). Anna prasad (the midday meal) is **₹60 per person, not free** (corrected Oct 2026); "anna-daan" means the seva of feeding devotees. No claim that the arati is live-streamed (the mandir has a YouTube channel; anything "live" is `[CONFIRM]`). No WhatsApp number exists.
 - **No photographs of the temple.** The design is drawn (decided October 2026); never trace or screenshot the temple's photos. `photo_slot()` is retired and returns nothing.
 - No iframes (YouTube, maps): link out. No external images or scripts. No `mailto:` forms.
 

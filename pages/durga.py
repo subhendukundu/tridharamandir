@@ -16,7 +16,7 @@ from lib import byear as BY
 
 PAGE = dict(key='durga', title='Durga Puja 2026',
             description='Durga Puja 2026 at Tridhara Milan Mandir, Panchmura: Shashthi 16 Oct to Bijoya Dashami 21 Oct, '
-                        'Sandhi Puja on Mahashtami, and free anna-daan prasad.',
+                        'Sandhi Puja on Mahashtami, and anna prasad every day.',
             tone='sindoor')
 
 LOTUS_PINK = '#F2A7C3'
@@ -332,7 +332,7 @@ def everyday_rows(ctx, iso, night=False):
     wk = d_of(iso).weekday()
     close = H['close_weekend'] if wk >= 5 else H['close_weekday']
     rows = [(f'{S[0]["time"]} {S[0]["ampm"]}', S[0]['bn'], f'{S[0]["en"]} · darshan opens', (S[0]['start'], S[0]['end'])),
-            (f'{S[2]["time"]} {S[2]["ampm"]}', S[2]['bn'], 'Anna-daan prasad, free for every visitor, till 2 PM', (S[2]['start'], S[2]['end'])),
+            (f'{S[2]["time"]} {S[2]["ampm"]}', S[2]['bn'], 'Anna prasad, ₹60 per person, till 2 PM', (S[2]['start'], S[2]['end'])),
             ('5:30 PM', 'হালকা খাবার', 'A light meal, as on every festival day', (17 * 60 + 30, None)),
             (f'{S[3]["time"]} {S[3]["ampm"]}', S[3]['bn'], S[3]['en'], (S[3]['start'], S[3]['end']))]
     if night:   # Ekadashi, Purnima, Amavasya: extended hours, kirtan through the night (FACTS)
@@ -470,7 +470,7 @@ def seva_section(ctx):
     feature = (f'<div class="dur-seva__feature"><img class="dur-seva__art" src="{ctx.img("dur-seva.svg")}" alt="" width="340" height="256" loading="lazy" decoding="async">'
                f'<p class="dur-seva__h" lang="bn">পুজোর ভোগ, মাটির হাঁড়িতে</p>'
                f'<p class="dur-seva__p">Sattvic, onion-free bhog, cooked in the terracotta handis of the mandir kitchen. '
-               f'Anna-daan prasad stays free for every visitor, from 12:30 PM.</p>'
+               f'Anna prasad is served from 12:30 PM, at ₹60 per person.</p>'
                f'<p class="dur-seva__small">{P["methods"]} · {P["receipt"].lower()} · {P["tax"]}</p></div>')
     cards = [dict(amount='₹5,001', bn='উৎসবের অন্নদান', en='Festival anna-daan', accent='sindoor', form=SEVA_FESTIVAL,
                   desc='Bhog for about 400 devotees during the Puja, cooked in the mandir’s terracotta handis.'),
@@ -547,7 +547,7 @@ def json_ld(ctx):
         '@context': 'https://schema.org', '@type': 'Event', 'name': f'Durga Puja {y} at {s["name_en"]}',
         'alternateName': f'দুর্গাপূজা {bn(y)}',
         'description': f'Durga Puja at {s["name_en"]}, {s["place_en"]}: {first["en"]} on {date_en(first["date"])} to {last["en"]} '
-                       f'on {date_en(last["date"], True)}, by the Benimadhab Shil panjika. Anna-daan prasad is free for every visitor.',
+                       f'on {date_en(last["date"], True)}, by the Benimadhab Shil panjika.',
         'startDate': fe['start'], 'endDate': fe['end'],
         'eventStatus': 'https://schema.org/EventScheduled', 'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
         'location': place, 'url': ctx.url('durga'),

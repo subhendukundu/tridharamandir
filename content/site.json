@@ -10,7 +10,7 @@
     "domain": "https://tridharamandir.com",
     "trust_line": "",
     "year": 2026,
-    "description": "Tridhara Milan Mandir, Panchmura: Mahadev, Radha-Krishna and Maa Kali in one mandir. Darshan daily from 5 AM, free anna-daan prasad, festivals all year."
+    "description": "Tridhara Milan Mandir, Panchmura: Mahadev, Radha-Krishna and Maa Kali in one mandir. Darshan daily from 5 AM, anna prasad at midday, festivals all year."
   },
   "contact": {
     "phone": "+91 96091 75202",
@@ -81,9 +81,9 @@
     {
       "time": "12:30",
       "ampm": "PM",
-      "bn": "অন্নদান প্রসাদ",
-      "en": "Anna-daan prasad",
-      "note": "Free for every visitor, till 2 PM",
+      "bn": "অন্নপ্রসাদ",
+      "en": "Anna prasad",
+      "note": "₹60 per person, till 2 PM",
       "start": 750,
       "end": 840
     },
